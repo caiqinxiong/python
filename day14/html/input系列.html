@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>所有能提交到后台到标签</title>
+</head>
+<body>
+<form enctype="multipart/form-data">
+    <div>
+        <p>请选择性别：</p>
+        <!--单选框-->
+        男：<input type="radio" value="1" name="aa" checked="checked" />
+        女：<input type="radio" value="2" name="aa" />
+        <p>爱好</p>
+        <!--多选框-->
+        篮球：<input type="checkbox" name="bb" value="1" checked="checked"/>
+        排球：<input type="checkbox" name="bb" value="2" />
+        羽毛球：<input type="checkbox" name="bb" value="3" checked="checked"/>
+        乒乓球：<input type="checkbox" name="bb" value="4"/>
+        游泳：<input type="checkbox" name="bb" value="5"/>
+        <p>技能</p>
+        <!--多选框，name属性要相同，批量-->
+        吹牛B：<input type="checkbox" name="cc" value="1" />
+        写代码：<input type="checkbox" name="cc" value="2" checked="checked"/>
+
+        <p>上传文件</p>
+        <!--依赖form表单的enctype="multipart/form-data"属性-->
+        <input type="file" name="fname" />
+        <br/>
+        <!--label标签，用于点击文件，使得关联第标签获取光标-->
+        <label for="usermane">请输入：</label>
+        <input id="usermane" type="text" name="user" />
+    </div>
+
+    
+    <!--多行输入-->
+    <textarea name="meno"> 默认值写这儿 </textarea>
+
+
+    <!--下拉选择-->
+    <select name="city">
+        <option value="1">北京</option>
+        <option value="2" selected="selected">上海</option>
+        <option value="3">广州</option>
+    </select>
+    
+    <!--下拉选择,分组-->
+    <select name="city">
+        <optgroup label="城市">
+            <option value="1">北京</option>
+            <option value="2" selected="selected">上海</option>
+            <option value="3">广州</option>
+        </optgroup>
+        <optgroup label="天气">
+            <option value="1">晴天</option>
+            <option value="2">雨天</option>
+            <option value="3">阴天</option>
+        </optgroup>
+    </select>
+    
+    <!--下拉选择,展现多个，默认size=1，单选-->
+    <select name="city" size="2">
+        <option value="1">北京</option>
+        <option value="2" selected="selected">上海</option>
+        <option value="3">广州</option>
+    </select>
+
+    <!--下拉选择,展现多个，默认size=1，多选-->
+    <select name="city" multiple="multiple" size="2">
+        <option value="1">北京</option>
+        <option value="2" selected="selected">上海</option>
+        <option value="3">广州</option>
+    </select>
+
+    <div>
+        <input type="submit" value="提交" />
+        <input type="reset" value="重置" />
+    </div>
+
+</form>
+</body>
+</html>

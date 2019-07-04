@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1" width="300px">
+    <tr><td>1</td><td>2</td><td>3</td></tr>
+    <tr><td>1</td><td>2</td><td>3</td></tr>
+    <tr><td>1</td><td>2</td><td>3</td></tr>
+</table>
+<!--把onclick去掉，直接在script里实现-->
+<script>
+    var myTrs = document.getElementsByTagName('tr');
+    var len = myTrs.length;
+    for (var i = 0; i<len;i++){
+        myTrs[i].onmouseover = function () {
+            //myTrs[i].style.backgroundColor = 'red'; 作用域不对，i取值为2
+            this.style.backgroundColor = 'red';//this,谁调用就指向谁,myTrs[0],myTrs[1],myTrs[2],当前触发事件都标签
+        };
+        myTrs[i].onmouseout = function () {
+            this.style.backgroundColor = "";
+        }
+    }
+
+
+</script>
+</body>
+</html>

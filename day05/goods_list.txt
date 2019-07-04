@@ -1,0 +1,9 @@
+Iphone 5800
+MacPro 12000
+Bike 800
+Watch 15000
+Coffer 46
+Book 70
+Pen 10
+peper 3
+car 100000

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自执行函数</title>
+</head>
+<body>
+
+<script>
+<!--匿名函数-->
+    setInterval(function () {
+        console.log(123);
+    })
+
+<!--自执行函数-->
+    (function (arg) {
+        console.log(arg);
+        return arg;
+    })('lixiaoxin')
+</script>
+</body>
+</html>

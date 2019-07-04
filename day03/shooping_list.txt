@@ -1,0 +1,19 @@
+
+2018-05-13 11:39:43
+['Iphone', 5800]
+['Bike', 800]
+['MacPro', 12000]
+['Bike', 800]
+['Watch', 15000]
+['Coffer', 46]
+['Watch', 15000]
+Your current balance:100554
+
+2018-05-13 11:41:02
+['Iphone', 5800]
+['Bike', 800]
+['Watch', 15000]
+['Coffer', 46]
+['Book', 70]
+['MacPro', 12000]
+Your current balance:66838

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id = 'f1' action="http://www.baidu.com">
+    <input type="text"/>
+    <input type="submit" value="提交"/>
+    <!--通过script任何标签都可以提交了-->
+    <a onclick="submitForm()">a标签提交</a>
+    <div onclick="submitForm()">div标签提交</div>
+</form>
+
+<script>
+    function submitForm() {
+        //提交表单
+        //document.getElementById('f1').submit();
+
+        alert('弹框');
+        var v = confirm('是否确认，返回值为true或false');
+        //获取当前网址,并重定向
+        //location.href = 'http://www.baidu.com'
+        //刷新网页
+        location.reload()
+
+    }
+</script>
+</body>
+</html>

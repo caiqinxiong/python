@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*
+        #i1{
+            background-color: aqua;
+            height: 80px;
+        }
+        .c1{
+            background-color: antiquewhite;
+            height: 80px;
+        }
+        */
+
+        /* 标签选择器，所有的div都应用这种style */
+        /*
+        div {
+            background-color: aqua;
+            color: antiquewhite
+        }
+        */
+
+        /*层级选择器，span下面都div才应用*/
+        span div {
+            background-color: aqua;
+            color: antiquewhite
+        }
+        /*组合选择器*/
+        /*属性选择器*/
+        
+    </style>
+</head>
+<body>
+<div class="c1">头部</div>
+<div id="i1">中间内容</div>
+<span>
+    <div>中间内容</div>
+</span>
+<div class="c1">尾部</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跑马灯</title>
+</head>
+<body>
+<div id="i1" style="background-color: aqua;text-align: center;font-size: 100px;">
+    <p style="color: pink">李小欣，你最近好吗？不要老是跟我闹脾气好不好，要开心的。</p>
+</div>
+<script>
+    function func() {
+        var tag = document.getElementById("i1");
+        var content = tag.innerText;
+        var f = content.charAt(0);
+        var l = content.substring(1,content.length);
+        var new_content = l + f;
+        tag.innerText = new_content;
+    }
+    setInterval("func()",1000)
+</script>
+</body>
+</html>
