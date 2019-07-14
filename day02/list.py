@@ -35,7 +35,7 @@ print(__list.sort())
 print(__list)
 __list.extend([["caiqinxiong","lixiaoxin"]])
 print(__list)
-#浅复制
+#浅复制,只拷贝一层list，出现两层以上就不行了
 #name2 = copy.copy(name)
 name = __list.copy()
 print(name)
