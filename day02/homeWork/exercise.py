@@ -285,13 +285,27 @@ tu = ("alex", [11, 22, {"k1": 'v1', "k2": ["age", "name"], "k3": (11,22,33)}, 44
 9、在不改变列表中数据排列结构的前提下，找出以下列表中最接近最大值和最小值的平均值的数
 li = [-100,1,3,2,7,6,120,121,140,23,411,99,243,33,85,56]。（编程题）
 '''
-li = [-100,1,3,2,7,6,120,121,140,23,411,99,243,33,85,56]
-# 列表中最接近最大值和最小值的平均值
-# 方法一
-average = (max(li)+min(li))/2
-print(average)
-li.sort()
-print(li)
+# import copy
+# li = [-100,1,3,2,7,6,120,121,140,23,411,99,243,33,85,56]
+# lst = copy.deepcopy(li)
+# # 列表中最接近最大值和最小值的平均值
+# # 方法一
+# average = (max(li)+min(li))/2
+# print('列表中最大值和最小值的平均值的数为：',average)
+# lst.sort()
+# print(li)
+# print(lst)
+# index = int(len(lst)/2)
+# for i in  range(index,len(lst)):
+#     if lst[i] > int(average):
+#         if (lst[i] - int(average)) > (int(average) - lst[i-1]):
+#             num=lst[i-1]
+#         else:
+#             num=print(lst[i])
+#         print('列表中最接近最大值和最小值的平均值的数为：',num)
+#         break
+
+
 # 方法二
 # n = li[0]
 # m =li[0]
@@ -303,12 +317,29 @@ print(li)
 #     i =(n+m)/2
 # print(i)
 
+'''
+10、利用for循环和range输出9 * 9乘法表 。（编程题）
+'''
+#
+# for i in range(1,10):
+#     for j in range(1,i+1):
+#         print('%s * %s = %s ' % (i,j,i*j),end=' ')
+#     print()
 
-
-
-
-
-
+'''
+11、求100以内的素数和。（编程题）
+'''
+num=[]
+i=2
+for i in range(2,100):
+   j=2
+   for j in range(2,i):
+      if(i%j==0):
+         break
+   else:
+      num.append(i)
+print(num)
+print(sum(num))
 
 
 
