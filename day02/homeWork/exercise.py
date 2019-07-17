@@ -329,17 +329,17 @@ li = [-100,1,3,2,7,6,120,121,140,23,411,99,243,33,85,56]。（编程题）
 '''
 11、求100以内的素数和。（编程题）
 '''
-num=[]
-i=2
-for i in range(2,100):
-   j=2
-   for j in range(2,i):
-      if(i%j==0):
-         break
-   else:
-      num.append(i)
-print(num)
-print(sum(num))
+# num=[]
+# i=2
+# for i in range(2,100):
+#    j=2
+#    for j in range(2,i):
+#       if(i%j==0):
+#          break
+#    else:
+#       num.append(i)
+# print(num)
+# print(sum(num))
 
 
 
