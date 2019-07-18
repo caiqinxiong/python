@@ -50,7 +50,7 @@ def printDict(menu):
         print(i)
 
 def lverlOne():
-    print(11111111)
+    #print(11111111)
     while True:
         choise = input("请选择：").strip()
         if choise in menu:
@@ -66,7 +66,7 @@ def lverlOne():
             print("输入错误，请重新输入!")
 
 def lverlTwo(lverlOne_chise):
-    print(22222222)
+    #print(22222222)
     while True:
         choise = input("请选择：").strip()
         if choise in menu[lverlOne_chise]:
@@ -74,7 +74,7 @@ def lverlTwo(lverlOne_chise):
             lverlThree(lverlOne_chise,choise)
             break
         elif 'B' == choise.upper():
-            printDict(menu[lverlOne_chise])
+            printDict(menu)
             lverlOne()
             break
         elif 'Q' == choise.upper():
@@ -83,14 +83,14 @@ def lverlTwo(lverlOne_chise):
             print("输入错误，请重新输入!")
 
 def lverlThree(lverlOne_chise,lverlTwo_chise):
-    print(333333333333)
+    #print(3333333)
     while True:
         choise = input("请选择：").strip()
         if choise in menu[lverlOne_chise][lverlTwo_chise]:
             printDict(menu[lverlOne_chise][lverlTwo_chise][choise])
-            print('已经是最后一层啦！返回上层按b,退出按q！')
+            lverlFour(lverlOne_chise,lverlTwo_chise,choise)
         elif 'B' == choise.upper():
-            printDict(menu[lverlOne_chise][lverlTwo_chise])
+            printDict(menu[lverlOne_chise])
             lverlTwo(lverlOne_chise)
             break
         elif 'Q' == choise.upper():
@@ -99,8 +99,21 @@ def lverlThree(lverlOne_chise,lverlTwo_chise):
             print("输入错误，请重新输入!")
 
 
-def lverlFour(choice4):
-    pass
+def lverlFour(lverlOne_chise,lverlTwo_chise,lverThree_choise):
+    #print(4444444)
+    while True:
+        choise = input("请选择：").strip()
+        if choise in menu[lverlOne_chise][lverlTwo_chise][lverThree_choise]:
+            print('已经是最后一层啦！返回上层按b,退出按q！')
+        elif 'B' == choise.upper():
+            printDict(menu[lverlOne_chise][lverlTwo_chise])
+            lverlThree(lverlOne_chise,lverlTwo_chise)
+            break
+        elif 'Q' == choise.upper():
+            exit(-1)
+        else:
+            print("输入错误，请重新输入!")
+
 
 
 if __name__ == '__main__':
