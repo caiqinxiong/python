@@ -46,10 +46,12 @@ menu = {
 }
 
 def printDict(menu):
+    '''打印字典'''
     for i in menu:
         print(i)
 
 def lverlOne():
+    '''第一层'''
     #print(11111111)
     while True:
         choise = input("请选择：").strip()
@@ -66,6 +68,7 @@ def lverlOne():
             print("输入错误，请重新输入!")
 
 def lverlTwo(lverlOne_chise):
+    '''第二层'''
     #print(22222222)
     while True:
         choise = input("请选择：").strip()
@@ -83,6 +86,7 @@ def lverlTwo(lverlOne_chise):
             print("输入错误，请重新输入!")
 
 def lverlThree(lverlOne_chise,lverlTwo_chise):
+    '''第三层'''
     #print(3333333)
     while True:
         choise = input("请选择：").strip()
@@ -100,6 +104,7 @@ def lverlThree(lverlOne_chise,lverlTwo_chise):
 
 
 def lverlFour(lverlOne_chise,lverlTwo_chise,lverThree_choise):
+    '''第四层'''
     #print(4444444)
     while True:
         choise = input("请选择：").strip()
