@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-# caiqinxiong 
+# caiqinxiong
 # 2019/7/17 下午11:37
 menu = {
     '北京': {
@@ -44,20 +44,41 @@ menu = {
     },
     '山东': {},
 }
-#print(menu)
-def threeLM(dic):
-    while True:
-        for k in dic:
-            print(k)
-        key = input('input>>').strip()
-        if key == 'b' or key == 'q':
-            print('aaa')
-            return key
+# 只能输入两层，然后回退
+print('欢迎使用三级菜单小程序！')
+tmp_dic = menu
+choise_list = []
+n = 1
+while True:
+    for name in tmp_dic:
+        print(name)
+    choise = input('请选择：').strip()
+    if choise in tmp_dic.keys() and tmp_dic[choise]:
+        if not choise in choise_list:
+            choise_list.append(choise)
+        #print(choise_list)
+        super_dict = tmp_dic
+        tmp_dic = tmp_dic[choise]
+    elif 'B' == choise.upper():
+        tmp_dic = super_dict
+        choise_list.pop()
+        if n == 2:
+            tmp_dic = menu
+            n -= 2
+        n += 1
+        #print(n)
+    elif 'Q' == choise.upper():
+        print('谢谢使用！')
+        exit(-1)
+    elif choise in tmp_dic.keys() and tmp_dic[choise] == {}:
+        print('已经是最底层！！')
+    else:
+        print('输入有误！')
 
-        elif key in dic.keys() and dic[key]:
-            ret = threeLM(dic[key])
-            if ret == 'q':
-                print('qqqq')
-                return 'q'
 
-threeLM(menu)
+
+
+
+
+
+
