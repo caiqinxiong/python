@@ -58,7 +58,7 @@ def threeLevelMenu(menu):
                 choise_list.append(choise)
             #print(menu[choise])
             #print(choise_list)
-            threeLevelMenu(menu[choise]) #再次调用函数，相当于循环，调用了几次，就需要几个return才能结束。
+            threeLevelMenu(menu[choise]) # 再次调用函数，相当于循环，调用了几次，就需要几个return才能结束。
         elif 'B' == choise.strip().upper():
             #print(choise_list)
             if len(choise_list) == 0:
@@ -73,7 +73,7 @@ def threeLevelMenu(menu):
             print('\033[36;5m谢谢使用！\033[5m')
             exit(-1)
         else:
-            try: # 处理key值异常
+            try: # 处理key值异常 # 可以用字典的get方法
                 if menu[choise] == {}:
                     print('~' * 20)
                     print('\033[31;1m已经是最底层啦！返回上层按b,退出按q！\033[0m')

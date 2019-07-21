@@ -4,7 +4,7 @@ def getUser():
     '''获取用户名信息'''
     user_list = []
     try:
-        f = open('user.txt', 'r')
+        f = open('user.txt', 'r',encoding='utf-8')
         users = f.readlines()
         for user in users:
             user_list.append(user.split())

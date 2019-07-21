@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-# caiqinxiong 
+# caiqinxiong
 # 2019/7/17 下午11:37
 menu = {
     '北京': {
