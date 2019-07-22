@@ -62,22 +62,39 @@ def stockFinder(*args):
             if not i.find(name) < 0:
                 index = data_list[0].index(i) # 获取该名称对应的index值
                 compareData(compare,num,index,data_list)
+            else:
+                print('输入有误！')
     except:
         find_data = []
         # 模糊查找
         for i in range(1,len(data_list)):
             if not data_list[i][2].find(name) < 0:
                 find_data.append(data_list[i])
+            else:
+               print('无查询结果！')
         # 打印查找结果
         printList(find_data)
 
 def checkArgs():
     '''校验传入参数'''
-    print('欢迎来到股票查询系统！')
-    data_list = getData()
-    while True:
-        choise = input('股票查询接口>>:')
+    choise = input('股票查询接口>>:')
+    if not choise.find('>') < 0:
+        name = choise.split('>')[0].strip()
+        num = choise.split('>')[-1].strip()
+        return name,'>',num
+    elif not choise.find('<') < 0:
+        name = choise.split('<')[0].strip()
+        num = choise.split('<')[-1].strip()
+        return name,'<',num
+    else:
+        name = choise.strip()
+    return name
 
 if __name__ == '__main__':
+    # data_list = getData()
+    # stockFinder('成交量','>','100000',data_list)
+    # print('欢迎来到股票查询系统！')
     data_list = getData()
-    stockFinder('成交量','>','100000',data_list)
+    #while True:
+    #aa = checkArgs()
+    print(data_list[0])
