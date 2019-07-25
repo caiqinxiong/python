@@ -80,21 +80,37 @@
 1、任一个英文的纯文本文件，统计其中的每个单词出现的个数，注意是每个单词。。
 '''
 # import collections
-# with open('test.txt','r') as fp:
+# with open('English.txt','r') as fp:
 #     str1=fp.read().split(' ')
 # b = collections.Counter(str1)
 # with open('result.txt','w') as result_file:
 #     for key,value in b.items():
 #         result_file.write(key+':'+str(value)+'\n')
 
+# 方法二
+# dic = {}
+# ch = ''
+# with open('English.txt',mode='r',encoding='utf-8') as f:
+#     conten = f.read()
+#     for line in conten:
+#         if line.isalpha():
+#             ch += line
+#         else:
+#             if ch in dic:
+#                 dic[ch] +=1
+#             else:
+#                 dic[ch] = 1
+#                 ch = ''
+# print(dic)
+
 '''
 2、写函数，计算传入数字参数的和。（动态传参）
 '''
 # def cout(*args):
-#     sum = 0
+#     num = 0
 #     for i in args:
-#         sum += i
-#     return sum
+#         num += i
+#     return num
 # print(cout(1,2,3,4,5))
 
 '''
@@ -173,11 +189,21 @@
 '''
 # def poker():
 #     poker_list = []
-#     for i in ['红心','草花','梅花','黑桃']:
+#     for i in ['红心','草花','方块','黑桃']:
 #         for j in range(1,13):
 #             poker_list.append((i,j))
 #         else:
 #             poker_list.append((i,'A'))
+#     print(poker_list)
+# poker()
+
+# def poker():
+#     ranks = [2,3,4,5,6,7,8,9,10,'J','Q',"k",'A']
+#     coler = ['红心','草花','方块','黑桃']
+#     poker_list = []
+#     for i in coler:
+#         for j in ranks:
+#             poker_list.append((i,j))
 #     print(poker_list)
 # poker()
 
@@ -215,7 +241,7 @@
 #
 #     def circularArea(r):
 #         '''计算圆形面积'''
-#         area = 3.14*r*r
+#         area = 3.14*r**2
 #         return area
 #     area = 0
 #     if args[0] == '长方形':
@@ -259,17 +285,118 @@ portfolio = [
 通过哪个内置函数可以计算购买每支股票的总价
 用filter过滤出，单价大于100的股票有哪些
 '''
-portfolio = [
-{'name': 'IBM', 'shares': 100, 'price': 91.1},
-{'name': 'AAPL', 'shares': 50, 'price': 543.22},
-{'name': 'FB', 'shares': 200, 'price': 21.09},
-{'name': 'HPQ', 'shares': 35, 'price': 31.75},
-{'name': 'YHOO', 'shares': 45, 'price': 16.35},
-{'name': 'ACME', 'shares': 75, 'price': 115.65}
-]
-# 通过哪个内置函数可以计算购买每支股票的总价
-ret = map(lambda dic : {dic['name']:round(dic['shares']*dic['price'],2)},portfolio)
-print(list(ret))
-# 用filter过滤出，单价大于100的股票有哪些
-ret = filter(lambda dic:True if dic['price'] > 100 else False,portfolio)
-print(list(ret))
+# portfolio = [
+# {'name': 'IBM', 'shares': 100, 'price': 91.1},
+# {'name': 'AAPL', 'shares': 50, 'price': 543.22},
+# {'name': 'FB', 'shares': 200, 'price': 21.09},
+# {'name': 'HPQ', 'shares': 35, 'price': 31.75},
+# {'name': 'YHOO', 'shares': 45, 'price': 16.35},
+# {'name': 'ACME', 'shares': 75, 'price': 115.65}
+# ]
+# # 通过哪个内置函数可以计算购买每支股票的总价
+# ret = map(lambda dic : {dic['name']:round(dic['shares']*dic['price'],2)},portfolio)
+# print(list(ret))
+# # 用filter过滤出，单价大于100的股票有哪些
+# ret = filter(lambda dic:True if dic['price'] > 100 else False,portfolio)
+# print(list(ret))
+'''
+11、有列表 li = [‘alex’, ‘egon’, ‘smith’, ‘pizza’, ‘alen’], 请将以字母“a”开头的元素的首字母改为大写字母；
+'''
+# li = ['alex','egon','smith','pizza','alen']
+# for i in li:
+#     if i.startswith('a'):
+#         li[li.index(i)] = i.capitalize() # 首字母大写
+#         #li[li.index(i)] = i.replace('a','A')
+# print(li)
+#
+#
+
+'''
+12、有列表 li = [‘alex’, ‘egon’, ‘smith’, ‘pizza’, ‘alen’], 请以列表中每个元素的第二个字母倒序排序
+'''
+
+li = ['alex','egon','smith','pizza','alen']
+
+'''
+13、有名为poetry.txt的文件，其内容如下，请删除第三行；
+
+昔人已乘黄鹤去，此地空余黄鹤楼。
+
+黄鹤一去不复返，白云千载空悠悠。
+
+晴川历历汉阳树，芳草萋萋鹦鹉洲。
+
+日暮乡关何处是？烟波江上使人愁。
+
+'''
+# with open('poetry.txt',mode='r',encoding='utf-8') as f1, open('poetry.txt.bak',mode='w') as f2:
+#     n = 0
+#     for line in f1:
+#         if line.strip():
+#             n += 1
+#             if n != 3:
+#                 f2.write(line+'\n')
+#
+# import os
+# os.remove('poetry.txt')
+# os.rename('poetry.txt.bak','poetry.txt')
+#
+
+
+'''
+14、有名为username.txt的文件，其内容格式如下，写一个程序，判断该文件中是否存在”alex”, 如果没有，则将字符串”alex”添加到该文件末尾，否则提示用户该用户已存在；
+
+pizza
+alex
+egon
+'''
+# with open('username.txt',mode='r',encoding='utf-8') as f:
+#     for line in f:
+#         if line.strip() and 'alex' in line:
+#             print('用户已存在！')
+#             break
+#     else:
+#         with open('username.txt',mode='a',encoding='utf-8') as f2:
+#             f2.write('alex\n')
+
+
+'''
+15、有名为user_info.txt的文件，其内容格式如下，写一个程序，删除id为100003的行；
+
+pizza,100001
+alex, 100002
+egon, 100003
+'''
+#
+# with open('user_info.txt',mode='r',encoding='utf-8') as f1,open('user_info.txt.bak',mode='w') as f2:
+#     for line in f1:
+#         if line.strip():
+#             #print(line)
+#             if '100003' in line:
+#                 continue
+#             f2.write(line)
+# import os
+# os.remove('user_info.txt')
+# os.rename('user_info.txt.bak','user_info.txt')
+
+
+'''
+16、有名为user_info.txt的文件，其内容格式如下，写一个程序，将id为100002的用户名修改为alex li；
+
+pizza,100001
+alex, 100002
+egon, 100003
+'''
+# with open('user_info.txt',mode='r',encoding='utf-8') as f1,open('user_info.txt.bak',mode='w') as f2:
+#     for line in f1:
+#         if line.strip():
+#             #print(line)
+#             if '100002' in line:
+#                 name = line.split(',')[0]
+#                 line = line.replace(name,'alex li')
+#             f2.write(line)
+# import os
+# os.remove('user_info.txt')
+# os.rename('user_info.txt.bak','user_info.txt')
+#
+
