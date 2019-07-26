@@ -5,18 +5,24 @@ def getData():
     '''获取源数据'''
     stock_data_list = []
     with open(r'stock_data.txt', mode='r', encoding='utf-8') as f:
+        print('~' * 160)
+        head = f.readline().split()
+        stock_data_list.append(head)
+        # 打印表头，中文字符比英文字符大啊！！！,为了打印输出美观点，只能分开打印了
+        for i in head:
+            print(i.center(6,' '),end='|')
+        print()
         for line in f:
             line = line.strip()
             if line:
                 #print(line.split())
-                # for j in line.split():
-                #     print(j.center(7),end='')
-                # print()
-                print('|'.join(line.split()))
+                for j in line.split():
+                    print(j.center(8),end='|')
+                print()
+                #print('|'.join(line.split()))
                 stock_data_list.append(line.split())
-        print('~' * 100)
+        print('~' * 160)
     return stock_data_list
-
 
 def changeData(data):
     '''数据转换'''
@@ -42,9 +48,15 @@ def printList(listData):
     else:
         print('一共搜索到\033[31;1m%s\033[0m条结果，详情如下：' % len(listData))
         print('~' * 100)
-        print('|'.join(data_list[0]))
-        for i in listData:
-            print('|'.join(i))
+        for i in data_list[0]:
+            print(i.center(5,' '),end='|')
+        print()
+        for j in listData:
+            #print(j.center(5,' '),end='|')
+            for k in j:
+                print(k.center(7,' '),end='|')
+            print()
+
         print('~' * 100)
 
 
@@ -117,11 +129,11 @@ def checkArgs(data_list):
         #print('\033[31;1m请输入内容！\033[0m')
         return 'continue'
     else:
-        name = choise.strip()
-        return name, data_list
+        return choise, data_list
 
 
 if __name__ == '__main__':
+    print('欢迎使用股票查询系统，所有数据信息如下：')
     data_list = getData()
     while True:
         args = checkArgs(data_list)
