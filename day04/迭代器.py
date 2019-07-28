@@ -9,3 +9,5 @@ print(isinstance({},Iterable))
 print(isinstance('abc',Iterable))
 print(isinstance((x for x in range(10)),Iterable))
 print(isinstance(123,Iterable))
+
+# 迭代器只做一件事，节省内存空间，文件操作
