@@ -227,7 +227,7 @@ def menu(users, username='', login_status=False):
 8、退出程序''')
     print('#' * 20)
     while True:
-        choise = input('请选择!').strip()
+        choise = input('请选择:').strip()
         if '1' == choise:
             if login_status:
                 print('用户已登录，请重新选择！')

@@ -2,5 +2,6 @@
 	"caiqinxiong": "123",
 	"lixiaoxin": "123",
 	"alex": "123",
-	"wusir": "123"
+	"wusir": "123",
+	"xiaoqiang": "123"
 }

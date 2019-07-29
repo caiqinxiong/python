@@ -174,16 +174,105 @@
 '''
 5、编写装饰器，为多个函数加上认证的功能（用户的账号密码来源于文件,只支持单用户的账号密码,给用户三次机会），要求登录成功一次，后续的函数都无需再输入用户名和密码
 '''
+# FLAG = False
+# def get_user(file):
+#     with open(file,mode = 'r',encoding='utf-8') as f:
+#         for line in f:
+#             usr,pwd = line.strip().split('|')
+#             yield usr,pwd
+#
+# def login(func):
+#     def inner(*args,**kwargs):
+#         global FLAG  # 将FLAG变量设置成全局变量
+#         if FLAG:
+#             ret = func(*args, **kwargs)
+#             return ret
+#         else:
+#             for i in range(3):
+#                 user = input('username :')
+#                 passwd = input('password :')
+#                 for usr,pwd in get_user('userinfo'):
+#                     if usr == user and pwd == passwd:
+#                         print('登录成功')
+#                         FLAG = True
+#                         ret = func(*args,**kwargs)
+#                         return ret
+#                 else:
+#                     print('账号或密码错误！')
+#             else:
+#                 print('登录失败')
+#     return inner
+#
+# @login
+# def func1():
+#     print('in the func1')
+#
+# @login
+# def func2():
+#     print('in the func2')
+# func1()
+# func2()
 
 '''
 6、编写装饰器，为多个函数加上认证的功能（用户的账号密码来源于文件,可支持多账号密码），要求登录成功一次（给三次机会），后续的函数都无需再输入用户名和密码。
+'''
+'''
 7、给每个函数写一个记录日志的功能，
-
 功能要求：每一次调用函数之前，要将函数名称，时间节点记录到log的日志中。
 所需模块：
 import time
 struct_time = time.localtime()
 print(time.strftime("%Y-%m-%d %H:%M:%S",struct_time))
+'''
+# from functools import wraps
+# import time
+# def log(func):
+#     @wraps(func)
+#     def inner(*args, **kwargs):
+#         ret = func(*args, **kwargs)
+#         DATE = time.strftime('%Y-%m-%d %H:%M:%S')
+#         with open(r'access.log', mode='a', encoding='utf-8') as f:
+#             log_conten = '用户[%s]在%s执行了%s函数\n' % (args[0], DATE, func.__name__)
+#             # print(log_conten)
+#             f.write(log_conten)
+#         return ret
+#
+#     return inner
+#
+# @log
+# def func1():
+#     print('in the func1')
+#
+# @log
+# def func2():
+#     print('in the func2')
+#
+# func1()
+# func2()
 
+
+'''
 8、lambda是什么？试着把简单的需求写成lambda函数。
 '''
+# lambda 是匿名函数
+# lambda表达式 a,b两个值,求比较大的值
+# lambda表达式 a为参数,求a的奇\偶性
+# lambda表达式 a为参数,求a的绝对值
+
+# func1 = lambda a,b : a if a>b else b
+# ret = func1(10,2)
+# print(ret)
+#
+# func2 = lambda a : '偶数' if a%2 == 0 else '奇数'
+# ret = func2(5)
+# print(ret)
+#
+# func3 = lambda a:a if a>0 else -a
+# ret = func3(-5)
+# print(ret)
+# ret = func3(10)
+# print(ret)
+#
+# func = lambda :2+3+4+5
+# ret = func()
+# print(ret)
