@@ -108,6 +108,7 @@ def wrapper(func):
         ret = func(*args,**kwargs)
         t = time.strftime('%Y-%m-%d %H:%M:%S')
         log_conten = '在%s[%s]执行了%s函数' % (t, args[0], func.__name__)
+        print(log_conten)
         with open('operate.log',mode='a',encoding='utf-8') as f:
             f.write(log_conten+'\n')
 

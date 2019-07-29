@@ -1,0 +1,12 @@
+#Author:Mike.laowang
+#date:2019.7.25
+Env:Python3.7.3
+
+#运行方式  首先 pip install -r requirements.txt 然后启动stock_quary.py
+
+#按价格、幅度筛选时请注意，有些带单位的数据不能筛选
+
+#时间原因，异常处理还没写
+
+#输入数据合法性没有判断
+
