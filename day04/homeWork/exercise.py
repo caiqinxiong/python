@@ -277,22 +277,58 @@ print(time.strftime("%Y-%m-%d %H:%M:%S",struct_time))
 # ret = func()
 # print(ret)
 
-def func():
-    def func1():
-        print('in the func1')
-    return func1
-f = func()
-f()
+# def func():
+#     def func1():
+#         print('in the func1')
+#     return func1
+# f = func()
+# f()
+#
+# def wahaha():
+#     pass
+#
+# def login(func):
+#     def inner(*args,**kwargs):
+#         print('start')
+#         ret = func(*args,**kwargs)
+#         print('end')
+#         return ret
+#     return inner
+# f = login(wahaha)
+# f()
 
-def wahaha():
-    pass
+# from functools import wraps
+# def wapper(func):
+#     @wraps(func)
+#     def inner(*args,**kwargs):
+#         print(func.__name__)
+#         ret = func(*args,**kwargs)
+#         return ret
+#     return inner
+#
+# @wapper
+# def now():
+#     print("2013-12-25")
+#
+# now()
+'''
+2. 列表推导式和生成器表达式 [i % 2 for i in range(10)] 和 (i % 2 for i in range(10)) 输出结果分别是什么？
+'''
+# # [0, 1, 0, 1, 0, 1, 0, 1, 0, 1]
+# # 生成器的内存地址
+# print([i % 2 for i in range(10)])
+# print((i % 2 for i in range(10)))
 
-def login(func):
-    def inner(*args,**kwargs):
-        print('start')
-        ret = func(*args,**kwargs)
-        print('end')
-        return ret
-    return inner
-f = login(wahaha)
-f()
+'''
+def multipliers():
+    return [lambda x: i * x for i in range(4)]
+print([m(2) for m in multipliers()])
+'''
+# def multipliers():
+#     return [lambda x: i * x for i in range(4)] # lambda 参数 x：返回值 i * x for i in range(4) # 返回4个内存地址
+# print([m(2) for m in multipliers()])
+#
+# for i in [lambda x: i * x for i in range(4)]: # 生成器被取值时，i最后都等于3了。
+#     print(i(3))
+#
+# print((lambda a,b:a+b)(1,2))

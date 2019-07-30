@@ -37,7 +37,7 @@ class Shares:
                     query_lst.append(item)
                     print(item)
 
-        print(f"共查询出 {len(query_lst)} 条数据")
+        print("共查询出 {len(query_lst)} 条数据")
         query_lst.clear()
 
         isContinue = input("要继续查询吗？'b'(继续）/ 'q'(退出):")
