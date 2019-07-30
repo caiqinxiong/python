@@ -12,6 +12,7 @@ dict_info = {'login_status': False, 'username': None}
 
 
 def get_user(file):
+    '''获取用户信息'''
     with open(file, mode='r', encoding='utf-8') as f:
         for line in f:
             usr, pwd = line.strip().split('|')
@@ -19,10 +20,11 @@ def get_user(file):
 
 
 def login(func):
+    '''登录验证'''
     @wraps(func)
     def inner(*args, **kwargs):
         if dict_info['login_status'] == True:
-            print('您已登录啦！')
+            print('已是登录状态！')
             ret = func(*args, **kwargs)
             return ret
         else:
@@ -40,22 +42,14 @@ def login(func):
                 else:
                     print('账号或密码错误！')
             else:
-                print('您的3次尝试机会已用完，是否注册新用户？Y/N')
-                while True:
-                    choise = input().strip().upper()
-                    if 'Y' == choise:
-                        register()
-                        break
-                    elif 'N' == choise:
-                        print('谢谢使用！')
-                        exit(-1)
-                    else:
-                        print('输入有误！')
+                print('您的3次尝试机会已用完，谢谢使用！')
+                exit(-1)
 
     return inner
 
 
 def log(func):
+    '''日志'''
     @wraps(func)
     def inner(*args, **kwargs):
         ret = func(*args, **kwargs)
@@ -71,6 +65,7 @@ def log(func):
 
 @login
 def loginBlog():
+    '''登录博客'''
     return printMenu()
 
 
@@ -79,19 +74,23 @@ def register():
     for i in range(3):
         user = input('请输入注册名 :')
         for usr, pwd in get_user('userinfo'):
-            if usr != user:
-                passwd = input('请输入密码 :')
-                print('账户\033[42;1m%s\033[0m注册成功！' % user)
-                dict_info['login_status'] = True
-                dict_info['username'] = user
-                with open('userinfo', mode='a', encoding='utf-8') as f:
-                    f.write(user+'|'+passwd+'\n')
-                printMenu()
+            if usr == user:
+                print('用户名已存在！')
+                break
         else:
-            print('用户名已存在！')
+            passwd = input('请输入密码 :')
+            print('账户\033[42;1m%s\033[0m注册成功！' % user)
+            dict_info['login_status'] = True
+            dict_info['username'] = user
+            with open('userinfo', mode='a', encoding='utf-8') as f:
+                f.write(user + '|' + passwd + '\n')
+            printMenu()
+            break
     else:
-        print('尝试次数已用完！')
-        exit(-1)
+        print('操作过于频繁，请5分钟后再试！')
+        time.sleep(300)
+
+
 @login
 @log
 def articlePage(username):
@@ -123,6 +122,7 @@ def collectionPage(username):
     print('欢迎%s用户访问\033[31;1m收藏\033[0m页面!' % username)
     return printMenu()
 
+
 def printMenu():
     '''打印主菜单'''
     print('#' * 20)
@@ -137,8 +137,9 @@ def printMenu():
 8、退出程序''')
     print('#' * 20)
 
-def menu():
-    '''主菜单'''
+
+def main():
+    '''主控制逻辑'''
     while True:
         choise = input('请选择:').strip()
         if '1' == choise:
@@ -167,4 +168,4 @@ def menu():
 
 if __name__ == '__main__':
     printMenu()
-    menu()
+    main()

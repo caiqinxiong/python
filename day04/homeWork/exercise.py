@@ -4,7 +4,7 @@
 
 # # 监听
 # def listen():
-#     with open(r'operate.log',mode='r',encoding='utf-8') as f:
+# with open(r'operate.log',mode='r',encoding='utf-8') as f:
 #         while True:
 #             conten = f.readline().strip()
 #             if 'error' in conten:
@@ -276,3 +276,23 @@ print(time.strftime("%Y-%m-%d %H:%M:%S",struct_time))
 # func = lambda :2+3+4+5
 # ret = func()
 # print(ret)
+
+def func():
+    def func1():
+        print('in the func1')
+    return func1
+f = func()
+f()
+
+def wahaha():
+    pass
+
+def login(func):
+    def inner(*args,**kwargs):
+        print('start')
+        ret = func(*args,**kwargs)
+        print('end')
+        return ret
+    return inner
+f = login(wahaha)
+f()
