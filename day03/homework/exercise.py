@@ -400,3 +400,38 @@ egon, 100003
 # os.rename('user_info.txt.bak','user_info.txt')
 #
 
+# def func1(func):
+#     def inner(*args,**kwargs):
+#         print('in the func1')
+#         ret = func(*args,**kwargs)
+#         return ret
+#     return inner
+#
+# @func1
+# def func2():
+#     print('in the func2')
+#
+# func_list = [func1,func2]
+#
+# func2()
+# # for i in func_list:
+# #    eval(i)
+# from collections import *
+# c = Counter(['hello',' world!','hello','Chaina'])
+# print(c)
+
+# import random
+#
+# def v_code():
+#
+#     code = ''
+#     for i in range(5):
+#
+#         num=random.randint(0,9)
+#         alf=chr(random.randint(65,90))
+#         add=random.choice([num,alf])
+#         code="".join([code,str(add)])
+#
+#     return code
+#
+# print(v_code())

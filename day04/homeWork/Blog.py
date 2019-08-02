@@ -213,7 +213,7 @@ def accessPage(username, choise, login_status):
     return turnBack(username, login_status)
 
 
-def menu(users, username='', login_status=False):
+def menu(users, username=None, login_status=False):
     '''主菜单'''
     print('#' * 20)
     print('''欢迎来到博客园首页
