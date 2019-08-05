@@ -60,7 +60,7 @@ def reduction_formula(symbol, multiply_divide):
         del multiply_divide[0] # 把list的第一个空值删除掉
         del symbol[0] # 负号已经拼接到上面的式子里了，所以要删除掉多余的负号。
     # 处理乘除算式中后面带负号的情况
-    for index, i in enumerate(multiply_divide):
+    for index, i in enumerate(multiply_divide): #9-2*5/3+7/3*99/4*-2998 +10 * 568/14 切割后为['9', '2*5/3 ', ' 7 /3*99/4*', '2998 ', '10 * 568/14 ']
         i = i.strip()
         if i.endswith("*") or i.endswith("/"):
             multiply_divide[index] = multiply_divide[index] + symbol[index] + multiply_divide[index + 1]
