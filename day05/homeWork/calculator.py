@@ -5,103 +5,122 @@ import re
 import functools
 
 
-def minus_operator_handler(formula):
+def minus_operator_handler(num):
     '''处理一些特殊的减号运算'''
-    minus_operators = re.split("-",formula)
-    calc_list= re.findall("[0-9]",formula)
-    if minus_operators[0] == '': #第一值肯定是负号
+    minus_operators = re.split("-", num)
+    calc_list = re.findall("[0-9]", num)
+    if minus_operators[0] == '':  # 第一值肯定是负号
         calc_list[0] = '-%s' % calc_list[0]
-    res = functools.reduce(lambda x,y:float(x) - float(y), calc_list)
-    print("\033[33;1m减号[%s]处理结果:\033[0m" % formula, res )
+    res = functools.reduce(lambda x, y: float(x) - float(y), calc_list)
+    print("\033[33;1m减号[%s]处理结果:\033[0m" % num, res)
     return res
 
-def remove_duplicates(formula):
-    formula = formula.replace("++","+")
-    formula = formula.replace("+-","-")
-    formula = formula.replace("-+","-")
-    formula = formula.replace("--","+")
-    formula = formula.replace("- -","+")
-    return formula
-def compute_mutiply_and_dividend(formula):
+
+def change_symbol(num):
+    num = num.replace("++", "+")
+    num = num.replace("+-", "-")
+    num = num.replace("-+", "-")
+    num = num.replace("--", "+")
+    num = num.replace("- -", "+")
+    return num
+
+
+def compute_mutiply_and_dividend(num):
     '''算乘除,传进来的是字符串噢'''
-    operators = re.findall("[*/]", formula )
-    calc_list = re.split("[*/]", formula )
+    operators = re.findall("[*/]", num)
+    calc_list = re.split("[*/]", num)
     res = None
-    for index,i in enumerate(calc_list):
+    for index, i in enumerate(calc_list):
         if res:
-            if operators[index-1] == "*":
+            if operators[index - 1] == "*":
                 res *= float(i)
-            elif operators[index-1] == "/":
+            elif operators[index - 1] == "/":
                 res /= float(i)
         else:
             res = float(i)
 
-    print("\033[31;1m[%s]运算结果=\033[0m" %formula, res  )
+    print("\033[31;1m[%s]运算结果=\033[0m" % num, res)
     return res
-def handle_minus_in_list(operator_list,calc_list):
+
+
+def handle_minus_in_list(operator_list, calc_list):
     '''有的时候把算术符和值分开后,会出现这种情况  ['-', '-', '-'] [' ', '14969037.996825399 ', ' ', '12.0/ 10.0 ']
        这需要把第2个列表中的空格都变成负号并与其后面的值拼起来,恶心死了
     '''
-    for index,i in enumerate(calc_list):
-        if i == '': #它其实是代表负号,改成负号
-            calc_list[index+1] = i + calc_list[index+1].strip()
-def handle_special_occactions(plus_and_minus_operators,multiply_and_dividend):
-    '''有时会出现这种情况 , ['-', '-'] ['1 ', ' 2 * ', '14969036.7968254'],2*...后面这段实际是 2*-14969036.7968254,需要特别处理下,太恶心了'''
-    for index,i in enumerate(multiply_and_dividend):
+    for index, i in enumerate(calc_list):
+        if i == '':  # 它其实是代表负号,改成负号
+            calc_list[index + 1] = i + calc_list[index + 1].strip()
+
+
+def reduction_formula(symbol, multiply_divide):
+    '''还原算式'''
+    # 处理乘除算式中前面带负号的情况
+    if len(multiply_divide[0].strip()) == 0:  # 切割后的list第一个值如果为空，则为负号，如-40/5切割后为['', '40/5']
+        multiply_divide[1] = symbol[0] + multiply_divide[1]
+        del multiply_divide[0] # 把list的第一个空值删除掉
+        del symbol[0] # 负号已经拼接到上面的式子里了，所以要删除掉多余的负号。
+    # 处理乘除算式中后面带负号的情况
+    for index, i in enumerate(multiply_divide):
         i = i.strip()
         if i.endswith("*") or i.endswith("/"):
-            multiply_and_dividend[index] = multiply_and_dividend[index] + plus_and_minus_operators[index] + multiply_and_dividend[index+1]
-            del multiply_and_dividend[index+1]
-            del plus_and_minus_operators[index]
-    return plus_and_minus_operators,multiply_and_dividend
-def compute(formula):
-    '''这里计算是的不带括号的公式'''
+            multiply_divide[index] = multiply_divide[index] + symbol[index] + multiply_divide[index + 1]
+            del multiply_divide[index + 1]
+            del symbol[index]
+    return symbol, multiply_divide
 
-    formula = formula.strip("()") #去除外面包的拓号
-    formula = remove_duplicates(formula) #去除外重复的+-号
-    plus_and_minus_operators = re.findall("[+-]", formula)
-    multiply_and_dividend = re.split("[+-]", formula) #取出乘除公式
-    if len(multiply_and_dividend[0].strip()) == 0:#代表这肯定是个减号
-        multiply_and_dividend[1] = plus_and_minus_operators[0] + multiply_and_dividend[1]
-        del multiply_and_dividend[0]
-        del plus_and_minus_operators[0]
 
-    plus_and_minus_operators,multiply_and_dividend=handle_special_occactions(plus_and_minus_operators,multiply_and_dividend)
-    for index,i in enumerate(multiply_and_dividend):
-        if re.search("[*/]" ,i):
+def compute(num):
+    '''计算'''
+    # 先计算乘除，后算加减。
+    multiply_divide = re.split("[+-]", num)  # 按+或-切割，取出乘除算式，返回list。-40/5切割后为['', '40/5']，-40/-5切割后为['', '40/', '5']
+    symbol = re.findall("[+-]", num) # 获取所有的+和—号，返回list，和上面的split的个数对应。-40/-5得到的值为['-', '-']
+    print("*"*200)
+    print(multiply_divide)
+    print(symbol)
+    symbol, multiply_divide = reduction_formula(symbol,multiply_divide)
+    print(symbol, multiply_divide)
+    exit(-1)
+    for index, i in enumerate(multiply_divide):
+        if re.search("[*/]", i):
             sub_res = compute_mutiply_and_dividend(i)
-            multiply_and_dividend[index] = sub_res
+            multiply_divide[index] = sub_res
 
-    #开始运算+,-
-    print(multiply_and_dividend, plus_and_minus_operators)
+    # 开始运算+,-
+    print(multiply_divide, symbol)
     total_res = None
-    for index,item in enumerate(multiply_and_dividend):
-        if total_res: #代表不是第一次循环
-            if plus_and_minus_operators[index-1] == '+':
+    for index, item in enumerate(multiply_divide):
+        if total_res:  #代表不是第一次循环
+            if symbol[index - 1] == '+':
                 total_res += float(item)
-            elif plus_and_minus_operators[index-1] == '-':
+            elif symbol[index - 1] == '-':
                 total_res -= float(item)
         else:
             total_res = float(item)
-    print("\033[32;1m[%s]运算结果:\033[0m" %formula,total_res)
+    print("\033[32;1m[%s]运算结果:\033[0m" % num, total_res)
     return total_res
 
-def calc(formula):
-    '''计算程序主入口, 主要逻辑是先计算拓号里的值,算出来后再算乘除,再算加减'''
-    while True:
-        m = re.search("\([^()]*\)", formula) #找到最里层的拓号
-        if m:
-            #print("先算拓号里的值:",m.group())
-            sub_res = compute(m.group())
-            formula = formula.replace(m.group(),str(sub_res))
-        else:
-            print('\033[41;1m----没拓号了...---\033[0m')
 
-            print('\n\n\033[42;1m最终结果:\033[0m',compute(formula))
+def main(num):
+    '''主控制逻辑'''
+    while True:
+        parentheses = re.search("\([^()]*\)", num)  # [^()]*表示不包含任意一个口号，既匹配最里层的括号，从右往左，匹配第一个。
+        # print(parentheses) # 通过调用group()方法得到匹配的字符串,如果字符串没有匹配，则返回None。
+        if parentheses != None:
+            num = parentheses.group().strip("()")  # 去掉拓号，只保留算式。
+            print(num)
+            ret = compute(num) # 计算括号里的式子并返回计算结果
+            ret = change_symbol(ret)  # 计算完成后可能产生负号，去除外重复的+-号
+            num = num.replace(num, str(ret)) # 计算完成后，把括号里的内容替换成计算结果
+        else:
+            # 没有括号了，直接计算剩下的数即可
+            ret = compute(num)
+            print('\n\n\033[42;1m最终结果:\033[0m', ret)
             break
 
-if __name__ == '__main__':
 
-    #res = calc("1 - 2 * ( (60-30 +(-40/5) * (9-2*5/3 + 7 /3*99/4*2998 +10 * 568/14 )) - (-4*3)/ (16-3*2) )")
-    #res = calc("1 - 2 * ( (60-30 +(-9-2-5-2*3-5/3-40*4/2-3/5+6*3) * (-9-2-5-2*5/3 + 7 /3*99/4*2998 +10 * 568/14 )) - (-4*3)/ (16-3*2) )")
-    res = calc('1 - 2 * ( (60-30 +(-40/5) * (9-2*5/3 + 7 /3*99/4*2998 +10 * 568/14 )) - (-4*3)/ (16-3*2) ')
+if __name__ == '__main__':
+    exp = '(9-2*5/3 + 7 /3*99/4*-2998 +10 * 568/14 )'
+    #exp = '(-40/-5)'
+    #exp = '1 - 2 * ( (60-30 +(-40/5) * (9-2*5/3 + 7 /3*99/4*2998 +10 * 568/14 )) - (-4*3)/ (16-3*2) )'
+    #exp ="1 - 2 * ( (60-30 +(-9-2-5-2*3-5/3-40*4/2-3/5+6*3) * (-9-2-5-2*5/3 + 7 /3*99/4*2998 +10 * 568/14 )) - (-4*3)/ (16-3*2) )"
+    res = main(exp)
