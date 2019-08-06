@@ -90,5 +90,18 @@ from functools import wraps
 # res = exec(s) # 执行代码，没有返回值
 # print(res)
 
-import builtins
-import time
+# l = [2,3,5,10,15,16,18,22,26,30,32,35,41,42,43,55,56,66,67,69,72,76,82,83,88]
+#
+# def func(l,aim):
+#     mid = (len(l)-1)//2
+#     if l:
+#         if aim > l[mid]:
+#             func(l[mid+1:],aim)
+#         elif aim < l[mid]:
+#             func(l[:mid],aim)
+#         elif aim == l[mid]:
+#             print("bingo",mid)
+#     else:
+#         print('找不到')
+# func(l,66)
+# func(l,2)
