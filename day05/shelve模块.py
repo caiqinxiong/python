@@ -15,11 +15,17 @@ d['time'] = datetime.datetime.now()
 # print(d.get('name'))
 # print(d.get('info'))
 # print(d.get('time'))
-print(d.items())
-for item in d.items():
+print(type(d.items()))
+print(type(d))
+print("@"*200)
+for item in d.items(): # 各个元组，可以解包获取
     print(item)
     print(item[0])
     print(d[item[0]])
     print(''.center(50,'~'))
+
+print("@"*200)
+for key, value in d.items():
+    print(key, value)
 
 d.close()

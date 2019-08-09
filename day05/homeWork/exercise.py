@@ -105,3 +105,18 @@ from functools import wraps
 #         print('找不到')
 # func(l,66)
 # func(l,2)
+
+# print(('-' or '+') in '9+2*3')
+# print(('-' or '+') in '9-2*3')
+# print(type('-' or '+'))
+# s = ('-' or '+')
+# s2 = ('+' or "-")
+# print(s)
+# print(s2)
+#
+#
+# print(type('1' or '2'))
+# s = ('1' or '2')
+# s2 = ('2' or "1")
+# print(s)
+# print(s2)

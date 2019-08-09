@@ -51,8 +51,7 @@ def reduction_formula(symbol, multiply_divide):
         # 9-2*5/3+7/3*99/4*-2998 +10 * 568/14 切割后为['9', '2*5/3 ', ' 7 /3*99/4*', '2998 ', '10 * 568/14 ']，循环list处理。
         f = f.strip()  # 去除算式中的左右空格
         if f.endswith("*") or f.endswith("/"):  # 如果以*或/结尾的式子，说明后面带-号被切割了，给还原一下。
-            multiply_divide[index] = multiply_divide[index] + symbol[index] + multiply_divide[
-                index + 1]  # 如：['', '40/', '5']还原为 ['-40/-5']
+            multiply_divide[index] = multiply_divide[index] + symbol[index] + multiply_divide[index + 1]  # 如：['', '40/', '5']还原为 ['-40/-5']
             del multiply_divide[index + 1]  # 将已拼接的值删除掉
             del symbol[index]  # 对应的负号也删除掉
     return symbol, multiply_divide
@@ -95,5 +94,8 @@ if __name__ == '__main__':
     # exp = '( 7 /3*99/4*2998 )'
     # exp = '(9-2*5/3 + 7 /3*99/4*-2998 +10 * 568/14 )'
     exp = '1 - 2 * ( (60-30 +(-40/5) * (9-2*5/3 + 7 /3*99/4*2998 +10 * 568/14 )) - (-4*3)/ (16-3*2) )'
+    # 剔除空字符
+    exp = re.sub(r'\s+', '', exp)
     ret = main(exp)
     print('算式%s的计算结果为：\n%s' % (exp, ret))
+    print(eval(exp)) # 验证函数计算结果是否一致
