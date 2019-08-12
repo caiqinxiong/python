@@ -6,7 +6,7 @@
 
 ```python
 # 功能 :取所有
-# 返回值 :列表,所有匹配到的项都会被返回到列表中中
+# 返回值 :列表,所有匹配到的项都会被返回到列表中
 phone_num = input('请输入合法的手机号:')
 regex = r'^1[2-9]\d{9}$'
 ret = re.findall(regex,phone_num)
@@ -15,6 +15,7 @@ print(ret)
 # findall和分组的关系
 ret = re.findall('\d(\d)','a1,b22,c345')
 print(ret)  # [2,4]
+# ?:取消分组优先显示
 ret = re.findall('\d(?:\d)','a1,b22,c345')
 print(ret)  # ['22', '34']
 ```

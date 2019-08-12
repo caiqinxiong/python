@@ -29,8 +29,10 @@
 #     print(o)
 
 # import re
-# ret = re.search('(?:<num1>\d)(?:<num1>)','a1,b22,c345')
-# print(ret)
+# ret = re.search('(?P<num1>\d)(?P=num1)','a11,b22,c4455')
+# print(ret.group(0))
+# print(ret.group(1))
+# print(ret.group('num1'))
 
 #
 # import os
@@ -134,6 +136,9 @@ import time
 # print(ret[1])
 
 # print(time.strftime('%Y-%d-01 00:00:00'))
-import sys
-# print(sys.modules)
-print(sys.path)
+# import sys
+# # print(sys.modules)
+# print(sys.path)
+
+from datetime import datetime
+datetime.now()

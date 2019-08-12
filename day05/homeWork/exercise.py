@@ -120,3 +120,8 @@ from functools import wraps
 # s2 = ('2' or "1")
 # print(s)
 # print(s2)
+import string
+import random
+def Makepass(length=8, chars=string.ascii_letters+string.digits):
+    return ''.join([random.choice(chars) for i in range(length)])
+print(Makepass())
