@@ -2,10 +2,10 @@
 __author__ = 'caiqinxiong_cai'
 # 2019/8/13 14:57
 import zipfile
-import rarfile
+# import rarfile
 import time
 import os
-import chardet
+# import chardet
 
 def chengeChar_old(path):
     '''处理乱码'''
@@ -27,8 +27,13 @@ def chengeChar_old(path):
 
 def chengeChar(path):
     '''处理乱码'''
+    path = path.rstrip('/').rstrip('\\')
     file_name = os.path.split(path)[-1]
     file_path = os.path.split(path)[0]
+    print('@'*200)
+    print(file_path)
+    print(file_name)
+    print('@' * 200)
     # if not os.path.exists(path):
     #     return path
     # time.sleep(5)
@@ -41,6 +46,11 @@ def chengeChar(path):
         new_name = file_name.encode('utf-8').decode('utf-8')
     # time.sleep(2)
     path2 = os.path.join(file_path,new_name)
+    print('#'*200)
+    print(new_name)
+    print(path2)
+    print('#' * 200)
+    # time.sleep(2)
     try:
         os.renames(path, path2)
     except:
@@ -74,7 +84,8 @@ def unzip_file(path):
         print('the path is not exist!!!')
 
 if __name__ == '__main__':
-    zip_path = r'C:\Users\ES-IT-PC-193\Desktop\aa\A.zip'
+    # zip_path = r'C:\Users\ES-IT-PC-193\Desktop\aa\A.zip'
+    zip_path = r'/Users/caiqinxiong/Desktop/aa/A.zip'
     # zip_path = r'C:\Users\ES-IT-PC-193\Desktop\aa\蔡亲雄_day06_homework.zip'
     unzip_file(zip_path)
 

@@ -59,6 +59,7 @@ def del_dir(path):
 
 if __name__ == '__main__':
     path = r'C:\Users\ES-IT-PC-193\Desktop\aa\A'
+    path = r'/Users/caiqinxiong/Desktop/aa/A'
     #1、利用os模块递归删除
     del_dir(path)
     # if os.path.exists(path):os.rmdir(path) # 删除最后一层空目录
