@@ -50,8 +50,11 @@ def main(path):
     '''主逻辑函数'''
     path = chengeChar(path)
     if os.path.exists(path):
-        unzip_path = os.path.split(path)[0]  # 解压至当前目录
-        if path.endswith('.zip'):
+        if '.' in path:
+            unzip_path = os.path.splitext(path)[0]  # 解压至当前目录
+        else:
+            unzip_path = os.path.split(path)[0]
+        if path.endswith('.zip') and zipfile.is_zipfile(path):
             z = zipfile.ZipFile(path, 'r')
             unzip_file(z, unzip_path)
         elif path.endswith('.rar'):
@@ -69,7 +72,8 @@ def main(path):
 
 if __name__ == '__main__':
     # zip_path = r'C:\Users\ES-IT-PC-193\Desktop\aa\A.zip'
-    zip_path = sys.argv[1]  # 接收传入的路径参数
+    zip_path = r'C:\Users\ES-IT-PC-193\Desktop\aa\HighLevel.zip'
+    # zip_path = sys.argv[1]  # 接收传入的路径参数
     main(zip_path)
     if zipfile.is_zipfile(zip_path):  # 删除解压出来的压缩包
         del_zip(os.path.splitext(zip_path)[0]) # 以后缀名切割
