@@ -51,8 +51,7 @@ def unzip_file(path):
 
 
 if __name__ == '__main__':
-    zip_path = r'C:\Users\ES-IT-PC-193\Desktop\aa\A.zip'
-    zip_path = r'C:\Users\ES-IT-PC-193\Desktop\aa\蔡亲雄_day06_homework.zip'
+    zip_path = r'C:\Users\ES-IT-PC-193\Desktop\aa\B.zip'
     unzip_file(zip_path)
 
 
