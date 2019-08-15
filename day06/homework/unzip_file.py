@@ -65,12 +65,18 @@ def main(path):
             print(path)
     else:
         print('the path is not exist!!!')
+        print(path)
 
 
 if __name__ == '__main__':
-    # zip_path = r'C:\Users\ES-IT-PC-193\Desktop\aa\A.zip'
+    #zip_path = r'C:\Users\ES-IT-PC-193\Desktop\aa\HighLevel\HighLevel'
     zip_path = r'C:\Users\ES-IT-PC-193\Desktop\aa\HighLevel.zip'
     # zip_path = sys.argv[1]  # 接收传入的路径参数
-    main(zip_path)
+    if os.path.isdir(zip_path):
+        for file_name in os.listdir(zip_path):
+            path = os.path.join(zip_path, file_name)
+            main(path)
+    else:
+        main(zip_path)
     if zipfile.is_zipfile(zip_path):  # 删除解压出来的压缩包
         del_zip(os.path.splitext(zip_path)[0]) # 以后缀名切割
