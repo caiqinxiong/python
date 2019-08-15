@@ -1,0 +1,41 @@
+#可选商品
+dic = {'1':['电脑',1999],'2':['鼠标',10],'3':['显示器',300],'n':'购物车结算'}
+#初始化购物车
+shopping_cart = {}
+#账户充值金额
+account = int(input('请给账户充钱：'))
+#消费总额初始值
+sum0 = 0
+# 商品件数初始值
+cnt = 0
+
+while account > 0 :
+    num = input('请输入选择的商品序号：').strip()
+    if num.strip().upper() == 'Q' :
+        break
+    elif num not in dic.keys() :
+        print('输入有误，请重新输入')
+    else :
+        if num != 'n' :
+            product = dic[num][0]
+            price = dic[num][1]
+            print('商品名称:',product,'商品价格:',price)
+            sum0 += price
+            lst = shopping_cart.setdefault(product,[cnt, price])
+            shopping_cart[product][0] = lst[0] + 1
+            continue
+        else :
+            print(shopping_cart)
+            while sum0 > account :
+                product1 = input('请输入需要删除的商品名称：')
+                shopping_cart[product1][0] -= 1
+                sum0 -=  shopping_cart[product1][1]
+            else :
+                sum1 = account - sum0
+                print('账户足够付款')
+msg = '''此次购买的商品清单如下：
+%s
+共消费:%d
+账户余额:%d
+''' % (shopping_cart, sum0 , sum1)
+print(msg)

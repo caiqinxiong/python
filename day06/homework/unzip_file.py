@@ -50,10 +50,7 @@ def main(path):
     '''主逻辑函数'''
     path = chengeChar(path)
     if os.path.exists(path):
-        if '.' in path:
-            unzip_path = os.path.splitext(path)[0]  # 解压至当前目录
-        else:
-            unzip_path = os.path.split(path)[0]
+        unzip_path = os.path.splitext(path)[0]  # 解压至当前目录
         if path.endswith('.zip') and zipfile.is_zipfile(path):
             z = zipfile.ZipFile(path, 'r')
             unzip_file(z, unzip_path)
