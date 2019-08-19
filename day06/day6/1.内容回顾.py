@@ -49,13 +49,13 @@
 # ret = sorted(d,key=lambda k:d[k][1],reverse=True)
 # print(ret)
 
-# 筛选符合条件的项 条件是: n>10
+# # 筛选符合条件的项 条件是: n>10
 # ret = filter(lambda n:n>10,[1,5,12,30])
 # print(ret)  # 迭代器
 # for i in ret:
 #     print(i)
-
-# 对每一个元素进行加工,将加工之后的内容返回放在迭代器中
+#
+# #对每一个元素进行加工,将加工之后的内容返回放在迭代器中
 # ret= map(lambda n:n**2,[1,5,10])
 # print(ret)   # 迭代器
 # for i in ret:

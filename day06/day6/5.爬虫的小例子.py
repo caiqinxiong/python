@@ -23,8 +23,8 @@ def parsePage(s):
     com = re.compile(
         '<div class="item">.*?<div class="pic">.*?<em .*?>(?P<id>\d+).*?<span class="title">(?P<title>.*?)</span>'
         '.*?<span class="rating_num" .*?>(?P<rating_num>.*?)</span>.*?<span>(?P<comment_num>.*?)评价</span>', re.S)
-
-    ret = com.finditer(s)
+    # re.S 表示“.”（不包含外侧双引号，下同）的作用扩展到整个字符串，包括“\n”
+    ret = com.finditer(s) # 以迭代器的方式
     for i in ret:
         yield {
             "id": i.group("id"),
