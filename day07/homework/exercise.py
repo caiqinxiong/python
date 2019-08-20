@@ -103,22 +103,40 @@ import pickle # 二进制的方式
 # print(c.perimeter())
 # print(c.area())
 
-class Students(object):
-    def __init__(self,name,age,sex,phone,couerse):
-        self.name = name
-        self.age = age
-        self.sex = sex
-        self.phone = phone
-        self.course = couerse
+# class Students(object):
+#     def __init__(self,name,age,sex,phone,couerse):
+#         self.name = name
+#         self.age = age
+#         self.sex = sex
+#         self.phone = phone
+#         self.course = couerse
+#
+#
+# class Course(object):
+#     def __init__(self,cname,period,price):
+#         self.cname = cname
+#         self.period = period
+#         self.price = price
+#
+#
+# c1 = Course('python','6 moth',19800)
+# s1 = Students('蔡亲雄','19','male','1326994274893',c1)
+# print(s1.course.price)
 
+# ret = json.dumps('蔡亲雄')
+# print(ret)
+# ret = json.dumps('蔡亲雄',ensure_ascii=False)
+# print(ret)
 
-class Course(object):
-    def __init__(self,cname,period,price):
-        self.cname = cname
-        self.period = period
-        self.price = price
+class Parent(object):
+    x = 1
+class Child1(Parent):
+    pass
+class Child2(Parent):
+    pass
 
-
-c1 = Course('python','6 moth',19800)
-s1 = Students('蔡亲雄','19','male','1326994274893',c1)
-print(s1.course.price)
+print(Parent.x,Child1.x,Child2.x)
+Child1.x = 2
+print(Parent.x,Child1.x,Child2.x)
+Parent.x = 3
+print(Parent.x,Child1.x,Child2.x)
