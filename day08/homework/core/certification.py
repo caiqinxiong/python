@@ -12,9 +12,9 @@ class Certification(object):
     def __init__(self):
         pass
 
-    def written_information(self, file_name, content):
+    def written_information(self, file_name, content,mode='ab'):
         '''写入信息'''
-        with open('%s' % file_name, mode='ab') as f:
+        with open('%s' % file_name, mode='%s' % mode) as f:
             pickle.dump(content, f)
 
 
@@ -43,13 +43,23 @@ class Certification(object):
                 else:
                     print('管理员密码校验失败！')
                     continue
+            techer = Certification().read_information(ss.teacher_file)  # 读取讲师账号信息文件，返回迭代器
+            for k,v in techer:
+                if 'username' == k and user == v.split('：')[-1].strip():
+                    passwd = input('请输入密码 :').strip()
+                    if passwd == techer.__next__()[-1].split('：')[-1].strip():
+                        print("*" * 25 + '\n登录成功！%s讲师！' % user)
+                        return user, passwd, techer.__next__()[-1], techer.__next__()[-1], techer.__next__()[-1],'teacher'
+                    else:
+                        print('密码校验失败！')
+
             ret = Certification().read_information(ss.student_file)  # 读取学生账号信息文件，返回迭代器
             for k, v in ret:
                 if 'username' == k and user == v.split('：')[-1].strip():
                     passwd = input('请输入密码 :').strip()
                     if passwd == ret.__next__()[-1].split('：')[-1].strip():
                         print("*" * 25 + '\n登录成功！%s同学！' % user)
-                        return user, passwd, ret.__next__()[-1], ret.__next__()[-1], ret.__next__()[-1]
+                        return user, passwd, ret.__next__()[-1], ret.__next__()[-1], ret.__next__()[-1],'student'
                     else:
                         print('密码校验失败！')
             else:

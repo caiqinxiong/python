@@ -6,17 +6,14 @@ import time
 from conf import settings as ss
 from core import certification as cc
 from core import course as cs
+from core import human as hm
 
 
 class Students(object):
     '''学生类'''
 
     def __init__(self, username, password, age, sex, phone):
-        self.username = username
-        self.password = password
-        self.age = age
-        self.sex = sex
-        self.phone = phone
+        hm.Human.__init__(self, username, password, age, sex, phone)
 
     def view_optional_courses(self):
         '''查看可选课程'''

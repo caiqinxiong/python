@@ -128,15 +128,70 @@ import pickle # 二进制的方式
 # ret = json.dumps('蔡亲雄',ensure_ascii=False)
 # print(ret)
 
-class Parent(object):
-    x = 1
-class Child1(Parent):
-    pass
-class Child2(Parent):
-    pass
+# class Parent(object):
+#     x = 1
+# class Child1(Parent):
+#     pass
+# class Child2(Parent):
+#     pass
+#
+# print(Parent.x,Child1.x,Child2.x)
+# Child1.x = 2
+# print(Parent.x,Child1.x,Child2.x)
+# Parent.x = 3
+# print(Parent.x,Child1.x,Child2.x)
 
-print(Parent.x,Child1.x,Child2.x)
-Child1.x = 2
-print(Parent.x,Child1.x,Child2.x)
-Parent.x = 3
-print(Parent.x,Child1.x,Child2.x)
+# class A:
+#     discount = 0
+#
+#     def __init__(self):
+#         self.discount = 0.5
+#
+#     print('1', discount) # 1,0
+#
+#
+# class A:
+#     discount = 0.7
+#
+#     def __init__(self, price):
+#         self.discount = 0.2
+#         self.price = price
+#
+#     def show_price(self):
+#         return self.price * self.discount
+#
+#     discount = 0.5
+#
+#
+# print('2', A.discount) # 2,0.5 # 调用类变量
+# print('3', A(10).discount) # 3,0.2 # 类传入参数了，调用init的变量
+# print('4', A(10).show_price()) # 4,2.0
+
+# class B(object):
+#     def func(self):
+#         print("in B")
+# class A(B):pass
+#
+# A().func() # in B # 继承
+
+# class B(object):
+#     def func(self):
+#         print("in B")
+# class A(B):
+#     def func(self):
+#         print("in A")
+#
+# A().func() # in A # 方法重写
+
+class B(object):
+    def __init__(self):
+        self.func()
+
+    def func(self):
+        print("in B")
+
+class A(B):
+    def func(self):
+        print("in A")
+
+A().func()
