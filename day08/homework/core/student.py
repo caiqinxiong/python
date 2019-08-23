@@ -9,7 +9,7 @@ from core import course as cs
 from core import human as hm
 
 
-class Students(object):
+class Students(hm.Human): # 继承父类
     '''学生类'''
 
     def __init__(self, username, password, age, sex, phone):

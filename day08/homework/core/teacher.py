@@ -10,37 +10,36 @@ from core import human as hm
 from core import admin as ad
 
 
-class Teacher(object):
+class Teacher(hm.Human): # 继承父类
     '''讲师类'''
 
     def __init__(self, username, password, age, sex, phone):
         hm.Human.__init__(self,username, password, age, sex, phone)
 
 
-    def view_classroom(self):
-        '''查看所教班级'''
-        flag = False
+    def classroom_info(self,kind):
+        '''班级信息'''
+        flag = True
         for file_name in os.listdir(ss.classroom_path):
             ret = list(cc().read_information(os.path.join(ss.classroom_path,file_name)))
-            for i in ret:
-                if self.username in i:
+            if self.username == ret[2][-1]['讲师信息：']:
+                if kind == '讲师':
                     print('%s所教的班级信息如下：\n%s\n%s' % (self.username,ret[0][-1],ret[1][-1]))
-                    flag = True
-        if not flag: print('%s还未分配任何班级哦，请联系管理员指定。' % self.username)
+                else:
+                    print('%s所教的班级中的学生信息如下：' % (self.username))
+                    print('%s教室共有%s名学生:\n%s' % (ret[0][-1].split('：')[-1],len(ret[-1][-1]['学生信息：']),ret[-1][-1]['学生信息：']))
+                flag = False
+        if flag: print('%s还未分配任何班级哦，请联系管理员指定。' % self.username)
 
+
+    def view_classroom(self):
+        '''查看所教班级'''
+        self.classroom_info('讲师')
 
 
     def view_classroom_student(self):
         '''查看班级中的学生'''
-        flag = False
-        for file_name in os.listdir(ss.classroom_path):
-            ret = list(cc().read_information(os.path.join(ss.classroom_path,file_name)))
-            for i in ret:
-                if self.username in i:
-                    print('%s所教的班级中的学生信息如下：' % (self.username))
-                    print('%s教室共有%s名学生:\n%s' % (ret[0][-1].split('：')[-1],len(ret[-1][-1]),ret[-1][-1]))
-                    flag = True
-        if not flag: print('%s还未分配任何班级哦，请联系管理员指定。' % self.username)
+        self.classroom_info('学生')
 
 
     def teacher_view(self):
@@ -63,4 +62,4 @@ class Teacher(object):
             time.sleep(5)
 
 if __name__ == '__main__':
-    Teacher('alex','pwd','age','sex','phone').student_view()
+    Teacher('Eva_J','pwd','age','sex','phone').teacher_view()

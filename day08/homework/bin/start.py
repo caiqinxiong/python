@@ -12,15 +12,16 @@ from core import student as st
 from core import teacher as tc
 from core import certification as cc
 from core import admin as ad
+
 if __name__ == '__main__':
     print("#" * 25 + '\n欢迎来到luffycity选课系统！\n' + "#" * 25)
-    ret = cc.Certification().login() # 登录校验
+    ret = cc.Certification().login() # 登录校验，返回用户信息
     if ret in ss.admin_dict:
         ad.Admin(ret).admin_view() # 管理员视图
     elif ret:
         if ret[-1] == 'student':
             s = st.Students(ret[0], ret[1], ret[2], ret[3], ret[4])
             s.student_view() # 学生视图
-        else:
+        elif ret[-1] == 'teacher':
             t = tc.Teacher(ret[0], ret[1], ret[2], ret[3], ret[4])
             t.teacher_view() # 讲师视图

@@ -45,7 +45,7 @@ class Certification(object):
                 else:
                     print('管理员密码校验失败！')
                     continue
-            ret = Certification().read_information('db/student_info')  # 读取学生账号信息文件，返回迭代器
+            ret = Certification().read_information('db/student_info.txt')  # 读取学生账号信息文件，返回迭代器
             for k, v in ret:
                 if 'username' == k and user == v.split('：')[-1].strip():
                     passwd = input('请输入密码 :').strip()
@@ -54,6 +54,7 @@ class Certification(object):
                         return user, passwd, ret.__next__()[-1], ret.__next__()[-1], ret.__next__()[-1]
                     else:
                         print('密码校验失败！')
+                        break
             else:
                 print('账号不存在！')
         else:
@@ -86,7 +87,7 @@ class Students(object):
         if not os.path.exists(db_path + '/course_info'): return print('还未有可选课程哦！')
         print('*' * 25 + '\n\033[31;1m所有可选课程信息如下：\033[0m')
         stu = list(Certification().read_information('db/%s_choose_course_info.txt' % self.username))
-        ret = Certification().read_information('db/course_info')
+        ret = Certification().read_information('db/course_info.txt')
         for k, v in ret:
             for s, t in stu: # 只展示该学生未选的课程，已经选过的课就不能再选啦。
                 if t == v: break
@@ -106,7 +107,7 @@ class Students(object):
                     print('您已经选过\033[31;1m%s\033[0m课程！请重新选择：' % choose)
                     break
             else:
-                ret = Certification().read_information('db/course_info')
+                ret = Certification().read_information('db/course_info.txt')
                 for k, v in ret: # 从剩下的可选课程中选择。
                     if '课程名称' in v and choose in v:
                         name = v # 将选择的课程信息都写入到该学生的选课文件中。
@@ -160,7 +161,7 @@ class Admin(object):
         '''创建学生账号'''
         while True:
             username = '*' * 25 + '\n姓名：' + input('please input the student`s username:').strip()
-            ret = Certification().read_information('db/student_info')
+            ret = Certification().read_information('db/student_info.txt')
             for k, v in ret: # 校验账号是否已存在
                 if username in v:
                     print('\033[31;1m%s学生账号已存在！！\033[0m' % username.split('：')[-1])
@@ -172,14 +173,14 @@ class Admin(object):
                 phone = '手机号码：' + input('please input the phone number:').strip()
                 print("*" * 25 + '\n\033[31;1m学生账号创建成功！详细信息如下：\033[0m\n%s\n%s\n%s\n%s' % (username, age, sex, phone))
                 s = Students(username, password, age, sex, phone) # 将信息传入学生类
-                Certification().written_information('db/student_info', s)  # 将学生类写入文件
+                Certification().written_information('db/student_info.txt', s)  # 将学生类写入文件
                 break
 
     def view_all_students(self):
         '''查看所有学生'''
-        if not os.path.exists(db_path + '/student_info'): return print('还未添加任何学生账号哦！')
+        if not os.path.exists(db_path + '/student_info.txt'): return print('还未添加任何学生账号哦！')
         print('*' * 25 + '\n\033[31;1m所有学生信息如下：\033[0m')
-        ret = Certification().read_information('db/student_info')
+        ret = Certification().read_information('db/student_info.txt')
         for k, v in ret:print(v) # 打印学生账号信息
 
 
@@ -187,7 +188,7 @@ class Admin(object):
         '''创建课程'''
         while True:
             name = '*' * 25 + '\n课程名称：' + input('please input the course`s name:').strip()
-            ret = Certification().read_information('db/course_info')
+            ret = Certification().read_information('db/course_info.txt')
             for k, v in ret: # 校验课程是否已存在，避免重复创建课程。
                 if name in v:
                     print('\033[31;1m%s课程已存在！！\033[0m' % name.split('：')[-1])
@@ -198,14 +199,14 @@ class Admin(object):
                 teacher = '授课老师：' + input('please input the teacher`s name:').strip()
                 print("*" * 25 + '\n\033[31;1m创建课程成功！信息如下：\033[0m\n%s\n%s\n%s\n%s' % (name, price, period, teacher))
                 c = Course(name, price, period, teacher)  # 将课程信息传入课程类
-                Certification().written_information('db/course_info', c)  # 将课程类写入文件
+                Certification().written_information('db/course_info.txt', c)  # 将课程类写入文件
                 break
 
     def view_all_courses(self):
         '''查看所有课程'''
-        if not os.path.exists(db_path + '/course_info'): return print('还未添加任何课程哦！')
+        if not os.path.exists(db_path + '/course_info.txt'): return print('还未添加任何课程哦！')
         print('*' * 25 + '\n\033[31;1m所有课程信息如下：\033[0m')
-        ret = Certification().read_information('db/course_info')
+        ret = Certification().read_information('db/course_info.txt')
         for k, v in ret:print(v) # 打印所有课程信息
 
     def view_all_selected_courses(self):

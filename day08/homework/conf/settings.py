@@ -2,8 +2,8 @@
 __author__ = 'caiqinxiong_cai'
 # 2019/8/21 10:40
 import os
-# 管理员账号密码信息
-admin_dict = {'admin': 'admin', 'xiaoqiang': '123'}
+# 管理员账号密码信息，密码已转换为MD5密文。
+admin_dict = {'admin': '21232f297a57a5a743894a0e4a801fc3', 'xiaoqiang': '202cb962ac59075b964b07152d234b70'}
 
 # 当前文件工作目录绝对路径
 work_path = os.getcwd()
@@ -26,7 +26,7 @@ choose_course_path = os.path.join(db_path,'choose_course')
 if not os.path.exists(choose_course_path):os.makedirs(choose_course_path)
 choose_course_file = lambda name: r'%s/%s_choose_course_info' % (choose_course_path,name)
 
-# 班级信息文件
+# 班级信息文件，函数：传入教室名称。
 classroom_path = os.path.join(db_path,'classroom')
 if not os.path.exists(classroom_path):os.makedirs(classroom_path)
 classroom_file = lambda  classname:r'%s/%s_classroom_info' % (classroom_path,classname)
