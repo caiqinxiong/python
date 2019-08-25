@@ -4,8 +4,7 @@ __author__ = 'caiqinxiong_cai'
 import os
 import sys
 # 项目工作目录绝对路径
-#BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-BASE_DIR = os.path.dirname(os.getcwd())
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 sys.path.append(BASE_DIR) # 先添加当前工作路径，导入自定义模块时才能生效
 from conf import settings as ss
 from core import student as st

@@ -6,10 +6,10 @@ import os
 admin_dict = {'admin': '21232f297a57a5a743894a0e4a801fc3', 'xiaoqiang': '202cb962ac59075b964b07152d234b70'}
 
 # 当前文件工作目录绝对路径
-work_path = os.getcwd()
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # 数据存储路径
-db_path = os.path.join(work_path, '../db')
+db_path = os.path.join(BASE_DIR, 'db')
 if not os.path.exists(db_path):os.makedirs(db_path)
 
 # 学生账号信息文件
