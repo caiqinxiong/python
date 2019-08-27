@@ -2,14 +2,15 @@
 __author__ = 'caiqinxiong_cai'
 # 2019/8/21 10:40
 import os
+import time
 # 管理员账号密码信息，密码已转换为MD5密文。
 admin_dict = {'admin': '21232f297a57a5a743894a0e4a801fc3', 'xiaoqiang': '202cb962ac59075b964b07152d234b70'}
 
 # 当前文件工作目录绝对路径
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+base_dir = os.path.dirname(os.path.dirname(__file__))
 
 # 数据存储路径
-db_path = os.path.join(BASE_DIR, 'db')
+db_path = os.path.join(base_dir, 'db')
 if not os.path.exists(db_path):os.makedirs(db_path)
 
 # 学生账号信息文件
@@ -30,3 +31,8 @@ choose_course_file = lambda name: r'%s/%s_choose_course_info' % (choose_course_p
 classroom_path = os.path.join(db_path,'classroom')
 if not os.path.exists(classroom_path):os.makedirs(classroom_path)
 classroom_file = lambda  classname:r'%s/%s_classroom_info' % (classroom_path,classname)
+
+# 日志文件路径
+log_path = os.path.join(base_dir,'log')
+if not os.path.exists(log_path):os.makedirs(log_path)
+log_file = r'%s/%s-log' % (log_path,time.strftime('%Y-%m-%d', time.localtime(time.time())))
