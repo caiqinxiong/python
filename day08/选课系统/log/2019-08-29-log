@@ -1,0 +1,39 @@
+2019-08-29 14:17:39	[INFO]	caiqinxiong查看了可选课程！
+2019-08-29 14:18:33	[INFO]	caiqinxiong查看了可选课程！
+2019-08-29 14:18:53	[INFO]	caiqinxiong查看了可选课程！
+2019-08-29 14:18:55 - root - WARNING -log:  您已经选过php课程！请重新选择：
+2019-08-29 14:19:07 - root - WARNING -log:  您已经选过linux课程！请重新选择：
+2019-08-29 14:20:28	[INFO]	caiqinxiong查看了可选课程！
+2019-08-29 14:20:30 - root - WARNING -log:  选择的fasd课程不存在哦！请重新选择：
+2019-08-29 14:20:40 - root - WARNING -log:  您已经选过php课程！请重新选择：
+2019-08-29 14:20:45 - root - WARNING -log:  选择的fad课程不存在哦！请重新选择：
+2019-08-29 14:44:12	[INFO]	Student用户lixiaoxin登录成功
+2019-08-29 14:44:12	[INFO]	lixiaoxin查看了可选课程！
+2019-08-29 14:46:23	[INFO]	Student用户lixiaoxin登录成功
+2019-08-29 14:46:23	[INFO]	lixiaoxin查看了可选课程！
+2019-08-29 14:46:51	[INFO]	Student用户lixiaoxin登录成功
+2019-08-29 14:46:51	[INFO]	lixiaoxin查看了可选课程！
+2019-08-29 14:49:11	[INFO]	Student用户lixiaoxin登录成功
+2019-08-29 14:49:11	[INFO]	lixiaoxin查看了可选课程！
+2019-08-29 14:54:48	[INFO]	Student用户lixiaoxin登录成功！
+2019-08-29 14:54:48	[INFO]	lixiaoxin查看了已选课程信息！
+2019-08-29 14:54:48	[INFO]	lixiaoxin查看了可选课程！
+2019-08-29 14:55:16 - root - ERROR -log:  E:\python_test\python\day08\选课系统\core\main.py line40 error!
+invalid literal for int() with base 10: 'pgp'不是效数字！！
+2019-08-29 14:55:21 - root - ERROR -log:  E:\python_test\python\day08\选课系统\core\main.py line42 error!
+list index out of range
+请输入有效数字！！
+2019-08-29 14:54:48	[INFO]	lixiaoxin选择课程python成功！
+2019-08-29 14:57:12	[INFO]	Manager用户xiaoqiang登录成功！
+2019-08-29 14:57:12	[INFO]	xiaoqiang查看了所有课程信息！
+2019-08-29 14:57:12	[INFO]	xiaoqiang查看了所有学生选择的课程信息！
+2019-08-29 14:57:12	[INFO]	xiaoqiang查看了所有课程信息！
+2019-08-29 14:57:12	[INFO]	xiaoqiang查看了所有学生信息！
+2019-08-29 14:59:03	[INFO]	Manager用户admin登录成功！
+2019-08-29 14:59:18	[INFO]	Manager用户admin登录成功！
+2019-08-29 14:59:29	[INFO]	Manager用户admin登录成功！
+2019-08-29 15:02:24 - root - WARNING -log:  admin用户登录失败！
+2019-08-29 15:02:32	[INFO]	Manager用户admin登录成功！
+2019-08-29 15:02:32	[INFO]	admin查看了所有学生信息！
+2019-08-29 15:02:32	[INFO]	admin查看了所有课程信息！
+2019-08-29 15:02:32	[INFO]	admin查看了所有学生选择的课程信息！
