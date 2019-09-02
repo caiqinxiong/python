@@ -27,5 +27,9 @@ for item in d.items(): # 各个元组，可以解包获取
 print("@"*200)
 for key, value in d.items():
     print(key, value)
-
+# d['name']= 'aaaaaaaa'
+print(d['name'])
+print("@"*200)
+for key, value in d.items():
+    print(key, value)
 d.close()
