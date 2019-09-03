@@ -32,9 +32,7 @@ class Auth:
         '''MD5加密'''
         md5 = hashlib.md5(('MD5加盐，加上用户%s' % name).encode('utf-8'))
         md5.update(content.encode('utf-8'))
-        ret = md5.hexdigest()
-        return ret
-
+        return md5.hexdigest()
 
     def __auth(self,kind):
         '''身份认证'''
@@ -82,3 +80,4 @@ class Auth:
                 exit(-1)
             else:
                 log.debug('输入有误，请重新输入！')
+

@@ -39,15 +39,13 @@ print(ret)
 # ret = md5.hexdigest()
 # print(ret)
 
-# import hashlib
-# def get_md5(file):
-#     md5 = hashlib.md5()
-#     with open(file,'rb') as f:
-#         content = f.read()
-#         md5.update(content)
-#     ret = md5.hexdigest()
-#     return ret
-# ret = get_md5(r'F:\python自动化27期\day9\5.网络通信协议.py') == get_md5(r'F:\python自动化27期\day9\5.网络通信协议2.py')
-# print(ret)
-# b2ee53ee6c0ba5ba3af512d588901570
-# 2e60d69c94d355b82990abc408dc3f39
+import hashlib
+def get_md5(file):
+    md5 = hashlib.md5()
+    with open(file,'rb') as f:
+        content = f.read()
+        md5.update(content)
+    ret = md5.hexdigest()
+    return ret
+ret = get_md5(r'F:\python自动化27期\day9\5.网络通信协议.py') == get_md5(r'F:\python自动化27期\day9\5.网络通信协议2.py')
+print(ret)

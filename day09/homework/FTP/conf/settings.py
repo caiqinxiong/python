@@ -18,8 +18,14 @@ if not os.path.exists(DB_PATH):os.makedirs(DB_PATH)
 # 用户信息文件
 USER_FILE = r'%s/users_info'  % DB_PATH
 
-#用户文件目录
+# 用户家目录
 USER_HOME = lambda name:'%s/users_home/%s' % (DB_PATH,name)
+
+# 用户客户端目录
+USER_CLIENT = lambda name:'%s/client_home' % USER_HOME(name)
+
+# 用户服务器目录
+USER_SERVER = lambda name:'%s/server_home' % USER_HOME(name)
 
 # 日志文件路径
 LOG_PATH = os.path.join(BASE_DIR,'log')
