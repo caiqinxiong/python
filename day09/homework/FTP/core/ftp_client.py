@@ -57,13 +57,13 @@ class FtpClient:
 
     def clientView(self):
         '''客户端视图'''
-        log.debug('欢迎使用FTP服务器！')
+        head = '*' * 20 + '\n欢迎使用FTP服务器！\n' + '*' * 20
         opt_list = [('上传文件','putFile'),('下载文件','getFile'),('退出','quit')]
         while True:
-            print('*' * 25)
+            print('\033[35;1m%s\033[0m' % head)
             for index,opt in enumerate(opt_list,1):print('\033[35;1m%s、%s\033[0m' % (index, opt[0])) # 打印操作列表信息
             try:
-                num = int(input( '*' * 25 + '\n请输入您要选择的操作序号:'))
+                num = int(input( '请输入您要选择的操作序号:'))
                 if hasattr(self,opt_list[num-1][1]):getattr(self,opt_list[num-1][1])() # 反射
             except ValueError as e:
                 log.error('%s不是效数字！！' % e)
