@@ -20,44 +20,44 @@ class Log(object):
                         datefmt='%Y-%m-%d %H:%M:%S',
                         format='%(asctime)s - %(name)s - %(levelname)s -%(module)s:  %(message)s')  # [%(lineno)d] 只显示当前文件的行号
 
-    @classmethod
-    def writeOnly(cls, content):
+    @staticmethod
+    def writeOnly(content):
         '''自定义函数，只写入日志文件'''
         with open(ss.LOG_FILE, mode='a', encoding='utf-8') as f:
             f.write(Log.now_time + '\t' + str(content) + '\n')
 
-    @classmethod
-    def readOnly(cls, content):
+    @staticmethod
+    def readOnly(content):
         '''自定义函数，只打印日志'''
         print('\033[36;1m%s\033[0m' % content)
 
     @classmethod
     def readAndWrite(cls,content):
         '''自定义函数，既打印信息又记录log文件'''
-        Log.readOnly(content)
-        Log.writeOnly('[INFO]\t' + content)
+        cls.readOnly(content)
+        cls.writeOnly('[INFO]\t' + content)
 
     @classmethod
     def debug(cls, content):
         # return logging.debug(content)
-        return Log.readOnly(content)
+        return cls.readOnly(content)
 
     @classmethod
     def info(cls, content):
         # return logging.info(content)
-        return Log.writeOnly('[INFO]\t' + content)  # info信息直接写入log文件
+        return cls.writeOnly('[INFO]\t' + content)  # info信息直接写入log文件
 
-    @classmethod
-    def warning(cls, content):
+    @staticmethod
+    def warning(content):
         return logging.warning(content)
 
-    @classmethod
-    def error(cls, content):
+    @staticmethod
+    def error(content):
         # 获取调用函数的文件名和行数
         head = '%s line%s error!\n' % (sys._getframe().f_back.f_code.co_filename, sys._getframe().f_back.f_lineno)
         return logging.error(head + content)
 
-    @classmethod
-    def critical(cls, content):
+    @staticmethod
+    def critical(content):
         head = '%s line%s critical!\n' % (sys._getframe().f_back.f_code.co_filename, sys._getframe().f_back.f_lineno)
         return logging.critical(head + content)

@@ -15,16 +15,6 @@ class Common:
         pass
 
     @staticmethod
-    def getFileMD5(file):
-       '''对文件做MD5校验'''
-       md5 = hashlib.md5()
-       with open(file,'rb') as f:
-           for line in f:
-               if line.strip():md5.update(line)
-       return md5.hexdigest()
-
-
-    @staticmethod
     def mySend(conn,msgb):
         '''发送数据时，解决粘包问题'''
         len_msg = len(msgb)
@@ -42,14 +32,13 @@ class Common:
 
     @staticmethod
     def processBar(num, total):
+        '''打印进度条'''
         rate = num / total
         rate_num = int(rate * 100)
-        if rate_num == 100:
-            r = '\r%s>%d%%\n' % ('=' * rate_num, rate_num,)
-        else:
-            r = '\r%s>%d%%' % ('=' * rate_num, rate_num,)
-        sys.stdout.write(r)
-        sys.stdout.flush
+        bar = ('>' * rate_num, rate_num,) # 展示的进度条符号
+        r = '\r%s>%d%%\n' % bar if rate_num == 100 else '\r%s>%d%%' % bar
+        sys.stdout.write(r) # 覆盖写入
+        return  sys.stdout.flush # 实时刷新
 
     @classmethod
     def getFile(cls,conn):
@@ -57,22 +46,28 @@ class Common:
         file_dic = cls.myRecv(conn) # 接收数据，解决粘包函数
         dic = json.loads(file_dic.decode()) # 将接收到的二进制先转换成字符串，再loads还原字典
         md5 = hashlib.md5() # 接收数据时，添加MD5校验，就不用再单独打开一次文件做校验了
+        total = dic['filesize']
+        num = 0
         with open(dic['filename'],mode='wb') as f:
             while dic['filesize']>0:
                 file_content = cls.myRecv(conn)
                 dic['filesize'] -= len(file_content) # 剩余接收文件大小
                 f.write(file_content)
+                num += len(file_content) # 累计发送文件大小
+                cls.processBar(num,total) # 进度条
                 md5.update(file_content)
-        ret = md5.hexdigest()
-        print(ret)
+        ret = md5.hexdigest() # 自己的MD5值
+        cls.mySend(conn,ret.encode())# 发送MD5值给对方做校验
+        ret_r = cls.myRecv(conn).decode() # 接收对方的MD5值
+        check = 'MD5校验OK，文件传输成功！' if ret == ret_r else 'MD5不一致，文件传输失败！'
         conn.close()
-        return  ret
+        return (ret,dic['filename'],check)
+
 
     @classmethod
     def putFile(cls,conn,file,put_path,name):
         '''发送文件'''
         # 输入需要发送的文件,获取并发送文件大小
-        if not os.path.isfile(file):return log.error('%s文件不存在!' % file)
         put_path = put_path(name) # 文件存储路径
         if not os.path.exists(put_path):os.makedirs(put_path)
         file_name = os.path.join(put_path,os.path.basename(file))
@@ -84,13 +79,16 @@ class Common:
         num = 0
         with open(file,mode = 'rb') as f:
             for line in f:
-                cls.mySend(conn,line) # if line.strip():不能添加判断，要不导致发送的数据不全
+            # if line.strip():不能添加判断，要不导致发送的数据不全，文件内容不管是什么都给发送过去就行
+                cls.mySend(conn,line)
                 num += len(line) # 累计发送文件大小
                 cls.processBar(num,file_size)
                 md5.update(line)
-        ret = md5.hexdigest()
-        print(ret)
+        ret = md5.hexdigest() # 自己发送数据的MD5值
+        cls.mySend(conn,ret.encode())# 发送MD5值给对方做校验
+        ret_r = cls.myRecv(conn).decode() # 接收对方的MD5值
+        check = 'MD5校验OK，文件传输成功！' if ret == ret_r else 'MD5不一致，文件传输失败！'
         conn.close()
-        return ret
+        return (ret,file_name,check)
 
 
