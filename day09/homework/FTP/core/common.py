@@ -60,7 +60,6 @@ class Common:
         cls.mySend(conn,ret.encode())# 发送MD5值给对方做校验
         ret_r = cls.myRecv(conn).decode() # 接收对方的MD5值
         check = 'MD5校验OK，文件传输成功！' if ret == ret_r else 'MD5不一致，文件传输失败！'
-        conn.close()
         return (ret,dic['filename'],check)
 
 
@@ -88,7 +87,6 @@ class Common:
         cls.mySend(conn,ret.encode())# 发送MD5值给对方做校验
         ret_r = cls.myRecv(conn).decode() # 接收对方的MD5值
         check = 'MD5校验OK，文件传输成功！' if ret == ret_r else 'MD5不一致，文件传输失败！'
-        conn.close()
         return (ret,file_name,check)
 
 

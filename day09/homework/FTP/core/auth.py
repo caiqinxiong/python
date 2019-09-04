@@ -42,7 +42,7 @@ class Auth:
             for n,p,q in Auth.readInfo(ss.USER_FILE):
                 if kind == '登录' and name == n and password == p:
                     log.readAndWrite('%s%s成功！' %(name,kind))
-                    return True
+                    return name
                 elif kind == '注册' and name == n:
                     log.warning('%s用户已存在，请重新注册！' % name)
                     break
@@ -51,33 +51,17 @@ class Auth:
                     content = name + '|' + password + '|' + ss.QUOTA + '\n'
                     Auth.writeInfo(ss.USER_FILE,content)
                     log.readAndWrite('%s%s成功！' %(name,kind))
-                    return True
+                    return name
             log.debug('%s%s失败！' % (name,kind))
         return False
 
 
     def login(self):
         '''登录'''
-        self.__auth('登录')
+        return self.__auth('登录')
 
     def register(self):
         '''注册'''
-        self.__auth('注册')
+        return self.__auth('注册')
 
-    def main(self):
-        '''主逻辑'''
-        log.debug('*' * 20 + '\n欢迎来到FTP系统！\n' + '*' * 20 + '\n1、登录\n2、注册\nq、退出\n'  + '*' * 20 )
-        while True:
-            num = input('请选择：')
-            if '1' == num:
-                self.login()
-                break
-            elif '2' == num:
-                self.register()
-                break
-            elif 'Q' == num.upper():
-                log.debug('谢谢使用！')
-                exit(-1)
-            else:
-                log.debug('输入有误，请重新输入！')
 
