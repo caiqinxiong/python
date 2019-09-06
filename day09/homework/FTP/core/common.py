@@ -7,6 +7,7 @@ import os
 import sys
 import hashlib
 from conf import settings as ss
+from core.auth import Auth as at
 from core.log import Log as log
 
 class Common:
@@ -40,13 +41,41 @@ class Common:
         sys.stdout.write(r) # 覆盖写入
         return  sys.stdout.flush # 实时刷新
 
+    @staticmethod
+    def updateQuota(file,name,quota_new):
+        '''更新磁盘配额'''
+        with open(file,mode='r',encoding='utf-8') as f1,open(file + '.bak',mode='w',encoding='utf-8') as f2:
+            for line in f1:
+                if line.strip():
+                    if name in line:
+                        usr, pwd, quota_old= line.split('|')
+                        line = usr + '|' + pwd + '|' + quota_new + '\n'
+                    f2.write(line)
+        os.remove(file)
+        os.rename(file+'.bak',file)
+
+    @staticmethod
+    def checkQuota(file,name,size):
+        '''检查磁盘配额'''
+        for n,p,q in at.readInfo(file):
+            if name == n:
+                log.debug('用户%s当前磁盘配额剩余：%s字节\n下载文件大小为：%s字节' % (name,q,size))
+                num = int(q) - int(size)
+                if  num < 0:
+                    log.warning('磁盘配额不足！')
+                    return False
+                else:
+                    return str(num)
+
     @classmethod
-    def getFile(cls,conn):
+    def getFile(cls,conn,name):
         '''接收文件'''
         file_dic = cls.myRecv(conn) # 接收数据，解决粘包函数
         dic = json.loads(file_dic.decode()) # 将接收到的二进制先转换成字符串，再loads还原字典
         md5 = hashlib.md5() # 接收数据时，添加MD5校验，就不用再单独打开一次文件做校验了
         total = dic['filesize']
+        quota = cls.checkQuota(ss.USER_FILE,name,total)
+        if not quota:return (quota,name,'磁盘配额不足，文件传输失败！')
         num = 0
         with open(dic['filename'],mode='wb') as f:
             while dic['filesize']>0:
@@ -60,7 +89,7 @@ class Common:
         cls.mySend(conn,ret.encode())# 发送MD5值给对方做校验
         ret_r = cls.myRecv(conn).decode() # 接收对方的MD5值
         check = 'MD5校验OK，文件传输成功！' if ret == ret_r else 'MD5不一致，文件传输失败！'
-        return (ret,dic['filename'],check)
+        return (ret,dic['filename'],quota,check)
 
 
     @classmethod
@@ -88,5 +117,4 @@ class Common:
         ret_r = cls.myRecv(conn).decode() # 接收对方的MD5值
         check = 'MD5校验OK，文件传输成功！' if ret == ret_r else 'MD5不一致，文件传输失败！'
         return (ret,file_name,check)
-
 

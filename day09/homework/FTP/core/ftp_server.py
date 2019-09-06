@@ -11,13 +11,13 @@ class FtpServer(socketserver.BaseRequestHandler):
 
     def getFile(self,opt_dict):
         '''接收客户端上传的文件'''
-        ret = cn.getFile(self.request)
-        log.debug(ret[1]+'\n'+ret[2]+'\nMD5值：\n'+ret[0])
+        ret = cn.getFile(self.request,opt_dict['name'])
+        log.debug(ret[1]+'\n'+ret[-1] + '\n文件大小为：' + ret[2]+'\nMD5值：\n'+ret[0])
 
     def putFile(self,opt_dict):
         '''从服务器下载文件到客户端'''
         ret = cn.putFile(self.request,opt_dict['file_path'],ss.USER_CLIENT,opt_dict['name'])
-        log.debug(ret[1]+'\n'+ret[2]+'\nMD5值：\n'+ret[0])
+        log.debug(ret[1]+'\n'+ret[-1] + '\n文件大小为：' + ret[2]+'\nMD5值：\n'+ret[0])
 
 
     def handle(self):
