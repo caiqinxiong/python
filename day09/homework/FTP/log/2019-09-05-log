@@ -1,0 +1,75 @@
+2019-09-05 17:16:49	[INFO]	caiqinxiong登录成功！
+2019-09-05 17:16:35	[INFO]	客户端127.0.0.1已链接！
+2019-09-05 17:18:26 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_server.py line39 error!
+('127.0.0.1', 52584)客户端已断开[WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2019-09-05 17:18:26	[INFO]	caiqinxiong登录成功！
+2019-09-05 17:16:35	[INFO]	客户端127.0.0.1已链接！
+2019-09-05 17:20:06 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_server.py line39 error!
+('127.0.0.1', 52602)客户端已断开[WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2019-09-05 17:20:06	[INFO]	caiqinxiong登录成功！
+2019-09-05 17:16:35	[INFO]	客户端127.0.0.1已链接！
+2019-09-05 17:23:13 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_server.py line39 error!
+('127.0.0.1', 52630)客户端已断开[WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2019-09-05 17:23:13	[INFO]	caiqinxiong登录成功！
+2019-09-05 17:16:35	[INFO]	客户端127.0.0.1已链接！
+2019-09-05 17:24:25 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_server.py line39 error!
+('127.0.0.1', 52668)客户端已断开[WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2019-09-05 17:24:25	[INFO]	caiqinxiong登录成功！
+2019-09-05 17:16:35	[INFO]	客户端127.0.0.1已链接！
+2019-09-05 17:24:58 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_server.py line39 error!
+('127.0.0.1', 52685)客户端已断开[WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2019-09-05 17:24:59	[INFO]	caiqinxiong登录成功！
+2019-09-05 17:16:35	[INFO]	客户端127.0.0.1已链接！
+2019-09-05 17:28:43 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_server.py line39 error!
+('127.0.0.1', 52780)客户端已断开[WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2019-09-05 17:28:44	[INFO]	caiqinxiong登录成功！
+2019-09-05 17:16:35	[INFO]	客户端127.0.0.1已链接！
+2019-09-05 17:29:41 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_server.py line39 error!
+('127.0.0.1', 53117)客户端已断开[WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2019-09-05 17:29:41	[INFO]	caiqinxiong登录成功！
+2019-09-05 17:16:35	[INFO]	客户端127.0.0.1已链接！
+2019-09-05 17:38:28 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_server.py line39 error!
+('127.0.0.1', 53132)客户端已断开[WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2019-09-05 17:40:26	[INFO]	caiqinxiong登录成功！
+2019-09-05 17:16:35	[INFO]	客户端127.0.0.1已链接！
+2019-09-05 17:41:11 - root - WARNING -log:  E:\python_test\python\day09\homework\FTP\bin\client_home目录不存在！
+2019-09-05 17:41:45 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_server.py line39 error!
+('127.0.0.1', 53310)客户端已断开[WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2019-09-05 17:41:45	[INFO]	caiqinxiong登录成功！
+2019-09-05 17:16:35	[INFO]	客户端127.0.0.1已链接！
+2019-09-05 17:16:35	[INFO]	客户端127.0.0.1已主动断开链接！
+2019-09-05 17:42:57	[INFO]	caiqinxiong登录成功！
+2019-09-05 17:16:35	[INFO]	客户端127.0.0.1已链接！
+2019-09-05 17:43:52 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_server.py line39 error!
+('127.0.0.1', 53348)客户端已断开[WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2019-09-05 17:43:53	[INFO]	caiqinxiong登录成功！
+2019-09-05 17:16:35	[INFO]	客户端127.0.0.1已链接！
+2019-09-05 17:49:49 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_server.py line39 error!
+('127.0.0.1', 53370)客户端已断开[WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2019-09-05 17:49:49	[INFO]	caiqinxiong登录成功！
+2019-09-05 17:16:35	[INFO]	客户端127.0.0.1已链接！
+2019-09-05 17:51:45 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_server.py line39 error!
+('127.0.0.1', 53473)客户端已断开[WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2019-09-05 17:51:45	[INFO]	caiqinxiong登录成功！
+2019-09-05 17:16:35	[INFO]	客户端127.0.0.1已链接！
+2019-09-05 17:54:08 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_server.py line39 error!
+('127.0.0.1', 53517)客户端已断开[WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2019-09-05 17:54:09	[INFO]	caiqinxiong登录成功！
+2019-09-05 17:16:35	[INFO]	客户端127.0.0.1已链接！
+2019-09-05 17:54:09	[INFO]	E:\python_test\python\day09\homework\FTP\db\users_home\caiqinxiong\client_home\2019-09-02-log文件删除成功！
+2019-09-05 17:57:38 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_server.py line39 error!
+('127.0.0.1', 53552)客户端已断开[WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2019-09-05 17:57:38	[INFO]	caiqinxiong登录成功！
+2019-09-05 17:16:35	[INFO]	客户端127.0.0.1已链接！
+2019-09-05 17:59:22	[INFO]	caiqinxiong登录成功！
+2019-09-05 17:16:35	[INFO]	客户端127.0.0.1已链接！
+2019-09-05 17:59:52 - root - WARNING -log:  目录不存在或目录不为空！
+[WinError 145] 目录不是空的。: 'E:\\python_test\\python\\day09\\homework\\FTP\\db\\users_home\\caiqinxiong\\client_home'
+2019-09-05 18:00:13 - root - WARNING -log:  目录不存在或目录不为空！
+[WinError 2] 系统找不到指定的文件。: 'E:\\python_test\\python\\day09\\homework\\FTP\\db\\users_home\\caiqinxiong\\dfasf'
+2019-09-05 17:16:35	[INFO]	客户端127.0.0.1已主动断开链接！
+2019-09-05 18:01:31	[INFO]	caiqinxiong登录成功！
+2019-09-05 17:16:35	[INFO]	客户端127.0.0.1已链接！
+2019-09-05 18:01:31	[INFO]	E:\python_test\python\day09\homework\FTP\db\users_home\caiqinxiong\aaa目录创建成功！
+2019-09-05 18:01:31	[INFO]	aaa目录删除成功！
+2019-09-05 17:16:35	[INFO]	客户端127.0.0.1已主动断开链接！

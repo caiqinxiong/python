@@ -1,0 +1,110 @@
+2019-09-06 11:08:24	[INFO]	caiqinxiong登录成功！
+2019-09-06 11:08:18	[INFO]	客户端127.0.0.1已链接！
+2019-09-06 11:09:08 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_client.py line124 error!
+negative buffersize in recv不是效数字！！
+2019-09-06 11:11:03 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_server.py line39 error!
+('127.0.0.1', 57478)客户端已断开[WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2019-09-06 11:11:03	[INFO]	caiqinxiong登录成功！
+2019-09-06 11:08:18	[INFO]	客户端127.0.0.1已链接！
+2019-09-06 11:12:10 - root - ERROR -log:  E:/python_test/python/day09/homework/FTP/bin/start_client.py line23 error!
+invalid literal for int() with base 10: ''不是效数字！！
+2019-09-06 11:12:09	[INFO]	caiqinxiong登录成功！
+2019-09-06 11:12:05	[INFO]	客户端127.0.0.1已链接！
+2019-09-06 11:12:57 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_client.py line124 error!
+negative buffersize in recv不是效数字！！
+2019-09-06 11:13:48 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_client.py line124 error!
+'utf-8' codec can't decode byte 0xcc in position 0: invalid continuation byte不是效数字！！
+2019-09-06 11:12:05	[INFO]	客户端127.0.0.1已链接！
+2019-09-06 11:15:21 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_client.py line124 error!
+'utf-8' codec can't decode byte 0x94 in position 0: invalid start byte不是效数字！！
+2019-09-06 11:17:34 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_server.py line39 error!
+('127.0.0.1', 57536)客户端已断开[WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2019-09-06 11:17:35	[INFO]	caiqinxiong登录成功！
+2019-09-06 11:12:05	[INFO]	客户端127.0.0.1已链接！
+2019-09-06 11:17:53 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_client.py line124 error!
+negative buffersize in recv不是效数字！！
+2019-09-06 11:19:49 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_client.py line124 error!
+'utf-8' codec can't decode byte 0xa7 in position 0: invalid start byte不是效数字！！
+2019-09-06 11:22:56	[INFO]	caiqinxiong登录成功！
+2019-09-06 11:22:52	[INFO]	客户端127.0.0.1已链接！
+2019-09-06 11:22:56	[INFO]	MD5校验OK，文件传输成功！
+文件已上传至服务器，路径如下：
+E:\python_test\python\day09\homework\FTP/db/users_home/caiqinxiong/server_home\027集合：在我的世界里，你就是唯一.mp4
+MD5值为：0e3e0e943df5d77e33f7b10304cf27e9
+2019-09-06 11:27:28 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_client.py line124 error!
+negative buffersize in recv不是效数字！！
+2019-09-06 11:29:23 - root - ERROR -log:  E:/python_test/python/day09/homework/FTP/bin/start_client.py line23 error!
+invalid literal for int() with base 10: ''不是效数字！！
+2019-09-06 11:29:21	[INFO]	caiqinxiong登录成功！
+2019-09-06 11:29:19	[INFO]	客户端127.0.0.1已链接！
+2019-09-06 11:29:39 - root - WARNING -log:  磁盘配额不足！
+2019-09-06 11:29:39 - root - WARNING -log:  磁盘配额不足，文件传输失败！
+2019-09-06 11:31:31 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_client.py line124 error!
+'utf-8' codec can't decode byte 0x88 in position 53: invalid start byte不是效数字！！
+2019-09-06 11:31:44 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_client.py line42 error!
+rewr文件不存在!
+2019-09-06 11:32:05 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_client.py line124 error!
+'utf-8' codec can't decode byte 0xc5 in position 3: invalid continuation byte不是效数字！！
+2019-09-06 11:51:14	[INFO]	caiqinxiong登录成功！
+2019-09-06 11:51:10	[INFO]	客户端127.0.0.1已链接！
+2019-09-06 11:51:31 - root - WARNING -log:  磁盘配额不足！
+2019-09-06 13:45:09	[INFO]	caiqinxiong登录成功！
+2019-09-06 13:45:05	[INFO]	客户端127.0.0.1已链接！
+2019-09-06 13:45:50 - root - WARNING -log:  磁盘配额不足！
+2019-09-06 13:45:09	[INFO]	MD5校验OK，文件传输成功！
+文件已上传至服务器，路径如下：
+E:\python_test\python\day09\homework\FTP/db/users_home/caiqinxiong/server_home\027集合：在我的世界里，你就是唯一.mp4
+MD5值为：0e3e0e943df5d77e33f7b10304cf27e9
+2019-09-06 13:50:39 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_server.py line39 error!
+('127.0.0.1', 61243)客户端已断开[WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2019-09-06 13:50:39	[INFO]	caiqinxiong登录成功！
+2019-09-06 13:45:05	[INFO]	客户端127.0.0.1已链接！
+2019-09-06 13:52:27	[INFO]	caiqinxiong登录成功！
+2019-09-06 13:45:05	[INFO]	客户端127.0.0.1已链接！
+2019-09-06 13:45:05	[INFO]	客户端127.0.0.1已链接！
+2019-09-06 13:52:27	[INFO]	MD5校验OK，文件传输成功！
+文件已从服务器下载到：
+E:\python_test\python\day09\homework\FTP/db/users_home/caiqinxiong/client_home\2019-09-02-log
+磁盘配额剩余MD5校验OK，文件传输成功！字节
+MD5值为：49300a814250baac017d7606ea81086c
+2019-09-06 13:45:05	[INFO]	客户端127.0.0.1已主动断开链接！
+2019-09-06 13:55:18	[INFO]	caiqinxiong登录成功！
+2019-09-06 13:55:16	[INFO]	客户端127.0.0.1已链接！
+2019-09-06 13:56:14 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_client.py line126 error!
+negative buffersize in recv不是效数字！！
+2019-09-06 13:57:15 - root - ERROR -log:  E:\python_test\python\day09\homework\FTP\core\ftp_server.py line39 error!
+('127.0.0.1', 61401)客户端已断开[WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2019-09-06 13:57:15	[INFO]	caiqinxiong登录成功！
+2019-09-06 13:55:16	[INFO]	客户端127.0.0.1已链接！
+2019-09-06 13:57:15	[INFO]	MD5校验OK，文件传输成功！
+文件已上传至服务器，路径如下：
+E:\python_test\python\day09\homework\FTP/db/users_home/caiqinxiong/server_home\034丰富的else语句及简洁的with语句.mp4
+MD5值为：07c0a6b19dcec02f4f2d21601dad9791
+2019-09-06 13:55:16	[INFO]	客户端127.0.0.1已链接！
+2019-09-06 13:55:16	[INFO]	客户端127.0.0.1已链接！
+2019-09-06 13:57:15	[INFO]	MD5校验OK，文件传输成功！
+文件已从服务器下载到：
+E:\python_test\python\day09\homework\FTP/db/users_home/caiqinxiong/client_home\034丰富的else语句及简洁的with语句.mp4
+磁盘配额剩余1049804471字节
+MD5值为：07c0a6b19dcec02f4f2d21601dad9791
+2019-09-06 13:57:15	[INFO]	E:\python_test\python\day09\homework\FTP\db\users_home\caiqinxiong\client_home\027集合：在我的世界里，你就是唯一.mp4文件删除成功！
+2019-09-06 13:55:16	[INFO]	客户端127.0.0.1已主动断开链接！
+2019-09-06 14:03:27 - root - ERROR -log:  E:/python_test/python/day09/homework/FTP/bin/start_client.py line23 error!
+invalid literal for int() with base 10: 'lixiaoxin'不是效数字！！
+2019-09-06 14:03:20	[INFO]	lixiaoxin登录成功！
+2019-09-06 13:55:16	[INFO]	客户端127.0.0.1已链接！
+2019-09-06 13:55:16	[INFO]	客户端127.0.0.1已链接！
+2019-09-06 14:03:20	[INFO]	磁盘配额剩余1053917817字节
+MD5校验OK，文件传输成功！
+文件已从服务器下载到：
+E:\python_test\python\day09\homework\FTP/db/users_home/lixiaoxin/client_home\027集合：在我的世界里，你就是唯一.mp4
+MD5值为：0e3e0e943df5d77e33f7b10304cf27e9
+2019-09-06 13:55:16	[INFO]	客户端127.0.0.1已主动断开链接！
+2019-09-06 14:21:10	[INFO]	xiaoqiang注册成功！
+2019-09-06 14:21:06	[INFO]	客户端127.0.0.1已链接！
+2019-09-06 14:30:59	[INFO]	xiaoqiang登录成功！
+2019-09-06 14:21:06	[INFO]	客户端127.0.0.1已链接！
+2019-09-06 14:21:06	[INFO]	客户端127.0.0.1已主动断开链接！
+2019-09-06 14:39:46	[INFO]	lixiaoxin登录成功！
+2019-09-06 14:39:41	[INFO]	客户端127.0.0.1已链接！
+2019-09-06 14:39:41	[INFO]	客户端127.0.0.1已主动断开链接！

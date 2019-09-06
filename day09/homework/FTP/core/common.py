@@ -6,7 +6,6 @@ import json
 import os
 import sys
 import hashlib
-from conf import settings as ss
 from core.auth import Auth as at
 from core.log import Log as log
 
@@ -68,14 +67,12 @@ class Common:
                     return str(num)
 
     @classmethod
-    def getFile(cls,conn,name):
+    def getFile(cls,conn):
         '''接收文件'''
         file_dic = cls.myRecv(conn) # 接收数据，解决粘包函数
         dic = json.loads(file_dic.decode()) # 将接收到的二进制先转换成字符串，再loads还原字典
         md5 = hashlib.md5() # 接收数据时，添加MD5校验，就不用再单独打开一次文件做校验了
         total = dic['filesize']
-        quota = cls.checkQuota(ss.USER_FILE,name,total)
-        if not quota:return (quota,name,'磁盘配额不足，文件传输失败！')
         num = 0
         with open(dic['filename'],mode='wb') as f:
             while dic['filesize']>0:
@@ -89,7 +86,7 @@ class Common:
         cls.mySend(conn,ret.encode())# 发送MD5值给对方做校验
         ret_r = cls.myRecv(conn).decode() # 接收对方的MD5值
         check = 'MD5校验OK，文件传输成功！' if ret == ret_r else 'MD5不一致，文件传输失败！'
-        return (ret,dic['filename'],quota,check)
+        return (ret,dic['filename'],check)
 
 
     @classmethod

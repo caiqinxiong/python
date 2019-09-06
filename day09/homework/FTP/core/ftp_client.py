@@ -14,6 +14,7 @@ class FtpClient:
         self.sk = socket.socket()
         self.sk.connect(ss.IP_PORT)
         self.pwd_path = ss.USER_HOME(self.name)
+        if not os.path.exists(self.pwd_path):os.makedirs(self.pwd_path)
         os.chdir(self.pwd_path)
 
     def putFile(self):
@@ -26,7 +27,6 @@ class FtpClient:
         dic_str = json.dumps(opt_dict)
         dic_b = dic_str.encode()
         cn.mySend(self.sk,dic_b) # 将执行命令发送给服务器，服务执行相应函数
-
         log.debug('开始上传%s到服务器！' % file)
         ret = cn.putFile(self.sk,file,ss.USER_SERVER,self.name)
         if not ret[-1].find('失败') < 0:
@@ -40,17 +40,20 @@ class FtpClient:
         if not os.path.isfile(file):
             cn.mySend(self.sk,b'error')
             return log.error('%s文件不存在!' % file)
+        file_size = os.path.getsize(file) # 获取文件总字节大小
+        quota = cn.checkQuota(ss.USER_FILE,self.name,file_size)
+        if not quota:return log.debug('磁盘配额不足，文件传输失败！')
         opt_dict = {'action':'putFile', 'file_path':file, 'name':self.name}
         dic_str = json.dumps(opt_dict)
         dic_b = dic_str.encode()
         cn.mySend(self.sk,dic_b) # 将执行命令发送给服务器，服务执行相应函数
         log.debug('开始服务器中下载文件！' )
-        ret = cn.getFile(self.sk,self.name)
+        ret = cn.getFile(self.sk)
         if not ret[-1].find('失败') < 0:
             log.warning(ret[-1])
         else:
-            cn.updateQuota(ss.USER_FILE,self.name,ret[2]) # 更新磁盘配额
-            log.readAndWrite('%s\n文件已从服务器下载到：\n%s\n磁盘配额剩余%s字节\nMD5值为：%s' % (ret[-1],ret[1],ret[2],ret[0]))
+            cn.updateQuota(ss.USER_FILE,self.name,quota) # 更新磁盘配额
+            log.readAndWrite('%s\n磁盘配额剩余%s字节\n文件已从服务器下载到：\n%s\nMD5值为：%s' % (ret[-1],quota,ret[1],ret[0]))
 
     def viewDir(self):
         '''查看当前目录'''
@@ -61,7 +64,6 @@ class FtpClient:
                log.debug('文件%s：%s' % (index, name))
             elif os.path.isdir(path):
                 log.debug('目录%s：%s' % (index, name))
-
 
     def mkdir(self):
         '''创建目录'''
