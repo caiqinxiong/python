@@ -3,9 +3,9 @@
 
 
 import gevent,time
-#from  urllib.request import urlopen # python3
-from  urllib import urlopen # python2
-from gevent import monkey; # gevent 不能识别urllib和socket,打上补丁
+from  urllib.request import urlopen # python3
+# from  urllib import urlopen # python2
+from gevent import monkey # gevent 不能识别urllib和socket,打上补丁
 monkey.patch_all() # 把当前程序所有打IO操作给我单独做上标记
 
 def f(url):
