@@ -15,7 +15,7 @@ userinfo = os.path.join(FILE_PATH, 'db', 'userinfo')
 home = os.path.join(FILE_PATH,'db','home')
 
 # 服务器IP，端口
-IP_PORT = ('127.0.0.1',9002)
+IP_PORT = ('127.0.0.1',8888)
 
 # log存放地址
 log_path = os.path.join(FILE_PATH, 'log', 'program.log')

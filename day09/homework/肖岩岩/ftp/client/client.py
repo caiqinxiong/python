@@ -522,7 +522,7 @@ class Client(Method):
 
 def welcome(client):
     """入口欢迎信息"""
-    client.printC("Welcome to FTP System".center(50, "*"), "gre")
+    client.printC("Welcome to server System".center(50, "*"), "gre")
     while 1:
         for num, (meth, operate) in enumerate(client.reg_opera_lst, 1):  # 显示登录和注册功能
             client.printC("%s %s %s" % (num, meth, operate), "yel")

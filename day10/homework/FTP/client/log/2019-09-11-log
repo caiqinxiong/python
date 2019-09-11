@@ -1,0 +1,63 @@
+2019-09-11 11:48:04	[INFO]	caiqinxoing登录失败！
+2019-09-11 11:48:04	[INFO]	caiqinxiong登录成功！
+2019-09-11 11:48:29 - root - ERROR -log:  E:/python_test/python/day10/homework/FTP/client\core\ftp_client.py line27 error!
+dasf文件不存在!
+2019-09-11 11:50:18 - root - ERROR -log:  E:/python_test/python/day10/homework/FTP/client\core\client_auth.py line62 error!
+invalid literal for int() with base 10: ''不是效数字！！
+2019-09-11 11:50:16	[INFO]	caiqinxoing登录失败！
+2019-09-11 11:50:16	[INFO]	caiqinxiong登录成功！
+2019-09-11 14:16:07	[INFO]	caiqinxiong登录成功！
+2019-09-11 14:17:17	[INFO]	caiqinxiong登录成功！
+2019-09-11 14:17:17	[INFO]	MD5校验OK，文件传输成功！
+文件名：E:\python_test\python\day10\homework\FTP\server\log\2019-09-10-log
+MD5值为：7bc9d7fdc89b949a31f2f131621bafc2
+2019-09-11 14:22:48	[INFO]	caiqinxiong登录成功！
+2019-09-11 14:22:56 - root - ERROR -log:  E:/python_test/python/day10/homework/FTP/client\core\ftp_client.py line27 error!
+E:\python_test\python\day10\homework\FTP\server\log\2019-09-11-logdfa文件不存在!
+2019-09-11 14:24:32	[INFO]	caiqinxiong登录成功！
+2019-09-11 14:28:03	[INFO]	caiqinxiong登录成功！
+2019-09-11 14:28:03	[INFO]	MD5不一致，文件传输失败！
+文件名：E:\python_test\python\day10\homework\FTP\server\log\2019-09-11-log
+MD5值为：e8e16da902d42174f72bca39a49ad701
+2019-09-11 14:33:34	[INFO]	caiqinxiong登录成功！
+2019-09-11 14:33:34	[INFO]	MD5校验OK，文件传输成功！
+文件名：E:\python_test\python\day10\homework\FTP\server\log\2019-09-11-log
+MD5值为：bdedd22589fd7a3a083acb007c771f72
+2019-09-11 14:33:34	[INFO]	MD5不一致，文件传输失败！
+文件名：E:\python_test\python\day10\homework\FTP\server\log\2019-09-11-log
+MD5值为：53093de79baf5f27e1066633d424ac83
+2019-09-11 14:38:32	[INFO]	caiqinxiong登录成功！
+2019-09-11 14:38:32	[INFO]	MD5不一致，文件传输失败！
+文件名：E:\python_test\python\day10\homework\FTP\server\log\2019-09-11-log
+MD5值为：85eca5a32c845cf7f84b1a58429ec31b
+2019-09-11 14:48:45	[INFO]	caiqinxiong登录成功！
+2019-09-11 14:48:45	[INFO]	MD5不一致，文件传输失败！
+文件名：E:\python_test\python\day10\homework\FTP\server\log\2019-09-11-log
+MD5值为：88f345cf6c7ce2d3bd7c66fd81d7fa1e
+2019-09-11 14:53:05	[INFO]	caiqinxiong登录成功！
+2019-09-11 14:53:19 - root - ERROR -log:  E:/python_test/python/day10/homework/FTP/client\core\ftp_client.py line27 error!
+fdasf文件不存在!
+2019-09-11 14:53:05	[INFO]	MD5校验OK，文件传输成功！
+文件名：E:\python_test\python\day10\homework\FTP\server\log\2019-09-10-log
+MD5值为：7bc9d7fdc89b949a31f2f131621bafc2
+2019-09-11 14:53:05	[INFO]	MD5校验OK，文件传输成功！
+文件名：E:\python_test\python\day10\homework\FTP\server\log\2019-09-10-log
+MD5值为：7bc9d7fdc89b949a31f2f131621bafc2
+2019-09-11 14:53:05	[INFO]	MD5校验OK，文件传输成功！
+文件名：E:\python_test\python\day10\homework\FTP\server\log\2019-09-10-log
+MD5值为：7bc9d7fdc89b949a31f2f131621bafc2
+2019-09-11 14:53:05	[INFO]	MD5校验OK，文件传输成功！
+文件名：E:\python_test\python\day10\homework\FTP\server\log\2019-09-10-log
+MD5值为：7bc9d7fdc89b949a31f2f131621bafc2
+2019-09-11 14:53:05	[INFO]	MD5校验OK，文件传输成功！
+文件名：E:\python_test\python\day10\homework\FTP\server\log\2019-09-10-log
+MD5值为：7bc9d7fdc89b949a31f2f131621bafc2
+2019-09-11 14:53:05	[INFO]	MD5校验OK，文件传输成功！
+文件名：E:\python_test\python\day10\homework\FTP\server\log\2019-09-10-log
+MD5值为：7bc9d7fdc89b949a31f2f131621bafc2
+2019-09-11 14:53:05	[INFO]	MD5校验OK，文件传输成功！
+文件名：E:\python_test\python\day10\homework\FTP\server\log\2019-09-10-log
+MD5值为：7bc9d7fdc89b949a31f2f131621bafc2
+2019-09-11 14:53:05	[INFO]	MD5校验OK，文件传输成功！
+文件名：E:\python_test\python\day10\homework\FTP\server\log\2019-09-10-log
+MD5值为：7bc9d7fdc89b949a31f2f131621bafc2

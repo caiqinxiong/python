@@ -1,0 +1,63 @@
+2019-09-10 11:05:52	[INFO]	fadj登录失败！
+2019-09-10 11:05:52	[INFO]	caiqinxiong登录成功！
+2019-09-10 11:05:52	[INFO]	fda登录失败！
+2019-09-10 11:08:38	[INFO]	caiqinxiongcai登录失败！
+2019-09-10 11:09:11	[INFO]	lixiaoxin用户已存在，请重新注册！
+2019-09-10 11:10:34 - root - WARNING -log:  两次输入密码不一致！
+2019-09-10 11:10:57 - root - WARNING -log:  两次输入密码不一致！
+2019-09-10 11:11:22 - root - WARNING -log:  两次输入密码不一致！
+2019-09-10 11:18:27	[INFO]	登录失败！
+2019-09-10 11:18:27	[INFO]	3登录失败！
+2019-09-10 11:18:27	[INFO]	d登录失败！
+2019-09-10 14:06:28 - root - ERROR -log:  E:/python_test/python/day10/homework/FTP/client\core\client_auth.py line62 error!
+invalid literal for int() with base 10: 'dskf'不是效数字！！
+2019-09-10 14:06:19	[INFO]	fhaj登录失败！
+2019-09-10 14:06:19	[INFO]	fhadjks登录失败！
+2019-09-10 14:06:19	[INFO]	dfhakj登录失败！
+2019-09-10 14:12:14	[INFO]	1登录失败！
+2019-09-10 14:12:14	[INFO]	1登录失败！
+2019-09-10 14:12:14	[INFO]	1登录失败！
+2019-09-10 14:14:59	[INFO]	1登录失败！
+2019-09-10 14:14:59	[INFO]	1登录失败！
+2019-09-10 14:14:59	[INFO]	1登录失败！
+2019-09-10 14:15:54	[INFO]	1登录失败！
+2019-09-10 14:15:54	[INFO]	1登录失败！
+2019-09-10 14:15:54	[INFO]	1登录失败！
+2019-09-10 14:16:09	[INFO]	1登录失败！
+2019-09-10 14:16:09	[INFO]	1登录失败！
+2019-09-10 14:16:09	[INFO]	1登录失败！
+2019-09-10 14:16:22	[INFO]	1登录失败！
+2019-09-10 14:16:22	[INFO]	1登录失败！
+2019-09-10 14:16:22	[INFO]	1登录失败！
+2019-09-10 14:18:46	[INFO]	1登录失败！
+2019-09-10 14:18:46	[INFO]	1登录失败！
+2019-09-10 14:18:46	[INFO]	1登录失败！
+2019-09-10 14:30:57 - root - ERROR -log:  E:/python_test/python/day10/homework/FTP/client\core\ftp_client.py line27 error!
+fdas文件不存在!
+2019-09-10 14:37:16 - root - ERROR -log:  E:/python_test/python/day10/homework/FTP/client\core\ftp_client.py line27 error!
+fadj文件不存在!
+2019-09-10 15:26:17 - root - ERROR -log:  E:/python_test/python/day10/homework/FTP/client\core\ftp_client.py line27 error!
+fdas文件不存在!
+2019-09-10 15:28:17 - root - ERROR -log:  E:/python_test/python/day10/homework/FTP/client\core\ftp_client.py line27 error!
+fads文件不存在!
+2019-09-10 17:13:33	[INFO]	caiqinxiong登录成功！
+2019-09-10 17:15:26	[INFO]	caiqinxiong登录成功！
+2019-09-10 17:18:20	[INFO]	caiqinxoing登录失败！
+2019-09-10 17:18:20	[INFO]	caiqinxiong登录成功！
+2019-09-10 17:21:33	[INFO]	caiqinxoing登录失败！
+2019-09-10 17:21:33	[INFO]	caiqinxiong登录成功！
+2019-09-10 17:27:26	[INFO]	caiqinxiong登录成功！
+2019-09-10 17:31:03	[INFO]	caiqinxiong登录成功！
+2019-09-10 17:33:21	[INFO]	caiqinxiong登录成功！
+2019-09-10 17:35:56	[INFO]	caiqinxoing登录失败！
+2019-09-10 17:35:56	[INFO]	caiqinxiong登录成功！
+2019-09-10 17:35:56	[INFO]	MD5校验OK，文件传输成功！
+文件名：E:\python_test\python\day10\homework\FTP\server\log\2019-09-10-log
+MD5值为：90cbbc642d5771667881c2ab7dfb70fc
+2019-09-10 17:38:36	[INFO]	caiqinxiong登录成功！
+2019-09-10 17:38:36	[INFO]	MD5校验OK，文件传输成功！
+文件名：E:\python_test\python\day10\homework\FTP\server\log\2019-09-10-log
+MD5值为：0e0246e7678653f9c6135f8893ed64f1
+2019-09-10 17:39:56	[INFO]	caiqinxiong登录成功！
+2019-09-10 17:41:36 - root - ERROR -log:  E:/python_test/python/day10/homework/FTP/client\core\ftp_client.py line122 error!
+negative buffersize in recv不是效数字！！
