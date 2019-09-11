@@ -41,16 +41,15 @@ class Common:
         sys.stdout.write(r) # 覆盖写入
         return  sys.stdout.flush # 实时刷新
 
+
     @classmethod
-    def getFile(cls,conn,dic):
+    def startGetFile(cls,conn,dic):
         '''接收文件，客户端从服务器下载文件'''
         md5 = hashlib.md5() # 接收数据时，添加MD5校验，就不用再单独打开一次文件做校验了
-        total = dic['filesize']
-        num = 0
-        download_path = ss.DOWNLOAD(dic['name'])
-        if not os.path.exists(download_path):os.makedirs(download_path)
-        file_path = os.path.join(download_path,dic['filename']) # 下载到客户端本地的路径
-        with open(file_path,mode='wb') as f:
+        total = dic['total_size']
+        num = dic['exist_size']
+        if dic['exist_size']:log.debug('文件上次已经下载了%s字节，开始断点下载！' % dic['exist_size'])
+        with open(dic['download_file'],mode='ab') as f:
             while dic['filesize']>0:
                 file_content = cls.myRecv(conn)
                 dic['filesize'] -= len(file_content) # 剩余接收文件大小
@@ -66,16 +65,19 @@ class Common:
         return opt_dic
 
     @classmethod
-    def putFile(cls,conn,dic):
+    def startPutFile(cls,conn,dic):
         '''发送文件，从客户端发送文件到服务器'''
         md5 = hashlib.md5() # 发送数据时，添加MD5校验，就不用再单独打开一次文件做校验了
-        num = 0
+        total = dic['total_size']
+        num = dic['exist_size']
+        if dic['exist_size']:log.debug('文件上次已经上传了%s字节，开始断点上传！' % dic['exist_size'])
         with open(dic['file_path'],mode = 'rb') as f:
+            f.seek(dic['exist_size']) # 将指针移动到指定位置开始读
             for line in f:
             # if line.strip():不能添加判断，要不导致发送的数据不全，文件内容不管是什么都给发送过去就行
                 cls.mySend(conn,line)
                 num += len(line) # 累计发送文件大小
-                cls.processBar(num,dic['filesize'])
+                cls.processBar(num,total)
                 md5.update(line)
         clinet_md5 = md5.hexdigest() # 自己发送数据的MD5值
         cls.mySend(conn,clinet_md5.encode())# 发送MD5值给服务器做校验

@@ -30,24 +30,27 @@ class FtpClient:
         cn.mySend(self.sk,dic_b) # 将执行命令发送给服务器，服务执行相应函数
         dic_str = cn.myRecv(self.sk).decode('utf-8') # 接收服务器回应信息
         opt_dict = json.loads(dic_str)
+        log.debug(opt_dict['msg'])
         if opt_dict['flag']:# 该用户在服务器的磁盘配额满足
             log.debug('开始上传%s到服务器！' % opt_dict['file_path'])
-            cn.putFile(self.sk,opt_dict)
-        else:
-            log.debug(opt_dict['msg'])
+            cn.startPutFile(self.sk,opt_dict)
 
 
     def getFile(self):
         '''客户端从服务器下载文件'''
         file_path = input('请输入要从服务器下载的文件路径：').strip()
-        opt_dict = {'operate':'getFile', 'file_path':file_path, 'name':self.name}
+        download_path = ss.DOWNLOAD(self.name) # 指定下载目录
+        if not os.path.exists(download_path):os.makedirs(download_path)
+        download_file = os.path.join(download_path,os.path.basename(file_path)) # 下载到客户端本地的文件路径
+        exist_size =  os.path.getsize(download_file) if os.path.exists(download_file) else 0 # 判断本地文件是否存在，做断点续传
+        opt_dict = {'operate':'getFile', 'file_path':file_path, 'download_file':download_file, 'exist_size':exist_size, 'name':self.name}
         dic_b = json.dumps(opt_dict).encode('utf-8')
         cn.mySend(self.sk,dic_b) # 将执行命令发送给服务器，服务执行相应函数
         dic_str = cn.myRecv(self.sk).decode('utf-8') # 接收服务器回应信息
         opt_dict = json.loads(dic_str)
         if opt_dict['flag']: # 文件存在
             log.debug('开始服务器中下载文件%s' % opt_dict['file_path'] )
-            cn.getFile(self.sk,opt_dict)
+            cn.startGetFile(self.sk,opt_dict)
         else:
             log.debug(opt_dict['msg'])
 

@@ -59,7 +59,7 @@ class Common:
         '''检查磁盘配额'''
         for n,p,q in sa.readInfo(file):
             if dic['name'] == n:
-                dic['msg'] = '用户%s当前磁盘配额剩余：%s字节\n下载文件大小为：%s字节' % (dic['name'],q,dic['filesize'])
+                dic['msg'] = '用户%s当前磁盘配额剩余：%s字节\n上传文件大小为：%s字节' % (dic['name'],q,dic['filesize'])
                 num = int(q) - int(dic['filesize'])
                 dic['flag'] = False if num < 0 else True
                 if not dic['flag']:dic['msg'] = '%s用户磁盘配额不足！\n' % dic['name'] + dic['msg']
@@ -68,16 +68,19 @@ class Common:
                 return dic
 
     @classmethod
-    def getFile(cls,conn,dic):
+    def startGetFile(cls,conn,dic):
         '''客户端从服务器下载文件'''
         md5 = hashlib.md5() # 发送数据时，添加MD5校验，就不用再单独打开一次文件做校验了
-        num = 0
+        total = dic['total_size']
+        num = dic['exist_size']
+        if dic['exist_size']:log.debug('文件上次已经下载了%s字节，开始断点下载！' % dic['exist_size'])
         with open(dic['file_path'],mode = 'rb') as f:
+            f.seek(dic['exist_size']) # 将指针移动到指定位置开始读
             for line in f:
             # if line.strip():不能添加判断，要不导致发送的数据不全，文件内容不管是什么都给发送过去就行
                 cls.mySend(conn,line)
                 num += len(line) # 累计发送文件大小
-                cls.processBar(num,dic['filesize'])
+                cls.processBar(num,total)
                 md5.update(line)
         dic['server_md5'] = md5.hexdigest() # 自己发送数据的MD5值
         dic['client_md5'] = cls.myRecv(conn).decode() # 接收对方的MD5值
@@ -90,16 +93,13 @@ class Common:
 
 
     @classmethod
-    def putFile(cls,conn,dic):
+    def startPutFile(cls,conn,dic):
         '''从客户端上传文件到服务器'''
-        dic['filename'] = os.path.basename(dic['file_path'])
-        put_path = ss.UPLOAD(dic['name'])
-        if not os.path.exists(put_path):os.makedirs(put_path)
-        file_path = os.path.join(put_path,dic['filename'])
         md5 = hashlib.md5() # 发送数据时，添加MD5校验，就不用再单独打开一次文件做校验了
-        total = dic['filesize']
-        num = 0
-        with open(file_path,mode='wb') as f:
+        total = dic['total_size']
+        num = dic['exist_size']
+        if dic['exist_size']:log.debug('文件上次已经上传了%s字节，开始断点上传！' % dic['exist_size'])
+        with open(dic['upload_file'],mode='ab') as f:
             while dic['filesize']>0:
                 file_content = cls.myRecv(conn)
                 dic['filesize'] -= len(file_content) # 剩余接收文件大小
@@ -110,7 +110,9 @@ class Common:
         dic['server_md5'] = md5.hexdigest() # 自己发送数据的MD5值
         dic['client_md5'] = cls.myRecv(conn).decode() # 接收对方的MD5值
         dic['msg'] = 'MD5校验OK，文件传输成功！' if dic['client_md5'] == dic['server_md5'] else 'MD5不一致，文件传输失败！'
-        dic['msg'] = dic['msg'] + '\n文件名：' + dic['file_path'] + '\nMD5值为：' + dic['server_md5']
+        if not dic['msg'].find('成功') < 0:
+            cls.updateQuota(ss.USER_FILE,dic['name'],dic['quota']) # 传输成功时更新磁盘配额
+            dic['msg'] = dic['msg'] + '\n文件上传位置：' + dic['upload_file'] + '\nMD5值为：' + dic['server_md5'] + '\n磁盘配额剩余：%s字节' % dic['quota']
         log.readAndWrite(dic['msg'])
         opt_dict = json.dumps(dic).encode('utf-8')
         cls.mySend(conn,opt_dict)
