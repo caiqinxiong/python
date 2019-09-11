@@ -85,7 +85,7 @@ class Common:
         dic['server_md5'] = md5.hexdigest() # 自己发送数据的MD5值
         dic['client_md5'] = cls.myRecv(conn).decode() # 接收对方的MD5值
         dic['msg'] = 'MD5校验OK，文件传输成功！' if dic['client_md5'] == dic['server_md5'] else 'MD5不一致，文件传输失败！'
-        dic['msg'] = dic['msg'] + '\n文件名：' + dic['file_path'] + '\nMD5值为：' + dic['server_md5']
+        dic['msg'] = dic['msg'] + '\n文件下载位置：' + dic['download_file'] + '\nMD5值为：' + dic['server_md5']
         log.readAndWrite(dic['msg'])
         opt_dict = json.dumps(dic).encode('utf-8')
         cls.mySend(conn,opt_dict)
