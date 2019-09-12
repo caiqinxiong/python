@@ -16,20 +16,28 @@ class Common:
         pass
 
     @staticmethod
-    def mySend(conn,msgb):
+    def mySend(conn,msgb,dic=False):
         '''发送数据时，解决粘包问题'''
+        if dic:msgb = json.dumps(msgb).encode('utf-8')
         len_msg = len(msgb)
         pack_len = struct.pack('i', len_msg)
         conn.send(pack_len)
         conn.send(msgb)
 
     @staticmethod
-    def myRecv(conn):
+    def myRecv(conn,dic=False):
         '''接收数据时，解决粘包问题'''
         pack_len = conn.recv(4) #struct机制，在发送数据前，加上固定长度4字节的头部
         len_msg = struct.unpack('i', pack_len)[0] # 解包，得到元组。
         msg_b = conn.recv(len_msg)
+        if dic:msg_b = json.loads(msg_b.decode('utf-8'))
         return msg_b
+
+    @classmethod
+    def showMessage(cls,conn,opt_dict):
+        cls.mySend(conn,opt_dict,True) # 将执行命令发送给服务器，服务执行相应函数
+        opt_dict = cls.myRecv(conn,True) # 接收服务操作完成后返回的字典
+        log.debug(opt_dict['msg']) # 打印执行信息
 
     @staticmethod
     def processBar(num, total):

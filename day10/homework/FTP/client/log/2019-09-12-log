@@ -44,3 +44,11 @@ MD5值为：c1bfd8fbb9a866a16c6f30091dcc73f6
 2019-09-12 15:13:58	[INFO]	MD5校验OK，文件传输成功！
 文件下载位置：E:/python_test/python/day10/homework/FTP/client\db\caiqinxiong_download\年会舞蹈视频-20180202.mp4
 MD5值为：29ec38cc1738acad766c6dd272927e76
+2019-09-12 17:03:11	[INFO]	caiqinxiong登录成功！
+2019-09-12 17:45:23	[INFO]	caiqinxiong登录成功！
+2019-09-12 17:46:35	[INFO]	caiqinxiong登录成功！
+2019-09-12 17:51:35	[INFO]	caiqinxiong登录成功！
+2019-09-12 17:55:23	[INFO]	caiqinxiong登录成功！
+2019-09-12 17:56:41	[INFO]	caiqinxiong登录成功！
+2019-09-12 17:57:27 - root - ERROR -log:  E:/python_test/python/day10/homework/FTP/client\core\ftp_client.py line100 error!
+invalid literal for int() with base 10: 'cd 7'不是效数字！！

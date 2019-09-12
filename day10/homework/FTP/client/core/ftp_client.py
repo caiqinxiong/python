@@ -15,9 +15,6 @@ class FtpClient:
     def __init__(self):
         self.sk = socket.socket()
         self.sk.connect(ss.IP_PORT)
-        # self.pwd_path = ss.USER_HOME(self.name)
-        # if not os.path.exists(self.pwd_path):os.makedirs(self.pwd_path)
-        # os.chdir(self.pwd_path)
 
     def putFile(self):
         '''客户端上传文件到服务器'''
@@ -34,7 +31,6 @@ class FtpClient:
         if opt_dict['flag']:# 该用户在服务器的磁盘配额满足
             log.debug('开始上传%s到服务器！' % opt_dict['file_path'])
             cn.startPutFile(self.sk,opt_dict)
-
 
     def getFile(self):
         '''客户端从服务器下载文件'''
@@ -54,56 +50,34 @@ class FtpClient:
         else:
             log.debug(opt_dict['msg'])
 
-
-
     def viewDir(self):
-        '''查看当前目录'''
-        log.debug('%s目录信息如下：' % self.pwd_path)
-        for index,name in enumerate(os.listdir(self.pwd_path),1):
-            path = os.path.join(self.pwd_path,name)
-            if os.path.isfile(path):
-               log.debug('文件%s：%s' % (index, name))
-            elif os.path.isdir(path):
-                log.debug('目录%s：%s' % (index, name))
+        '''查看服务器当前目录'''
+        opt_dict = {'operate':'viewDir', 'name':self.name}
+        cn.showMessage(self.sk,opt_dict)
 
     def mkdir(self):
         '''创建目录'''
-        name = input('请输入新建文件夹名称：')
-        if os.path.exists(os.path.abspath(name)):
-            log.warning('%s目录已存在！' % name)
-        else:
-            os.mkdir(name)
-            log.readAndWrite('%s目录创建成功！' % os.path.abspath(name))
+        dirname = input('请输入新建文件夹名称：')
+        opt_dict = {'operate':'mkdir', 'name':self.name,'dirname':dirname}
+        cn.showMessage(self.sk,opt_dict)
 
     def rmdir(self):
         '''删除空目录'''
-        name = input('请输入要删除的空文件夹名称：')
-        try:
-            os.rmdir(os.path.abspath(name))
-            log.readAndWrite('%s目录删除成功！' % name)
-        except OSError as e:
-            log.warning('目录不存在或目录不为空！\n%s' % e)
+        dirname = input('请输入要删除的空文件夹名称：')
+        opt_dict = {'operate':'rmdir', 'name':self.name,'dirname':dirname}
+        cn.showMessage(self.sk,opt_dict)
 
     def rmfile(self):
         '''删除文件'''
-        name = input('请输入要删除的文件名称：')
-        name = os.path.abspath(name)
-        if os.path.isfile(name):
-            os.remove(name)
-            log.readAndWrite('%s文件删除成功！' % name)
-        else:
-            log.warning('%s文件不存在！' % name)
+        filename = input('请输入要删除的文件名称：')
+        opt_dict = {'operate':'rmfile', 'name':self.name,'filename':filename}
+        cn.showMessage(self.sk,opt_dict)
 
     def changeDir(self):
         '''切换子目录'''
-        name = input('请输入切换目录名称：')
-        name = os.path.abspath(name)
-        if os.path.isdir(name):
-            os.chdir(name)
-            self.pwd_path = name
-            log.debug('已切换到%s' % name)
-        else:
-            log.warning('%s目录不存在！' % name)
+        dirname = input('请输入切换目录名称：')
+        opt_dict = {'operate':'changeDir', 'name':self.name,'dirname':dirname}
+        cn.showMessage(self.sk,opt_dict)
 
     def quit(self):
         log.debug('谢谢使用！')
