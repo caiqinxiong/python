@@ -71,16 +71,20 @@ class Common:
     def startGetFile(cls,conn,dic):
         '''客户端从服务器下载文件'''
         md5 = hashlib.md5() # 发送数据时，添加MD5校验，就不用再单独打开一次文件做校验了
-        total = dic['total_size']
+        total = dic['filesize']
         num = dic['exist_size']
         if dic['exist_size']:log.debug('文件上次已经下载了%s字节，开始断点下载！' % dic['exist_size'])
         with open(dic['file_path'],mode = 'rb') as f:
             f.seek(dic['exist_size']) # 将指针移动到指定位置开始读
-            for line in f:
+            # for line in f: # 不用这种方式，视频文件无法按行读取
             # if line.strip():不能添加判断，要不导致发送的数据不全，文件内容不管是什么都给发送过去就行
-                cls.mySend(conn,line)
-                num += len(line) # 累计发送文件大小
-                cls.processBar(num,total)
+            #     cls.mySend(conn,line)
+            while total>0:
+                line = f.read(1024*1000)
+                conn.send(line)# 发生粘包也没有关系，反正最后把文件传完就行
+                num += len(line) # 累计发送文件大小，传输进度条用
+                total -= len(line) # 退出循环用
+                cls.processBar(num,dic['total_size'])
                 md5.update(line)
         dic['server_md5'] = md5.hexdigest() # 自己发送数据的MD5值
         dic['client_md5'] = cls.myRecv(conn).decode() # 接收对方的MD5值
@@ -101,7 +105,8 @@ class Common:
         if dic['exist_size']:log.debug('文件上次已经上传了%s字节，开始断点上传！' % dic['exist_size'])
         with open(dic['upload_file'],mode='ab') as f:
             while dic['filesize']>0:
-                file_content = cls.myRecv(conn)
+                # file_content = cls.myRecv(conn)
+                file_content = conn.recv(1024*1000)# 发生粘包也没有关系，反正最后把文件传完就行
                 dic['filesize'] -= len(file_content) # 剩余接收文件大小
                 f.write(file_content)
                 num += len(file_content) # 累计发送文件大小

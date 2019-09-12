@@ -1,0 +1,113 @@
+2019-09-12 14:39:01	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 14:39:01	[INFO]	caiqinxiong登录成功！
+2019-09-12 14:39:01	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 14:39:01	[INFO]	用户caiqinxiong当前磁盘配额剩余：978730792字节
+上传文件大小为：252915551字节
+2019-09-12 14:40:48 - root - ERROR -log:  E:/python_test/python/day10/homework/FTP/server\core\ftp_server.py line68 error!
+('127.0.0.1', 58798)客户端已断开[WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2019-09-12 14:56:20	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 14:56:20	[INFO]	caiqinxiong登录成功！
+2019-09-12 14:56:20	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 14:56:20	[INFO]	用户caiqinxiong当前磁盘配额剩余：978730792字节
+上传文件大小为：252915551字节
+2019-09-12 14:57:49 - root - ERROR -log:  E:/python_test/python/day10/homework/FTP/server\core\ftp_server.py line68 error!
+('127.0.0.1', 59413)客户端已断开[WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2019-09-12 15:00:41	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:00:41	[INFO]	caiqinxiong登录成功！
+2019-09-12 15:00:41	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:00:41	[INFO]	用户caiqinxiong当前磁盘配额剩余：978730792字节
+上传文件大小为：252915551字节
+2019-09-12 15:00:41	[INFO]	MD5校验OK，文件传输成功！
+文件上传位置：E:/python_test/python/day10/homework/FTP/server\db\users_home\caiqinxiong\upload\年会舞蹈视频-20180202.mp4
+MD5值为：ed426b2486f02c46c255667f1ca82d77
+磁盘配额剩余：725815241字节
+2019-09-12 15:00:41	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:00:41	[INFO]	MD5校验OK，文件传输成功！
+文件下载位置：E:/python_test/python/day10/homework/FTP/client\db\caiqinxiong_download\年会舞蹈视频-20180202.mp4
+MD5值为：ed426b2486f02c46c255667f1ca82d77
+2019-09-12 15:00:41	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:03:17 - root - ERROR -log:  E:/python_test/python/day10/homework/FTP/server\core\ftp_server.py line68 error!
+('127.0.0.1', 59500)客户端已断开[WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2019-09-12 15:00:41	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:00:41	[INFO]	caiqinxiong登录成功！
+2019-09-12 15:00:41	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:00:41	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:00:41	[INFO]	caiqinxiong登录成功！
+2019-09-12 15:00:41	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:05:10	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:05:10	[INFO]	caiqinxoing登录失败！
+2019-09-12 15:05:10	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:05:10	[INFO]	caiqinxiong登录成功！
+2019-09-12 15:05:10	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:05:10	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:05:10	[INFO]	caiqinxiong登录成功！
+2019-09-12 15:05:10	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:08:33	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:08:33	[INFO]	caiqinxiong登录成功！
+2019-09-12 15:08:33	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:08:57 - root - WARNING -log:  客户端操作错误！
+2019-09-12 15:08:33	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:08:33	[INFO]	MD5校验OK，文件传输成功！
+文件下载位置：E:/python_test/python/day10/homework/FTP/client\db\caiqinxiong_download\年会舞蹈视频-20180202.mp4
+MD5值为：ed426b2486f02c46c255667f1ca82d77
+2019-09-12 15:08:33	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:08:33	[INFO]	MD5校验OK，文件传输成功！
+文件下载位置：E:/python_test/python/day10/homework/FTP/client\db\caiqinxiong_download\年会舞蹈视频-20180202.mp4
+MD5值为：d41d8cd98f00b204e9800998ecf8427e
+2019-09-12 15:08:33	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:08:33	[INFO]	用户caiqinxiong当前磁盘配额剩余：725815241字节
+上传文件大小为：252915551字节
+2019-09-12 15:08:33	[INFO]	MD5校验OK，文件传输成功！
+文件上传位置：E:/python_test/python/day10/homework/FTP/server\db\users_home\caiqinxiong\upload\年会舞蹈视频-20180202.mp4
+MD5值为：ed426b2486f02c46c255667f1ca82d77
+磁盘配额剩余：472899690字节
+2019-09-12 15:08:33	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:08:33	[INFO]	用户caiqinxiong当前磁盘配额剩余：472899690字节
+上传文件大小为：252915551字节
+2019-09-12 15:08:33	[INFO]	MD5校验OK，文件传输成功！
+文件上传位置：E:/python_test/python/day10/homework/FTP/server\db\users_home\caiqinxiong\upload\年会舞蹈视频-20180202.mp4
+MD5值为：ed426b2486f02c46c255667f1ca82d77
+磁盘配额剩余：219984139字节
+2019-09-12 15:08:33	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:11:12 - root - ERROR -log:  E:/python_test/python/day10/homework/FTP/server\core\ftp_server.py line68 error!
+('127.0.0.1', 59572)客户端已断开[WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2019-09-12 15:08:33	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:08:33	[INFO]	caiqinxoing登录失败！
+2019-09-12 15:08:33	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:08:33	[INFO]	caiqinxiong登录成功！
+2019-09-12 15:08:33	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:08:33	[INFO]	caiqinxiong用户磁盘配额不足！
+用户caiqinxiong当前磁盘配额剩余：219984139字节
+上传文件大小为：252915551字节
+2019-09-12 15:08:33	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:11:39 - root - ERROR -log:  E:/python_test/python/day10/homework/FTP/server\core\ftp_server.py line68 error!
+('127.0.0.1', 59605)客户端已断开[WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2019-09-12 15:08:33	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:08:33	[INFO]	caiqinxioniong登录失败！
+2019-09-12 15:08:33	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:08:33	[INFO]	caiqinxiong登录成功！
+2019-09-12 15:08:33	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:08:33	[INFO]	用户caiqinxiong当前磁盘配额剩余：1073741824字节
+上传文件大小为：252915551字节
+2019-09-12 15:12:23 - root - ERROR -log:  E:/python_test/python/day10/homework/FTP/server\core\ftp_server.py line68 error!
+('127.0.0.1', 59610)客户端已断开[WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2019-09-12 15:08:33	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:08:33	[INFO]	caiqinxiong登录成功！
+2019-09-12 15:08:33	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:08:33	[INFO]	用户caiqinxiong当前磁盘配额剩余：1073741824字节
+上传文件大小为：6131551字节
+2019-09-12 15:08:33	[INFO]	MD5校验OK，文件传输成功！
+文件上传位置：E:/python_test/python/day10/homework/FTP/server\db\users_home\caiqinxiong\upload\年会舞蹈视频-20180202.mp4
+MD5值为：c1bfd8fbb9a866a16c6f30091dcc73f6
+磁盘配额剩余：1067610273字节
+2019-09-12 15:08:33	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:08:33	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:08:33	[INFO]	caiqinxionbg登录失败！
+2019-09-12 15:08:33	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:08:33	[INFO]	caiqinxiong登录成功！
+2019-09-12 15:08:33	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:08:33	[INFO]	MD5校验OK，文件传输成功！
+文件下载位置：E:/python_test/python/day10/homework/FTP/client\db\caiqinxiong_download\年会舞蹈视频-20180202.mp4
+MD5值为：29ec38cc1738acad766c6dd272927e76
+2019-09-12 15:08:33	[INFO]	客户端127.0.0.1已链接！
+2019-09-12 15:15:17	[INFO]	客户端127.0.0.1已链接！

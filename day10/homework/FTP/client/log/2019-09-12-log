@@ -1,0 +1,46 @@
+2019-09-12 14:39:06	[INFO]	caiqinxiong登录成功！
+2019-09-12 14:56:26	[INFO]	caiqinxiong登录成功！
+2019-09-12 15:00:43	[INFO]	caiqinxiong登录成功！
+2019-09-12 15:00:43	[INFO]	MD5校验OK，文件传输成功！
+文件上传位置：E:/python_test/python/day10/homework/FTP/server\db\users_home\caiqinxiong\upload\年会舞蹈视频-20180202.mp4
+MD5值为：ed426b2486f02c46c255667f1ca82d77
+磁盘配额剩余：725815241字节
+2019-09-12 15:00:43	[INFO]	MD5校验OK，文件传输成功！
+文件下载位置：E:/python_test/python/day10/homework/FTP/client\db\caiqinxiong_download\年会舞蹈视频-20180202.mp4
+MD5值为：ed426b2486f02c46c255667f1ca82d77
+2019-09-12 15:03:24	[INFO]	caiqinxiong登录成功！
+2019-09-12 15:03:47	[INFO]	caiqinxiong登录成功！
+2019-09-12 15:05:13	[INFO]	caiqinxoing登录失败！
+2019-09-12 15:05:13	[INFO]	caiqinxiong登录成功！
+2019-09-12 15:05:44	[INFO]	caiqinxiong登录成功！
+2019-09-12 15:08:36	[INFO]	caiqinxiong登录成功！
+2019-09-12 15:08:57 - root - ERROR -log:  E:/python_test/python/day10/homework/FTP/client\core\ftp_client.py line27 error!
+fdas文件不存在!
+2019-09-12 15:08:36	[INFO]	MD5校验OK，文件传输成功！
+文件下载位置：E:/python_test/python/day10/homework/FTP/client\db\caiqinxiong_download\年会舞蹈视频-20180202.mp4
+MD5值为：ed426b2486f02c46c255667f1ca82d77
+2019-09-12 15:08:36	[INFO]	MD5校验OK，文件传输成功！
+文件下载位置：E:/python_test/python/day10/homework/FTP/client\db\caiqinxiong_download\年会舞蹈视频-20180202.mp4
+MD5值为：d41d8cd98f00b204e9800998ecf8427e
+2019-09-12 15:08:36	[INFO]	MD5校验OK，文件传输成功！
+文件上传位置：E:/python_test/python/day10/homework/FTP/server\db\users_home\caiqinxiong\upload\年会舞蹈视频-20180202.mp4
+MD5值为：ed426b2486f02c46c255667f1ca82d77
+磁盘配额剩余：472899690字节
+2019-09-12 15:08:36	[INFO]	MD5校验OK，文件传输成功！
+文件上传位置：E:/python_test/python/day10/homework/FTP/server\db\users_home\caiqinxiong\upload\年会舞蹈视频-20180202.mp4
+MD5值为：ed426b2486f02c46c255667f1ca82d77
+磁盘配额剩余：219984139字节
+2019-09-12 15:11:25	[INFO]	caiqinxoing登录失败！
+2019-09-12 15:11:25	[INFO]	caiqinxiong登录成功！
+2019-09-12 15:11:59	[INFO]	caiqinxioniong登录失败！
+2019-09-12 15:11:59	[INFO]	caiqinxiong登录成功！
+2019-09-12 15:12:50	[INFO]	caiqinxiong登录成功！
+2019-09-12 15:12:50	[INFO]	MD5校验OK，文件传输成功！
+文件上传位置：E:/python_test/python/day10/homework/FTP/server\db\users_home\caiqinxiong\upload\年会舞蹈视频-20180202.mp4
+MD5值为：c1bfd8fbb9a866a16c6f30091dcc73f6
+磁盘配额剩余：1067610273字节
+2019-09-12 15:13:58	[INFO]	caiqinxionbg登录失败！
+2019-09-12 15:13:58	[INFO]	caiqinxiong登录成功！
+2019-09-12 15:13:58	[INFO]	MD5校验OK，文件传输成功！
+文件下载位置：E:/python_test/python/day10/homework/FTP/client\db\caiqinxiong_download\年会舞蹈视频-20180202.mp4
+MD5值为：29ec38cc1738acad766c6dd272927e76

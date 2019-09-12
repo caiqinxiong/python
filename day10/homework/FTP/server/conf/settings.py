@@ -8,7 +8,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # 服务器ip地址和端口
 IP_PORT = ('127.0.0.1',8888)
 
-# 默认用户磁盘配额大小为1G，化为字节
+# 默认用户磁盘配额大小为1G，化为字节l
 QUOTA = '1073741824'
 
 # 数据库路径
