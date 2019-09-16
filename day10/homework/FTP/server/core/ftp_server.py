@@ -11,13 +11,17 @@ from core.server_auth import ServerAuth as sa
 
 class FtpServer(socketserver.BaseRequestHandler):
 
-    def setup(self):
-        self.pwd_path = ss.DB_PATH
-        os.chdir(self.pwd_path)
+    # def setup(self):
+    #     self.pwd_path = ss.DB_PATH
+    #     os.chdir(self.pwd_path)
 
     def login(self,opt_dict):
         '''登录'''
-        return cn.mySend(self.request,sa.auth(opt_dict))
+        dic_b = sa.auth(opt_dict)
+        cn.mySend(self.request,dic_b)
+        dic = json.loads(dic_b.decode('utf-8'))
+        self.userHome(dic)
+        return
 
     def register(self,opt_dict):
         '''注册'''
@@ -25,9 +29,9 @@ class FtpServer(socketserver.BaseRequestHandler):
 
     def userHome(self,opt_dict):
         '''用户家目录'''
-        self.user_home = ss.USER_HOME(opt_dict['name'])
-        if not os.path.exists(self.pwd_path):os.makedirs(self.user_home)
-        os.chdir(self.user_home)
+        self.pwd_path = ss.USER_HOME(opt_dict['name'])
+        if not os.path.exists(self.pwd_path):os.makedirs(self.pwd_path)
+        os.chdir(self.pwd_path)
 
     def viewDir(self,opt_dict):
         '''查看当前目录'''
