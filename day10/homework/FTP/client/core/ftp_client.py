@@ -4,7 +4,6 @@ __author__ = 'caiqinxiong_cai'
 import socket
 import os
 import time
-import json
 from conf import settings as ss
 from core.log import Log as log
 from core.client_common import Common as cn
@@ -22,11 +21,10 @@ class FtpClient:
         if not os.path.isfile(file_path):# 客户端上传文件，自己先判断文件是否存在
             cn.mySend(self.sk,b'error')
             return log.error('%s文件不存在!' % file_path)
-        opt_dict = {'operate':'putFile', 'file_path':file_path, 'name':self.name}
-        dic_b = json.dumps(opt_dict).encode('utf-8')
-        cn.mySend(self.sk,dic_b) # 将执行命令发送给服务器，服务执行相应函数
-        dic_str = cn.myRecv(self.sk).decode('utf-8') # 接收服务器回应信息
-        opt_dict = json.loads(dic_str)
+        total_size = os.path.getsize(file_path) # 获取文件大小
+        opt_dict = {'operate':'putFile', 'file_path':file_path, 'total_size':total_size, 'name':self.name}
+        cn.mySend(self.sk,opt_dict,True) # 将执行命令发送给服务器，服务执行相应函数
+        opt_dict = cn.myRecv(self.sk,True)# 接收服务器回应信息
         log.debug(opt_dict['msg'])
         if opt_dict['flag']:# 该用户在服务器的磁盘配额满足
             log.debug('开始上传%s到服务器！' % opt_dict['file_path'])
@@ -40,10 +38,8 @@ class FtpClient:
         download_file = os.path.join(download_path,os.path.basename(file_path)) # 下载到客户端本地的文件路径
         exist_size =  os.path.getsize(download_file) if os.path.exists(download_file) else 0 # 判断本地文件是否存在，做断点续传
         opt_dict = {'operate':'getFile', 'file_path':file_path, 'download_file':download_file, 'exist_size':exist_size, 'name':self.name}
-        dic_b = json.dumps(opt_dict).encode('utf-8')
-        cn.mySend(self.sk,dic_b) # 将执行命令发送给服务器，服务执行相应函数
-        dic_str = cn.myRecv(self.sk).decode('utf-8') # 接收服务器回应信息
-        opt_dict = json.loads(dic_str)
+        cn.mySend(self.sk,opt_dict,True) # 将执行命令发送给服务器，服务执行相应函数
+        opt_dict = cn.myRecv(self.sk,True) # 接收服务器回应信息
         if opt_dict['flag']: # 文件存在
             log.debug('开始服务器中下载文件%s' % opt_dict['file_path'] )
             cn.startGetFile(self.sk,opt_dict)

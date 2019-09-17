@@ -26,10 +26,8 @@ class ClinetAuth:
                 else:
                     log.debug('两次输入密码不一致！')
                     continue
-            msg_b =  json.dumps(self.auth_dict).encode('utf-8') # 将字典先转换成字符串，再接着转换成二进制。
-            cn.mySend(self.conn,msg_b) # 将用户信息发送给服务器校验
-            dic_b = cn.myRecv(self.conn) # 接收服务器校验完成的结果
-            self.auth_dict = json.loads(dic_b.decode('utf-8'))
+            cn.mySend(self.conn,self.auth_dict,True) # 将用户信息发送给服务器校验
+            self.auth_dict = cn.myRecv(self.conn,True) # 接收服务器校验完成的结果
             log.readAndWrite(self.auth_dict['msg'])
             if self.auth_dict['flag']:break # 登录或注册成功了
         return self.auth_dict
