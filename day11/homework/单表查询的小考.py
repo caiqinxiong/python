@@ -214,29 +214,10 @@ sql = "insert into book values (%s,%s,%s,%s,%s)"
 with open('book',mode='r',encoding='utf-8') as f:
     for line in f:
         book_name, author, press, price, date = line.strip().split('|')
-        cur.execute(sql,(book_name, author, press, price, date)) # 执行插入数据sql语句，以元组的方式传入参数，字符拼接必须在execute中，防止sql注入。
-conn.commit() # 修改、插入、删除操作的sql语句在内存中，需要提交才能真正写入数据库
+        try:
+            cur.execute(sql,(book_name, author, press, price, date)) # 执行插入数据sql语句，以元组的方式传入参数，字符拼接必须在execute中，防止sql注入。
+            conn.commit() # 修改、插入、删除操作的sql语句在内存中，需要提交才能真正写入数据库
+        except:
+            conn.rollback()# 如果发生错误则回滚
 cur.close()
 conn.close()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
