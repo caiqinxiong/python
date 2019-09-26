@@ -180,12 +180,19 @@ insert into book values
 '''
 # mysql> select max(价格) from book;
 # mysql> update book set 价格=50 where 价格=70;
+# 将两条语句合并成一条执行,不能直接将查询结果进行修改，因为都用了同一个表，如果查询就行，就是同时进行读操作可以，不能同时进行读写操作。所以要将表重新命名转换一下。
+# mysql> update book set 价格=50 where 价格=(select * from (select max(价格) from book) as t1);
+# Query OK, 1 row affected (0.07 sec)
+# Rows matched: 1  Changed: 1  Warnings: 0
 
 '''
 12.删除价格最低的那本书对应的数据
 '''
 # mysql> select min(价格) from book;
 # mysql> delete from book where 价格=5;
+# 将两条语句合并成一条执行
+# mysql> delete from book where 价格=(select * from (select min(价格) from book) as t1);
+# Query OK, 1 row affected (0.08 sec)
 
 '''
 13.将所有alex写的书作者修改成alexsb

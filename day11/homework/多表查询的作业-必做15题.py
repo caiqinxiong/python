@@ -18,16 +18,17 @@ __author__ = 'caiqinxiong_cai'
 '''
 2、查询姓“张”的学生名单；
 '''
-# mysql> select sname from student  where sname like '张%';
-# +--------+
-# | sname  |
-# +--------+
-# | 张三 |
-# | 张一 |
-# | 张二 |
-# | 张四 |
-# +--------+
+# mysql> select * from student where sname like '张%';
+# +-----+--------+----------+--------+
+# | sid | gender | class_id | sname  |
+# +-----+--------+----------+--------+
+# |   3 | 男    |        1 | 张三 |
+# |   4 | 男    |        1 | 张一 |
+# |   5 | 女    |        1 | 张二 |
+# |   6 | 男    |        1 | 张四 |
+# +-----+--------+----------+--------+
 # 4 rows in set (0.00 sec)
+
 
 '''
 3、课程平均分从高到低显示
@@ -273,4 +274,240 @@ __author__ = 'caiqinxiong_cai'
 '''
 11、查询所有同学的学号、姓名、选课数、总成绩；
 '''
+# mysql> select student_id,sname,count(course_id),sum(num) from student inner join score on student.sid = student_id group by student_id;
+# +------------+--------+------------------+----------+
+# | student_id | sname  | count(course_id) | sum(num) |
+# +------------+--------+------------------+----------+
+# |          1 | 理解 |                3 |       85 |
+# |          2 | 钢蛋 |                3 |      175 |
+# |          3 | 张三 |                4 |      329 |
+# |          4 | 张一 |                4 |      257 |
+# |          5 | 张二 |                4 |      257 |
+# |          6 | 张四 |                4 |      276 |
+# |          7 | 铁锤 |                4 |      264 |
+# |          8 | 李三 |                4 |      264 |
+# |          9 | 李一 |                4 |      268 |
+# |         10 | 李二 |                4 |      297 |
+# |         11 | 李四 |                4 |      297 |
+# |         12 | 如花 |                4 |      297 |
+# |         13 | 刘三 |                1 |       87 |
+# +------------+--------+------------------+----------+
+# 13 rows in set (0.00 sec)
+
+'''
+12、查询姓“李”的老师的个数；
+'''
+# mysql>  select count(tname) from teacher where tname like '李%';
+# +--------------+
+# | count(tname) |
+# +--------------+
+# |            2 |
+# +--------------+
+# 1 row in set (0.00 sec)
+
+'''
+13、查询没学过“张磊老师”课的同学的学号、姓名；
+'''
+# 方法一
+# 1、先找到张磊老师所教课程
+# mysql> select * from course inner join teacher on teacher_id=tid where tname='张磊老师';
+# +-----+--------+------------+-----+--------------+
+# | cid | cname  | teacher_id | tid | tname        |
+# +-----+--------+------------+-----+--------------+
+# |   1 | 生物 |          1 |   1 | 张磊老师 |
+# +-----+--------+------------+-----+--------------+
+# 1 row in set (0.00 sec)
+
+# 2、找出选了张磊老师课程的学生
+# mysql> select * from score where course_id = (select cid from course inner join teacher on teacher_id=tid where tname='张磊老师');
+# +-----+------------+-----------+-----+
+# | sid | student_id | course_id | num |
+# +-----+------------+-----------+-----+
+# |   1 |          1 |         1 |  10 |
+# |   6 |          2 |         1 |   8 |
+# |  10 |          3 |         1 |  77 |
+# |  14 |          4 |         1 |  79 |
+# |  18 |          5 |         1 |  79 |
+# |  22 |          6 |         1 |   9 |
+# |  26 |          7 |         1 |   9 |
+# |  30 |          8 |         1 |   9 |
+# |  34 |          9 |         1 |  91 |
+# |  38 |         10 |         1 |  90 |
+# |  42 |         11 |         1 |  90 |
+# |  46 |         12 |         1 |  90 |
+# +-----+------------+-----------+-----+
+# 12 rows in set (0.00 sec)
+
+# 3、最后反选一下所有学生中不包含选了张磊老师的课的学生就行
+# mysql> select sid,sname from student where sid not in (select student_id from score where course_id = (select cid from course inner join teacher on teacher_id=tid where tname='张磊老师'));
+# +-----+--------+
+# | sid | sname  |
+# +-----+--------+
+# |  13 | 刘三 |
+# |  14 | 刘一 |
+# |  15 | 刘二 |
+# |  16 | 刘四 |
+# +-----+--------+
+# 4 rows in set (0.00 sec)
+
+# 方法二，直接用多个子查询套用
+# mysql> select sid,sname from student where sid not in (select student_id from score where course_id = (select cid from course where teacher_id = (select tid from teacher where tname = '张磊老师')));
+# +-----+--------+
+# | sid | sname  |
+# +-----+--------+
+# |  13 | 刘三 |
+# |  14 | 刘一 |
+# |  15 | 刘二 |
+# |  16 | 刘四 |
+# +-----+--------+
+# 4 rows in set (0.00 sec)
+
+'''
+14、查询学过“1”并且也学过编号“2”课程的同学的学号、姓名；
+'''
+# 方法一
+# 1、先找出学过课程1的同学
+# mysql> select * from student inner join score on student_id = student.sid where course_id=1 ;
+# +-----+--------+----------+--------+-----+------------+-----------+-----+
+# | sid | gender | class_id | sname  | sid | student_id | course_id | num |
+# +-----+--------+----------+--------+-----+------------+-----------+-----+
+# |   1 | 男    |        1 | 理解 |   1 |          1 |         1 |  10 |
+# |   2 | 女    |        1 | 钢蛋 |   6 |          2 |         1 |   8 |
+# |   3 | 男    |        1 | 张三 |  10 |          3 |         1 |  77 |
+# |   4 | 男    |        1 | 张一 |  14 |          4 |         1 |  79 |
+# |   5 | 女    |        1 | 张二 |  18 |          5 |         1 |  79 |
+# |   6 | 男    |        1 | 张四 |  22 |          6 |         1 |   9 |
+# |   7 | 女    |        2 | 铁锤 |  26 |          7 |         1 |   9 |
+# |   8 | 男    |        2 | 李三 |  30 |          8 |         1 |   9 |
+# |   9 | 男    |        2 | 李一 |  34 |          9 |         1 |  91 |
+# |  10 | 女    |        2 | 李二 |  38 |         10 |         1 |  90 |
+# |  11 | 男    |        2 | 李四 |  42 |         11 |         1 |  90 |
+# |  12 | 女    |        3 | 如花 |  46 |         12 |         1 |  90 |
+# +-----+--------+----------+--------+-----+------------+-----------+-----+
+# 2、再找出学过课程2的同学
+# mysql> select * from student inner join score on student_id = student.sid where course_id=2;
+# +-----+--------+----------+--------+-----+------------+-----------+-----+
+# | sid | gender | class_id | sname  | sid | student_id | course_id | num |
+# +-----+--------+----------+--------+-----+------------+-----------+-----+
+# |   1 | 男    |        1 | 理解 |   2 |          1 |         2 |   9 |
+# |   3 | 男    |        1 | 张三 |  11 |          3 |         2 |  66 |
+# |   4 | 男    |        1 | 张一 |  15 |          4 |         2 |  11 |
+# |   5 | 女    |        1 | 张二 |  19 |          5 |         2 |  11 |
+# |   6 | 男    |        1 | 张四 |  23 |          6 |         2 | 100 |
+# |   7 | 女    |        2 | 铁锤 |  27 |          7 |         2 | 100 |
+# |   8 | 男    |        2 | 李三 |  31 |          8 |         2 | 100 |
+# |   9 | 男    |        2 | 李一 |  35 |          9 |         2 |  88 |
+# |  10 | 女    |        2 | 李二 |  39 |         10 |         2 |  77 |
+# |  11 | 男    |        2 | 李四 |  43 |         11 |         2 |  77 |
+# |  12 | 女    |        3 | 如花 |  47 |         12 |         2 |  77 |
+# +-----+--------+----------+--------+-----+------------+-----------+-----+
+# 11 rows in set (0.00 sec)
+#
+# 3、把前面找出来的信息再组合成新的一张表，就可以找出既选择1课程又选择2课程学生了
+# mysql> select t1.student_id,t1.sname from (select student_id,sname,course_id from student inner join score on student_id = student.sid where course_id=1) as t1 inner join ( select student_id,sname,course_id from student inner join score on student_id = student.sid where course_id=2) as t2 on t1.student_id = t2.student_id;
+# +------------+--------+
+# | student_id | sname  |
+# +------------+--------+
+# |          1 | 理解 |
+# |          3 | 张三 |
+# |          4 | 张一 |
+# |          5 | 张二 |
+# |          6 | 张四 |
+# |          7 | 铁锤 |
+# |          8 | 李三 |
+# |          9 | 李一 |
+# |         10 | 李二 |
+# |         11 | 李四 |
+# |         12 | 如花 |
+# +------------+--------+
+# 11 rows in set (0.00 sec)
+
+# 方法二
+# mysql> select sid,sname from student where sid in (select t1.student_id from (select student_id from score where course_id = 1)  t1 inner join (select student_id from score where course_id = 2) t2 on t1.student_id = t2.student_id);
+# +-----+--------+
+# | sid | sname  |
+# +-----+--------+
+# |   1 | 理解 |
+# |   3 | 张三 |
+# |   4 | 张一 |
+# |   5 | 张二 |
+# |   6 | 张四 |
+# |   7 | 铁锤 |
+# |   8 | 李三 |
+# |   9 | 李一 |
+# |  10 | 李二 |
+# |  11 | 李四 |
+# |  12 | 如花 |
+# +-----+--------+
+# 11 rows in set (0.00 sec)
+
+'''
+15、查询学过“李平老师”所教的所有课的同学的学号、姓名；
+'''
+# 方法一
+# 1、先找到'李平老师'对应的tid号
+# mysql> select * from teacher where tname='李平老师';
+# +-----+--------------+
+# | tid | tname        |
+# +-----+--------------+
+# |   2 | 李平老师 |
+# +-----+--------------+
+# 1 row in set (0.00 sec)
+#
+# 2、通过tid号找到'李平老师'所教的课程对应的cid号
+# mysql> select * from course where teacher_id = (select tid from teacher where tname='李平老师');
+# +-----+--------+------------+
+# | cid | cname  | teacher_id |
+# +-----+--------+------------+
+# |   2 | 物理 |          2 |
+# |   4 | 美术 |          2 |
+# +-----+--------+------------+
+# 2 rows in set (0.00 sec)
+#
+# 3、统计'李平老师'一共教了几门课程
+# mysql>  select count(cid) from course where teacher_id in (select tid from teacher where tname ='李平老师');
+# +------------+
+# | count(cid) |
+# +------------+
+# |          2 |
+# +------------+
+# 1 row in set (0.00 sec)
+
+# 3、将选择了'李平老师'所教的两门课程的学生查询出来。
+# mysql> select  student_id,sname from student inner join score on student_id = student.sid where course_id in (select cid from course where teacher_id = (select tid from teacher where tname='李平老师')) group by sname having count(sname)=(select count(cid) from course where teacher_id in (select tid from teacher where tname ='李平老师'));
+# +------------+--------+
+# | student_id | sname  |
+# +------------+--------+
+# |         12 | 如花 |
+# |          4 | 张一 |
+# |          3 | 张三 |
+# |          5 | 张二 |
+# |          6 | 张四 |
+# |          9 | 李一 |
+# |          8 | 李三 |
+# |         10 | 李二 |
+# |         11 | 李四 |
+# |          1 | 理解 |
+# |          7 | 铁锤 |
+# +------------+--------+
+# 11 rows in set (0.01 sec)
+
+# 方法二
+# mysql> select sid,sname from student where sid in (  select  student_id from (  select student_id,count(course_id) course_count from score where course_id in ( select cid from course where teacher_id in (select tid from teacher where tname ='李平老师')) group by student_id) t1  where t1.course_count =  (select count(cid) from course where teacher_id in (select tid from teacher where tname ='李平老师'))  );
+# +-----+--------+
+# | sid | sname  |
+# +-----+--------+
+# |   1 | 理解 |
+# |   3 | 张三 |
+# |   4 | 张一 |
+# |   5 | 张二 |
+# |   6 | 张四 |
+# |   7 | 铁锤 |
+# |   8 | 李三 |
+# |   9 | 李一 |
+# |  10 | 李二 |
+# |  11 | 李四 |
+# |  12 | 如花 |
+# +-----+--------+
+# 11 rows in set (0.00 sec)
 
