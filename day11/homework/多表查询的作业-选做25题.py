@@ -295,3 +295,352 @@ __author__ = 'caiqinxiong_cai'
 # |        4 | 美术 |   NULL |   NULL |   NULL |
 # +----------+--------+--------+--------+--------+
 # 4 rows in set (0.00 sec)
+
+'''
+9、查询每门课程被选修的学生数；
+'''
+# mysql> select cid,cname,count(student_id) from course left join score on course_id = cid group by course_id;
+# +-----+--------+-------------------+
+# | cid | cname  | count(student_id) |
+# +-----+--------+-------------------+
+# |   4 | 美术 |                 0 |
+# |   1 | 生物 |                12 |
+# |   2 | 物理 |                16 |
+# |   3 | 体育 |                12 |
+# +-----+--------+-------------------+
+# 4 rows in set (0.00 sec)
+
+'''
+10、查询同名同姓学生名单，并统计同名人数；
+'''
+# mysql> select sname,count(sname) from student group by sname;
+# +--------+--------------+
+# | sname  | count(sname) |
+# +--------+--------------+
+# | 刘一 |            1 |
+# | 刘三 |            1 |
+# | 刘二 |            1 |
+# | 刘四 |            1 |
+# | 如花 |            1 |
+# | 张一 |            1 |
+# | 张三 |            1 |
+# | 张二 |            1 |
+# | 张四 |            1 |
+# | 李一 |            1 |
+# | 李三 |            1 |
+# | 李二 |            1 |
+# | 李四 |            1 |
+# | 理解 |            1 |
+# | 钢蛋 |            1 |
+# | 铁锤 |            1 |
+# +--------+--------------+
+# 16 rows in set (0.00 sec)
+
+'''
+11、查询每门课程的平均成绩，结果按平均成绩升序排列，平均成绩相同时，按课程号降序排列；
+'''
+# mysql> select cid,cname,avg(if(isnull(num), 0 ,num)) as 平均分 from course left join score on course_id = cid group by course_id order by avg(num) asc,cid desc;
+# +-----+--------+-----------+
+# | cid | cname  | 平均分 |
+# +-----+--------+-----------+
+# |   4 | 美术 |    0.0000 |
+# |   2 | 物理 |    0.0000 |
+# |   1 | 生物 |   53.4167 |
+# |   3 | 体育 |   64.4167 |
+# +-----+--------+-----------+
+# 4 rows in set (0.00 sec)
+
+'''
+12、查询平均成绩大于85的所有学生的学号、姓名和平均成绩；
+'''
+# 1、先查询所有学生的平均成绩
+# mysql> select student_id,sname,avg(num) from student left join score on student_id = student.sid group by student_id;
+# +------------+--------+----------+
+# | student_id | sname  | avg(num) |
+# +------------+--------+----------+
+# |          1 | 理解 |   5.0000 |
+# |          2 | 钢蛋 |  25.3333 |
+# |          3 | 张三 |  54.6667 |
+# |          4 | 张一 |  48.6667 |
+# |          5 | 张二 |  48.6667 |
+# |          6 | 张四 |  25.3333 |
+# |          7 | 铁锤 |  25.3333 |
+# |          8 | 李三 |  25.3333 |
+# |          9 | 李一 |  52.6667 |
+# |         10 | 李二 |  44.3333 |
+# |         11 | 李四 |  44.3333 |
+# |         12 | 如花 |  44.3333 |
+# |         13 | 刘三 |  43.5000 |
+# |         14 | 刘一 |   0.0000 |
+# |         15 | 刘二 |   0.0000 |
+# |         16 | 刘四 |   0.0000 |
+# +------------+--------+----------+
+# 16 rows in set (0.00 sec)
+
+# 2、过滤出平均成绩大于85分的，没有大于85分的同学
+# mysql> select student_id,sname,avg(num) from student left join score on student_id = student.sid group by student_id having avg(num)>85;
+# Empty set (0.00 sec)
+
+'''
+13、查询课程名称为“生物”，且分数低于60的学生姓名和分数
+'''
+# 方法一
+# mysql> select sname,num from student left join score on student_id = student.sid where course_id = ( select cid from course where cname='生物') and num<60;
+# +--------+------+
+# | sname  | num  |
+# +--------+------+
+# | 理解 |   10 |
+# | 钢蛋 |    8 |
+# | 张四 |    9 |
+# | 铁锤 |    9 |
+# | 李三 |    9 |
+# +--------+------+
+# 5 rows in set (0.00 sec)
+
+# 方法二（3个左连接并用）
+# mysql> SELECT student.sid AS 学号,student.sname AS 姓名,score.num AS 成绩 FROM score LEFT JOIN course ON score.course_id=course.cid LEFT JOIN student ON score.student_id= student.sid  WHERE course.cname="生物" AND score.num<60;
+# +--------+--------+--------+
+# | 学号 | 姓名 | 成绩 |
+# +--------+--------+--------+
+# |      1 | 理解 |     10 |
+# |      2 | 钢蛋 |      8 |
+# |      6 | 张四 |      9 |
+# |      7 | 铁锤 |      9 |
+# |      8 | 李三 |      9 |
+# +--------+--------+--------+
+# 5 rows in set (0.00 sec)
+
+'''
+14、查询课程编号为003且课程成绩在80分以上的学生的学号和姓名；
+'''
+# mysql> select student_id,sname from student left join score on student_id = student.sid where course_id=3 and num >80;
+# +------------+--------+
+# | student_id | sname  |
+# +------------+--------+
+# |          3 | 张三 |
+# |         13 | 刘三 |
+# +------------+--------+
+# 2 rows in set (0.00 sec)
+
+'''
+15、求选了课程的学生人数
+'''
+# 方法一
+# mysql> select count(t1.student_id) as 选课总人数 from (select student_id from score group by student_id) as t1;
+# +-----------------+
+# | 选课总人数 |
+# +-----------------+
+# |              16 |
+# +-----------------+
+# 1 row in set (0.00 sec)
+#
+# 方法二
+# mysql>   select count(distinct student_id) as 选课总人数 from score;
+# +-----------------+
+# | 选课总人数 |
+# +-----------------+
+# |              16 |
+# +-----------------+
+# 1 row in set (0.01 sec)
+
+'''
+16、查询选修“张磊老师”所授课程的学生中，成绩最高的学生姓名及其成绩；
+'''
+# 方法一
+# mysql> select sname,num from score left join student on score.student_id = student.sid  where score.course_id in (select course.cid from course left join teacher on course.teacher_id = teacher.tid where tname='张磊老师') order by num desc limit 1;
+# +--------+-----+
+# | sname  | num |
+# +--------+-----+
+# | 李一 |  91 |
+# +--------+-----+
+# 1 row in set (0.00 sec)
+
+# 方法二（3个左连接并用）
+# mysql> SELECT student.sid AS 学号,student.sname AS 姓名,num AS 成绩 FROM score  LEFT JOIN course ON score.course_id=course.cid LEFT JOIN student ON score.student_id=student.sid LEFT JOIN teacher ON course.teacher_id=teacher.tid  WHERE teacher.tname = "张磊老师" ORDER BY num DESC LIMIT 1;
+# +--------+--------+--------+
+# | 学号 | 姓名 | 成绩 |
+# +--------+--------+--------+
+# |      9 | 李一 |     91 |
+# +--------+--------+--------+
+# 1 row in set (0.00 sec)
+
+# 方法三（多个子查询套用）
+# mysql> select sname,num from student left join score on student_id = student.sid where course_id in (select cid from course where teacher_id = ( select tid from teacher where tname='张磊老师')) order by num desc limit 1;
+# +--------+------+
+# | sname  | num  |
+# +--------+------+
+# | 李一 |   91 |
+# +--------+------+
+# 1 row in set (0.00 sec)
+
+'''
+17、查询各个课程及相应的选修人数；
+'''
+# mysql> select cid,cname,count(student_id) from course left join score on course_id = cid group by course_id;
+# +-----+--------+-------------------+
+# | cid | cname  | count(student_id) |
+# +-----+--------+-------------------+
+# |   4 | 美术 |                 0 |
+# |   1 | 生物 |                12 |
+# |   2 | 物理 |                16 |
+# |   3 | 体育 |                12 |
+# +-----+--------+-------------------+
+# 4 rows in set (0.00 sec)
+#
+
+'''
+18、查询不同课程但成绩相同的学生的学号、课程号、学生成绩；
+'''
+# 利用同一张表重命名成两张表，再比较。
+# mysql> select distinct s1.course_id,s2.course_id,s1.num from score as s1, score as s2 where s1.num = s2.num and s1.course_id != s2.course_id;
+# Empty set (0.00 sec)
+# 没有不同课程一样成绩的同学，手动修改某个同学的成绩查看效果
+# mysql> update score set num = 8  where sid=8;
+# Query OK, 1 row affected (0.07 sec)
+# Rows matched: 1  Changed: 1  Warnings: 0
+#
+# mysql> select distinct s1.course_id,s2.course_id,s1.num from score as s1, score as s2 where s1.num = s2.num and s1.course_id != s2.course_id;
+# +-----------+-----------+-----+
+# | course_id | course_id | num |
+# +-----------+-----------+-----+
+# |         3 |         1 |   8 |
+# |         1 |         3 |   8 |
+# +-----------+-----------+-----+
+# 2 rows in set (0.00 sec)
+
+'''
+19、查询每门课程成绩最好的前两名；
+'''
+# mysql> SELECT cid AS 课程ID,cname AS 课程,(SELECT num FROM score AS s2 WHERE s2.course_id=s1.cid GROUP BY num ORDER BY num DESC LIMIT 0,1) AS 第一,(SELECT num FROM score AS s2 WHERE s2.course_id=s1.cid GROUP BY num ORDER BY num DESC LIMIT 1,1) AS 第二  FROM course AS s1;
+# +----------+--------+--------+--------+
+# | 课程ID | 课程 | 第一 | 第二 |
+# +----------+--------+--------+--------+
+# |        1 | 生物 |     91 |     90 |
+# |        2 | 物理 |      0 |   NULL |
+# |        3 | 体育 |     87 |     68 |
+# |        4 | 美术 |   NULL |   NULL |
+# +----------+--------+--------+--------+
+# 4 rows in set (0.00 sec)
+#
+
+'''
+20、检索至少选修两门课程的学生学号；
+'''
+# mysql> select student_id from score group by student_id having count(course_id)>=2;
+# +------------+
+# | student_id |
+# +------------+
+# |          1 |
+# |          2 |
+# |          3 |
+# |          4 |
+# |          5 |
+# |          6 |
+# |          7 |
+# |          8 |
+# |          9 |
+# |         10 |
+# |         11 |
+# |         12 |
+# |         13 |
+# +------------+
+# 13 rows in set (0.00 sec)
+
+'''
+21、查询全部学生都选修的课程的课程号和课程名；
+'''
+# mysql> select course_id,cname from course inner join score on course_id = cid group by course_id having count(course_id)=(select count(sid) from student);
+# +-----------+--------+
+# | course_id | cname  |
+# +-----------+--------+
+# |         2 | 物理 |
+# +-----------+--------+
+# 1 row in set (0.00 sec)
+
+'''
+22、查询没学过“李平”老师讲授的任一门课程的学生姓名；
+'''
+# 方法一 （多个子查询套用）
+# mysql> select student_id,sname from student left join score on student.sid=student_id where course_id not in (select cid from course where teacher_id = (select tid from teacher where tname='李平老师')) group by student_id;
+# +------------+--------+
+# | student_id | sname  |
+# +------------+--------+
+# |          1 | 理解 |
+# |          2 | 钢蛋 |
+# |          3 | 张三 |
+# |          4 | 张一 |
+# |          5 | 张二 |
+# |          6 | 张四 |
+# |          7 | 铁锤 |
+# |          8 | 李三 |
+# |          9 | 李一 |
+# |         10 | 李二 |
+# |         11 | 李四 |
+# |         12 | 如花 |
+# |         13 | 刘三 |
+# +------------+--------+
+# 13 rows in set (0.00 sec)
+
+# 方法二（利用左连接）
+# mysql> select student_id,student.sname from score left join student on score.student_id = student.sid where score.course_id not in (select cid from course left join teacher on course.teacher_id = teacher.tid where tname = '李平老师') group by student_id;
+# +------------+--------+
+# | student_id | sname  |
+# +------------+--------+
+# |          1 | 理解 |
+# |          2 | 钢蛋 |
+# |          3 | 张三 |
+# |          4 | 张一 |
+# |          5 | 张二 |
+# |          6 | 张四 |
+# |          7 | 铁锤 |
+# |          8 | 李三 |
+# |          9 | 李一 |
+# |         10 | 李二 |
+# |         11 | 李四 |
+# |         12 | 如花 |
+# |         13 | 刘三 |
+# +------------+--------+
+# 13 rows in set (0.00 sec)
+
+'''
+23、查询两门以上不及格课程的同学的学号及其平均成绩；
+'''
+# mysql> select student_id,avg(num) from score where student_id in ( select student_id from score where num<60 group by student_id having count(course_id)>=2) group by student_id;
+# +------------+----------+
+# | student_id | avg(num) |
+# +------------+----------+
+# |          1 |   5.0000 |
+# |          2 |  25.3333 |
+# |          6 |  25.3333 |
+# |          7 |  25.3333 |
+# |          8 |  25.3333 |
+# |         10 |  44.3333 |
+# |         11 |  44.3333 |
+# |         12 |  44.3333 |
+# +------------+----------+
+# 8 rows in set (0.00 sec)
+
+
+'''
+24、检索“004”课程分数小于60，按分数降序排列的同学学号；
+'''
+# mysql> select student_id from score where course_id=4 and num<60 order by num desc;
+# Empty set (0.00 sec)
+# “004”课程没有同学，改成查询1号课程看一下效果
+# mysql> select student_id from score where course_id=1 and num<60 order by num desc;
+# +------------+
+# | student_id |
+# +------------+
+# |          1 |
+# |          6 |
+# |          7 |
+# |          8 |
+# |          2 |
+# +------------+
+# 5 rows in set (0.00 sec)
+
+'''
+25、删除“002”同学的“001”课程的成绩；
+'''
+# mysql>  delete from score where course_id = 1 and student_id = 2;
+# Query OK, 1 row affected (0.08 sec)
