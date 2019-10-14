@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .foo{
+            background-color:yellow;
+        }
+        .c1{
+            width: 100px;
+            height: 100px;
+            background-color: palevioletred;
+            float: right;
+        }
+        .c2{
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            float: left;
+        }
+        .c3{
+            clear: both;
+        }
+        .clearfix:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+<!--<div class="foo">-->
+    <!--<div class="c1"></div>-->
+    <!--<div class="c2"></div>-->
+    <!--<div class="c3"></div>-->
+<!--</div>-->
+<div class="foo clearfix">
+    <div class="c1"></div>
+    <div class="c2"></div>
+</div>
+</body>
+</html>

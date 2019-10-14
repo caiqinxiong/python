@@ -1,0 +1,609 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.up {
+    width: 100%;
+    height:50%;
+    background: white;
+
+    /*float: left;*/
+    /*margin-bottom: 10px;*/
+    /*overflow: hidden;*/
+    padding-bottom: 330px;
+    /*margin-left: 80px;*/
+}
+.top {
+    width: 100%;
+    background-color: black;
+    /*float: left;*/
+    /*height: 25px;*/
+    list-style: none;
+    display: inline-block;
+    color: white;
+}
+.top-left{
+    margin-left: 80px;
+    /*width: 100%;*/
+    /*background-color: black;*/
+    float: left;
+}
+.top li{
+    display: inline-block;
+    color: white;
+}
+.top a{
+    color: white;
+    text-decoration-line: none;
+
+}
+
+.top a:hover{
+    color: red;
+}
+/*最上右边*/
+.top-right{
+    margin-right: 80px;
+    /*width: 100%;*/
+    /*background-color: black;*/
+    float: right;}
+
+
+/*top2*/
+
+.top2-left li{
+    float: left;
+    display: inline-block;
+    /*margin-left: 40px;*/
+    list-style: none;
+    font-size: small;
+    /*margin: 5px;*/
+    /*height: 55px;*/
+    /*margin: 0 auto;*/
+}
+/*.sp{*/
+    /*margin: 10px;*/
+    /*height: 55px;*/
+    /*display: inline-block;*/
+/*}*/
+
+    /*图片*/
+
+/*.mi {*/
+    /*width: 142px;*/
+    /*height: 55px;*/
+    /*position: relative;*/
+    /*top: 0;*/
+    /*left: 40px;*/
+/*}*/
+
+.top2-left a ,.sp{
+    /*margin: 5px;*/
+    /*margin-top: 10px;*/
+    /*margin-bottom: 5px;*/
+    /*height: 55px;*/
+    display: inline-block;
+    /*margin: 0 auto;*/
+    text-decoration-line: none;
+    text-align: center;
+    line-height: 55px;
+    margin-right: 5px;
+}
+
+.top2-left a:hover{
+    color: green;
+}
+.sp{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+
+.lmi{
+    width: 55px;
+    height: 55px;
+    background-image: url("mi.jpg");
+    background-position: left -111px top 250px ;
+    margin-left: 80px;
+    /*clear: left;*/
+
+}
+
+/*top2-right*/
+.top-right input{
+    /*font-size: large;*/
+    /*float: right;*/
+}
+
+.text1,.text2{
+    margin-top: 10px;
+    /*border: 1px indianred solid;*/
+}
+
+
+.text2  {
+    /*display: inline-block;*/
+    float: right;
+    height: 29px;
+
+    margin-right: -173px;
+    /*height: 25px;*/
+    /*margin-right: 60px;*/
+    /*margin-right: 50px;*/
+    /*float: right;*/
+    /*margin-left: 0px;*/
+    /*margin-left: -10px;*/
+
+}
+
+.text1{
+    height: 25px;
+    float:right ;
+    margin-right: 80px;
+    /*margin-right: -10px;*/
+
+}
+.top3-left {
+    /*clear: both;*/
+    font-size: small;
+}
+
+/*top3*/
+/*top3-left*/
+.top3-left{
+    /*margin: 0 auto;*/
+    width: 197px;
+    background: darkslateblue;
+    height: 460px;
+    margin-left: -476px;
+    margin-top:55px;
+    display: inline-block;
+    /*clear: both;*/
+
+}
+
+.top3-left li{
+    /*text-align: center;*/
+    float: left;                    /*此处有问题*/
+    display: inline-block;
+    clear: both;                     /*!!!!!!!!此处有问题*/
+    /*margin-left: 40px;*/
+    /*margin-top: 25px;*/
+    margin: 14px auto;
+    margin-left: 20px;
+    /*overflow: hidden;*/
+    /*background: blue;*/
+}
+
+.top3-right{
+    /*content: url("https://dummyimage.com/992x460/33FFFF");*/
+    /*margin-right: 0px;*/
+    width: 992px;
+    height: 460px;
+    float: right;
+    display: inline-block;
+    /*margin-top: 55px;*/
+    background: url("https://dummyimage.com/992x460/33FFFF") 0px 0px;  /*css中可以使用backgroupd 来设置背景图片 */
+    margin-top: -464px;
+    /*margin-left: 278px;*/
+    margin-right: 80px;
+}
+/*.top3-right img{*/
+    /*width: 992px;*/
+    /*height: 460px;*/
+    /*float: left;*/
+    /*!*display: inline-block;*!*/
+    /*!*margin-top: 55px;*!*/
+    /*clear: left;*/
+    /*background: url("https://dummyimage.com/992x460/33FFFF") 0px 0px;  !*css中可以使用backgroupd 来设置背景图片 *!*/
+
+    /*width: 80%;*/
+/*}*/
+/*top4*/
+    /*top4-1*/
+    .top4 {
+        width:100%;
+        height: 170px;
+        /*display: inline-block;*/
+        display: inline-block;
+
+    }
+    .top4 div{
+        height: 170px;
+        margin-top: 10px;
+        margin-right: 3px;
+    }
+    .top4-1{
+        display: inline-block;
+        width:234px;
+        float: left;
+        background: no-repeat url("https://dummyimage.com/234x170/888888");
+        margin-left: 80px;
+    }
+    #top4-11{
+        margin-left: 80px;
+    }
+    .top4-2 {
+
+        width: 316px;
+        float: left;
+        background: no-repeat url("https://dummyimage.com/316x170/00008B");
+    }
+    .top4-3 {
+        width: 316px;
+        float: left;
+        background: no-repeat url("https://dummyimage.com/316x170/F08080");
+    }.top4-4 {
+        width: 316px;
+        float: left;
+        background: no-repeat url("https://dummyimage.com/316x170/008866");
+    }
+
+
+
+/*top5*/
+/*.top5   {*/
+    /*margin-top: 10px;*/
+/*}*/
+.top5{
+    height: 100px;
+}
+    .top5 p   {
+        /*float: left;*/
+        /*clear: both;*/     /*!!!!clear和float到底什么时候有差别*/
+        /*width:100%;*/
+        height: 100px;
+        float: left;
+        margin-left: 80px;
+        margin-top: 20px;
+        /*clear: both;*/
+    }
+
+/*top6*/
+.top6{
+    float: left;
+    width:100%;
+    height:340px;
+    margin-top: -85px;
+}
+.top6 li{
+    /*width:;*/
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.top6-1 {
+    width: 234px;
+    background: no-repeat url("https://dummyimage.com/234x340/77FFEE");
+    height: 340px;
+    display: inline-block;
+    margin-left: 80px;
+}
+
+.top6-2 {
+    background: no-repeat url("https://dummyimage.com/234x340/FF3333");
+    height: 340px;
+    display: inline-block;
+    width: 234px;
+}
+.top6-3 {
+    background: no-repeat url("https://dummyimage.com/234x340/66DD00");
+    height: 340px;
+    display: inline-block;
+    width: 234px;
+}
+.top6-4 {
+    background: no-repeat url("https://dummyimage.com/234x340/FF3333");
+    height: 340px;
+    display: inline-block;
+    width: 234px;
+}
+.top6-5 {
+    background: no-repeat url("https://dummyimage.com/234x340/66DD00");
+    height: 340px;
+    display: inline-block;
+    width: 234px;
+}
+
+
+/*below*/
+.below{
+    height: 1300px;
+    width: 100%;
+    background: gainsboro;
+    padding-top: 1px;
+    /*display: inline-block;*/
+    /*float: left;*/
+    /*margin-left: 80px;*/
+}
+/*top7*/
+.top7  {
+    /*float: left;*/
+    /*margin-left: 80px;*/
+    /*display: inline-block;*/
+    /*width: 100%;*/
+    /*margin-top: 19px;*/
+    height: 100px;
+    /*margin-left: 80px;*/
+    /*margin-top:20px;*/
+
+}
+.top7 p {
+    margin-left: 80px;
+    margin-top: 20px;
+    height: 100px;
+    /*float: left;*/
+}
+
+
+/*top8*/
+/*top8-left*/
+.top8-left {
+    background: no-repeat url("https://dummyimage.com/234x614/FFA488");
+    width: 234px;
+    height: 614px;
+    margin-left: 80px;
+    margin-top: -66px;
+    display: inline-block;
+
+}
+/*top8-right*/
+.below>ul{
+    width:227.5px;
+    height: 300px;
+    background: white;
+    float: right;
+    display: inline-block;
+    /*margin-left: 5px;*/
+
+    list-style: none;
+}
+.top8-right-top1{
+    margin-right: 791px;
+    margin-top: -66px;
+
+}
+
+.top8-right-top2{
+    margin-right: 554px;
+    margin-top: -618px;
+
+}
+
+.top8-right-top3{
+    margin-right: 317px;
+    margin-top: -618px;
+
+}
+.top8-right-top4{
+    margin-right: 80px;
+    margin-top: -618px;
+
+}
+
+.top8-right-top5{
+    margin-right: 80px;
+    margin-top: -305px;
+
+}
+
+.top8-right-top6{
+    margin-right: 317px;
+    margin-top: -305px;
+
+}
+
+.top8-right-top7{
+    margin-right: 554px;
+    margin-top: -305px;
+
+}
+
+.top8-right-top8{
+    margin-right: 791px;
+    margin-top: -305px;
+
+}
+
+.top8-right-top1 div{
+    background: no-repeat url("https://dummyimage.com/150x150/FFA488");
+    /*width: 150px;*/
+    /*height: 150px;*/
+    /*margin: 0 auto;*/
+    /*如果想用margin居中属性的话，那么元素必须在块级别的标签中，而且顺序不能改，必须是0,auto*/
+}
+
+.top8-right-top3 div{
+    background: no-repeat url("https://dummyimage.com/150x150/FFBB00");}
+
+.top8-right-top4 div{
+    background: no-repeat url("https://dummyimage.com/150x150/0000AA");}
+.top8-right-top5 div{
+    background: no-repeat url("https://dummyimage.com/150x150/FFA488");}
+
+.top8-right-top6 div{
+    background: no-repeat url("https://dummyimage.com/150x150/00DDDD");}
+
+.top8-right-top7 div{
+    background: no-repeat url("https://dummyimage.com/150x150/FFBB00");}
+
+.top8-right-top8 div{
+    background: no-repeat url("https://dummyimage.com/150x150/0000AA");}
+
+ul>div {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+
+}
+
+.top8-right-top2 div{
+    background: no-repeat url("https://dummyimage.com/150x150/00DDDD");
+    /*width: 150px;*/
+    /*height: 150px;*/
+    /*margin: 0 auto;*/
+    /*如果想用margin居中属性的话，那么元素必须在块级别的标签中，而且顺序不能改，必须是0,auto*/
+}
+
+ul>p {
+    text-align: center;
+    margin-top: 10px;
+}
+/*top9*/
+.top9   {
+    margin-left: 80px;
+    margin-top: 20px;
+}
+
+/*.top10-0 {*/
+    /*width: 100%;*/
+    /*height:440px;*/
+    /*background: yellow;*/
+/*}*/
+
+.top10>ul{
+    display: inline-block;
+    height:440px ;
+    width: 289px;
+    background: snow;
+    /*margin-left: 80px;*/
+    margin-right: 9px;
+}
+
+
+.top10-1{
+    /*height:440px ;*/
+    /*width: 289px;*/
+    /*background: white;*/
+    margin-left: 80px;
+    float: left;
+    display: inline-block;
+    /*margin-right: 10px;*/
+    /*margin-right: 7px;*/
+}
+.top10-2{
+    display: inline-block;
+    /*margin-right: 7px;*/
+    float: left;
+
+}
+.top10-3{
+    /*margin-right: 10px;*/
+    float: left;
+    /*margin-right: 7px;*/
+}
+.top10-4{
+    float: left;
+}
+
+.top10-1-1 {
+    width: 289px;
+    height: 220px;
+    background: url("https://dummyimage.com/289x220/00DDAA");
+    /*margin-left: 80px;*/
+}
+
+.top10-2-1{
+    background: url("https://dummyimage.com/289x220/00DDAA");
+    width: 289px;
+    height: 220px;
+}
+.top10-3-1{
+    background: url("https://dummyimage.com/289x220/00DDAA");
+    width: 289px;
+    height: 220px;
+}
+.top10-4-1{
+    background: url("https://dummyimage.com/289x220/00DDAA");
+    width: 289px;
+    height: 220px;
+}
+.top10 >div{
+    width: 289px;
+    height: 220px;
+    /*background: url("https://dummyimage.com/289x220/00DDAA");*/
+    margin-top: 10px;
+}
+
+.top10 p{
+    text-align: justify;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 30px;
+}
+.top10 a:hover{
+    /*margin-left: 30px;*/
+    /*font-size: small;*/
+    color: brown;
+    /*text-decoration-line: none;*/
+}
+
+.top10 a {
+        margin-left: 30px;
+    font-size: small;
+    text-decoration-line: none;      /*新大陆！！！！！！！！！！！！！两种状态，将上一个全打开，这个全关闭*/
+    display: block;
+
+    margin-top: 10px;
+}
+
+.top10 span{
+    /*display: inline-block;*/
+    /*float: left;*/
+    /*margin-bottom: 10px;*/
+    /*margin-left: 30px;*/
+}
+
+.top10 span{
+    margin-left: 30px;
+    margin-top: 10px;
+    display: inline-block;
+    font-size: large;
+    /*text-align: left;*/
+}
+
+#s2-1,
+#s2-2,
+#s2-3,
+#s2-4{
+    margin-left: 5px;
+    color: red;
+}
+
+/*top11*/
+.top11{
+    /*width:1182px;*/
+    width: 100%;
+    display: inline-block;
+    float: left;
+    background: white;
+    /*margin-left: 80px;*/
+    /*margin-right: 80px;*/
+    /*padding-left: 80px;*/
+    margin-top: 18px;
+    height: 100px;
+    line-height: 100px;
+    padding-left: 0px;
+    padding-right:0px;
+}
+
+.top11 div{
+    /*margin-top: 30px;*/
+    float: left;
+    margin-left:68px ;
+    text-align: center;
+    /*line-height: 100px;*/
+}
+.yuyue {
+    text-indent: 80px;
+}
+
+/*top12*/
+.top12{
+    clear: both;
+    text-align: center;
+}
+.top12:before{
+
+}
