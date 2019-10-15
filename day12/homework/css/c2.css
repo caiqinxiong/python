@@ -1,0 +1,36 @@
+.c-header {
+    height: 88px;
+    width: 1226px;
+    display: block;
+    margin: 0 auto;
+}
+
+.c-header input {
+    height: 50px;
+    width: 245px;
+}
+
+.c-header a {
+    text-decoration: none;
+    color: black;
+}
+
+.right-t2 {
+    height: 88px;
+    line-height: 88px;
+    float: right;
+}
+
+.left-t2 {
+    height: 88px;
+    line-height: 88px;
+    float: left;
+}
+
+.pr {
+    padding-right: 230px;
+}
+
+.pt {
+    padding-top: 20px;
+}

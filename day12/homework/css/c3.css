@@ -1,0 +1,39 @@
+.t3 {
+    height: 460px;
+    width: 1226px;
+    display: block;
+    margin: 0 auto;
+    background-image: url("../img/mi9Pro.jpg");
+}
+
+.left-t3 {
+    height: 460px;
+    width: 234px;
+    float: left;
+    background-color: rgba(159, 159, 162,0.8);
+}
+
+.right-t3 {
+    height: 460px;
+    float: right;
+}
+
+.t3 img {
+    height: 460px;
+}
+
+.left-t3 li {
+    list-style: none;
+    line-height: 42px;
+}
+
+.t3 a {
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.t3 span {
+    font-size: 20px;
+    margin-left: 70px;
+
+}

@@ -1,0 +1,44 @@
+.c4 {
+    height: 170px;
+    width: 1226px;
+    display: block;
+    margin: 0 auto;
+}
+
+.c4-1 {
+    height: 170px;
+    width: 234px;
+    background-color: rgb(95, 87, 80);
+    float: left;
+}
+
+.c4 table {
+    height: 170px;
+    width: 234px;
+    text-align: center;
+}
+
+.c4 table img {
+    height: 25px;
+    width: 25px;
+}
+
+.c4 table li {
+    list-style: none;
+    color: white;
+    font-size: 10px;
+}
+
+.c4 table a {
+    text-decoration: none;
+}
+
+.c4 img {
+    height: 170px;
+    width: 315px;
+}
+
+.left-c4 {
+    float: left;
+    padding-left: 15px;
+}
