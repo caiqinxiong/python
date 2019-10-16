@@ -1,7 +1,16 @@
+.g-wh{
+    background-color: rebeccapurple;
+    width: 1226px;
+    display: block;
+    margin: 0 auto;
+}
+
 .g-fixd {
     position: fixed;
-    top: 500px;
-    right: 75px;
+    /*top: 500px;*/
+    /*right: 75px;*/
+    top:60%;
+    right:10px;
 }
 
 .g-fixd img {
