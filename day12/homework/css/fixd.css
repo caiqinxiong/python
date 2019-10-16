@@ -1,0 +1,18 @@
+.g-fixd {
+    position: fixed;
+    top: 500px;
+    right: 75px;
+}
+
+.g-fixd img {
+    width: 20px;
+    height: 20px;
+    display: block;
+    margin-top: 5px;
+}
+
+.g-fixd div {
+    width: 20px;
+    height: 30px;
+    border: solid silver 0.01px;
+}

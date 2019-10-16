@@ -5,6 +5,7 @@ a {
 
 .c5 {
     background-color: rgb(245, 245, 245);
+    height: 2100px;
 }
 
 .c5-t {
@@ -23,7 +24,7 @@ a {
 
 .c5 img {
     width: 234px;
-    margin-top: 25px;
+    margin-top: 10px;
 }
 
 .c5 p {
@@ -39,6 +40,9 @@ a {
     width: 1226px;
     display: block;
     margin: 0 auto;
+}
+.c5-1 p{
+    font-size: 12px;
 }
 
 .c5-2 {
@@ -105,7 +109,7 @@ a {
 #i2 {
     margin-top: 20px;
     display: block;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
 }
 
 .c5-mc {
