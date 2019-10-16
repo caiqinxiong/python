@@ -1,0 +1,21 @@
+.c7 {
+    height: 614px;
+    width: 1226px;
+    display: block;
+    margin: 0 auto;
+}
+.c7-t p{
+    font-size: 22px;
+}
+.c7-1 span {
+    color: rgb(198, 198, 198);
+}
+.c7-left{
+    float: left;
+}
+.c7-1{
+    height: 300px;
+    width: 200px;
+    text-align: center;
+    /*background-color: white;*/
+}
