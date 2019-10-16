@@ -7,19 +7,25 @@ body {
     color: white;
     height: 40px;
 }
-
+.c1{
+    height: 40px;
+    width: 1226px;
+    display: block;
+    margin: 0 auto;
+}
+.m{
+    margin-right:50px;
+}
 .left-header {
     height: 40px;
     line-height: 40px;
     float: left;
-    padding-left: 70px;
 }
 
 .right-header {
     height: 40px;
     line-height: 40px;
     float: right;
-    padding-right: 70px;
 }
 
 .f-header a {

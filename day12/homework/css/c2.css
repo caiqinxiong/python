@@ -4,7 +4,10 @@
     display: block;
     margin: 0 auto;
 }
-
+.c-header img{
+    height:50px;
+    width: 50px;
+}
 .c-header input {
     height: 50px;
     width: 245px;
@@ -14,7 +17,10 @@
     text-decoration: none;
     color: black;
 }
+.c-header span {
+    margin-left: 20px;
 
+}
 .right-t2 {
     height: 88px;
     line-height: 88px;
@@ -28,7 +34,7 @@
 }
 
 .pr {
-    padding-right: 230px;
+    padding-right: 70px;
 }
 
 .pt {
