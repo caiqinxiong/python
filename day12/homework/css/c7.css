@@ -13,9 +13,23 @@
 .c7-left{
     float: left;
 }
-.c7-1{
-    height: 300px;
-    width: 200px;
-    text-align: center;
+
+.c7-rigth{
+    float: right;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+.c7 table{
+    width:982px;
+    height:614px;
     /*background-color: white;*/
+    text-align: center;
+}
+.c7-rigth div{
+    width: 230px;
+    height: 300px;
+    background-color: white;
+}
+.c7-rigth img{
+    width: 200px;
 }
