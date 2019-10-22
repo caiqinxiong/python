@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>属性操作</title>
+</head>
+<body>
+
+<img src="http://image11.m1905.cn/uploadfile/s2010/0205/20100205083613178.jpg" alt="">
+<input type="button" id="b1" value="下一个">
+
+
+<input checked type="checkbox" id="c1">
+<input type="checkbox" id="c2">
+
+<script src="jquery-3.2.1.min.js"></script>
+<script>
+    var oldURL;
+    var newURL = "http://img01.yohoboys.com/contentimg/2017/08/12/21/012a1eab9842a752f8c4d98b8fc2777ad7.jpg"
+    $("#b1").click(function () {
+        var $imgEles = $("img");
+        // 修改img标签的src属性
+        oldURL = $imgEles.attr("src");
+        $imgEles.attr("src", newURL);
+        newURL = oldURL;
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义模态框示例</title>
+    <style>
+        .cover {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0,0,0,0.4);
+            z-index: 998;
+        }
+
+        .modal {
+            height: 400px;
+            width: 600px;
+            background-color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -300px;
+            margin-top: -200px;
+            z-index: 1000;
+        }
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<button id="b1">屠龙宝刀,点击就送!</button>
+<div class="cover hide"></div>
+<div class="modal hide">
+    <form>
+        <p>
+            <label>用户名:
+                <input type="text">
+            </label>
+        </p>
+        <p>
+            <label>密码:
+                <input type="password">
+            </label>
+        </p>
+        <p>
+            <input type="submit" value="登录">
+            <input id="cancel" type="button" value="取消">
+        </p>
+    </form>
+</div>
+<script src="jquery-3.2.1.min.js"></script>
+<script>
+    // 找到点击弹出模态框的按钮
+    $("#b1").click(function () {
+        // 把.cover和.modal显示出来(去除掉.hide)
+        $(".cover").removeClass("hide");  // 显示背景
+        $(".modal").removeClass("hide"); // 显示模态框
+    });
+
+    // 找到取消按钮,绑定事件
+    $("#cancel").click(function () {
+        // 给背景和模态框都加上hide类
+        $(".cover").addClass("hide");
+        $(".modal").addClass("hide");
+    })
+</script>
+</body>
+</html>

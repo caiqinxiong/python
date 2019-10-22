@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>form表单示例</title>
+</head>
+<body>
+<!--注册示例-->
+<form action="http://127.0.0.1:8000/upload/" method="post" enctype="multipart/form-data" autocomplete="off" novalidate>
+    <p>用户名:
+        <input name="name" type="text"  value="小强">
+        <input name="name" type="text"  placeholder="小强" disabled>
+    </p>
+    <p>
+        <label for="i1">用户名:</label>
+        <input id="i1" name="name" type="text"  value="小强">
+
+        <input name="name" type="text"  placeholder="小强" disabled>
+    </p>
+    <p>密码:
+        <input name="password" type="password">
+    </p>
+
+    <p>邮箱:
+        <input type="email" name="email">
+    </p>
+
+    <p>
+        <input type="hidden" value="hidden">
+    </p>
+
+    <p>性别:
+        <input name="gender" type="radio" value="1"> 男
+        <input name="gender" type="radio" value="0"> 女
+        <input checked name="gender" type="radio" value="2"> 保密
+    </p>
+
+    <p>性别2:
+        <label for="r1">男</label>
+        <input id="r1" name="gender" type="radio" value="1">
+
+        <label>男
+            <input name="gender" type="radio" value="1">
+        </label>
+
+        <label for="r2"> 女</label>
+        <input id="r2" name="gender" type="radio" value="0">
+
+        <label for="r3">保密</label>
+        <input id="r3" checked name="gender" type="radio" value="2">
+    </p>
+
+    <p>爱好:
+    <input checked name="hobby" type="checkbox" value="basketball">篮球
+    <input name="hobby" type="checkbox" value="football">足球
+    <input checked name="hobby" type="checkbox" value="doublecolorball">双色球
+    </p>
+
+    <p>生日:<input name="birthday" type="date"></p>
+
+    <select name="from1" id="s1">
+        <option value="bj">北京</option>
+        <option value="sh" selected>上海</option>
+        <option value="sc">四川</option>
+    </select>
+
+
+    <select name="from1" id="s11" multiple>
+        <option value="bj">北京</option>
+        <option value="sh">上海</option>
+        <option value="sc">四川</option>
+    </select>
+
+
+    <select name="from2" id="s2">
+        <optgroup label="北京">
+            <option value="cp">昌平</option>
+            <option value="cy">朝阳</option>
+            <option value="hd">海淀</option>
+            <option value="ft">丰台</option>
+        </optgroup>
+        <optgroup label="上海">
+            <option value="pdxq">浦东新区</option>
+            <option value="mhq">闵行区</option>
+            <option value="hpq">黄浦区</option>
+        </optgroup>
+        <optgroup label="四川">
+            <option value="pzh">攀枝花</option>
+            <option value="zg">自贡</option>
+            <option value="my">绵阳</option>
+        </optgroup>
+    </select>
+
+    <p><textarea name="info" id="t1" cols="30" rows="10">
+        
+    </textarea></p>
+    
+    <p>头像:
+        <input name="lp" type="file">
+    </p>
+    <p><input type="submit" value="提交s9"></p>
+
+    <p><input type="button" value="button"></p>
+
+    <p><input type="reset" value="reset"></p>
+
+</form>
+</body>
+</html>

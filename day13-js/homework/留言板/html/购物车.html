@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .box{
+            width: 500px;
+            height: 400px;
+            margin: 100px auto;
+            background-color: rgba(255,255,255,0.4);
+            position: relative;
+
+        }
+        .car{
+            width: 150px;
+            height: 30px;
+            background-color: #fff;
+            padding-left: 30px;
+            position: absolute;
+            left: 130px;
+            top: 3px;
+            z-index: 3;
+            border: 1px solid green;
+
+        }
+        .shop{
+            width: 310px;
+            height: 70px;
+            background-color: #fff;
+            position: absolute;
+            top:33px;
+            left: 0;
+            display: none;
+
+        }
+        div.c{
+
+            border-bottom-width: 0;
+
+        }
+        div.t{
+            border:  1px solid green;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="car" id="myCar">我的购物车</div>
+        <div class="shop t" id="shop"></div>
+    </div>
+    <script type="text/javascript">
+        var myCar =  document.getElementById('myCar');
+        var shop  = document.getElementById('shop');
+        myCar.onmouseover = function(){
+            shop.style.display = 'block';
+            myCar.className +=' c';
+        }
+        myCar.onmouseout = function(){
+            shop.style.display = 'none';
+            myCar.removeAttribute('class');
+            myCar.className = 'car';
+        }
+    </script>
+</body>
+</html>
+
+示例

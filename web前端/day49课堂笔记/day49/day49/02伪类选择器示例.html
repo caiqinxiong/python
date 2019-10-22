@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>伪类选择器示例</title>
+    <style>
+        /*连接没有被点击过*/
+        a:link {
+            color: burlywood;
+        }
+        /*连接被点击过*/
+        a:visited {
+            color: green;
+        }
+        /*鼠标移上去*/
+        a:hover {
+            color: blueviolet;
+        }
+
+        /*被选定*/
+        a:active {
+            color: deeppink;
+        }
+
+        #d1 {
+            color: grey;
+        }
+
+        #d1:hover {
+            color: green;
+        }
+
+        /*input获取光标时*/
+        input:focus {
+            outline: 0;
+            background-color: deeppink;
+        }
+
+    </style>
+</head>
+<body>
+
+<a href="http://www.sogo.com">搜狗</a>
+<a href="http://www.sohu.com">搜狐</a>
+
+<div id="d1">我是div标签</div>
+
+<input type="text">
+</body>
+</html>

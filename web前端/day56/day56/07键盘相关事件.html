@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>键盘相关事件</title>
+
+</head>
+<body>
+
+<table border="1" id="t1">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>姓名</th>
+        <th>爱好</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>小强</td>
+        <td>吃冰激凌</td>
+        <td>
+            <select>
+                <option value="0">下线</option>
+                <option value="1">上线</option>
+                <option value="2">离线</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>二哥</td>
+        <td>Girl</td>
+        <td>
+            <select>
+                <option value="0">下线</option>
+                <option value="1">上线</option>
+                <option value="2">离线</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>二哥</td>
+        <td>Girl</td>
+        <td>
+            <select>
+                <option value="0">下线</option>
+                <option value="1">上线</option>
+                <option value="2">离线</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>二哥</td>
+        <td>Girl</td>
+        <td>
+            <select>
+                <option value="0">下线</option>
+                <option value="1">上线</option>
+                <option value="2">离线</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>二哥</td>
+        <td>Girl</td>
+        <td>
+            <select>
+                <option value="0">下线</option>
+                <option value="1">上线</option>
+                <option value="2">离线</option>
+            </select>
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+<script src="jquery-3.2.1.min.js"></script>
+<script>
+    // 确保绑定事件的时候DOM树是生成好的
+    $(document).ready(function () {
+        var mode = false;
+        var $bodyEle = $("body");
+        // 给文档绑定 监听键盘按键被按下去的事件
+        $bodyEle.on("keydown", function (event) {
+            //
+            console.log(event.keyCode);
+            if (event.keyCode === 17) {
+                // 进入批量操作模式
+                mode = true;
+            }
+        });
+        // 按键抬起来的时候,退出批量操作模式
+        $bodyEle.on("keyup", function (event) {
+            //
+            console.log(event.keyCode);
+            if (event.keyCode === 17) {
+                // 进入批量操作模式
+                mode = false;
+            }
+        });
+        $("select").on("change", function () {
+            // 取到当前select的值
+            var value = $(this).val();
+            var $thisCheckbox = $(this).parent().siblings().first().find(":checkbox");
+            // 判断checkbox有没有被选中
+            if ($thisCheckbox.prop("checked") && mode) {
+                // 真正进入批量操作模式
+                var $checkedEles = $("input[type='checkbox']:checked");
+                for (var i = 0; i < $checkedEles.length; i++) {
+                    // 找到同一行的select
+                    $($checkedEles[i]).parent().siblings().last().find("select").val(value);
+                }
+            }
+        })
+    });
+</script>
+</body>
+</html>

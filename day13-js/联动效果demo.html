@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<select name="province" id="province">
+  <option value="0" selected>请选择省</option>
+</select>
+<select name="city" id="city">
+  <option>请选择市：</option>
+</select>
+</body>
+<script>
+    data = {"河北": ["廊坊", "邯郸"], "北京": ["朝阳区", "海淀区"], "山东": ["威海市", "烟台市"]}
+    var select1 =document.getElementById('province')
+    for(i in data){
+        var option = document.createElement('option')
+        option.innerText = i
+        select1.appendChild(option)
+    }
+    select1.onchange = function () {
+        var select2 =document.getElementById('city')
+        select2.innerText = null
+        var choosed = select1.options[this.options.selectedIndex].innerText
+        for(var i=0;i<data[choosed].length;i++){
+            var option = document.createElement('option')
+            option.value = i
+            option.innerText = data[choosed][i]
+            select2.appendChild(option)
+        }
+    }
+</script>
+</html>

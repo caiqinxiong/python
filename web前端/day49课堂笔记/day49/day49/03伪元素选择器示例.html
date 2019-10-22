@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>伪元素选择器示例</title>
+    <style>
+        p:first-letter {
+            font-size: 48px;
+            color: red;
+        }
+
+        .c1:before {
+            content: "*";
+            color: red;
+        }
+
+        .c1:after {
+            content: "[?]";
+            color: blue;
+        }
+
+        p {
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<p>
+    在苍茫的大海上,狂风卷积着乌云.
+    在苍茫的大海上,狂风卷积着乌云.
+    在苍茫的大海上,狂风卷积着乌云.
+    在苍茫的大海上,狂风卷积着乌云.
+    在苍茫的大海上,狂风卷积着乌云.
+    在苍茫的大海上,狂风卷积着乌云.在苍茫的大海上,狂风卷积着乌云.
+</p>
+
+<p class="c1">在苍茫的大海上,狂风卷积着乌云.</p>
+<p class="c1">在苍茫的大海上,狂风卷积着乌云.</p>
+<p class="c1">在苍茫的大海上,狂风卷积着乌云.</p>
+
+</body>
+</html>

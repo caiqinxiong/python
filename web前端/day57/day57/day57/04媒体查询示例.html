@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>媒体查询</title>
+    <style>
+        .c {
+            height: 100px;
+            width: 100px;
+        }
+        .c1 {
+            background-color: red;
+        }
+
+/*当打开网页的设备是一个显示器设备，并且显示器的宽度小于600px时，使用下面的样式*/
+        @media screen and (max-width: 400px) {
+            .c1 {
+                background-color: green;
+            }
+        }
+    </style>
+
+</head>
+<body>
+<div class="c c1"></div>
+</body>
+<html>

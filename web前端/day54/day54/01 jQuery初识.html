@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery初识</title>
+</head>
+<body>
+
+<div id="d1">d1</div>
+<div class="c1">.c1</div>
+<p class="c2">p</p>
+<a class="c2" href="">a标签</a>
+
+<!--筛选器-->
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+</ul>
+
+
+<!--not-->
+<div id="d2">
+    <p class="c1">div</p>
+    <p class="c1">div</p>
+    <p class="c2">div</p>
+    <p class="c2">div</p>
+</div>
+
+
+<!--:has-->
+<div id="d3">
+    <div style="background-color: green">
+        <p>div中的p标签</p>
+    </div>
+
+    <div style="background-color: red">
+        <a href="">div中的a标签</a>
+    </div>
+</div>
+
+
+<!--属性选择器-->
+<form action="" id="f1">
+    <label>用户名:
+        <input name="username" type="text" disabled>
+    </label>
+
+    <label>密码:
+        <input name="pwd" type="password">
+    </label>
+
+
+    <label>篮球:
+        <input name="hobby" value="basketball" type="checkbox">
+    </label>
+
+    <label>足球:
+        <input name="hobby" value="football" type="checkbox">
+    </label>
+
+
+    <label>男
+        <input name="gender" value="1" type="radio">
+    </label>
+
+    <label>女:
+        <input name="gender" value="0" type="radio">
+    </label>
+
+</form>
+<script src="jquery-3.2.1.min.js"></script>
+</body>
+</html>

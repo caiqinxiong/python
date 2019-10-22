@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="progress">
+        <div id="myBar" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0"
+             aria-valuemax="100" style="width: 0%">
+            0%
+        </div>
+    </div>
+</div>
+
+<script src="jquery-3.2.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script>
+    // 定义一个进度条宽度的全局变量
+    var width = 0;
+    // 定义一个保存定时器的变量
+    var t;
+
+    var $myBar = $("#myBar");
+    function changeWidth() {
+        if (width < 100){
+            // 自加1
+            width = width+1;
+            // 修改width属性
+            $myBar.css("width",width+"%").text(width+"%");
+        }else {
+            // 清除定时器
+            clearInterval(t);
+        }
+    }
+    //
+//    for (var i=0;i<100;i++){
+//        changeWidth(i);
+//    }
+    // 每隔200ms运行一次
+    t = setInterval(changeWidth, 200)
+
+</script>
+</body>
+</html>

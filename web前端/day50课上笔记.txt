@@ -1,0 +1,128 @@
+day50
+
+1. 内容回顾
+
+	1. 伪类和伪元素
+		1. 伪类
+			1. :link
+			2. :visited
+			3. :hover (重要)
+			4. :active
+			5. :focus(input标签获取光标焦点)
+		2. 伪元素
+			1. :first-letter
+			2. :before(重要 在内部前面添加)
+			3. :after(重要 在内部后面添加)
+			
+	2. CSS属性
+		1. 字体
+			1. font-family
+			2. font-size
+			3. font-weight
+		2. 文本属性
+			1. text-align 对齐(重要)
+			2. text-decoration 装饰 (去除a标签的下划线(text-decoration: none))
+			3. text-indent 首行缩进
+			
+		3. 背景属性
+			1. background-color  背景颜色
+			2. background-image  背景图片(九宫格涮葫芦娃)  url() no-repeat 50% 50%
+			
+		4. color
+			1. red (直接写名字)
+			2. #FF0000
+			3. rgb(255, 0, 0)  --> rgba(255,0,0,0.5)
+			
+		5. 边框属性 border
+			1. border-width (边框宽度)
+			2. border-style (边框样式)
+			3. border-color (边框颜色)
+			
+			简写:
+				border: 1px solid red;
+				
+		6. CSS盒子模型
+		
+			1. content (内容)
+			2. padding (内填充) 调整内容和边框之间距离时使用这个属性
+			3. border  (边框)
+			4. margin  (外边距) 多用于调整调整标签之间的距离 (注意两个挨着的标签margin取最大值)
+			
+			注意: 要习惯看浏览器console窗口那个盒子模型
+		
+		7. display (标签的展现形式)
+			1. inline
+			2. block   菜单里面的a标签可以设置成block
+			3. inline-block
+			4. none  (不让标签显示,不占位)
+		
+		8. float(浮动)
+			1. 多用于实现布局效果
+				1. 顶部的导航条
+				2. 页面左右分栏 (博客页面:左边20%,右边80%)
+			2. float
+				1. 任何标签都可以浮动,浮动之后都会变成块级 a标签float之后就可以设置高和宽
+			3. float取值:
+				1. left
+				2. right
+				3. none
+		9. clear 清除浮动--> 清除浮动的副作用(内容飞出,父标签撑不起来)
+			1. 结合伪元素来实现
+				.clearfix:after {
+					content: "",
+					display: "block",
+					clear: both;
+				}
+				
+			2. clear取值:
+				1. left
+				2. right
+				3. both
+		10. overflow
+			1. 标签的内容放不下(溢出)
+			
+			2. 取值:
+				1. hidden  --> 隐藏
+				2. scroll  --> 出现滚动条
+				3. auto
+				4. scroll-x
+				5. scroll-y
+			
+			例子:
+				圆形头像的例子
+					1. overflow: hidden
+					2. border-radius: 50%  (圆角)
+		11. 定位 position
+			1. static(默认)
+			
+			2. relative(相对定位 --> 相当于原来的位置)
+			
+			3. absolute(绝对定位 -->相当对于定位过的前辈标签)
+			
+			4. fixed (固定 --> 返回顶部按钮示例)
+		
+		
+			补充:
+				脱离文档流的3种方式
+					float
+					absolute
+					fixed
+			
+		12. opacity (不透明度)
+			1. 取值0~1
+			2. 和rgba()的区别:
+				1. opacity改变元素\子元素的透明度效果
+				2. rgba()只改变背景颜色的透明度效果
+		
+		13. z-index
+			1. 数值越大,越靠近你
+			2. 只能作用于定位过的元素
+			
+			3. 自定义的模态框示例
+			
+
+2. CSS补充
+
+
+3. 作业(小米商城)
+

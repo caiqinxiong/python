@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style type="text/css">
+            *{
+                padding: 0;
+                margin: 0;
+            }
+            html,body{
+                height: 100%;
+            }
+            #box{
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,.3);
+            }
+            #content{
+                position: relative;
+                top: 150px;
+                width: 400px;
+                height: 200px;
+                line-height: 200px;
+                text-align: center;
+                color: red;
+                background-color: #fff;
+                margin: auto;
+            }
+            #span1{
+                position: absolute;
+                background-color: red;
+                top: 0;
+                right: 0;
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                text-align: center;
+                color: #fff;
+
+            }
+        </style>
+    </head>
+    <body>
+        <button id="btn">弹出</button>
+    </body>
+    <script type="text/javascript">
+        //获取dom元素 1.获取事件源
+        var oBtn = document.getElementById('btn');
+        //创建弹出模态框的相关DOM对象
+        var oDiv = document.createElement('div');
+        var oP = document.createElement('p');
+        var oSpan = document.createElement('span');
+
+
+        // 设置属性
+        oDiv.id = 'box';
+        oP.id = 'content'
+        oP.innerHTML = '模态框成功弹出'
+        oSpan.innerHTML = 'X';
+        oSpan.id = 'span1'
+
+        // 追加元素
+        oDiv.appendChild(oP);
+        oP.appendChild(oSpan);
+
+        // 点击弹出按钮 弹出模态框
+        oBtn.onclick = function(){
+            //动态的添加到body中一个div
+            this.parentNode.insertBefore(oDiv,oBtn)
+
+        }
+        // 点击X 关闭模态框
+        oSpan.onclick = function(){
+            // 移除oDiv元素
+            oDiv.parentNode.removeChild(oDiv)
+        }
+
+    </script>
+</html>
+
+示例

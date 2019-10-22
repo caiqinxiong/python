@@ -1,0 +1,192 @@
+day53  2018-03-13
+
+1. 内容回顾
+
+补充:
+	Number
+	parseInt("111")
+	parseFloat("11.11")
+
+函数
+	函数的定义
+		一般函数定义:
+			function foo(a,b){
+			  函数的代码块;
+			  return 返回值
+			}
+		匿名函数:
+			var bar = function(){...}
+		立即执行函数:
+			(function(a,b){...})(实参1,实参2)
+	函数的参数:
+		不严谨(可传多,可传少,就是不报错)
+		arguments:函数内部可以通过arguments拿到所有的参数
+		
+	作用域
+		函数内部可以调用函数外部的变量
+		函数外部无法访问函数内部的变量
+		
+	词法分析
+		函数调用的一瞬间要做两部:
+			1. 分析(AO对象)
+				1. 先分析有没有参数,
+				2. 看看有没有局部变量
+				3. 看看有没有函数声明
+				
+			2. 真正执行
+				取值都是从AO对象上找
+	
+自定义对象
+	定义的两种方法:
+		1. var p1 = {name: "xiaoqiang", age: 38}
+		2. var p2 = new Object();
+		   p2.name = "xiaoqiang"
+		   p2.age = 38;
+	   
+	遍历自定义对象方式:
+		for (var i in p1){
+		  console.log(i);
+		  console.log(p1[i]);
+		}
+
+内置对象和方法
+	1. Date
+		1. 生成对象
+			var d1 = new Date()
+			var d2 = new Date("2018-03-13")
+		2. 方法:
+			1. d1.toLocalString()
+			2. d1.toUTCString()
+			3. d1.getFullYear()
+			4. d1.getMonth() (0~11)
+			5. d1.getDay()   (星期天是0)
+			6. ...
+	
+	2. JSON
+		1. 字符串转JSON对象
+			var jsonObj = JSON.parse('{"name": "xiaoqiang", "age": 18}')
+		2. JSON对象转成字符串
+			var s = JSON.stringify(jsonObj)
+	
+	3. Math
+		1. 略...
+	4. RegExp
+		1. 定义正则两种方式
+			1. var reObj1 = new RegExp("^[a-zA-Z][a-zA-Z0-9]{5,11}$");
+			2. var reObj2 = /^[a-zA-Z][a-zA-Z0-9]{5,11}$/
+			
+		2. 常用方法
+			reObj1.test("将要被校验的字符串")
+		3. 正则的匹配模式
+			1. g  --> 全局
+				"Alexdashabi".replace(/a/g, "呵呵")
+			2. i  --> 不区分大小写
+				"Alexdashabi".replace(/a/i, "呵呵")
+			
+		4. 几个坑
+			1. 正则表达式之间不能加空格
+			2. .test()不传值相当于.test(undefined)--> .test("undefined")
+			3. 全局匹配模式注意事项
+				var reObj = /Alex/g;
+				reObj.test("Alex")    --> lastIndex属性被设置成下一位4
+				reObj.test("1234Alex") 就返回true
+	面试题:
+		引申出一个新的知识点:
+			.sort(key=...)
+
+2. 今日内容
+	
+	1.BOM
+		1. location
+			1. location.href      --> 获取当前的URL
+			2. location.href="http://www.luffycity.com" --> 跳转到指定网址
+			3. location.reload()  --> 重新加载当前页面
+			
+		2. setTimeout和clearTimeout
+			多少毫秒之后做什么事儿
+		3. setInterval和clearInterval
+			每隔多少毫秒之后做什么事儿
+		
+		
+	2.DOM
+		1. 什么是DOM树
+		2. DOM都有哪一些内容
+		3. JS操作DOM
+			1. 找标签
+				1. 基本查找
+					1. 根据ID找标签(有且只能找到一个)
+						document.getElementById("ID值")
+					2. 根据class名字找(找到的可以是多个)
+						document.getElementsByClassName("class值") 
+					3. 根据标签名找(找到的可以是多个)
+						document.getElementsByTagName("标签名")
+				
+				2. 间接查找
+					1. 找父标签
+						document.parentElement
+					2. 找子标签(找到的可能是多个)
+						document.children
+					3. 第一个子标签
+					
+					4. 最后一个子标签
+					
+					5. 前一个兄弟标签
+					
+					6. 后一个兄弟标签
+			2. 创建标签  *****
+				creatElement("标签名")
+			
+			3. 添加标签
+				1. 在内部的最后添加
+					appendChild("标签名")
+				2. 在内部的某个标签的前面插入
+					insertBefore(要插入的新标签, 哪个标签之前)
+			4. 属性(内置属性)
+				.属性名="属性值"
+				
+				自定义的属性只能用:
+					.setAttribute("s9", "hao")
+					.getAttribute("s9")
+					.removeAttribute("s9")
+				
+			5. 文本操作
+				1. 设置文本的内容
+					.innerText=""
+				2. 设置标签内容
+					.innerHTML="<p>我是p标签</p>"
+				3. 获取值的区别
+					1. .innerHTML  --> 子标签和子标签的内容都取出来
+					2. .innerText  --> 只取标签之间的文本内容
+					
+			6. 样式操作
+				1. 通过class修改
+					1. classList.remove(cls)  删除指定类
+					2. classList.add(cls)  添加类
+					3. classList.contains(cls)  存在返回true，否则返回false
+					4. classList.toggle(cls)  存在就删除，否则添加
+					5. className  获取所有样式类名(字符串)
+				2. 通过.style修改
+					1. 有中横线的
+						.style.backgroundColor
+					2. 没有中横线的
+						.style.color
+
+			7. 事件
+				1. 常用事件
+					1. onclick
+					2. ondbclick
+					
+					3. onfocus
+					4. onblur
+					
+					5.onchange
+					
+				2. 绑定事件的方式
+					1. 在标签里直接写属性(onclick=foo())
+					2. 通过JS给标签绑定事件
+			
+				3. this --> 代表的是触发事件的当前标签
+			
+	
+	
+

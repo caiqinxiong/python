@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>克隆示例</title>
+</head>
+<body>
+
+<button id="b1">屠龙宝刀,点我就送!</button>
+
+
+<script src="jquery-3.2.1.min.js"></script>
+<script>
+    $("#b1").click(function () {
+        $(this).clone().insertAfter(this);
+    });
+</script>
+</body>
+</html>

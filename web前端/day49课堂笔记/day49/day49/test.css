@@ -1,0 +1,41 @@
+/*
+我这个文件是干啥的
+小强
+2018-03-07
+*/
+
+
+/*全局的样式*/
+* {
+    font-family: ".PingFang SC","微软雅黑", "Microsoft YaHei", "Arial";
+    font-size: 14px;
+}
+
+.c1 {
+    font-weight: 100;
+}
+
+.c2 {
+    font-weight: 900;
+    /*color: red;*/
+    /*color: rgb(255,0,0);*/
+    /*color: #b5282f;*/
+    /*颜色加透明度*/
+    color: rgba(255,0,0,0.3)
+}
+
+.c3 {
+    /*text-align: center;*/
+    /*text-align: right;*/
+    text-align: justify;
+    text-decoration: underline;
+    text-indent: 28px;
+}
+
+/*去掉a标签的下划线*/
+a {
+    text-decoration: none;
+}
+
+
+

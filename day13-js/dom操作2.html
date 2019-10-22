@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .lis{
+            background-color: red;
+        }
+        .lis2{
+            color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="username">
+    <input type="password" id="password">
+    <div>
+        <p><a id="baidu" href="http://www.baidu.com" class="lis">小米</a></p>
+        <ul id="ulist">
+            <li>item1</li>
+            <li>item2</li>
+            <li>item3</li>
+        </ul>
+    </div>
+    <button onclick="f()">按钮1</button>
+    <button id="btn2">按钮2</button>
+    <button id="btn3">按钮3</button>
+</body>
+<script>
+    var btn2 = document.getElementById('btn2')
+    btn2.onclick = f
+
+    function f() {
+        var ulobj = document.getElementById('ulist');
+        var liobj = document.createElement('li');
+        liobj.innerText = 'new item';
+        ulobj.appendChild(liobj)
+    }
+
+    var btn3 = document.getElementById('btn3')
+    btn3.onclick = function() {
+        var ulobj = document.getElementById('ulist');
+        var liobj = document.createElement('li');
+        liobj.innerText = 'new item';
+        ulobj.appendChild(liobj)
+    }
+
+
+
+
+    // var pobj = document.getElementsByTagName('p')[0]
+    // // pobj.innerText = '<a>我是一个a标签</a>'   //不认识html
+    // pobj.innerHTML = '<a href="http://www.mi.com">我是一个a标签</a>'
+    //
+    // var obj = document.getElementsByTagName('input')[0]
+    // console.log(obj.value) //获取值
+    // obj.value = 'xxx' //设置值
+
+    // var obj = document.getElementById('baidu')
+    // console.log(obj.getAttribute('href'))
+    // obj.removeAttribute('href')
+    // obj.setAttribute('href','http://www.mi.com')
+
+    // var obj=document.getElementById('baidu')
+    // console.log(obj.classList)
+
+</script>
+</html>

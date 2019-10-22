@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>位置相关方法</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .c1,
+        .c2,
+        .c3{
+            height: 100px;
+            width: 100px;
+            background-color: red;
+        }
+
+        .c2 {
+            position: relative;
+            left: 200px;
+            top: 200px;
+            background-color: green;
+        }
+        .c3 {
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+
+<div class="c1">我是div</div>
+<div class="c2">
+    <div class="c3">我是c3</div>
+</div>
+
+<script src="jquery-3.2.1.min.js"></script>
+</body>
+</html>

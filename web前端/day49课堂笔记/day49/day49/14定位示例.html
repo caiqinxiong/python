@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>定位示例</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .c1,
+        .c2,
+        .c3,
+        .c4,
+        .c4-father{
+            height: 150px;
+            width: 150px;
+        }
+
+        .c1 {
+            background-color: red;
+        }
+        .c2 {
+            background-color: green;
+            position: relative;
+            left: 400px;
+            top: 150px;
+        }
+        .c3 {
+            background-color: blue;
+        }
+        .c4 {
+            background-color: deeppink;
+            position: absolute;
+            top: 150px;
+            left: 400px;
+        }
+        .c4-father {
+            background-color: grey;
+            position: relative;
+            left: 150px;
+
+        }
+
+        .fixed-test {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background-color: grey;
+        }
+    </style>
+</head>
+<body>
+
+<div class="c1">c1</div>
+<div class="c2">c2</div>
+<!--<div>阿诗丹顿多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多</div>-->
+<div class="c3">c3</div>
+<div class="c4-father">
+    <div class="c4"></div>
+</div>
+
+<div class="fixed-test">返回顶部</div>
+</body>
+</html>

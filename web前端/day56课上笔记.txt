@@ -1,0 +1,124 @@
+day56  2018-03-16
+
+1. 内容回顾
+	1. 样式操作
+		1. 操作class
+		2. 操作CSS属性的
+			.css("color")
+			.css("color", "green")
+			.css({"color": "yellow", "border": "1px solid black"})
+	2. 位置相关
+		1. .offset()    
+		2. .position()  --> 相对于定位的父标签的偏移
+		
+		3. .scrollTop() --> 返回顶部
+			$(window).scroll(function(){
+			  ...
+			  // 判断窗口距离top有多少
+			  if ($(window).scrollTop() > 100){
+			     // 把返回顶部的按钮显示出来, removeClass("hide");
+			  }
+			})
+			
+			// 返回顶部的按钮,要做的事儿
+			$("返回顶部按钮").click(function(){
+			   // $(window).scrollTop(0);
+			})
+		4. .scrollLeft()
+		
+	3. 尺寸
+		1. height
+		2. width
+		
+		3. innerHeight
+		4. innerWidth
+		
+		5. outerHeight
+		6. outerWidth
+		
+	4. 文本操作
+		1. .html()   --> 子标签和文本内容
+			.html("<a href="...">我是a标签</a>")
+		2. .text()   --> 所有的文本内容
+		
+		3. .val()
+			获取用户输入的值
+			
+			$(":text").val()
+			$(":checked").val()  --> 默认返回的都是第一个标签的值
+			
+			$("#s1").val()       --> select可以直接取选中的值,多选的select返回的是数组格式
+			
+			$("#t1").val()       --> textarea和input:text类似
+	5. 属性操作
+		1. .attr()   --> $("a").attr("href")
+						 $("a").attr("href", "http://www.sogo.com") 
+						 $("a").attr({"href":"http://www.sogo.com", "title": "aaaa"}) 
+						 
+		2. .prop()   --> 适用于checkbox和radio(返回true或false的属性)
+		
+			
+2. 今日内容
+	1. 文档操作
+	
+	2. 事件 *****
+		1. 目前为止学过的绑定事件的方式
+			1. 在标签里面写 onclick=foo(this);
+			2. 原生DOM的JS绑定      DOM对象.onclick=function(){...}
+			3. jQuery版的绑定事件   jQuery对象.click(function(){...})
+			
+		2. 我们今后要用的jQuery绑定事件的方式
+			.on("click", function(){...})
+			
+			$("#t1").on("click", "选择器", function(){...})
+			适用于 给未来的元素(页面生成的时候还没有的标签) 绑定事件 (事件委托)
+			
+			事件冒泡和事件捕获
+				利用事件冒泡,给已经存在的标签绑定事件,用来捕获后代标签的事件.
+
+			
+		3. 事件之间
+			1. 阻止后续事件的执行
+				显式的写   return false;  
+			2. for循环,退出当前循环 ---> 用break;
+			
+		4. 补充一个键盘事件
+			示例:批量操作的
+		5. DOM加载完之后执行
+			$(document).ready(function(){
+			  // 写绑定事件的具体操作
+			});
+		6. 动画(了解即可)
+		
+	3. jQuery补充
+		1. .each循环
+			1. $.each(a1, function(){...})
+			2. $("div").each(function(){
+			    console.log(this);   --> this指的是每次进入循环的标签
+			})
+		2. .data
+			1. 可以存字符串
+			2. 可以存数字
+			3. 可以存jQuery对象
+		3. 插件机制
+			1. 给具体的jQuery对象添加扩展 
+				$.fn.extend({
+					"s9": function(){
+					  ...
+					}
+				  })
+			  
+			2. 给jQuery添加全局扩展
+				$.extend({
+				  "s9": function(){
+				    ...
+				  }
+				})
+		
+3. 作业
+	1. 把课上内容整理博客
+	2. 把课上的批量操作示例自己写一遍
+	3. 表格版增删改查
+	4. 复习Python基础
+	
+		

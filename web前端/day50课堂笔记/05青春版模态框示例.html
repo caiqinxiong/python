@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>青春版模态框示例</title>
+    <style>
+        .cover {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+        .modal {
+            width: 600px;
+            height: 400px;
+            background-color: white;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -200px;
+            margin-left: -300px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+<div class="cover"></div>
+<div class="modal"></div>
+
+</body>
+</html>

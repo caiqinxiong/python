@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>class相关操作</title>
+    <style>
+        .c1 {
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            background-color: grey;
+        }
+        .c2 {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+
+<div class="c1 c2 c3" onclick="change(this);">div</div>
+<div class="c1 c2 c3">div</div>
+<div class="c1 c2 c3">div</div>
+<div class="c1 c2 c3">div</div>
+
+<script>
+    function change(ths) {
+        ths.classList.toggle("c2");
+    }
+
+//    第二种绑定事件的方式
+    var divEles = document.getElementsByTagName("div");
+    for (var i=0;i<divEles.length;i++){
+        divEles[i].onclick=function () {
+            this.classList.toggle("c2");
+        }
+    }
+</script>
+</body>
+</html>

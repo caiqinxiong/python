@@ -1,0 +1,144 @@
+day55 2018-03-15
+
+1. 内容回顾
+
+	1. jQuery
+		1. 选择器  $("")
+			1. 基本选择器
+				1. ID       --> $("#d1")
+				2. 标签名   --> $("p")
+				3. class名  --> $(".C1")
+				4. 通用的   --> $("*")
+				5. 组合     --> $(".c1,div,a")
+				
+			2. 层级选择器
+				1. 子子孙孙   --> $("x y")
+				2. 儿子选择器 --> $("x>y")
+				3. 弟弟选择器 --> $("x~y")
+				4. 毗邻选择器 --> $("label+input")
+
+		2. 筛选器
+			1. 基本筛选器
+				1. :first
+				2. :last
+				3. :eq()   --> 从0开始
+				4. :even   --> 偶数
+				5. :odd    --> 奇数
+				6. :gt
+				7. :lt
+				
+				8. :not    --> $("div:not(.c1)")
+				9. :has    --> $("div:has(.c1)")
+				
+			2. 属性选择器
+				1. $("[title]")
+				2. $("[type='text']")
+				3. $("[type!='text']")
+				
+			3. 表单选择器
+				1. $(":checkbox")   -->   $("input[type='checkbox']")
+				2. $(":text")
+				
+				...
+			4. 表单对象
+				1. $(":disabled")   --> 找到不可用的标签
+				
+				...
+			5. 筛选器方法(只是应用场景和上面的基本筛选器不同而已)
+				1. $("div").first()
+				2. ...
+			6. 常用的方法
+				1. .next()     --> 找到挨着我的下一个同级标签
+				2. .nextAll()  --> 下边同级的所有
+				3. .nextUntil()--> 往下找,直到找到终止条件为止
+				
+				4. .prev()
+				5. .prevAll()
+				6. .prevUntil()
+				
+				7. .siblings()  --> 找所有的兄弟(前面的后面的都能找到)
+				8. .children()
+				
+				9. .parent()
+				10. .parents()
+				11. .parentsUntil()
+				
+				12. .find(各种条件都可以写)
+				
+		3. 样式操作
+			1. 操作class类
+				1. .addClass()
+				2. .removeClass()
+				3. .hasClass()
+				4. .toggleClass()
+2. 今日面试题
+	1. 问: 字符串格式化:%和format 有什么区别?
+	
+	Python新版本推荐使用format.
+	Python2.6 新加入的format语法支持.
+	3.6加入了一个 f-strings新特性
+	
+3. 今日内容 (http://www.bootcdn.cn/)  PyCon  meetingup (关注一下时事热点技术)
+
+	1. 修改样式
+		1. 操作class类
+			自定义模态框弹出和隐藏
+		
+		2. 直接修改样式
+			1. 原生DOM  .style.color="green"
+			
+			2. $("div").css("color", "green")
+			
+			3. 修改多个样式时,传入键值对!!!
+			
+		3. 位置
+			1. offset
+			2. position   --> 获取相对父标签的偏移位置
+			3. scrollTop()// 获取匹配元素相对滚动条顶部的偏移
+			4. scrollLeft()// 获取匹配元素相对滚动条左侧的偏移
+			
+			返回顶部示例
+		
+		4. 大小
+			1. height()
+			2. width()
+			3. innerHeight()
+			4. innerWidth()
+			5. outerHeight()
+			6. outerWidth()
+			
+			注意:outerHeight()和outerWidth()取得是内容+padding+border
+		
+	2. 文档操作
+		1. 操作HTML
+			.html()    --> 类似于 innerHTML
+		2. 操作text
+			.text()    --> 类似于 innerText
+			
+		3. 值
+			1. val()// 取得第一个匹配元素的当前值
+			2. val(val)// 设置所有匹配元素的值
+	
+	3. 属性操作
+		1. attr()
+			1. attr(attrName)// 返回第一个匹配元素的属性值
+			2. attr(attrName, attrValue)// 为所有匹配元素设置一个属性值
+			3. attr({k1: v1, k2:v2})// 为所有匹配元素设置多个属性值
+			4. removeAttr()// 从每一个匹配的元素中删除一个属性
+		2. prop()   --> checkbox和radio用这个
+			
+4. 作业
+	1全选反选取消
+		
+	
+	
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			

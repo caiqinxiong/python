@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>页面载入之后执行</title>
+    <script src="jquery-3.2.1.min.js"></script>
+    <script>
+        // 等DOM树生成之后 我再执行
+        $(document).ready(function () {
+            console.log($("#d1").text());
+            // 执行绑定事件的操作
+        });
+    </script>
+</head>
+<body>
+
+<div id="d1">div标签</div>
+
+</body>
+</html>

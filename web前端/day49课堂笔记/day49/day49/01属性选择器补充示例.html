@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>属性选择器补充示例</title>
+    <style>
+        /*[s9^="hao"] {*/
+            /*color: red;*/
+        /*}*/
+
+        /*[s9$="d"] {*/
+            /*color: red;*/
+        /*}*/
+
+        /*[s9*="ao"] {*/
+            /*color: red;*/
+        /*}*/
+
+        [s9~="hao"] {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<p s9="hao" >我是一个p标签</p>
+<p s9="haoma" >我是一个p标签</p>
+<p s9="good">我也是一个p标签</p>
+<p class="c1 c2">我是还是一个p标签</p>
+
+</body>
+</html>

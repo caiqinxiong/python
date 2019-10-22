@@ -1,0 +1,198 @@
+day54  2018-03-14(白色情人节)
+
+1. 前情回顾
+
+	1. BOM
+		1. location相关
+			1. location.href
+			2. location.href="http://www.sogo.com"
+			3. location.reload()
+	
+	2. DOM
+		1. DOM树的概念
+		
+		2. JS通过DOM操作HTML
+			1. 改标签(标签的内容)
+			2. 改标签的属性
+			3. 改样式
+			4. 事件相关
+			
+		3. 操作标签	
+			1. JS查找标签
+			
+				1. 直接查找
+					1. 通过ID       document.getElementById("ID值")
+					2. 通过class找  document.getElementsByClassName("class名")
+					3. 通过标签名找 document.getElementsByTagName("标签名")
+				2. 间接查找
+					1. 找父标签
+					2. 找字标签们
+					3. 找第一个子标签
+					4. 找最后一个子标签
+					5. 找上一个兄弟标签
+					6. 找下一个兄弟标签
+			2. 创建标签
+				1. 语法:
+					document.createElement("标签名")  *****
+			3. 添加标签
+				1. 在内部最后添加
+					父标签.appendChild(新创建的标签)
+				2. 在内部指定标签前面添加
+					父标签.insertBefore(新创建的标签,指定标签)
+			4. 删除标签
+				1. 从父标签里面删除指定的标签
+					父标签.removeChild(指定的标签)
+			5. 替换
+				1. 在父标签里面用新创建的标签替换指定标签
+					父标签.replaceChild(新创建的标签,指定的标签)
+		4. 操作标签的属性
+			1. 常用的属性 *****
+				1. innerHTML  --> 全部(子标签及子标签的文本内容)
+				2. innerText  --> 标签(子标签)的文本内容
+			
+			2. 标签的属性
+				1. .setAttribute("age","18")  --> 设置属性
+				2. .getAttribute("age")       --> 获取属性的值
+				3. .removeAttribute("age")    --> 删除指定的属性
+				
+				对于标签默认的属性
+					1. a标签.href/img标签.src
+					2. a标签.href="http://www.sogo.com"/img标签.src="..."
+					
+		5. 获取值(input/select/textarea)
+			input标签.value()
+			select标签.value()
+			textarea标签.value()
+		6. 操作标签的样式
+			1. 通过class名去改变样式
+				1. 获取标签所有样式类
+					1. .className      --> 得到的是字符串
+					2. .classList      --> 得到的是数组
+					
+				2. 使用classList操作样式
+					1. .classList.contains("样式类")  --> 判断包不包含指定的样式类
+					2. .classList.add("样式类")       --> 添加指定的样式类
+					3. .classList.remove("样式类")    --> 删除指定的样式类
+					4. .classList.toggle("样式类")    --> 有就删除没有就添加
+					
+			2. 通过.style直接修改CSS属性
+				1. CSS属性带中横线的
+					background-color: red;
+					.style.backgroundColor=green;
+				2. CSS属性中不带中横线的
+					.style.color=red;
+					
+		7. 事件相关
+			0. 注意:
+				涉及到DOM操作的JS代码要放在body标签内部的最下面!!!
+				
+			1. 绑定事件的方式
+				1. 在标签内通过属性来设置(onclick=foo(this))
+					this指的是当前触发事件的标签!!!
+				2. 通过JS代码绑定事件
+					
+			
+			2. 常用的事件
+				1. onclick        当用户点击某个对象时调用的事件句柄。
+				2. ondblclick     当用户双击某个对象时调用的事件句柄。
+
+				3. onfocus        元素获得焦点。   // 练习：搜索框
+				4. onblur         元素失去焦点。   应用场景：用于表单验证,用户离开某个输入框时,代表已经输入完了,我们可以对它进行验证.
+				
+				5. onchange       域的内容被改变。 (select联动示例)
+			
+	3. 今日面试题
+
+2. 今日内容(非常重要)
+	1. jQuery
+		1. 为什么要学jQuery?  MySQL Python
+			做同样的事情 jQuery写起来极其简练 (write less, do more.)
+		2. jQuery是什么?
+			jQuery相当于Python的第三方模块
+			第三方模块其实就是别人写好(封装)的一些代码,我们拿过来用(按照别人定好的规则)
+			
+			原生的JS DOM操作是基础
+		3. jQuery学习的内容
+			1. 改变标签
+			2. 改变标签的属性
+			3. 改变标签的样式
+			4. 事件相关
+		
+		学习内容:(先导入再使用)
+			0. HTML对象和jQuery对象的区别
+				1. jQuery对象转换成DOM对象,用索引取出具体的标签
+				2. DOM对象转换成jQuery对象,$(DOM对象)
+				
+				注意:
+					jQuery对象保存到变量的时候,变量名要加$前缀
+					
+			1. 找标签
+				1. 基本选择器
+					1. $("ID值")
+					2. $(".class名")
+					3. $("标签名")
+					
+					4. $("*")  找所有
+					5. $("条件1,条件2")  组合查找
+				2. 层级选择器
+					同CSS选择器
+					1. $("x y");// x的所有后代y（子子孙孙）
+					2. $("x > y");// x的所有儿子y（儿子）
+					3. $("x + y")// 找到所有紧挨在x后面的y
+					4. $("x ~ y")// x之后所有的兄弟y
+					
+				3. 基本筛选器
+					1. :first // 第一个
+					2. :last // 最后一个
+					3. :eq(index)// 索引等于index的那个元素
+					4. :even // 匹配所有索引值为偶数的元素，从 0 开始计数
+					5. :odd // 匹配所有索引值为奇数的元素，从 0 开始计数
+					6. :gt(index)// 匹配所有大于给定索引值的元素
+					7. :lt(index)// 匹配所有小于给定索引值的元素
+					8. :not(元素选择器)// 移除所有满足not条件的标签
+					9. :has(元素选择器)// 选取所有包含一个或多个标签在其内的标签(指的是从后代元素找)
+				4. 属性选择器
+					1. [attribute]
+					2. [attribute=value]// 属性等于
+					3. [attribute!=value]// 属性不等于
+				5. 表单选择器
+					:text
+					:password
+					:file
+					:radio
+					:checkbox
+
+					:submit
+					:reset
+					:button
+				6. 筛选器
+					1. 上一个
+					2. 下一个
+					3. 父元素
+					4. 儿子和兄弟
+				7. .find()
+					注意应用场景
+			2. 操作标签
+				1. 操作class类
+					1. addClass()
+					2. removeClass()
+					3. hasClass()
+					4. toggleClass()
+			
+			
+			
+			
+			
+			
+			
+			
+	
+
+
+			
+			
+			
+			
+			
+			
+			

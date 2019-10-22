@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+}
+
+body {
+    background-color: #eee;
+    line-height: 1.2;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 左侧边栏样式 开始 */
+.side-bar {
+    width: 20%;
+    position: fixed;
+    height: 100%;
+    float: left;
+    color: #eee;
+    background-color: #4d4d4d;
+}
+.side-bar>* {
+    padding: 20px 15px;
+}
+
+
+/* .header .logo {
+    line-height: 1;
+    font-size: 30px;
+    display:inline-block;
+    margin-bottom: 15px;
+} */
+
+.header>* {
+    margin: 10px 0;
+}
+
+.header .logo {
+    display: block;
+    border: 5px solid #fff;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+}
+
+.header .author-name {
+    text-align: center
+}
+
+.logo>img {
+    max-width: 100%;
+}
+
+.side-bar .nav a,
+.side-bar .tag-list a {
+    display: block;
+    padding: 5px;
+    color: #888;
+    transition: color 200ms;
+}
+
+.side-bar .nav a:hover,
+.side-bar .tag-list a:hover {
+    color: #eee
+}
+
+.side-bar .nav a {
+    font-weight: bold;
+}
+/* 左侧边栏样式 结束 */
+
+/* 右侧内容区 */
+.main {
+    width: 80%;
+    float: right;
+    color: black;
+}
+
+.article-list {
+    padding: 20px;
+    margin-right: 10%;
+}
+.main .article {
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 3px 3px 3px rgba(0,0,0, 0.2)
+}
+
+.article-header {
+    padding-bottom: 15px;
+}
+
+.article-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+.article-date {
+    float: right;
+}
+.article-tag {
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding: 15px 0;
+}

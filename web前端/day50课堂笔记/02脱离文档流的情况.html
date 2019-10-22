@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>脱离文档流的情况</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .c1 {
+            height: 100px;
+            width: 100px;
+            background-color: red;
+        }
+
+        .c2 {
+            height: 150px;
+            width: 150px;
+            background-color: green;
+            /*float: right;*/
+
+            /*position: relative;*/
+            /*left: 400px;*/
+            /*left: 400px;*/
+
+            /*position: absolute;*/
+            /*left: 400px;*/
+
+            position: fixed;
+            right: 100px;
+            top: 100px;
+        }
+        .c3 {
+            height: 200px;
+            width: 200px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+
+<div class="c1"></div>
+<div class="c2"></div>
+<div class="c3"></div>
+</body>
+</html>

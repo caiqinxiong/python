@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>作业需求分析</title>
+</head>
+<body>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>姓名</th>
+        <th>职位</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>小东北</td>
+        <td>二人转演员</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>乔小强</td>
+        <td>xx演员</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>韩涉</td>
+        <td>导演</td>
+    </tr>
+    </tbody>
+</table>
+
+<input type="button" id="b1" value="全选">
+<input type="button" id="b2" value="反选">
+<input type="button" id="b3" value="取消">
+
+<script src="jquery-3.2.1.min.js"></script>
+<script>
+    // 点击全选,表格中所有的checkbox都选中
+    // 1. 找checkbox
+    // 2. 全部选中  --> prop("checked", true);
+
+    // 点击取消
+    // 1. 找checkbox
+    // 2. 全部取消选中  --> prop("checked", false);
+
+
+    // 反选
+    // 1. 找到所有的checkbox
+    // 2. 判断
+    // 2.1 原来没选中的,要选中
+    // 2.2 原来选中的,要取消选中
+</script>
+</body>
+</html>

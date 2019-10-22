@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>float下午版</title>
+    <style>
+        #d1 {
+            border: 1px solid black;
+        }
+        .c1 {
+            height: 50px;
+            width: 50px;
+            background-color: blue;
+            border: 1px solid red;
+            float: right;
+        }
+        .c2 {
+            /*height: 50px;*/
+            clear: right;
+            background-color: deeppink;
+        }
+
+        .c3 {
+            height: 200px;
+            background-color: red;
+        }
+
+        /*清除浮动得副作用*/
+        /*#d1:after {*/
+            /*content: "";*/
+            /*clear: both;*/
+            /*display: block;*/
+        /*}*/
+
+        .clearfix:after {
+            content: "";
+            clear: both;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div id="d1" class="clearfix">
+    <div class="c1"></div>
+    <div class="c1"></div>
+    <div class="c1"></div>
+    <div class="c1"></div>
+
+</div>
+
+<div class="c3">我是正常的内容块</div>
+
+</body>
+</html>

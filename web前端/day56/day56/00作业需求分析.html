@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>作业需求分析</title>
+</head>
+<body>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>姓名</th>
+        <th>职位</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>小东北</td>
+        <td>二人转演员</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>乔小强</td>
+        <td>xx演员</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>韩涉</td>
+        <td>导演</td>
+    </tr>
+    </tbody>
+</table>
+
+<input type="button" id="b1" value="全选">
+<input type="button" id="b2" value="反选">
+<input type="button" id="b3" value="取消">
+
+<script src="jquery-3.2.1.min.js"></script>
+<script>
+    // 点击全选,表格中所有的checkbox都选中
+    // 1. 找checkbox
+    // 2. 全部选中  --> prop("checked", true);
+    $("#b1").click(function () {
+        $(":checkbox").prop("checked", true);
+    });
+
+    // 点击取消
+    // 1. 找checkbox
+    // 2. 全部取消选中  --> prop("checked", false);
+   $("#b3").click(function () {
+        $(":checkbox").prop("checked", false);
+    });
+
+    // 反选
+    // 1. 找到所有的checkbox
+    // 2. 判断
+    // 2.1 原来没选中的,要选中
+    // 2.2 原来选中的,要取消选中
+       $("#b2").click(function () {
+           // 找到所有的checkbox,把它们保存在一个名叫 $checkboxEles 的变量中,方便后面使用
+           var $checkboxEles = $(":checkbox");
+           // 遍历所有的checkbox,根据每一个checkbox的状态做不同的操作
+           for (var i=0;i<$checkboxEles.length;i++){
+               // 把每一个checkbox包成jQuery对象
+               var $tmp = $($checkboxEles[i]);
+               // 如果 checkbox是选中的
+               if ($tmp.prop("checked")){
+                   // 取消选中
+                   $tmp.prop("checked", false);
+               }else {
+                   // 否则就选中
+                   $tmp.prop("checked", true);
+               }
+           }
+    });
+
+</script>
+</body>
+</html>

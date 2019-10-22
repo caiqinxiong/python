@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>z-index示例</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .c1 {
+           height: 150px;
+            width: 150px;
+            background-color: red;
+            position: relative;
+            z-index: 2;
+        }
+        .c2 {
+            height: 200px;
+            width: 200px;
+            background-color: green;
+            position: relative;
+            top: -150px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="c1"></div>
+<div class="c2"></div>
+</body>
+</html>

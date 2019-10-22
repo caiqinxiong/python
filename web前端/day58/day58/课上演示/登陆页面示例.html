@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>登陆页面</title>
+  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #eeeeee;
+    }
+    .login-form {
+      max-width: 330px;
+      padding: 15px;
+      margin: 100px auto 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <form class="form-horizontal login-form" novalidate>
+      <div class="h3 text-center">请登陆</div>
+      <div class="form-group">
+        <label for="inputEmail" class="col-sm-3 control-label">邮箱</label>
+        <div class="col-sm-9">
+          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPassword" class="col-sm-3 control-label">密码</label>
+        <div class="col-sm-9">
+          <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox">记住我
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+          <button type="submit" class="btn btn-block btn-primary">登陆</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function () {
+    // DOM加载完之后执行以下内容
+    $("form :submit").on("click", function () {
+      // 点击提交校验输入框有效性
+      // 1. 找到form表单下面所有需要验证的input的标签
+        $("form input[type='email'], input[type='password']").each(function () {
+          $(this).val();
+        });
+      // 2. 循环所有标签取内容
+      return false;
+    })
+  })
+</script>
+</body>
+</html>

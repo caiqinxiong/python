@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>display属性</title>
+    <style>
+        .c1 {
+            background-color: red;
+            /*display: none;*/
+            visibility: hidden;
+            height: 100px;
+        }
+
+        .c2 {
+            background-color: green;
+            /*display: block;*/
+            width: 1000px;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            display: inline;
+            /*padding: 20px;*/
+            /*border-right: 1px solid #666;*/
+        }
+
+        li.last {
+            border-right: none;
+        }
+
+        li>a {
+            border-right: 1px solid red;
+            padding: 0 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="c1">div</div>
+<span class="c2">span</span>
+<span class="c2">span</span>
+
+<ul>
+    <li><a href="">玉米商城</a></li>
+    <li><a href="">电脑</a></li>
+    <li><a href="">手机</a></li>
+    <li class="last"><a href="">爆米花</a></li>
+</ul>
+
+
+</body>
+</html>

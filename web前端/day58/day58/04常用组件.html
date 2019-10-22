@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <style>
+        #d1 {
+            background-color: red;
+        }
+        #d2 {
+            background-color: yellow;
+        }
+        #d3 {
+            background-color: deeppink;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default">Left</button>
+  <button type="button" class="btn btn-default">Middle</button>
+  <button type="button" class="btn btn-default">Middle2</button>
+  <button type="button" class="btn btn-default">Right</button>
+</div>
+
+
+    <!--标签页-->
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a href="#d1" data-toggle="tab">个人主页</a></li>
+      <li role="presentation"><a href="#d2" data-toggle="tab">个人详情页</a></li>
+      <li role="presentation"><a href="#d3" data-toggle="tab">消息页面</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div role="tabpanel" id="d1" class="tab-pane active">这是个人主页</div>
+        <div role="tabpanel" id="d2" class="tab-pane">这是一个详情页</div>
+        <div role="tabpanel" id="d3" class="tab-pane">消息页面</div>
+    </div>
+
+
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a href="#">Home</a></li>
+      <li role="presentation"><a href="#">Help</a></li>
+      <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+          Dropdown <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#">Separated link</a></li>
+        </ul>
+      </li>
+    </ul>
+</div>
+
+<script src="jquery-3.2.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

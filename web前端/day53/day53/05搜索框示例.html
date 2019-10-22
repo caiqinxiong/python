@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索框示例</title>
+</head>
+<body>
+
+<input type="text" id="i1" value="对子哈特">
+<input type="button" value="搜索">
+
+<script>
+    // 找到input框
+    var i1Ele = document.getElementById("i1");
+    i1Ele.onfocus=function () {
+        // 把value清空
+        this.value="";
+    };
+    i1Ele.onblur=function () {
+        // 失去焦点之后把如果值为空就填回去
+        if (!this.value.trim()){
+            this.value="对子哈特";
+        }
+    }
+</script>
+
+
+</body>
+</html>

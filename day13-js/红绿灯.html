@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .outer{
+            border: solid darkgray 5px;
+            display: inline-block;
+            padding: 5px;
+            border-radius: 10px;
+        }
+        .light{
+            float: left;
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            background-color: lightgray;
+            margin-left: 5px;
+        }
+        .clearfix:after{
+            content: '';
+            clear: both;
+            display: inline-block;
+        }
+        .red{
+            background-color: red;
+        }
+        .yellow{
+            background-color: yellow;
+        }
+        .green{
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+<div class="outer">
+    <div class="container clearfix">
+        <div class="light red"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+    </div>
+</div>
+<script>
+    function change_color() {
+        var lights = document.getElementsByClassName('light')
+        if(lights[0].classList.contains('red')){
+            lights[0].classList.remove('red')
+            lights[1].classList.add('yellow')
+
+        }else if(lights[1].classList.contains('yellow')){
+            lights[1].classList.remove('yellow')
+            lights[2].classList.add('green')
+        }
+        else{
+            lights[2].classList.remove('green')
+            lights[0].classList.add('red')
+        }
+    }
+    setInterval(change_color,3000)
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>替换操作示例</title>
+</head>
+<body>
+
+<p><a href="http://www.sogo.com">aaa</a></p>
+<p><a href="">bbb</a></p>
+<p><a href="">ccc</a></p>
+
+<button id="b1">点我!</button>
+<script src="jquery-3.2.1.min.js"></script>
+<script>
+    $("#b1").click(function () {
+            // 创建一个img标签
+    var imgEle = document.createElement("img");
+    $(imgEle).attr("src", "http://img3.duitang.com/uploads/item/201607/22/20160722224001_RyzrQ.jpeg");
+    $("a").replaceWith(imgEle);
+//    $(imgEle).replaceAll("a");
+    });
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>select联动示例</title>
+</head>
+<body>
+
+<select id="s1">
+    <option value="0">--请选择--</option>
+    <option value="1">北京</option>
+    <option value="2">上海</option>
+</select>
+
+<select id="s2"></select>
+
+<script>
+
+    var data = {1: ["昌平区", "朝阳区", "海淀区"], 2: ["静安区", "闵行区", "浦东区"]};
+    // 给第一个select绑定事件,绑定的是onchange事件
+    var s1Ele = document.getElementById("s1");
+    s1Ele.onchange = function () {
+        // 取到你选的是哪一个市
+        console.log(this.value);
+        // 把对应市的区填到第二个select框里面
+        var areas = data[this.value];  // 取到市对应的区
+        // 找到s2
+        var s2Ele = document.getElementById("s2");
+        // 清空之前的
+        s2Ele.innerHTML="";
+        // 生成option标签
+        for (var i = 0; i < areas.length; i++) {
+            var opEle = document.createElement("option");
+            opEle.innerText = areas[i];
+            // 添加到select内部
+            s2Ele.appendChild(opEle);
+        }
+    }
+</script>
+</body>
+</html>

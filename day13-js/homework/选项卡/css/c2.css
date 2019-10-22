@@ -1,0 +1,90 @@
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+#tab {
+    width: 90%;
+    margin: 0 auto;
+    border: 1px solid red;
+}
+
+ul {
+    width: 90%;
+    overflow: hidden;
+}
+
+ul li {
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    display: inline;
+    text-align: center;
+}
+
+
+li.active {
+    color: orangered;
+}
+
+p {
+    display: none;
+    height: 200px;
+    text-align: center;
+    line-height: 200px;
+    background-color: red;
+}
+
+p.active {
+    display: block;
+
+}
+
+
+.cent img {
+    height: 50px;
+    width: 50px;
+}
+
+.cent input {
+    height: 50px;
+    width: 245px;
+}
+
+.pr a {
+    text-decoration: none;
+    height: 88px;
+    line-height: 88px;
+    color: black;
+}
+
+.pr span {
+    margin-left: 20px;
+}
+
+.right-t2 {
+    height: 88px;
+    line-height: 88px;
+    float: right;
+}
+
+.left-t2 {
+    height: 88px;
+    line-height: 88px;
+    float: left;
+}
+
+.pr {
+    width: 70%;
+    margin:0 20% auto auto;
+
+}
+
+.pt {
+    padding-top: 20px;
+}

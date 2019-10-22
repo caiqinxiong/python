@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>修改CSS样式</title>
+</head>
+<body>
+
+<p>乔小强</p>
+<p>二哥</p>
+<script src="jquery-3.2.1.min.js"></script>
+<script>
+    $("p").click(function () {
+        // 把当前点击的标签变绿
+        // 在处理事件的函数中用 this 表示 当前触发事件的标签
+//        $(this).css("color", "red");
+//        $(this).css("font-size", "24px");
+
+        $(this).css({"color": "pink", "font-size": "48px"});
+    })
+</script>
+</body>
+</html>

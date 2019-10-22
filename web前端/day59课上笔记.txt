@@ -1,0 +1,32 @@
+day59 2018-03-21
+
+1. pymysql
+
+	Blog：http://www.cnblogs.com/liwenzhou/p/8032238.html
+	
+	pip3/pip install pymysql
+
+	2. SQL注入问题
+		1. SQL语句在程序中是字符串，动态拼接的字符串，拿用户输入的内容去拼接字符串
+		2. 不要自己拼接字符串
+		
+	3.使用pymysql进行增删改查操作
+		1. 增
+		2. 删
+		3. 改
+		4. 查
+			1. fetchall()
+			2. fetone()
+			3. fetchmany()
+			4. scroll(1, mode="absolute")
+			5. scroll(1, mode="relative")
+			
+2. 今日面试题
+	1. 剥皮函数
+	
+3. 作业
+	1. 整理Blog,各种增删改查
+	2. 书、出版社、作者  想明白这三者之间都是什么关系
+	
+	
+	

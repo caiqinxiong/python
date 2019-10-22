@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div span{
+            display: inline-block;
+            height: 150px;
+            line-height: 150px;
+            font-size: 50px;
+        }
+        .num {
+            background-color: lightgray;
+            width: 100px;
+            text-align: center;
+            border-radius: 10px;
+    }
+        .btn{
+            padding: 20px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<div>
+    <div>
+        <span class="num" id="hour0">0</span>
+        <span class="num" id="hour1">0</span>
+        <span>:</span>
+        <span class="num" id="minute0">0</span>
+        <span class="num" id="minute1">0</span>
+        <span>:</span>
+        <span class="num" id="second0">0</span>
+        <span class="num" id="second1">0</span>
+    </div>
+    <div class="btn">
+        <button id = 'start'>开始计时</button>
+        <button id = 'stop'>停止计时</button>
+        <button id = 'reset'>重置计时</button>
+    </div>
+
+</div>
+<script>
+    var start = document.getElementById('start')
+    var stop = document.getElementById('stop')
+    var reset = document.getElementById('reset')
+    start.onclick = function () {
+        interval = setInterval('change_bar("second",6)',1000)
+    }
+    function change_bar(idval,maxval) {
+        var s1 = document.getElementById(idval+'1');
+        var s1_value = parseInt(s1.innerText)
+        s1_value++
+        if(s1_value===10){
+            s1_value = 0;
+            var s0 = document.getElementById(idval+'0');
+            var s0_value = parseInt(s0.innerText)
+            s0_value++
+            if(s0_value===maxval){
+                s0_value=0
+                if(idval === 'second'){
+                    change_bar('minute',6)
+                }else if(idval === 'minute'){
+                    change_bar('hour',10)
+                }
+            }
+            s0.innerText = s0_value
+        }
+        s1.innerText = s1_value
+    }
+    stop.onclick = function () {
+        clearInterval(interval)
+    }
+    reset.onclick = function () {
+        clearInterval(interval)
+        var spans = document.getElementsByClassName('num')
+        for(var i=0;i<spans.length;i++){
+            spans[i].innerText=0
+        }
+    }
+
+</script>
+</body>
+</html>

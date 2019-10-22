@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>左侧菜单作业分解</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="left-menu">
+    <div class="menu-title">菜单一</div>
+    <div class="menu-items">
+        <ul>
+            <li><a href="">111</a></li>
+            <li><a href="">222</a></li>
+            <li><a href="">333</a></li>
+        </ul>
+    </div>
+    <div class="menu-title">菜单二</div>
+    <div class="menu-items hide">
+        <ul>
+            <li><a href="">111</a></li>
+            <li><a href="">222</a></li>
+            <li><a href="">333</a></li>
+        </ul>
+    </div>
+    <div class="menu-title">菜单三</div>
+    <div class="menu-items hide">
+        <ul>
+            <li><a href="">111</a></li>
+            <li><a href="">222</a></li>
+            <li><a href="">333</a></li>
+        </ul>
+    </div>
+</div>
+
+<script src="jquery-3.2.1.min.js"></script>
+<script>
+    // 需求分析
+    // 找到所有的.menu-title标签,绑定点击事件
+        $(".menu-title").click(function () {
+               // 点击事件具体要做的事儿
+        // 1. 找到当前点击菜单下面的.menu-items,把它显示出来(移除hide类)
+//            $(this).next().removeClass("hide");
+            $(this).next().toggleClass("hide");
+            // 2. 把其他的.menu-items隐藏,添加hide类
+            $(this).next().siblings(".menu-items").addClass("hide");
+        })
+
+
+//    $(".menu-title").click(function () {
+//        // 1. 找到所有的.menu-items, 隐藏
+//        var $currMenuitem = $(this).next();
+//        $(".menu-items").not($currMenuitem).addClass("hide");  // 所有的二级菜单都是隐藏的
+//        // 2. 找到当前点击菜单下面的.menu-items,把它显示出来(移除hide类)
+//        $(this).next().toggleClass("hide");
+//    })
+
+</script>
+</body>
+</html>
