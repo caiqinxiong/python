@@ -3,93 +3,35 @@
     <head>
         <meta charset="UTF-8">
         <title>留言板</title>
-        <style type="text/css">
-            *{
-                padding: 0;
-                margin: 0;
-            }
-            .close{
-                display: inline-block;
-                width: 20px;
-                height: 20px;
-                line-height: 20px;
-                text-align: center;
-                cursor: pointer;
-                background-color: rgba(0,0,0,.1);
-                margin-left: 20px;
-            }
-        </style>
+        <link rel="stylesheet" href="../css/c1.css">
     </head>
     <body>
-        <h1>简易留言板</h1>
-        <div id="box">
-            <!--<ul>
-
-            </ul>-->
-
+        <h1>欢迎评论<span id = 'content'>雨之夜&秋</span>的博客</h1>
+        <div class="top clearfix">
+            <div class="left">评论内容：</div>
+            <div class="right">
+                <img src="../img/img.gif" alt="">
+            </div>
+            <div class="right">
+                <img src="../img/InsertCode.gif" alt="">
+            </div>
+            <div class="right">
+                <img src="../img/indent.png" alt="">
+            </div>
+            <div class="right">
+                <img src="../img/lk.png" alt="">
+            </div>
+            <div class="right">
+                <img src="../img/b.png" alt="">
+            </div>
+            <div class="right">
+                <img src="../img/quote.gif" alt="">
+            </div>
         </div>
         <textarea id="msg"></textarea>
-        <input type="button" id="btn" value="留言"/>
-        <button onclick="sum()">统计</button>
+        <input type="button" id="btn" value="提交评论"/>
+        <button onclick="sum()">统计评论数</button>
+    <div id="box"></div>
     </body>
-    <script type="text/javascript">
-
-        // 0 将ul标签添加到div#box标签中
-        var oUl = document.createElement('ul');
-        var oBox = document.getElementById('box');
-        oBox.appendChild(oUl);
-
-        var oBtn = document.getElementById('btn');
-        var oMsg = document.getElementById('msg')
-        // 控制留言的总数量
-        var count = 0;
-        oBtn.onclick = function(){
-
-
-            // 点击留言按钮事件操作
-            // 1.创建li标签
-            var oLi = document.createElement('li');
-            //2.设置内容
-            oLi.innerHTML = oMsg.value + "<span class='close'>X</span>"
-
-            // 3.如果想在插入的第一个li获取的前面继续添加li标签
-            //3.1获取li标签
-            var olis = document.getElementsByTagName('li');
-             //3.2 如果是第一次添加的li标签，则直接添加到ul的后面
-            if(olis.length == 0){
-                oUl.appendChild(oLi);
-                count++;
-
-            }else{
-                // 3.3 如果不是第一次添加的li标签，则插入到第一个li标签的前面
-                oUl.insertBefore(oLi,olis[0]);
-                count++;
-            }
-            // 4.添加完成之后 清空textarea的值
-            oMsg.value = '';
-
-
-            // 5.点击X的时候删除当前的一条数据
-            //5.1先获取所有的X
-            var oSpans = document.getElementsByTagName('span');
-
-            // 5.2for循环 对所有的X添加点击事件
-            for(var i = 0; i< oSpans.length; i++){
-                oSpans[i].onclick  = function(){
-                    // 5.3 移除当前的li标签
-                    oUl.removeChild(this.parentNode)
-                    count--;
-                }
-            }
-
-
-        }
-
-        function sum(){
-            alert('一共发布了'+count+'条留言');
-
-        }
-    </script>
+    <script src="../js/j1.js"></script>
 </html>
-
-示例

@@ -32,23 +32,29 @@ li.active {
     color: orangered;
 }
 
-p {
+table {
     display: none;
-    height: 200px;
     text-align: center;
-    line-height: 200px;
-    background-color: red;
+    float: left;
+    z-index: 1000;
+    /*background-color: orangered;*/
+}
+table td{
+    border-right: gainsboro 1px solid;
+}
+.td_last {
+    border:none;
 }
 
-p.active {
+table.active {
     display: block;
 
 }
 
 
 .cent img {
-    height: 50px;
-    width: 50px;
+    height: 110px;
+    width: 160px;
 }
 
 .cent input {
@@ -88,3 +94,11 @@ p.active {
 .pt {
     padding-top: 20px;
 }
+
+/*.left-t3 {*/
+/*    width: 1226px;*/
+/*    height: 460px;*/
+/*    background-image: url("../img/mi9Pro.jpg") ;*/
+/*    margin: 0 auto;*/
+/*    z-index: 0;*/
+/*}*/

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input{
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+<input type="text" id="time">
+<button id = 'switch'>开始</button>
+</body>
+<script>
+    var btn = document.getElementById('switch')
+    btn.onclick = function () {
+        switch (this.innerText){
+            case '开始':
+                this.innerText = '停止';
+                timer1 = setInterval(update,1000)
+                break;
+            case '停止':
+                this.innerText = '开始';
+                clearInterval(timer1)
+                break;
+        }
+    }
+    function update() {
+        var t = document.getElementById('time');
+        var dt = new Date();
+        t.value= dt.toLocaleString();
+    }
+</script>
+</html>
