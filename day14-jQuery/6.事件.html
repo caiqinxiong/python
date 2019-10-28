@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.js"></script>
+</head>
+<body>
+<div></div>
+<input type="text">
+<button>click</button>
+<button>click</button>
+</body>
+<script>
+    $(window).keyup(
+        function (event) {
+            if(event.keyCode===27){
+                window.close()
+            }
+        }
+    )
+    // $('input').change()
+    // $('div').mouseenter()
+    // $('div').mouseleave()
+    // $('div').mouseover()
+    // $('div').mouseout()
+    $('input').focus(function () {
+        $('input').css('background-color','yellow')
+        $('span').remove()
+    })    //获取焦点
+     $('input').blur(function () {
+        $('input').css('background-color','white')
+         if(!$('input').val()){
+            $('input').after('<span style="color:red">不能为空</span>')
+         }
+    })    //失去焦点
+    $('button:first').click(function () {
+        alert(event.data.k)
+    })
+    // $('button:first').click({'k':'v'},function (event) {
+    //     alert(event.data.k)
+    // })
+    // $('button:last').bind('click',{'k':'v'},function (event) {
+    //     alert('点击我啦')
+    //     console.log(event.data.k)
+    // })
+
+</script>
+</html>

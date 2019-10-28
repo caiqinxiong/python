@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: tomato;
+            display: none;
+        }
+    </style>
+    <script src="jquery.js"></script>
+</head>
+<body>
+<button>显示</button>
+<div></div>
+</body>
+<script>
+    $('button').click(
+        function () {
+            $('div').stop()
+            $('div').fadeIn(1000)
+        }
+    )
+</script>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.js"></script>
+    <style>
+        .city{
+            background-color: lightcyan;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li class="city">北京</li>
+    <li class="city">山东</li>
+</ul>
+<form action="">
+    <input type="text" value="alexander" readonly="readonly" class="lst">
+    <input type="text" value="alexander" readonly="readonly">
+    <input type="checkbox" name="hobby" value="1">
+    <input type="checkbox" name="hobby" value="2">
+    <input type="checkbox" name="hobby" value="3">
+    <input type="radio" name="sex" checked="checked"> 女
+    <input type="radio" name="sex"> 男
+</form>
+<button>在之前插入</button>
+<button>在之后插入</button>
+</body>
+<script>
+    $('button:first').click(
+        function () {
+            var province = prompt('请输入省份:')
+            var li = document.createElement('li')
+
+            li.innerText = province
+            $('ul').prepend(li)
+
+        })
+    $('button:last').click(
+        function () {
+            $('ul').append('<li>云南</li>')
+        })
+</script>
+</html>
