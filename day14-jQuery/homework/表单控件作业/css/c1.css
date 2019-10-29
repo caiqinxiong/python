@@ -1,0 +1,9 @@
+div {
+    display: none;
+}
+
+table {
+    width: 400px;
+    text-align: center;
+    background-color: lightblue;
+}
