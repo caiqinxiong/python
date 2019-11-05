@@ -5,6 +5,17 @@
     <title>Title</title>
 </head>
 <body>
-<h1 style="color: red">index页面</h1>
+<h1>欢迎来到<span id='content'>雨之夜&秋</span>书城首页</h1>
+<h2>请先登录后访问哦！</h2>
+<button><a href="/login/" >登录</a></button>
 </body>
+<script>
+    setInterval(f, 200);
+
+    function f() {
+        var content = document.getElementById('content');
+        var color = parseInt(Math.ceil(Math.random() * 16777216), 16);
+        content.style.color = '#' + color
+    }
+</script>
 </html>
