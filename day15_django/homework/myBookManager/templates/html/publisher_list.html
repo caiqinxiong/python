@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+{#    <link href="../css/c1.css" rel="stylesheet">#}
+    <style>
+        a{
+            text-decoration: none;
+        }
+        a:hover {
+            color: orange;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<h1>欢迎来到<span id='content'>雨之夜&秋</span>书城</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>序号</th>
+        <th>ID</th>
+        <th>出版社名称</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for publisher in all_publishers %}
+        <tr>
+            <td> {{ forloop.counter }} </td>
+            <td> {{ publisher.id }} </td>
+            <td> {{ publisher.name }} </td>
+            <td>
+                <a href="/publisher_del/?pk={{ publisher.pk }}">删除</a>
+                <a href="/publisher_edit/?pk={{ publisher.pk }}">编辑</a>
+            </td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+<button><a href="/publisher_add/={{ publisher.pk }}" >添加出版社</a></button>
+</body>
+<script>
+    setInterval(f, 200);
+
+    function f() {
+        var content = document.getElementById('content');
+        var color = parseInt(Math.ceil(Math.random() * 16777216), 16);
+        content.style.color = '#' + color
+    }
+</script>
+{#<script src="../js/j1.js"></script>#}
+</html>
