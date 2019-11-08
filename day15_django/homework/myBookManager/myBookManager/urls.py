@@ -36,4 +36,8 @@ urlpatterns = [
 
     # 出版社的编辑
     url(r'^publisher_edit/', views.publisher_edit),
+
+    # 出版社的查找
+    url(r'^publisher_find/', views.publisher_find),
+
 ]

@@ -23,7 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'qquir+dtje*4v2p8r9vzwigk3p0frs#zr0=in^s9y@mww61^aq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+DEBUG = True # 上线时要修改为false
 
 ALLOWED_HOSTS = ['*']
 
@@ -119,3 +120,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# 设置静态目录路径
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'static')
+
+]
+

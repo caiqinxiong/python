@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>出版社列表</title>
 {#    <link href="../css/c1.css" rel="stylesheet">#}
     <style>
         a{
@@ -42,6 +42,8 @@
     </tbody>
 </table>
 <button><a href="/publisher_add/={{ publisher.pk }}" >添加出版社</a></button>
+<button><a href="/publisher_find/={{ publisher.pk }}" >查找出版社</a></button>
+<button><a href="/index/={{ publisher.pk }}" >返回首页</a></button>
 </body>
 <script>
     setInterval(f, 200);

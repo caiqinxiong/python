@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponse
 from app01 import models
 
 # Create your views here.
@@ -74,4 +74,21 @@ def publisher_edit(request):
         return redirect('/publisher_list/')
 
     return render(request, 'html/publisher_edit.html', {'obj': obj})
+
+
+def publisher_find(request):
+    if request.method == 'POST':
+        # 获取提交的数据
+        pub_name = request.POST.get('pub_name')
+        # 校验
+        if not pub_name:
+            return render(request, 'html/publisher_find.html', {'error': '名称不能为空！！'})
+        find_publishers = models.Publisher.objects.filter(name=pub_name)
+        if find_publishers:
+            # 返回c查找信息
+            return render(request, 'html/publisher_list.html', {'all_publishers': find_publishers})
+        else:
+           return HttpResponse( '<h1>没有找到相关信息！</h1>')
+
+    return render(request, 'html/publisher_find.html')
 
