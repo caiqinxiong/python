@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block css %}
+
+
+{% endblock %}
+
+
+{% block content %}
+    <h2 class="sub-header">出版社列表</h2>
+
+    <a class="btn-sm btn btn-info" href="{% url 'pub_add' %}">添加</a>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>ID</th>
+                <th>出版社名称</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for publisher in all_publishers %}
+                <tr>
+                    <td> {{ forloop.counter }} </td>
+                    <td> {{ publisher.id }} </td>
+                    <td> {{ publisher.name }} </td>
+                    <td>
+                        <a class="btn btn-danger btn-sm" href="{% url 'pub_del' publisher.pk %}">删除</a>
+                        <a class="btn btn-danger btn-sm" href="{% url 'pub_del' pk=publisher.id %}">删除</a>
+                        <a class="btn btn-primary btn-sm" href="/publisher_edit/?pk={{ publisher.pk }}">编辑</a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

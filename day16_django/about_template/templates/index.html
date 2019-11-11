@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{{ l1.1 }}
+<br>
+{{ d.name }}  {{ d.keys }}  {{ d.values }}  {{ d.items }}
+
+<br>
+{{ person_list.0.name }} {{ person_list.0.age }}
+{{ person_list.0.dream }}
+<br>
+{{ d.keys }}
+<br>
+{{ xxx|default:"没有这个变量" }}\
+<br>
+{{ filesize|filesizeformat }}
+<br>
+{{ person_list |add:person_list|length }}
+
+<br>
+
+{{ l1|slice:'::-1' }}
+
+<br>
+{{ l1|last }}
+
+<br>
+{{ "如果字符串字符多于指定的字符数量，那么会被截断。截断的字符串将以可翻译的省略号"|truncatechars:'10' }}
+<br>
+{{ "如果 字符串 字符 多于 指定的字符数量，那么会被截断。截断的字符串将以可翻译的省略号"|truncatewords:'4' }}
+<br>
+{{ now }}
+
+<br>
+{{ a|safe }}
+
+<ul>
+
+    {% for i in l1 %}
+        <li>
+         {{ forloop }} - {{ i }}
+        </li>
+    {% endfor %}
+
+</ul>
+
+
+<ul>
+{% for user in person_list %}
+    <li>{{ user.name }}</li>
+{% empty %}
+    <li>空空如也</li>
+{% endfor %}
+</ul>
+
+
+{% if 3 < 1 %}
+    真
+{% elif 3 > 2 %}
+        elif
+{% else %}
+    假
+{% endif %}
+
+{% if 10 > 5  and 5 > 1  %}
+    真
+{% endif %}
+<br>
+
+{#{{ person_list.0.name }}#}
+{% with alex=person_list.0.name   %}
+{{ alex }}
+{{ alex }}
+{{ alex }}
+{{ alex }}
+{{ alex }}
+{{ alex }}
+
+{% endwith %}
+
+
+
+
+
+
+</body>
+</html>
