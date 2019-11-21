@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>书名: <input type="text" name="title" value="{{ book_obj.title }}"></p>
+        <p>出版社:
+            <select name="pub_id" id="">
+                {% for pub in all_pubs %}
+                     <option {% if book_obj.pub == pub %} selected{% endif %} value="{{ pub.pk }}">{{ pub.name }}</option>
+{#                    {% if book_obj.pub == pub %}#}
+{#                        <option selected value="{{ pub.pk }}">{{ pub.name }}</option>#}
+{#                    {% else %}#}
+{#                        <option value="{{ pub.pk }}">{{ pub.name }}</option>#}
+{#                    {% endif %}#}
+                {% endfor %}
+            </select>
+        </p>
+        <button>保存</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>
+            书名: <input type="text" name="title">
+        </p>
+        <p>
+            出版社:
+            <select name="pub_id" id="">
+            {% for pub in all_pubs %}
+                <option value="{{ pub.pk }}">{{ pub.name }}</option>
+            {% endfor %}
+            </select>
+        </p>
+        <button>新增</button>
+    </form>
+{% endblock %}
+

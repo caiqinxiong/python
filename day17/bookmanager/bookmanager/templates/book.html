@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <h2 class="sub-header">书籍列表</h2>
+
+    <a class="btn-sm btn btn-info" href="{% url 'book_add' %}">添加</a>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>ID</th>
+                <th>书籍名称</th>
+                <th>出版社</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for book in all_books %}
+                <tr>
+                    <td> {{ forloop.counter }} </td>
+                    <td> {{ book.pk }} </td>
+                    <td> {{ book.title }} </td>
+                    <td> {{ book.pub }} </td>
+                    <td>
+                        <a class="btn btn-danger btn-sm" href="{% url 'del' 'book' book.pk %}">删除</a>
+
+                        {#                        <a class="btn btn-danger btn-sm" href="{% url 'book_del' book.pk %}">删除</a>#}
+                        <a class="btn btn-primary btn-sm" href="{% url 'book_edit' book.pk %}">编辑</a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
