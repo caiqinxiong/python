@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>书城首页</title>
+</head>
+<body>
+<h1>欢迎来到<span id='content'>雨之夜&秋</span>书城首页</h1>
+<img src="../static/imgs/timg.jpg" alt="">
+<p>
+    <button><a href="/login/" >登录</a></button>
+    <button><a href="/app01/publisher/" >查看所有出版社信息</a></button>
+</p>
+</body>
+<script>
+    setInterval(f, 200);
+
+    function f() {
+        var content = document.getElementById('content');
+        var color = parseInt(Math.ceil(Math.random() * 16777216), 16);
+        content.style.color = '#' + color
+    }
+</script>
+</html>

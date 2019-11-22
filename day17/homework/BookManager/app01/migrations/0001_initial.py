@@ -45,4 +45,12 @@ class Migration(migrations.Migration):
             name='books',
             field=models.ManyToManyField(to='app01.Book'),
         ),
+        migrations.CreateModel(
+            name='User',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('username', models.CharField(max_length=32)),
+                ('password', models.CharField(max_length=32)),
+            ],
+        ),
     ]

@@ -7,6 +7,27 @@ from django.http.response import JsonResponse
 from django.views import View
 from django.utils.decorators import method_decorator
 
+def login(request):
+    # print(request.method,type(request.method))
+    if request.method == 'POST':
+        # 获取用户提交的数据
+        # print(request.POST,type(request.POST))
+        user = request.POST.get('user')
+        pwd = request.POST.get('password')
+        # print(user,type(user))
+        # print(pwd,type(pwd))
+        # 校验
+        if models.User.objects.filter(username=user,password=pwd):
+            # 校验成功跳转
+            return redirect('/app01/publisher/')
+        # 校验失败回复错误信息
+        return render(request, 'login.html', {'error': '用户名或密码错误'})
+    # 返回页面
+    return render(request, 'login.html')
+
+def index(request):
+    # 业务逻辑
+    return render(request, 'index.html')
 
 def get_data(request):
     ret = {'name': "alex", 'age': 84}  # 数字 字符串 列表  字典  None  布尔值
@@ -34,9 +55,12 @@ def timer(func):
 # 展示出版社
 @timer  # publisher_list = timer(publisher_list)
 def publisher_list(request, *args, **kwargs):
-    print(request.method)
-    if request.method == 'GET':
-        print(request.method)
+    # 查询所有的出版社的对象
+    all_publishers = models.Publisher.objects.all()  # QuerySet [ 对象 ]
+    if request.method == 'POST':
+        search = request.POST.get('search')
+        if not search:return HttpResponse('<h1>搜索内容不能为空！</h1>')
+        all_publishers = models.Publisher.objects.filter(name__contains=search)
     print(args)
     print(kwargs)
     # url = reverse('app01:pub')
@@ -47,9 +71,6 @@ def publisher_list(request, *args, **kwargs):
     #
     # url = reverse('app01:pub_del', kwargs={'pk':'100'})
     # print(url, type(url))
-
-    # 查询所有的出版社的对象
-    all_publishers = models.Publisher.objects.all()  # QuerySet [ 对象 ]
     # 返回一个页面
     return render(request, 'publisher_list.html', {'all_publishers': all_publishers})
 
@@ -139,6 +160,10 @@ def publisher_edit(request):
 
 def book_list(request):
     all_books = models.Book.objects.all()  # [book_obj]
+    if request.method == 'POST':
+        search = request.POST.get('search')
+        if not search:return HttpResponse('<h1>搜索内容不能为空！</h1>')
+        all_books = models.Book.objects.filter(title__contains=search)
     for book in all_books:
         print(book.pk)
         print(book.title)
@@ -201,7 +226,10 @@ def delete(request, table, pk):
 
 def author_list(request):
     all_authors = models.Author.objects.all()
-
+    if request.method == 'POST':
+        search = request.POST.get('search')
+        if not search:return HttpResponse('<h1>搜索内容不能为空！</h1>')
+        all_authors = models.Author.objects.filter(name__contains=search)
     for author in all_authors:
         print(author.pk)
         print(author.name)
