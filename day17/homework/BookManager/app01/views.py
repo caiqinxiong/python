@@ -7,6 +7,16 @@ from django.http.response import JsonResponse
 from django.views import View
 from django.utils.decorators import method_decorator
 
+def login_status(func):
+    def inner(request,*args,**kwargs):
+        is_login = request.COOKIES.get('is_login')
+        if not is_login:
+            url = request.path_info # 获取URL信息
+            return redirect("{}?return={}".format(reverse('login'),url))
+        ret = func(request,*args,**kwargs)
+        return ret
+    return inner
+
 def login(request):
     # print(request.method,type(request.method))
     if request.method == 'POST':
@@ -18,8 +28,16 @@ def login(request):
         # print(pwd,type(pwd))
         # 校验
         if models.User.objects.filter(username=user,password=pwd):
+            return_url = request.GET.get('return')
+            print(return_url)
+            if return_url:
+                response = redirect(return_url)
+            else:
+                response = redirect(reverse('publisher'))
+            # 设置登录状态的cookie
+            response.set_cookie('is_login',True) # 可以任意自定义
             # 校验成功跳转
-            return redirect('/app01/publisher/')
+            return response
         # 校验失败回复错误信息
         return render(request, 'login.html', {'error': '用户名或密码错误'})
     # 返回页面
@@ -54,6 +72,7 @@ def timer(func):
 # Create your views here.
 # 展示出版社
 @timer  # publisher_list = timer(publisher_list)
+@login_status
 def publisher_list(request, *args, **kwargs):
     # 查询所有的出版社的对象
     all_publishers = models.Publisher.objects.all()  # QuerySet [ 对象 ]
@@ -157,7 +176,7 @@ def publisher_edit(request):
 
     return render(request, 'publisher_edit.html', {'obj': obj})
 
-
+@login_status
 def book_list(request):
     all_books = models.Book.objects.all()  # [book_obj]
     if request.method == 'POST':
@@ -223,7 +242,7 @@ def delete(request, table, pk):
     model_class.objects.get(pk=pk).delete()
     return redirect(reverse(table))
 
-
+@login_status
 def author_list(request):
     all_authors = models.Author.objects.all()
     if request.method == 'POST':

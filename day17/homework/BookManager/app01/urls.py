@@ -2,9 +2,12 @@ from django.conf.urls import url
 from app01 import views
 
 urlpatterns = [
+    # 登录
+    url(r'^login/$', views.login, name='login'),
     # 出版社的展示
     # publisher/
     url(r'^publisher/$', views.publisher_list, name='publisher'),
+
     # 出版社的增加
     # url(r'^publisher/add/$', views.publisher_add, name='pub_add'),
     url(r'^publisher/add/$', views.PublisherAdd.as_view(), name='pub_add'),

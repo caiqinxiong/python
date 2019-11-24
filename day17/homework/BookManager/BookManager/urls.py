@@ -20,9 +20,6 @@ from app01 import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^app01/', include('app01.urls')),
-    # 登录认证
-    url(r'^login/', views.login),
-
     #首页
     url(r'^index/', views.index),
 
