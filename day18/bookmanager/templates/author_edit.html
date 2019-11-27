@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>
+            作者名: <input type="text" name="author_name" value="{{ author_obj.name }}">
+        </p>
+        <p>
+            代表作
+            <select name="book_id" id="" multiple>
+                {% for book in all_books %}
+                    {% if book in  author_obj.books.all %}
+                        <option selected value="{{ book.pk }}">{{ book.title }}</option>
+                    {% else %}
+                        <option value="{{ book.pk }}">{{ book.title }}</option>
+
+                    {% endif %}
+
+                {% endfor %}
+            </select>
+        </p>
+        <button>新增</button>
+    </form>
+{% endblock %}
+

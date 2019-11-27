@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="f1">
+    <button>上传</button>
+</form>
+
+
+<form action="" enctype="application/x-www-form-urlencoded"></form>
+
+<input type="file" id="f1">
+<button id="b1">上传</button>
+
+<script>
+    $('#b1').click(function () {
+
+        form_obj = new FormData();
+        form_obj.append('f1', $('#f1')[0].files[0]);
+        $.ajax({
+            url: '/file_upload/',
+            type: 'post',
+            data: form_obj,
+            processData: false, // 不需要处理数据的编码格式
+            contentType: false, // 不需要处理contentType请求头
+            success: function (res) {
+                alert('上传成功')
+
+            }
+        })
+
+    })
+</script>
+
+</body>
+</html>

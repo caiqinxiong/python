@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block author_active %}
+active
+{% endblock %}
+
+{% block content %}
+    <h2 class="sub-header">作者列表</h2>
+
+    <a class="btn-sm btn btn-info" href="{% url 'author_add' %}">添加</a>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>ID</th>
+                <th>作者名称</th>
+                <th>代表作</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for author in all_authors %}
+                <tr>
+                    <td> {{ forloop.counter }} </td>
+                    <td> {{ author.pk }} </td>
+                    <td> {{ author.name }} </td>
+                    <td>  {{ author.show_books }}
+{#                        {% for book in author.books.all %}#}
+{#                            《{{ book.title }}》#}
+{#                        {% endfor %}#}
+
+                     </td>
+
+                    <td>
+                        <a class="btn btn-danger btn-sm" href="{% url 'del' 'author' author.pk %}">删除</a>
+
+                        {#                        <a class="btn btn-danger btn-sm" href="{% url 'book_del' book.pk %}">删除</a>#}
+                        <a class="btn btn-primary btn-sm" href="{% url 'author_edit' author.pk %}">编辑</a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

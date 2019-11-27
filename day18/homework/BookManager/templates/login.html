@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>登录页面</title>
+</head>
+<body>
+<form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <p>
+        <label for="user">用户名：</label>
+        <input type="text" name="user" id="user" placeholder="username">
+    </p>
+    <p>
+        <label for="pwd">密 码：</label>
+        <input type="password" name="password" id="password" placeholder="password">
+    </p>
+    <p>
+        {{ error }}
+    </p>
+    <input type="submit" value="登录">
+</form>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+</head>
+<body>
+
+
+{% csrf_token %}
+
+<input type="text" name="i1" value="{{ i1 }}"> +
+<input type="text" name="i2" value="{{ i2 }}"> =
+<input type="text" name="i3" value="{{ i3 }}">
+<button id="b1">计算</button>
+
+<br>
+
+<input type="text" name="i11" value="{{ i1 }}"> +
+<input type="text" name="i22" value="{{ i2 }}"> =
+<input type="text" name="i33" value="{{ i3 }}">
+<button id="b2">计算</button>
+<br>
+<button id="b3">参数的测试</button>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+
+    $('#b1').click(function () {
+        //  获取前两个input框的值  发送给后端
+        // 发送ajax请求
+        $.ajax({
+            url: '/calc/',  //  请求的地址
+            type: 'post',  //  请求的方式
+            data: {       //  提交的数据
+                l1: $('[name="i1"]').val(),
+                l2: $('[name="i2"]').val(),
+                {#csrfmiddlewaretoken:$('[name="csrfmiddlewaretoken"]').val()#}
+            },
+            success: function (res) {    //  响应成功后执行的回调函数   res 响应体
+                $('[name="i3"]').val(res)
+            }
+
+        })
+    });
+
+    $('#b2').click(function () {
+        //  获取前两个input框的值  发送给后端
+        // 发送ajax请求
+        $.ajax({
+            url: '/calc2/',  //  请求的地址
+            type: 'post',  //  请求的方式
+            data: {       //  提交的数据
+                l1: $('[name="i11"]').val(),
+                l2: $('[name="i22"]').val(),
+            },
+            success: function (res) {    //  响应成功后执行的回调函数   res 响应体 自动做反序列化  {}
+                console.log(res)
+
+                $('[name="i33"]').val(res.data)
+            }
+
+        })
+    });
+    $('#b3').click(function () {
+        //  获取前两个input框的值  发送给后端
+        // 发送ajax请求
+        $.ajax({
+            url: '/test/',  //  请求的地址
+            type: 'post',  //  请求的方式
+            data: {       //  提交的数据
+                name: 'alexdsb',
+                age: 84,
+                hobby: JSON.stringify(['抽烟', '喝酒', '烫头'])
+            },
+            success: function (res) {    //  响应成功后执行的回调函数   res 响应体 自动做反序列化  {}
+                console.log(res)
+
+
+            }
+
+        })
+    })
+
+</script>
+
+<script src="/static/ajax_setup.js"></script>
+
+
+</body>
+</html>
