@@ -2,7 +2,7 @@ from django.utils.deprecation import MiddlewareMixin
 
 
 class AuthMD(MiddlewareMixin):
-    white_list = ['/login/', ]  # 白名单
+    white_list = ['/login/','/index/' ]  # 白名单
     black_list = ['/black/', ]  # 黑名单
 
     def process_request(self, request):
@@ -18,4 +18,3 @@ class AuthMD(MiddlewareMixin):
             return
         else:
             return redirect("/login/?return={}".format(next_url))
-        
