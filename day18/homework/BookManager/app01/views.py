@@ -7,6 +7,10 @@ from django.http.response import JsonResponse
 from django.views import View
 from django.utils.decorators import method_decorator
 
+def index(request):
+    # 业务逻辑
+    return render(request, 'index.html')
+
 def login_status(func):
     def inner(request,*args,**kwargs):
         is_login = request.COOKIES.get('is_login')
@@ -54,9 +58,30 @@ def login(request):
     # 返回页面
     return render(request, 'login.html')
 
-def index(request):
-    # 业务逻辑
-    return render(request, 'index.html')
+def register(request):
+    '''注册'''
+    if request.method == 'POST':
+        # 获取用户提交的数据
+        # print(request.POST,type(request.POST))
+        user = request.POST.get('user')
+        pwd1 = request.POST.get('password')
+        pwd2 = request.POST.get('password2')
+        print(user,type(user))
+        print(pwd1,type(pwd1))
+        # 校验
+        if not user or not pwd1 or not pwd2:
+            return render(request, 'register.html', {'error': '带*号输入内容不能为空！'})
+        elif models.User.objects.filter(username=user):
+            return render(request,'register.html',{'error':'用户名已存在！'})
+        elif pwd1 != pwd2:
+            return render(request, 'register.html', {'error': '两次输入密码不一致！'})
+        else:
+            models.User.objects.create(username=user,password=pwd1)
+            # return render(request, 'login.html')
+            return redirect(reverse('publisher'))
+    # 返回页面
+    return render(request, 'register.html')
+
 
 def get_data(request):
     ret = {'name': "alex", 'age': 84}  # 数字 字符串 列表  字典  None  布尔值

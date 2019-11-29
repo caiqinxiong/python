@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>注册页面</title>
+    <style>
+        span{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<form action="{% url 'register' %}" method="post">
+    {% csrf_token %}
+    <p>
+        <label for="user">用户名：</label>
+        <input type="text" name="user" id="user" placeholder="输入用户名">&nbsp;<span>*</span>
+    </p>
+    <p>
+        <label for="pwd">密码：</label>
+        <input type="password" name="password" id="password" placeholder="输入密码">&nbsp;<span>*</span>
+    </p>
+    <p>
+        <label for="pwd">确认密码：</label>
+        <input type="password" name="password2" id="password2" placeholder="确认密码">&nbsp;<span>*</span>
+    </p>
+    <P>
+        {{ error }}
+    </P>
+    <input type="submit" value="注册">
+</form>
+</body>
+</html>
