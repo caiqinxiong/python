@@ -16,8 +16,8 @@ urlpatterns = [
     url(r'^publisher_edit/$', views.publisher_edit),
 
     url(r'^book/$', views.book_list, name='book'),
-    url(r'^book/add/$', views.BookAdd.as_view(), name='book_add'),
-    url(r'^book/edit/(\d+)$', views.BookEdit.as_view(), name='book_edit'),
+    url(r'^book/add/$', views.book_change, name='book_add'),
+    url(r'^book/edit/(\d+)$', views.book_change, name='book_edit'),
     # url(r'^book/del/(\d+)$', views.book_del, name='book_del'),
     url(r'^(\w+)/del/(\d+)/$', views.delete, name='del'),
 

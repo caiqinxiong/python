@@ -228,6 +228,28 @@ def book_list(request):
     return render(request, 'book.html', {'all_books': all_books})
 
 
+from django import forms
+class BookForm(forms.ModelForm):
+    class Meta:
+        model = models.Book
+        fields = '__all__'
+
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+
+
+def book_change(request,pk=None):
+    obj = models.Book.objects.filter(pk=pk).first()
+    form_obj =BookForm(instance=obj)
+    if request.method == 'POST':
+        form_obj = BookForm(data=request.POST,instance=obj)
+        if form_obj.is_valid():
+            form_obj.save()
+            return redirect(reverse('book'))
+    return render(request,'form.html',{'form_obj':form_obj})
+
 class BookAdd(View):
 
     def get(self, request):
@@ -273,10 +295,12 @@ def book_del(request, pk):
     return redirect('book')
 
 
+from  django.http.response import JsonResponse
 def delete(request, table, pk):
     model_class = getattr(models, table.capitalize())
     model_class.objects.get(pk=pk).delete()
-    return redirect(reverse(table))
+    # return redirect(reverse(table))
+    return JsonResponse({'status':True,'url':reverse(table)})
 
 # @login_status
 def author_list(request):

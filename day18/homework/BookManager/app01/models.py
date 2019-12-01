@@ -1,12 +1,12 @@
 from django.db import models
 
 class User(models.Model):
-    username = models.CharField(max_length=32)  # varchar(32)
-    password = models.CharField(max_length=32)  # varchar(32)
+    username = models.CharField(max_length=32,verbose_name='用户名')  # varchar(32)
+    password = models.CharField(max_length=32,verbose_name='密码')  # varchar(32)
 
     
 class Publisher(models.Model):
-    name = models.CharField(max_length=32)
+    name = models.CharField(max_length=32,verbose_name='出版社')
 
     def __str__(self):
         return self.name
@@ -15,8 +15,8 @@ class Publisher(models.Model):
 
 
 class Book(models.Model):
-    title = models.CharField(max_length=32)
-    pub = models.ForeignKey('Publisher', on_delete=models.CASCADE,)  # pub_id
+    title = models.CharField(max_length=32,verbose_name='书名')
+    pub = models.ForeignKey('Publisher', on_delete=models.CASCADE,verbose_name='出版社')  # pub_id
     # authors = models.ManyToManyField('Author')
     #  CASCADE 级连删除   on_delete 2.0 版本后是必填项
     # SET(1)

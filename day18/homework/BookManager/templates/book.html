@@ -28,7 +28,7 @@
                     <td> {{ book.title }} </td>
                     <td> {{ book.pub }} </td>
                     <td>
-                        <a class="btn btn-danger btn-sm" href="{% url 'del' 'book' book.pk %}">删除</a>
+                        <button class="btn btn-danger btn-sm" href="{% url 'del' 'book' book.pk %}">删除</button>
 
                         {#                        <a class="btn btn-danger btn-sm" href="{% url 'book_del' book.pk %}">删除</a>#}
                         <a class="btn btn-primary btn-sm" href="{% url 'book_edit' book.pk %}">编辑</a>
@@ -40,3 +40,4 @@
         </table>
     </div>
 {% endblock %}
+
