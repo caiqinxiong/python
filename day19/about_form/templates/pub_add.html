@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="" method="post" novalidate>
+    {% csrf_token %}
+    <label for="{{ form_obj.name.id_for_label }}">{{ form_obj.name.label }}</label>
+    {{ form_obj.name }} {{ form_obj.name.errors.0 }}
+
+    {{ form_obj.errors }}
+    <button>新增</button>
+
+</form>
+
+</body>
+</html>
