@@ -76,6 +76,8 @@ class Excel:
                 # 剔除列表中多余数据
                 # log.readAndWrite('删除数据%s' % date)
                 if date in date_list:del date_list[date_list.index(date)] # 可能上次循环已经删除，所以要判断一下数据是否还在列表中
+        else:
+            log.readAndWrite('数据筛选完成，共%s条数据，删除了%s条，剩余%s条！' % (len(tmp_list),len(tmp_list)-len(date_list),len(date_list)))
         return date_list
 
     def split_list(self,date_list):
@@ -92,24 +94,3 @@ class Excel:
         else:
             log.readAndWrite('数据列表拆分，把第一类测试和第二类测试数据分开!')
         return ft_list,tct_list
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
