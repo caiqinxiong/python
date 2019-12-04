@@ -29,7 +29,8 @@ class Log(object):
     @staticmethod
     def readOnly(content):
         '''自定义函数，只打印日志'''
-        print('\033[36;1m%s\033[0m' % content)
+        # print('\033[36;1m%s\033[0m' % content)
+        print(content)
 
     @classmethod
     def readAndWrite(cls,content):

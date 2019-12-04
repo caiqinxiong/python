@@ -11,8 +11,8 @@ DATA_TIME = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
 # 表格读取开始行数，索引从0开始
 START_ROW = 7 # 从表格第8行开始读
 
-# 管壳号 的列号，索引从0开始
-KEGUAN = 1
+# 器件编号 的列号，索引从0开始
+KEGUAN = 2
 
 # 测试时间 的列号，索引从0开始
 TSTM = 3
@@ -22,13 +22,14 @@ TSRS = 11
 
 # 保存的表格名称
 TABLE_NAME = 'NETD测试数据汇总'
-TABLE_NAME = TABLE_NAME + '_' + DATA_TIME + '.xlsx'
+TABLE_NAME = TABLE_NAME + '_' + DATA_TIME + '.xls'
 
 # 表格sheet页名称
 SHEET_SOURCE = '原始数据整合页'
 SHEET_FILTER = '筛选后的数据'
-SHEET_FC = 'FC'
+SHEET_FT = 'FT'
 SHEET_TCT = 'TCT'
+SHEET_EXCEPT = '异常数据'
 
 # 基目录
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -51,4 +52,4 @@ OUPUT_FILE = os.path.join(OUTPUT_PATH,TABLE_NAME)
 # 日志文件路径
 LOG_PATH = os.path.join(BASE_DIR,'log')
 if not os.path.exists(LOG_PATH):os.makedirs(LOG_PATH)
-LOG_FILE = r'%s/%s-log' % (LOG_PATH,DAY_TIME)
+LOG_FILE = r'%s/%s-log.txt' % (LOG_PATH,DAY_TIME)

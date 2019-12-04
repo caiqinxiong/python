@@ -26,13 +26,13 @@ def run():
     ex().write_excel(date_list, ss.SHEET_FILTER, ss.OUPUT_FILE)
 
     # 5.将数据拆分成FC和TCT
-    log.readAndWrite('开始将数据拆分成第一类测试FC数据和第二类测试TCT数据！')
+    log.readAndWrite('开始将数据拆分成第一类测试%s数据和第二类测试%s数据！' % (ss.SHEET_FT,ss.SHEET_TCT))
     ft_list, tct_list = ex().split_list(date_list)
 
     # 6.将第一类测试FC数据写入表格
-    log.readAndWrite('开始将第一类测试FC数据写入表格！')
-    ex().write_excel(ft_list, ss.SHEET_FC, ss.OUPUT_FILE)
+    log.readAndWrite('开始将第一类测试%s数据写入表格！' % ss.SHEET_FT)
+    ex().write_excel(ft_list, ss.SHEET_FT, ss.OUPUT_FILE)
 
     # 7.将第二类测试TCT数据写入表格
-    log.readAndWrite('开始将第二类测试TCT数据写入表格！')
+    log.readAndWrite('开始将第二类测试%s数据写入表格！' % ss.SHEET_TCT)
     ex().write_excel(tct_list, ss.SHEET_TCT, ss.OUPUT_FILE)
