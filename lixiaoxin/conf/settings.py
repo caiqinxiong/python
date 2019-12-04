@@ -30,6 +30,8 @@ SHEET_FILTER = '筛选后的数据'
 SHEET_FT = 'FT'
 SHEET_TCT = 'TCT'
 SHEET_EXCEPT = '异常数据'
+SHEET_ONE = '器件只有一个日期'
+SHEET_MORE = '器件有多个日期'
 
 # 基目录
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -53,3 +55,6 @@ OUPUT_FILE = os.path.join(OUTPUT_PATH,TABLE_NAME)
 LOG_PATH = os.path.join(BASE_DIR,'log')
 if not os.path.exists(LOG_PATH):os.makedirs(LOG_PATH)
 LOG_FILE = r'%s/%s-log.txt' % (LOG_PATH,DAY_TIME)
+
+# 临时文件目录
+TMP_DIR = os.path.join(DB_PATH,'tmp')
