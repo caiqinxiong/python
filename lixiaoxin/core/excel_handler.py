@@ -79,17 +79,35 @@ class Excel:
             log.readAndWrite('生成器件文件信息完成！')
         return date_list
 
-    def eliminate_date(self, file_list, tmp_list,TSRS='不通过'):
+
+    def eliminate_date(self, file_list, tmp_list, ft_time, TSRS):
         '''剔除多余数据'''
+        date = []
         for i in (range(1, len(tmp_list))):
-            if tmp_list[i - 1][ss.KEGUAN] == tmp_list[i][ss.KEGUAN] and tmp_list[i - 1][ss.TSTM].split()[0] == tmp_list[i][ss.TSTM].split()[0]:
-                if tmp_list[i - 1][ss.TSRS] == tmp_list[i][ss.TSRS]:
-                    date = tmp_list[i - 1] if tmp_list[i - 1][ss.TSTM].split()[1] < tmp_list[i][ss.TSTM].split()[1] else tmp_list[i]
-                else:
-                    date = tmp_list[i - 1] if tmp_list[i - 1][ss.TSRS] == TSRS else tmp_list[i]
+            if TSRS == '通过': # TCT均为通过
+                # 1.1 FT测试中有通过和不通过的情况，则认为FT测试通过，取通过的最新数据
+                if ft_time == tmp_list[i][ss.TSTM].split()[0] and tmp_list[i][ss.TSRS] == '不通过':
+                    date = tmp_list[i] # 直接删除不通过的数据
+                # 1.2 FT均为通过，取通过的最新数据
+                elif tmp_list[i - 1][ss.TSTM].split()[0] == tmp_list[i][ss.TSTM].split()[0] and tmp_list[i -1][ss.TSRS] == tmp_list[i][ss.TSRS]: # 同一类测试比较
+                    t1 = datetime.datetime.strptime(tmp_list[i - 1][ss.TSTM].split()[1], '%H:%M:%S')
+                    t2 = datetime.datetime.strptime(tmp_list[i][ss.TSTM].split()[1], '%H:%M:%S')
+                    t = t1 - t2
+                    date = tmp_list[i - 1] if t.seconds < 0 else tmp_list[i]
+            else:# TCT均为不通过
+                # 2.1 FT测试中有通过有不通过情况，则认为FT测试不通过，取不通过的最新数据
+                if ft_time == tmp_list[i][ss.TSTM].split()[0] and tmp_list[i][ss.TSRS] == '通过':
+                    date = tmp_list[i] # 直接删除通过的数据
+                # 2.3 FT测试均不通过，取不通过的最新数据
+                elif tmp_list[i - 1][ss.TSTM].split()[0] == tmp_list[i][ss.TSTM].split()[0] and tmp_list[i -1][ss.TSRS] == tmp_list[i][ss.TSRS]: # 同一类测试比较
+                    t1 = datetime.datetime.strptime(tmp_list[i - 1][ss.TSTM].split()[1], '%H:%M:%S')
+                    t2 = datetime.datetime.strptime(tmp_list[i][ss.TSTM].split()[1], '%H:%M:%S')
+                    t = t1 - t2
+                    date = tmp_list[i - 1] if t.seconds < 0 else tmp_list[i]
                 # 剔除列表中多余数据
-                if date in file_list: del file_list[file_list.index(date)]  # 可能上次循环已经删除，所以要判断一下数据是否还在列表中
+            if date in file_list: del file_list[file_list.index(date)]  # 可能上次循环已经删除，所以要判断一下数据是否还在列表中
         return file_list
+
 
     def split_list(self, file_list,tct_list,ft_list,tct_time,ft_time):
         '''数据列表拆分，把第一类测试和第二类测试数据分开'''
@@ -165,7 +183,7 @@ class Excel:
             if 0 != len(ft_nopass_list) and 0 == len(ft_pass_list):  # TCT均为通过,FT均不通过，异常
                 except_list = self.append_to_list(file_list, except_list)
             else:  # TCT均为通过,FT有通过
-                file_list = self.eliminate_date(file_list, tmp_list, '不通过')
+                file_list = self.eliminate_date(file_list, tmp_list, ft_time, TSRS = '通过')
                 filter_list = self.append_to_list(file_list, filter_list)
                 tct_list, ft_list = self.split_list(file_list, tct_list, ft_list, tct_time, ft_time)
         # TCT有通过，有不通过，则将该器件的FT和TCT测试数据均挑出，为异常数据
@@ -173,10 +191,10 @@ class Excel:
             except_list = self.append_to_list(file_list, except_list)
         # TCT均不通过
         elif 0 == len(tct_pass_list) and 0 != len(tct_nopass_list):
-            if 0 == len(ft_nopass_list) and 0 != len(ft_pass_list):  # TCT均不通过,FT均通过，异常
+            if 0 == len(ft_nopass_list) and 0 != len(ft_pass_list):  # 2.2 TCT均不通过, FT测试均通过，异常，加入异常数据表
                 except_list = self.append_to_list(file_list, except_list)
             else:  # TCT均为不通过（不管几次），FT测试中有通过有不通过，则认为FT测试不通过，以最后一次FT测试结果为准。FT取不通过的结果
-                file_list = self.eliminate_date(file_list, tmp_list, '通过')
+                file_list = self.eliminate_date(file_list, tmp_list, ft_time, TSRS = '不通过')
                 filter_list = self.append_to_list(file_list, filter_list)
                 tct_list, ft_list = self.split_list(file_list, tct_list, ft_list, tct_time, ft_time)
         else:

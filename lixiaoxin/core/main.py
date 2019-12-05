@@ -53,5 +53,5 @@ def run():
         ex().write_excel(more_test_list, ss.SHEET_MORE, ss.OUPUT_FILE)
 
     # 11.清理临时文件
-    log.readAndWrite('*'*200 + '\n' + '数据筛选完成!表格路径如下：\n%s' % ss.OUPUT_FILE + '\n' + '*'*200  )
+    log.readAndWrite('\n' +'*'*200 + '\n' + '数据筛选完成!表格路径如下：\n%s' % ss.OUPUT_FILE + '\n' + '*'*200  )
     if os.path.exists(ss.TMP_DIR):shutil.rmtree(ss.TMP_DIR)
