@@ -11,7 +11,6 @@ class Log(object):
     '''
     https://cloud.tencent.com/developer/article/1354396
     '''
-    now_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
     sh = logging.StreamHandler()  # 既打印输入又写入文件
     # rh = handlers.RotatingFileHandler(ss.log_file, maxBytes=1024,backupCount=5) # 按大小切换日志，保留5份
     fh = handlers.TimedRotatingFileHandler(filename=ss.LOG_FILE, when='D', backupCount=5, interval=5,encoding='utf-8')  # 按时间切割日志
@@ -23,8 +22,9 @@ class Log(object):
     @staticmethod
     def writeOnly(content):
         '''自定义函数，只写入日志文件'''
+        now_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
         with open(ss.LOG_FILE, mode='a', encoding='utf-8') as f:
-            f.write(Log.now_time + '\t' + str(content) + '\n')
+            f.write(now_time + '\t' + str(content) + '\n')
 
     @staticmethod
     def readOnly(content):

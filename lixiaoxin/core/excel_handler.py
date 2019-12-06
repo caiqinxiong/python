@@ -23,10 +23,43 @@ class Excel:
         # 从表格中读取数据，追加到列表中
         log.readAndWrite('从表格中读取数据，追加到列表中,跳过表头从%s行开始读取数据，共%s行数据！' % (start_row, sheet.nrows - start_row))
         for i in range(start_row,sheet.nrows):
+        # for i in range(start_row,10):
             date_list.append(sheet.row_values(i))
         else:
             log.readAndWrite('数据读取完成！')
         return date_list
+
+    def table_style(self,sheet):
+        '''设置表格格式'''
+        # 创建一个样式对象，初始化样式
+        style = xlwt.XFStyle()  # Create style
+        # 设置列宽
+        qijian_col = sheet.col(ss.KEGUAN)  # 设置器件列宽
+        qijian_col.width = 256 * 18  # 256为衡量单位，18表示18个字符宽度
+        time_col = sheet.col(ss.TSTM)  # 设置时间列宽
+        time_col.width = 256 * 20
+        borders = xlwt.Borders()  # Create borders
+        borders.top = xlwt.Borders.THIN  # 添加上边框
+        borders.bottom = xlwt.Borders.THIN  # 添加下边框
+        borders.right = xlwt.Borders.THIN  # 添加右边框
+        borders.left = xlwt.Borders.THIN  # 添加左边框
+        # borders.left_colour = 0x90  # 边框上色
+        # borders.right_colour = 0x90
+        # borders.top_colour = 0x90
+        # borders.bottom_colour = 0x90
+        style.borders = borders  # Add borders to style
+
+        al = xlwt.Alignment()
+        al.horz = 0x02  # 设置水平居中
+        al.vert = 0x01  # 设置垂直居中
+        style.alignment = al
+
+        return style
+
+    def table_head(self,head_list,sheet):
+        ''''表头'''
+        sheet.write_merge()
+
 
     def write_excel(self, date_list, sheet_name, save_path):
         '''将数据写入新的表格'''
@@ -41,10 +74,11 @@ class Excel:
         # 创建一个sheet表
         log.readAndWrite('添加sheet页“%s”' % sheet_name)
         sheet = workbook.add_sheet(sheet_name, cell_overwrite_ok=True)
+        style = self.table_style(sheet) # 设置表格格式
         log.readAndWrite('开始往“%s”中写入数据，共%s行!' % (sheet_name, len(date_list)))
         for i in range(len(date_list)):
             for j in range(len(date_list[i])):
-                sheet.write(i, j, date_list[i][j])
+                sheet.write(i, j, date_list[i][j], style)
         else:
             log.readAndWrite('“%s”数据填写完成！' % sheet_name)
         # 将数据写入表格
@@ -173,6 +207,7 @@ class Excel:
         return date_list
 
     def filter_ft_tct(self,time_list,file_list,except_list,filter_list,tct_list,ft_list):
+        '''数据筛选主逻辑'''
         # 获取TCT测试时间
         tct_time, ft_time = self.ft_tct_time(time_list)
         # 获取测试结果信息
@@ -203,7 +238,7 @@ class Excel:
 
 
     def filter_date(self):
-        '''筛选数据'''
+        '''数据筛选入口函数'''
         path = ss.TMP_DIR
         filter_list = [] # 筛选后的数据
         ft_list = [] # 第一类测试
@@ -227,3 +262,5 @@ class Excel:
 
 
 
+# date_list = Excel().read_excel(r'E:\python_test\python\lixiaoxin\db\input\20191106(1)_analysis.xlsx',[])
+# print(date_list)

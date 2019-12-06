@@ -58,3 +58,23 @@ LOG_FILE = r'%s/%s-log.txt' % (LOG_PATH,DAY_TIME)
 
 # 临时文件目录
 TMP_DIR = os.path.join(DB_PATH,'tmp')
+
+
+#########################################
+# 表格合并设置
+#########################################
+RESULT_CSV = '_result.csv' # 获取的表格后缀
+CSV_NAME = '坏点汇总表' # 合并后生成的表名称
+CSV_NAME =  os.path.join(OUTPUT_PATH,CSV_NAME + '_' + DATA_TIME + '.xls')
+CSV_SHEET = '坏点汇总' # 表格里的sheet页名称
+CSV_INPUT = INPUT_PATH # 直接将原始数据拷贝到input目录下
+# 或自定义路径
+# CSV_INPUT = r'C:\Users\ES-IT-PC-193\Desktop\lixiaoxin\原始数据'
+########################################
+
+
+
+
+
+
+
