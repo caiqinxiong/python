@@ -15,15 +15,15 @@ from core.log import Log as log
 
 class Excel:
 
-    def read_excel(self, excel, date_list, start_row=0, sheet_index=0):
+    def read_excel(self, excel, date_list, start_row=0, end_row=0, sheet_index=0):
         '''读取表格信息'''
         workbook = xlrd.open_workbook(excel)
         # 选择第1个sheet表，索引从0开始
         sheet = workbook.sheet_by_index(sheet_index)
+        if not end_row:end_row = sheet.nrows
         # 从表格中读取数据，追加到列表中
         log.readAndWrite('从表格中读取数据，追加到列表中,跳过表头从%s行开始读取数据，共%s行数据！' % (start_row, sheet.nrows - start_row))
-        for i in range(start_row,sheet.nrows):
-        # for i in range(start_row,10):
+        for i in range(start_row,end_row):
             date_list.append(sheet.row_values(i))
         else:
             log.readAndWrite('数据读取完成！')
@@ -56,9 +56,12 @@ class Excel:
 
         return style
 
-    def table_head(self,head_list,sheet):
+    def table_head(self,excel,sheet):
         ''''表头'''
-        sheet.write_merge()
+        head_list = []
+        head_list = self.read_excel(excel,head_list,start_row=5,end_row=7)
+        print(head_list)
+        sheet.write_merge(0,1,i)
 
 
     def write_excel(self, date_list, sheet_name, save_path):
@@ -262,5 +265,5 @@ class Excel:
 
 
 
-# date_list = Excel().read_excel(r'E:\python_test\python\lixiaoxin\db\input\20191106(1)_analysis.xlsx',[])
-# print(date_list)
+date_list = Excel().table_head(r'/Users/caiqinxiong/PycharmProjects/python/lixiaoxin/db/input/20191106(1)_analysis.xlsx')
+print(date_list)
