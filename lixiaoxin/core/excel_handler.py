@@ -29,15 +29,19 @@ class Excel:
             log.readAndWrite('数据读取完成！')
         return date_list
 
-    def table_style(self,sheet):
+    def table_style(self,sheet,flag):
         '''设置表格格式'''
         # 创建一个样式对象，初始化样式
         style = xlwt.XFStyle()  # Create style
+        if flag <2: style = self.background_color()
         # 设置列宽
         qijian_col = sheet.col(ss.KEGUAN)  # 设置器件列宽
         qijian_col.width = 256 * 18  # 256为衡量单位，18表示18个字符宽度
         time_col = sheet.col(ss.TSTM)  # 设置时间列宽
         time_col.width = 256 * 20
+        for i in range(4,13):
+            mk_col = sheet.col(i)
+            mk_col.width = 256 * 15
         borders = xlwt.Borders()  # Create borders
         borders.top = xlwt.Borders.THIN  # 添加上边框
         borders.bottom = xlwt.Borders.THIN  # 添加下边框
@@ -56,12 +60,18 @@ class Excel:
 
         return style
 
-    def table_head(self,excel,sheet):
-        ''''表头'''
-        head_list = []
-        head_list = self.read_excel(excel,head_list,start_row=5,end_row=7)
-        print(head_list)
-        sheet.write_merge(0,1,i)
+    def background_color(self):
+        '''设置表格背景颜色'''
+        # pattern = xlwt.Pattern()
+        # pattern.pattern = xlwt.Pattern.SOLID_PATTERN
+        # # 背景颜色: 17 = Dark Green, 18 = Dark Blue, 19 = Dark Yellow , almost brown), 20 = Dark Magenta, 21 = Teal, 22 = Light Gray, 23 = Dark Gray
+        # pattern.pattern_fore_colour = 3
+        # style.pattern = pattern
+        # # 字体加粗
+        # style = xlwt.easyxf('font: bold on')
+        # 样式合并
+        style = xlwt.easyxf('pattern: pattern solid, fore_colour ice_blue; font: bold on')
+        return style
 
 
     def write_excel(self, date_list, sheet_name, save_path):
@@ -77,11 +87,22 @@ class Excel:
         # 创建一个sheet表
         log.readAndWrite('添加sheet页“%s”' % sheet_name)
         sheet = workbook.add_sheet(sheet_name, cell_overwrite_ok=True)
-        style = self.table_style(sheet) # 设置表格格式
+        # style = self.table_style(sheet) # 设置表格格式
+        # 插入表头数据
+        for i in ss.HEAD_LIST:date_list.insert(0,i)
         log.readAndWrite('开始往“%s”中写入数据，共%s行!' % (sheet_name, len(date_list)))
         for i in range(len(date_list)):
+            style = self.table_style(sheet, i)  # 设置表格格式
             for j in range(len(date_list[i])):
-                sheet.write(i, j, date_list[i][j], style)
+                if i == 0:
+                    if j == 4:
+                        sheet.write_merge(i,i,j,j+8,date_list[i][j], style)
+                    else:
+                        sheet.write_merge(i,i+1,j,j,date_list[i][j], style)
+                elif i == 1:
+                    sheet.write_merge(i, i, j, j, date_list[i][j], style)
+                else:
+                    sheet.write(i, j, date_list[i][j], style)
         else:
             log.readAndWrite('“%s”数据填写完成！' % sheet_name)
         # 将数据写入表格
@@ -262,8 +283,3 @@ class Excel:
                 more_test_list = self.append_to_list(file_list,more_test_list)
 
         return filter_list,ft_list,tct_list,except_list,one_test_list,more_test_list
-
-
-
-date_list = Excel().table_head(r'/Users/caiqinxiong/PycharmProjects/python/lixiaoxin/db/input/20191106(1)_analysis.xlsx')
-print(date_list)

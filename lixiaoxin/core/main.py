@@ -13,17 +13,17 @@ def run():
     log.readAndWrite('开始合并表格数据!')
     date_list = ex().merger_excel()
 
-    # 2.将合并后的数据写入表格
-    log.readAndWrite('开始将合并后的数据写入表格！')
-    ex().write_excel(date_list, ss.SHEET_SOURCE, ss.OUPUT_FILE)
-
-    # 3.生成每个器件文件信息
+    # 2.生成每个器件文件信息
     log.readAndWrite('开始生成器件文件信息！')
     ex().device_file(date_list)
 
-    # 4.过滤数据
+    # 3.过滤数据
     log.readAndWrite('开始过滤数据！')
     filter_list,ft_list,tct_list,except_list,one_test_list,more_test_list = ex().filter_date()
+
+    # 4.将合并后的数据写入表格
+    log.readAndWrite('开始将合并后的数据写入表格！')
+    ex().write_excel(date_list, ss.SHEET_SOURCE, ss.OUPUT_FILE)
 
     # 5.将筛选后的数据写入表格
     log.readAndWrite('开始将筛选后的数据写入表格！')

@@ -20,6 +20,10 @@ TSTM = 3
 # 测试结果 的列号，索引从0开始
 TSRS = 11
 
+# 表头
+HEAD_LIST = [['', '', '', '', 'NETD（mK）', '响应率(mV/K)', '平均噪声', '盲元数（个）', '坏列（条）', '坏行（条）', '坏斑（个）', '测试结果', '备注'],
+             ['序号', '管壳号', '器件编号', '测试时间', '封装后测试统计结果', '', '', '', '', '', '', '', '']]
+
 # 保存的表格名称
 TABLE_NAME = 'NETD测试数据汇总'
 TABLE_NAME = TABLE_NAME + '_' + DATA_TIME + '.xls'
@@ -69,7 +73,7 @@ CSV_NAME =  os.path.join(OUTPUT_PATH,CSV_NAME + '_' + DATA_TIME + '.xls')
 CSV_SHEET = '坏点汇总' # 表格里的sheet页名称
 CSV_INPUT = INPUT_PATH # 直接将原始数据拷贝到input目录下
 # 或自定义路径
-# CSV_INPUT = r'C:\Users\ES-IT-PC-193\Desktop\lixiaoxin\原始数据'
+CSV_INPUT = r'C:\Users\ES-IT-PC-193\Desktop\lixiaoxin\原始数据'
 ########################################
 
 
