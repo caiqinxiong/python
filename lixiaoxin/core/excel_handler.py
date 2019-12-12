@@ -4,6 +4,7 @@ __author__ = 'caiqinxiong_cai'
 import os
 import xlrd
 import xlwt
+# import openpyxl
 import json
 import shutil
 import copy
@@ -39,7 +40,7 @@ class Excel:
         qijian_col.width = 256 * 18  # 256为衡量单位，18表示18个字符宽度
         time_col = sheet.col(ss.TSTM)  # 设置时间列宽
         time_col.width = 256 * 20
-        for i in range(4,13):
+        for i in range(4,13):# 4到12列的宽度
             mk_col = sheet.col(i)
             mk_col.width = 256 * 15
         borders = xlwt.Borders()  # Create borders
@@ -95,7 +96,7 @@ class Excel:
             style = self.table_style(sheet, i)  # 设置表格格式
             for j in range(len(date_list[i])):
                 if i == 0:
-                    if j == 4:
+                    if j == 4:# 表头合并单元格
                         sheet.write_merge(i,i,j,j+8,date_list[i][j], style)
                     else:
                         sheet.write_merge(i,i+1,j,j,date_list[i][j], style)
