@@ -10,4 +10,5 @@ print(d2)
 delta = d1 - d2
 print(delta)
 print(delta.days)
+print(delta.seconds)
 

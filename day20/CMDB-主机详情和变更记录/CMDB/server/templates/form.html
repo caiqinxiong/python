@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+{% block css %}
+
+    <link rel="stylesheet" href="{% static 'plugins/datetimepicker/css/bootstrap-datetimepicker.min.css' %}">
+
+{% endblock %}
+{% block content %}
+
+
+
+    <form class="form-horizontal col-lg-12" style="margin-top: 30px" method="post" novalidate>
+        {% csrf_token %}
+
+        {% for field in form_obj %}
+
+            <div class="form-group {% if field.errors %}has-error{% endif %} ">
+
+                <label for="{{ field.id_for_label }}"
+                       class="col-sm-offset-2 col-sm-2 control-label">{{ field.label }}</label>
+                <div class="col-sm-5">
+                    {{ field }}
+                </div>
+                <span class="help-block">{{ field.errors.0 }}</span>
+
+            </div>
+        {% endfor %}
+
+
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-5">
+                <button type="submit" class="btn btn-default">保存</button>
+            </div>
+        </div>
+    </form>
+
+
+
+
+{% endblock %}
+
+
+{% block js %}
+
+
+    <script src="{% static 'plugins/datetimepicker/js/bootstrap-datetimepicker.min.js' %}"></script>
+    <script src="{% static 'plugins/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js' %}"></script>
+
+    <script type="text/javascript">
+        $("#id_latest_date").datetimepicker({
+            language:'zh-CN',
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayBtn: true,
+            minView: 'month'
+        });
+    </script>
+
+{% endblock %}

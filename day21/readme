@@ -1,0 +1,71 @@
+
+# 张开
+
+# 课程安排
+    -- 2天测试
+    -- 武sir讲2天代码发布
+    -- 年后，2天的爬虫
+
+#  测试的安排
+    -- requests
+    -- selenium
+    -- unittest框架
+    -- Django写个自动化的接口测试平台
+# 今天课程安排
+    -- requests
+        - 常用的方法
+        - 结合bs4库爬取
+            - 图片
+            - 视频
+            - 大量的数据
+    -- selenium
+        - webdriver
+            - 元素定位
+                - id
+                - class
+                - xpath
+        - selenium ide
+        - 无头浏览器
+        - 示例
+            - 登录操作
+            - selenium发邮件
+    -- unittest
+        - 用法
+        - 生成测试报告
+        - 发邮件（smtp、email）
+    -- 自动化接口测试平台
+        - 对于一个页面的增删改查
+
+# beautifulsoup
+    - soup = BeautifuSoup(text, 'html.parser')
+    - soup.find(name="div", attrs={"class": "xxxxx"})   # 定位一个标签
+    - img soup.find_all(name="div", attrs={"class": "xxxxx"})   # 定位多个个标签， 列表的形式
+    - img.get("src")   # 获取标签的属性
+    - div.text   # 获取标签的值
+
+# selenium
+    - selenium ide脚本的录制
+    - selenium webdriver
+    - selenium 等待机制
+        - https://www.cnblogs.com/Neeo/articles/11005164.html
+    - selenium
+        - driver.switch_to.default_content()
+        - driver.switch_to.frame()
+        - driver.switch_to.window()
+# 作业
+    -- 天极网： 爬多页（线程池）
+        - http://pic.yesky.com/c/6_3655_6.shtml
+    -- 爬取汽车之家：https://www.autohome.com.cn/all/
+        - 线程池爬取7000页，不小于5万张图片
+    -- 预习：
+        - https://www.cnblogs.com/Neeo/articles/11832655.html
+        - https://www.cnblogs.com/Neeo/articles/11494077.html
+        - https://www.cnblogs.com/Neeo/articles/11837053.html
+        - python操作excel https://www.cnblogs.com/Neeo/articles/11650149.html
+
+
+
+
+
+
+
