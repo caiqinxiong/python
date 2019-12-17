@@ -124,6 +124,20 @@ class Excel:
             log.readAndWrite('数据获取完成！')
         return date_list
 
+    def get_last_data(self,date_list):
+        '''获取最后一次日期的数据'''
+        tmp_list = copy.deepcopy(date_list)
+        for i in (range(1, len(tmp_list))):
+            if tmp_list[i - 1][ss.KEGUAN] == tmp_list[i][ss.KEGUAN] :
+                t1 = datetime.datetime.strptime(tmp_list[i - 1][ss.TSTM], '%Y/%m/%d %H:%M:%S')
+                t2 = datetime.datetime.strptime(tmp_list[i][ss.TSTM], '%Y/%m/%d %H:%M:%S')
+                t = t1 - t2
+                date = tmp_list[i - 1] if t.seconds < 0 else tmp_list[i]
+                # 剔除列表中多余数据
+                if date in date_list: del date_list[date_list.index(date)]  # 可能上次循环已经删除，所以要判断一下数据是否还在列表中
+        return date_list
+
+
     def device_file(self, date_list):
         '''生成每个器件文件'''
         if os.path.exists(ss.TMP_DIR):shutil.rmtree(ss.TMP_DIR)# 清理tmp目录

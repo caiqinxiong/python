@@ -4,9 +4,13 @@ __author__ = 'caiqinxiong_cai'
 import os
 import time
 
-# 获取当前时间
-DAY_TIME = time.strftime('%Y-%m-%d', time.localtime(time.time()))
-DATA_TIME = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
+##################################################
+# 程序运行开关
+# 0 为只获取管壳最新日期的数据
+# 1 为把TCT和FT的数据过滤并分开写入表格
+# 2 为把XX_result.csv里面的结果提取出来合并到一个表格
+SWITCH = 1  # 单选，0或1或2
+##################################################
 
 # 表格读取开始行数，索引从0开始
 START_ROW = 7 # 从表格第8行开始读
@@ -23,6 +27,10 @@ TSRS = 11
 # 表头
 HEAD_LIST = [['', '', '', '', 'NETD（mK）', '响应率(mV/K)', '平均噪声', '盲元数（个）', '坏列（条）', '坏行（条）', '坏斑（个）', '测试结果', '备注'],
              ['序号', '管壳号', '器件编号', '测试时间', '封装后测试统计结果', '', '', '', '', '', '', '', '']]
+
+# 获取当前时间
+DAY_TIME = time.strftime('%Y-%m-%d', time.localtime(time.time()))
+DATA_TIME = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
 
 # 保存的表格名称
 TABLE_NAME = 'NETD测试数据汇总'
@@ -64,17 +72,17 @@ LOG_FILE = r'%s/%s-log.txt' % (LOG_PATH,DAY_TIME)
 TMP_DIR = os.path.join(DB_PATH,'tmp')
 
 
-#########################################
-# 表格合并设置
-#########################################
+########################################################################
+# 表格合并设置（把XX_result.csv里面的结果提取出来合并到一个表格）
+########################################################################
 RESULT_CSV = '_result.csv' # 获取的表格后缀
 CSV_NAME = '坏点汇总表' # 合并后生成的表名称
 CSV_NAME =  os.path.join(OUTPUT_PATH,CSV_NAME + '_' + DATA_TIME + '.xls')
 CSV_SHEET = '坏点汇总' # 表格里的sheet页名称
 CSV_INPUT = INPUT_PATH # 直接将原始数据拷贝到input目录下
 # 或自定义路径
-CSV_INPUT = r'C:\Users\ES-IT-PC-193\Desktop\lixiaoxin\原始数据'
-########################################
+# CSV_INPUT = r'C:\Users\ES-IT-PC-193\Desktop\lixiaoxin\原始数据'
+########################################################################
 
 
 
