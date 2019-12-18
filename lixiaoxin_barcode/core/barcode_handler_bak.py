@@ -5,7 +5,6 @@ import os
 import docx
 import barcode
 from barcode.writer import ImageWriter
-from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx import Document
 from docx.enum.text import WD_LINE_SPACING
 from docx.enum.text import WD_TAB_ALIGNMENT,WD_TAB_LEADER  #设置制表符等
@@ -46,9 +45,8 @@ def write_docx(data_list):
     barcode_list = get_barcode() # 获取条形码图片地址
     document=docx.Document()   # 创建一个空白文档
     table=document.add_table(rows=4*6,cols=2*3)
-    table.alignment = WD_TABLE_ALIGNMENT.CENTER
     document.styles['Normal'].font.name = '宋体'  # 设置西文字体
-    document.styles['Normal'].font.size = Pt(7)  # 设置字号
+    document.styles['Normal'].font.size = Pt(8)  # 设置字号
     document.styles['Normal'].paragraph_format.space_after = Pt(0)  # 设置段后间距
     # document.styles['Normal'].paragraph_format.left_indent = Inches(0.1) # 设置缩进默认Inches(0.5)等于四个空格
     # 写入logo
@@ -57,21 +55,19 @@ def write_docx(data_list):
         m = 0
         for j in range(3):
             run = document.tables[0].cell(n, m).paragraphs[0].add_run()
-            run.add_picture(ss.LOGO_PNG,width=Inches(0.8), height=Inches(0.2))
-
-            for k in range(len(data_list)):
-                cell = table.cell(k+n, 1+m)
-                cell.text = ' ' + data_list[k] + '\n'
-                run = document.tables[0].cell(k+n, 1+m).paragraphs[0].add_run()
-                run.add_picture(barcode_list[k], width=Inches(1.0), height=Inches(0.2))
-                document.tables[0].cell(k+n, 1+m).paragraphs[0].add_run()
-            DATE = ' DATE:' + ss.DAY_TIME + '\n'
-            cell = table.cell(3+n, 1+m)
-            cell.text = DATE
-
+            run.add_picture(ss.LOGO_PNG,width=Inches(1.0), height=Inches(0.25))
             m = m+2
         n = n + 4
 
+    for i in range(len(data_list)):
+        cell = table.cell(i, 1)
+        cell.text = ' ' + data_list[i] + '\n'
+        run = document.tables[0].cell(i, 1).paragraphs[0].add_run()
+        run.add_picture(barcode_list[i],width=Inches(1.0), height=Inches(0.25))
+        document.tables[0].cell(i, 1).paragraphs[0].add_run()
+    DATE = ' DATE:' + ss.DAY_TIME
+    cell = table.cell(3, 1)
+    cell.text = DATE
     document.save(ss.OUPUT_FILE)
 
 
