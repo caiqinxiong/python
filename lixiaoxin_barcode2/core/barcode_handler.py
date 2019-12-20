@@ -7,22 +7,35 @@ __author__ = 'caiqinxiong_cai'
 import os
 import docx
 import barcode
+import xlrd
 from barcode.writer import ImageWriter
-from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.shared import Inches   #设置图像大小
-from docx.shared import Pt    #设置像素、缩进等
+from win32com import client as wc
 from conf import settings as ss
 from core.log import Log as log
 
-def read_file():
-    '''读取文本信息'''
-    log.readAndWrite('开始读取%s的信息！' %  ss.INPUT_FILE)
-    data_list = []
-    with open(ss.INPUT_FILE,mode='r') as f:
-        for line in f:
-            line = line.strip()
-            if line:data_list.append(line)
-    return data_list
+# def doc_to_docx():
+#     '''.doc文件转化为.docx文件'''
+#     word = wc.Dispatch('Word.Application')
+#     doc = word.Documents.Open(ss.TEM_DOC)  # 目标路径下的文件
+#     doc.SaveAs(ss.OUPUT_FILE, 12, False, "", True, "", False, False, False, False)  # 转化后路径下的文件
+#     doc.Close()
+#     word.Quit()
+
+def read_excel(start_row=0, end_row=0, sheet_index=0):
+    '''读取表格信息'''
+    date_list = []
+    workbook = xlrd.open_workbook(ss.INPUT_FILE)
+    # 选择第1个sheet表，索引从0开始
+    sheet = workbook.sheet_by_index(sheet_index)
+    if not end_row:end_row = sheet.nrows
+    # 从表格中读取数据，追加到列表中
+    log.readAndWrite('从表格中读取数据，追加到列表中,跳过表头从%s行开始读取数据，共%s行数据！' % (start_row, sheet.nrows - start_row))
+    for i in range(start_row,end_row):
+        date_list.append(sheet.row_values(i))
+    else:
+        log.readAndWrite('数据读取完成！')
+    return date_list
 
 def create_barcode(content,bracode_name):
     '''条形码生成'''
@@ -32,45 +45,44 @@ def create_barcode(content,bracode_name):
     log.readAndWrite('内容为%s的条形码%s生成ok' % (content,bracode_name))
     return ean.save(bracode_name, {'write_text': False})  # 保存条形码图片，并返回保存路径。图片格式为png,{'write_text': False}为不要底下的文字内容
 
-def get_barcode():
-    '''获取条形码图片地址'''
-    barcode_list = []
-    for i in ss.BAR_NAME_LIST:
-        name = i + '.png'
-        name = os.path.join(ss.IMG_PAHT,name)
-        barcode_list.append(name)
-    return barcode_list
+def wirte_barcode(document,data_list,i,n,m):
+    '''写入条形码'''
+    # 写入logo
+    table = document.tables[0].cell(n, m).paragraphs[0].add_run()
+    table.add_picture(ss.LOGO_PNG, width=Inches(1), height=Inches(0.25))
+    # 写入条形码
+    table = document.tables[0].cell(n, m).paragraphs[0].add_run()
+    table.text = data_list[i][0] + '\n'
+    name = str(i) + '_0.png'
+    table.add_picture(os.path.join(ss.IMG_PAHT, name), width=Inches(1.3), height=Inches(0.3))
+    table = document.tables[0].cell(n, m).paragraphs[0].add_run()
+    table.text = '\n' + data_list[i][1] + ' \t\n'
+    name = str(i) + '_1.png'
+    table.add_picture(os.path.join(ss.IMG_PAHT, name), width=Inches(1.3), height=Inches(0.3))
+    table = document.tables[0].cell(n, m).paragraphs[0].add_run()
+    table.text = '\n' + data_list[i][2] + ' \t\t\n'
+    name = str(i) + '_2.png'
+    table.add_picture(os.path.join(ss.IMG_PAHT, name), width=Inches(1.3), height=Inches(0.3))
+    DATE = '\n' + 'DATE:' + ss.DAY_TIME + ' \t'
+    table = document.tables[0].cell(n, m).paragraphs[0].add_run()
+    table.text = DATE  # 写入当前日期
 
 def write_docx(data_list):
     '''将条形码写入docx'''
-    barcode_list = get_barcode() # 获取条形码图片地址
-    document=docx.Document()   # 创建一个空白文档
-    table=document.add_table(rows=4*6,cols=2*3)
-    table.alignment = WD_TABLE_ALIGNMENT.CENTER
-    document.styles['Normal'].font.name = '宋体'  # 设置西文字体
-    document.styles['Normal'].font.size = Pt(7)  # 设置字号
-    document.styles['Normal'].paragraph_format.space_after = Pt(0)  # 设置段后间距
-    # document.styles['Normal'].paragraph_format.left_indent = Inches(0.1) # 设置缩进默认Inches(0.5)等于四个空格
-    n = 0
-    for i in range(6):
-        m = 0
-        for j in range(3):
-            # 写入logo
-            run = document.tables[0].cell(n, m).paragraphs[0].add_run()
-            run.add_picture(ss.LOGO_PNG,width=Inches(0.8), height=Inches(0.2))
-            # 写入条形码
-            for k in range(len(data_list)):
-                cell = table.cell(k+n, 1+m)
-                cell.text = ' ' + data_list[k] + '\n'
-                run = document.tables[0].cell(k+n, 1+m).paragraphs[0].add_run()
-                run.add_picture(barcode_list[k], width=Inches(1.0), height=Inches(0.2))
-                document.tables[0].cell(k+n, 1+m).paragraphs[0].add_run()
-            DATE = ' DATE:' + ss.DAY_TIME + '\n'
-            cell = table.cell(3+n, 1+m)
-            cell.text = DATE # 写入当前日期
-            m = m+2
-        n = n + 4
+    document=docx.Document(ss.TEM_DOC)   # 打开模板
+    n = 0;m = 0
+    for i in range(len(data_list)):
+        # 写入条形码
+        wirte_barcode(document, data_list, i, n, m)
+        m = m+2
+        if m > 4:m = 0;n = n+1
     else:
         log.readAndWrite('文档内容填写完成，地址为：\n%s' % ss.OUPUT_FILE)
+
     # 保存docx文档
     return  document.save(ss.OUPUT_FILE)
+    
+
+
+
+

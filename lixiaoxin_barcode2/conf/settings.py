@@ -16,10 +16,7 @@ DOCX_NAME = DOCX_NAME + '_' + DATA_TIME + '.docx'
 CODE_FORMAT = 'Code128'
 
 # 输入文本名称
-CONTENT = 'content.txt'
-
-# 生成条形码图片的名称
-BAR_NAME_LIST = ['PART_NO','PACK_NO','Quantity']
+CONTENT = 'content.xls'
 
 # 基目录
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -44,7 +41,10 @@ IMG_PAHT = os.path.join(DB_PATH,'img')
 if not os.path.exists(IMG_PAHT):os.makedirs(IMG_PAHT)
 
 # logo图片
-LOGO_PNG = os.path.join(IMG_PAHT,'logo.png')
+LOGO_PNG = os.path.join(BASE_DIR, 'doc', 'logo.png')
+
+# doc模板
+TEM_DOC = os.path.join(BASE_DIR, 'doc', 'template.docx')
 
 #输出保存文件名称
 OUPUT_FILE = os.path.join(OUTPUT_PATH,DOCX_NAME)
