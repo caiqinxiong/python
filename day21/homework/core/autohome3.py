@@ -56,27 +56,32 @@ def spider(num):
         # break
 
 
-def thread_pool(n):
-    # t = ThreadPoolExecutor(max_workers=10)
+def thread_func(n):
+    '''协程操作'''
+    gevent_list = []
+    t = 50  # 开50个协程
+    m = t * n
+    s = 1 + (m - t)
+    for i in range(s, m+1):
+        # print(i)
+        gevent_list.append(gevent.spawn(spider,i)) # 生成的协程加入列表
+    gevent.joinall(gevent_list) #执行协程，遇到IO阻塞时会自动切换任务
+
+def process_func(n):
+    '''线程操作'''
     t = 20 # 开20个线程
     m = t*n
     s = 1+(m-t)
     for num in range(s, m+1):
-        threading.Thread(target=spider,args=(num,)).start()
-
-# def thread_func():
-#     print('-->子线程', os.getpid(), threading.current_thread().ident)
-#
-# def process_func():
-#     print('-->子进程', os.getpid(), threading.current_thread().ident)
-#     for i in range(3):
-#         threading.Thread(target=thread_func).start()
+        m = threading.Thread(target=thread_func,args=(num,))
+        m.start()
+        # m.join()
 
 if __name__ == '__main__':
     start = time.time()
     # print('-->主进程', os.getpid(), threading.current_thread().ident)
     for i in range(1,6): # 开5个进程
-        m = Process(target=thread_pool,args=(i,))
+        m = Process(target=process_func,args=(i,))
         m.start()
         # m.join()
 
@@ -95,5 +100,25 @@ if __name__ == '__main__':
 
 
 
-
+#
+# def gevent_func(i):
+#     print('@@子协程@@',i)
+#
+# def thread_func():
+#     print('-->子线程-->', os.getpid(), threading.current_thread().ident)
+#     gevent_list = []
+#     for i in range(3):
+#         gevent_list.append(gevent.spawn(gevent_func,i)) # 生成3个协程加入列表
+#     gevent.joinall(gevent_list) #执行协程，遇到IO阻塞时会自动切换任务
+#
+#
+# def process_func():
+#     print('！！子进程！！', os.getpid(), threading.current_thread().ident)
+#     for i in range(3):# 开3个线程
+#         threading.Thread(target=thread_func).start()
+#
+# if __name__ == '__main__':
+#     print('-->主进程',os.getpid(), threading.current_thread().ident)
+#     for i in range(3): #开3个进程
+#         Process(target=process_func).start()
 

@@ -58,8 +58,9 @@ def spider(num):
 
 def thread_pool(n):
     # t = ThreadPoolExecutor(max_workers=10)
-    m = 10*n
-    s = 1+(m-10)
+    t = 20 # 开20个线程
+    m = t*n
+    s = 1+(m-t)
     for num in range(s, m+1):
         threading.Thread(target=spider,args=(num,)).start()
 
@@ -74,7 +75,7 @@ def thread_pool(n):
 if __name__ == '__main__':
     start = time.time()
     # print('-->主进程', os.getpid(), threading.current_thread().ident)
-    for i in range(1,6):
+    for i in range(1,6): # 开5个进程
         m = Process(target=thread_pool,args=(i,))
         m.start()
         # m.join()

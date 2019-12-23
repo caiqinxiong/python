@@ -1,0 +1,6 @@
+2019-12-23 16:14:37 - root - ERROR -log:  E:\python_test\python\day21\homework\core\autohome3.py line54 error!
+Traceback (most recent call last):
+  File "E:\python_test\python\day21\homework\core\autohome3.py", line 43, in spider
+    src = img.get("src")
+AttributeError: 'NoneType' object has no attribute 'get'
+

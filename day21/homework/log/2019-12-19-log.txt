@@ -1,6 +1,0 @@
-2019-12-19 15:44:53 - root - ERROR -log:  E:/python_test/python/day21/homework/core/autohome.py line54 error!
-Traceback (most recent call last):
-  File "E:/python_test/python/day21/homework/core/autohome.py", line 41, in <module>
-    src = img.get("src")
-AttributeError: 'NoneType' object has no attribute 'get'
-
