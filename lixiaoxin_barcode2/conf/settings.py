@@ -41,7 +41,7 @@ IMG_PAHT = os.path.join(DB_PATH,'img')
 if not os.path.exists(IMG_PAHT):os.makedirs(IMG_PAHT)
 
 # logo图片
-LOGO_PNG = os.path.join(BASE_DIR, 'doc', 'logo.png')
+LOGO_PNG = os.path.join(BASE_DIR, 'doc', 'logo_wps.png')
 
 # doc模板
 TEM_DOC = os.path.join(BASE_DIR, 'doc', 'template.docx')

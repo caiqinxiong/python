@@ -10,6 +10,7 @@ import barcode
 import xlrd
 from barcode.writer import ImageWriter
 from docx.shared import Inches   #设置图像大小
+from docx.shared import Pt    #设置像素、缩进等
 from win32com import client as wc
 from conf import settings as ss
 from core.log import Log as log
@@ -49,27 +50,30 @@ def wirte_barcode(document,data_list,i,n,m):
     '''写入条形码'''
     # 写入logo
     table = document.tables[0].cell(n, m).paragraphs[0].add_run()
-    table.add_picture(ss.LOGO_PNG, width=Inches(1), height=Inches(0.25))
+    table.add_picture(ss.LOGO_PNG, width=Inches(0.4), height=Inches(1.2))
     # 写入条形码
-    table = document.tables[0].cell(n, m).paragraphs[0].add_run()
-    table.text = data_list[i][0] + '\n'
+    table = document.tables[0].cell(n, m+1).paragraphs[0].add_run()
+    table.text = ' ' + data_list[i][0] + '\t\t\n'
     name = str(i) + '_0.png'
-    table.add_picture(os.path.join(ss.IMG_PAHT, name), width=Inches(1.3), height=Inches(0.3))
-    table = document.tables[0].cell(n, m).paragraphs[0].add_run()
-    table.text = '\n' + data_list[i][1] + ' \t\n'
+    table.add_picture(os.path.join(ss.IMG_PAHT, name), width=Inches(1.5), height=Inches(0.38))
+    table = document.tables[0].cell(n, m+1).paragraphs[0].add_run()
+    table.text = '\n ' + data_list[i][1] + ' \t\t\n'
     name = str(i) + '_1.png'
-    table.add_picture(os.path.join(ss.IMG_PAHT, name), width=Inches(1.3), height=Inches(0.3))
-    table = document.tables[0].cell(n, m).paragraphs[0].add_run()
-    table.text = '\n' + data_list[i][2] + ' \t\t\n'
+    table.add_picture(os.path.join(ss.IMG_PAHT, name), width=Inches(1.5), height=Inches(0.38))
+    table = document.tables[0].cell(n, m+1).paragraphs[0].add_run()
+    table.text = '\n ' + data_list[i][2] + ' \t\t\n'
     name = str(i) + '_2.png'
-    table.add_picture(os.path.join(ss.IMG_PAHT, name), width=Inches(1.3), height=Inches(0.3))
-    DATE = '\n' + 'DATE:' + ss.DAY_TIME + ' \t'
-    table = document.tables[0].cell(n, m).paragraphs[0].add_run()
+    table.add_picture(os.path.join(ss.IMG_PAHT, name), width=Inches(1.5), height=Inches(0.38))
+    DATE = '\n ' + 'DATE:' + ss.DAY_TIME + ' \t'
+    table = document.tables[0].cell(n, m+1).paragraphs[0].add_run()
     table.text = DATE  # 写入当前日期
 
 def write_docx(data_list):
     '''将条形码写入docx'''
     document=docx.Document(ss.TEM_DOC)   # 打开模板
+    document.styles['Normal'].font.name = '宋体'  # 设置西文字体
+    document.styles['Normal'].font.size = Pt(8)  # 设置字号
+    document.styles['Normal'].paragraph_format.space_after = Pt(0)  # 设置段后间距
     n = 0;m = 0
     for i in range(len(data_list)):
         # 写入条形码

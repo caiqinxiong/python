@@ -22,7 +22,7 @@ def run():
     write_docx(data_list)
 
     # 4.清理生成的条形码图片
-    if os.path.exists(ss.IMG_PAHT): shutil.rmtree(ss.IMG_PAHT)
+    # if os.path.exists(ss.IMG_PAHT): shutil.rmtree(ss.IMG_PAHT)
 
 if __name__ == '__main__':
     run()
