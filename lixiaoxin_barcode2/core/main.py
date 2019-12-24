@@ -3,7 +3,7 @@ __author__ = 'caiqinxiong_cai'
 #2019/12/18 16:36
 import os,sys
 import shutil
-sys.path.insert(0,os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# sys.path.insert(0,os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from core.barcode_handler import *
 
@@ -24,5 +24,5 @@ def run():
     # 4.清理生成的条形码图片
     if os.path.exists(ss.IMG_PAHT): shutil.rmtree(ss.IMG_PAHT)
 
-if __name__ == '__main__':
-    run()
+# if __name__ == '__main__':
+#     run()

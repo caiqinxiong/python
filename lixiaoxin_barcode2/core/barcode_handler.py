@@ -11,19 +11,10 @@ import xlrd
 from barcode.writer import ImageWriter
 from docx.shared import Inches   #设置图像大小
 from docx.shared import Pt    #设置像素、缩进等
-from win32com import client as wc
 from conf import settings as ss
 from core.log import Log as log
 
-# def doc_to_docx():
-#     '''.doc文件转化为.docx文件'''
-#     word = wc.Dispatch('Word.Application')
-#     doc = word.Documents.Open(ss.TEM_DOC)  # 目标路径下的文件
-#     doc.SaveAs(ss.OUPUT_FILE, 12, False, "", True, "", False, False, False, False)  # 转化后路径下的文件
-#     doc.Close()
-#     word.Quit()
-
-def read_excel(start_row=0, end_row=0, sheet_index=0):
+def read_excel(start_row=ss.START_ROW, end_row=0, sheet_index=0):
     '''读取表格信息'''
     date_list = []
     workbook = xlrd.open_workbook(ss.INPUT_FILE)
@@ -40,6 +31,7 @@ def read_excel(start_row=0, end_row=0, sheet_index=0):
 
 def create_barcode(content,bracode_name):
     '''条形码生成'''
+    content = str(content)
     EAN = barcode.get_barcode_class(ss.CODE_FORMAT)  # 创建Code128格式的条形码格式对象
     ean = EAN(content, writer=ImageWriter())  # 创建条形码对象，内容为content参数传入
     bracode_name = os.path.join(ss.IMG_PAHT,bracode_name)
@@ -50,29 +42,29 @@ def wirte_barcode(document,data_list,i,n,m):
     '''写入条形码'''
     # 写入logo
     table = document.tables[0].cell(n, m).paragraphs[0].add_run()
-    table.add_picture(ss.LOGO_PNG, width=Inches(0.4), height=Inches(1.2))
+    table.add_picture(ss.LOGO_PNG, width=Inches(ss.LOGO_W), height=Inches(ss.LOGO_H))
     # 写入条形码
     table = document.tables[0].cell(n, m+1).paragraphs[0].add_run()
-    table.text = ' ' + data_list[i][0] + '\t\t\n'
+    table.text = '\n ' + data_list[i][0] + '\n'
     name = str(i) + '_0.png'
-    table.add_picture(os.path.join(ss.IMG_PAHT, name), width=Inches(1.5), height=Inches(0.38))
+    table.add_picture(os.path.join(ss.IMG_PAHT, name), width=Inches(ss.PART_NO_W), height=Inches(ss.PART_NO_H))
     table = document.tables[0].cell(n, m+1).paragraphs[0].add_run()
-    table.text = '\n ' + data_list[i][1] + ' \t\t\n'
+    table.text = '\n ' + data_list[i][1] + ' \n'
     name = str(i) + '_1.png'
-    table.add_picture(os.path.join(ss.IMG_PAHT, name), width=Inches(1.5), height=Inches(0.38))
+    table.add_picture(os.path.join(ss.IMG_PAHT, name), width=Inches(ss.PACK_NO_W), height=Inches(ss.PACK_NO_H))
     table = document.tables[0].cell(n, m+1).paragraphs[0].add_run()
-    table.text = '\n ' + data_list[i][2] + ' \t\t\n'
+    table.text = '\n ' + data_list[i][2] + '\n'
     name = str(i) + '_2.png'
-    table.add_picture(os.path.join(ss.IMG_PAHT, name), width=Inches(1.5), height=Inches(0.38))
-    DATE = '\n ' + 'DATE:' + ss.DAY_TIME + ' \t'
+    table.add_picture(os.path.join(ss.IMG_PAHT, name), width=Inches(ss.QUANTITY_W), height=Inches(ss.QUANTITY_H))
+    DATE = '\n ' + 'DATE:' + ss.DAY_TIME + '\t'
     table = document.tables[0].cell(n, m+1).paragraphs[0].add_run()
     table.text = DATE  # 写入当前日期
 
 def write_docx(data_list):
     '''将条形码写入docx'''
     document=docx.Document(ss.TEM_DOC)   # 打开模板
-    document.styles['Normal'].font.name = '宋体'  # 设置西文字体
-    document.styles['Normal'].font.size = Pt(8)  # 设置字号
+    document.styles['Normal'].font.name = ss.WORD_FORM  # 设置西文字体
+    document.styles['Normal'].font.size = Pt(ss.WORD_SIZE)  # 设置字号
     document.styles['Normal'].paragraph_format.space_after = Pt(0)  # 设置段后间距
     n = 0;m = 0
     for i in range(len(data_list)):
