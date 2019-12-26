@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="row">
+        <div class="">
+            <a href="{% url 'index' %}">返回主页</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="">
+            <form action="{% url 'execute' %}" method="post">
+                <table class="table table-hover">
+
+                <thead>
+                <tr>
+                    <th>选择</th>
+                    <th>用例名称</th>
+                    <th>描述</th>
+                    <th>所属项目</th>
+                    <th>URL</th>
+                    <th>请求类型</th>
+                    <th>期望值</th>
+                    <th>参数</th>
+                    <th>执行状态</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for foo in case_list_obj %}
+                        <tr>
+                            <td><input type="checkbox" name="pk_list" value="{{ foo.pk }}"></td>
+                            <td>{{ foo.case_name }}</td>
+                            <td>{{ foo.case_desc }}</td>
+                            <td>{{ foo.case_project }}</td>
+                            <td>{{ foo.case_url }}</td>
+                            <td>{{ foo.case_method }}</td>
+                            <td>{{ foo.case_expect }}</td>
+                            <td>{{ foo.case_params }}</td>
+                            <td>{{ foo.get_case_execute_status_display }}</td>
+                            <td><a href="{% url 'edit_case' foo.pk %}">修改用例</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+
+
+
+
+            </table>
+             <button type="submit" class="btn btn-success">执行</button>
+            </form>
+
+
+        </div>
+    </div>
+
+{% endblock %}

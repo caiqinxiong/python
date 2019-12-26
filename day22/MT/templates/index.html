@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <a href="{% url 'add_project' %}">添加项目</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>项目名称</th>
+                        <th>项目描述</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for foo in project_obj %}
+                        <tr>
+                        <td>{{ foo.project_name }}</td>
+                        <td>{{ foo.project_desc }}</td>
+                        <td>
+                            <a href="{% url 'edit_project' foo.pk %}" class="btn btn-sm btn-warning">修改项目</a>
+                            <a href="{% url 'add_case' foo.pk %}" class="btn btn-sm btn-success">添加用例</a>
+                            <a href="{% url 'add_case_all' foo.pk %}" class="btn btn-sm btn-success">批量添加用例</a>
+                            <a href="{% url 'case_list' foo.pk %}" class="btn btn-sm btn-default">查看用例</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+
+                    </tbody>
+                </table>
+        </div>
+    </div>
+
+{% endblock %}
