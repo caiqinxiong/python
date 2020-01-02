@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="myDiagramDiv" style="width:500px; min-height:450px; background-color: #DAE4E4;"></div>
+    <script src="js/go-debug.js"></script>
+
+    <script>
+        var $ = go.GraphObject.make;
+
+        var myDiagram = $(go.Diagram, "myDiagramDiv",
+            {layout: $(go.TreeLayout, {angle: 0})}
+        ); // 创建图表，用于在页面上画图
+
+
+        var startNode = $(go.Node, "Auto",
+            $(go.Shape, {figure: "Ellipse", width: 40, height: 40, fill: '#79C900', stroke: '#79C900'}),
+            $(go.TextBlock, {text: '开始', stroke: 'white'})
+        );
+        myDiagram.add(startNode);
+
+
+        var downloadNode = $(go.Node, "Auto",
+            $(go.Shape, {figure: "RoundedRectangle", height: 40, fill: 'red', stroke: '#79C900'}),
+            $(go.TextBlock, {text: '下载代码', stroke: 'white'})
+        );
+        myDiagram.add(downloadNode);
+
+        var startToDownloadLink = $(go.Link,
+            {fromNode: startNode, toNode: downloadNode},
+            $(go.Shape, {strokeWidth: 1}),
+            $(go.Shape, {toArrow: "OpenTriangle", fill: null, strokeWidth: 1})
+        );
+        myDiagram.add(startToDownloadLink);
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="myDiagramDiv" style="width:500px; height:350px; background-color: #DAE4E4;"></div>
+
+
+<script src="js/go.js"></script>
+
+<script>
+    var $ = go.GraphObject.make;
+    // 第一步：创建图表
+    var myDiagram = $(go.Diagram, "myDiagramDiv"); // 创建图表，用于在页面上画图
+
+
+    var node1 = $(go.Node, $(go.TextBlock, {text: "武沛齐"}));
+    myDiagram.add(node1);
+
+    var node2 = $(go.Node, $(go.TextBlock, {text: "武沛齐", stroke: 'red'}));
+    myDiagram.add(node2);
+
+    var node3 = $(go.Node, $(go.TextBlock, {text: "武沛齐", background: 'lightblue'}));
+    myDiagram.add(node3);
+
+
+</script>
+</body>
+</html>

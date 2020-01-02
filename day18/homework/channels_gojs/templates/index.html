@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="diagramDiv" style="width:100%; min-height:450px; background-color: #DAE4E4;"></div>
+
+    <script src="js/go.js"></script>
+    <script>
+        var $ = go.GraphObject.make;
+        var diagram = $(go.Diagram, "diagramDiv",{
+            layout: $(go.TreeLayout, {
+                angle: 0,
+                nodeSpacing: 20,
+                layerSpacing: 70
+            })
+        });
+
+        diagram.nodeTemplate = $(go.Node, "Auto",
+            $(go.Shape, {
+                figure: "RoundedRectangle",
+                fill: 'lightgray',
+                stroke: 'lightgray'
+            }, new go.Binding("figure", "figure"), new go.Binding("fill", "color"), new go.Binding("stroke", "color")),
+            $(go.TextBlock, {margin: 8}, new go.Binding("text", "text"))
+        );
+
+        diagram.linkTemplate = $(go.Link,
+            {routing: go.Link.Orthogonal},
+            $(go.Shape, {stroke: 'lightgray'}, new go.Binding('stroke', 'link_color')),
+            $(go.Shape, {toArrow: "OpenTriangle", stroke: 'lightgray'}, new go.Binding('stroke', 'link_color'))
+        );
+
+        // 当客户端浏览器接收到服务端返回的数据时候
+        ws.onmessage = function(event){
+            var nodeDataArray = JSON.parse(event.data);
+            diagram.model = new go.TreeModel(nodeDataArray);
+        }
+
+        // 动态控制节点颜色变化
+        /*
+        var node = diagram.model.findNodeDataForKey("zip");
+        diagram.model.setDataProperty(node, "color", "lightgreen");
+        */
+    </script>
+</body>
+</html>

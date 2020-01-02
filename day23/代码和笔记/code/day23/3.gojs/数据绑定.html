@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="diagramDiv" style="width:100%; min-height:450px; background-color: #DAE4E4;"></div>
+
+    <script src="js/go.js"></script>
+    <script>
+        var $ = go.GraphObject.make;
+        var diagram = $(go.Diagram, "diagramDiv",{
+            layout: $(go.TreeLayout, {
+                angle: 0,
+                nodeSpacing: 20,
+                layerSpacing: 70
+            })
+        });
+
+        diagram.nodeTemplate = $(go.Node, "Auto",
+            $(go.Shape, {
+                figure: "RoundedRectangle",
+                fill: 'lightgray',
+                stroke: 'lightgray'
+            }, new go.Binding("figure", "figure"), new go.Binding("fill", "color"), new go.Binding("stroke", "color")),
+            $(go.TextBlock, {margin: 8}, new go.Binding("text", "text"))
+        );
+
+        diagram.linkTemplate = $(go.Link,
+            {routing: go.Link.Orthogonal},
+            $(go.Shape, {stroke: 'lightgray'}, new go.Binding('stroke', 'link_color')),
+            $(go.Shape, {toArrow: "OpenTriangle", stroke: 'lightgray'}, new go.Binding('stroke', 'link_color'))
+        );
+
+        var nodeDataArray = [
+            {key: "start", text: '开始', figure: 'Ellipse', color: "lightgreen"},
+            {key: "download", parent: 'start', text: '下载代码', color: "lightgreen", link_text: '执行中...'},
+            {key: "compile", parent: 'download', text: '本地编译', color: "lightgreen"},
+            {key: "zip", parent: 'compile', text: '打包', color: "red", link_color: 'red'},
+            {key: "c1", text: '服务器1', parent: "zip"},
+            {key: "c11", text: '服务重启', parent: "c1"},
+            {key: "c2", text: '服务器2', parent: "zip"},
+            {key: "c21", text: '服务重启', parent: "c2"},
+            {key: "c3", text: '服务器3', parent: "zip"},
+            {key: "c31", text: '服务重启', parent: "c3"}
+        ];
+        diagram.model = new go.TreeModel(nodeDataArray);
+
+        // 动态控制节点颜色变化
+        /*
+        var node = diagram.model.findNodeDataForKey("zip");
+        diagram.model.setDataProperty(node, "color", "lightgreen");
+        */
+    </script>
+</body>
+</html>
