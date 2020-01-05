@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+<h1>欢迎进入channels聊天室</h1>
+<div>
+    <input type="text" id = 'txt' placeholder="请输入内容">
+    <input type="button" id = 'btn' value="发送" onclick="sendMsg();">
+    <input type="button" onclick="close();" value="断开连接">
+</div>
+<div>
+    <h3>聊天记录</h3>
+    <div id = 'content'>
+
+    </div>
+</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+        var ws = new WebSocket("ws://127.0.0.1:8000/chat/");
+
+        ws.onopen = function(){
+            //客户端在握手环节验证成功之后,自动执行此方法.
+            console.log('连接成功');
+        };
+
+        ws.onmessage = function (event) {
+            console.log(event);
+            var tag = $('<div>');
+            tag.text(event.data);
+            $('#content').append(tag);
+        };
+
+        function sendMsg() {
+            ws.send($('#txt').val());
+        }
+
+        function close() {
+            ws.close();
+        }
+    </script>
+
+</html>

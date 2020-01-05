@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>
+    WEB聊天室（{{ name }}）
+</h1>
+<div>
+    <input type="text" id = 'text' placeholder="请输入消息">
+    <input type="button" id = 'btn' value="发送" onclick="sendMassage();">
+</div>
+<div>
+    <h3>
+        聊天记录
+    </h3>
+    <div id="content">
+
+    </div>
+</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    function sendMassage() {
+        $.ajax({
+            url:'/send/massage/',
+            type:'POST',
+            data:{msg:$('#text').val()},
+            success:function (arg) {
+                console.log(arg)
+            }
+
+        })
+    }
+    function getMessage() {
+            $.ajax({
+                url:'/get/massage/',
+                type:'get',
+                data:{ name:"{{ name }}"},
+                dataType:'JSON',
+                success:function (arg) {
+                    if(arg.status){
+                        // 获取到新消息
+                        // 创建新的div标签
+                        var tag = $('<div>');
+                        tag.text(arg.data);
+                        // 将div标签添加到content标签中.
+                        $('#content').append(tag);
+                    }else{
+                        // 没有新的消息
+                    }
+                    getMessage();
+                }
+            })
+        }
+        $(function () {
+            getMessage();
+        });
+</script>
+</html>
