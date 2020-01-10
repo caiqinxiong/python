@@ -40,3 +40,21 @@ urlpatterns = [
 
     url(r'^deploy/(?P<task_id>\d+)/$', task.deploy,name='deploy'),
 ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

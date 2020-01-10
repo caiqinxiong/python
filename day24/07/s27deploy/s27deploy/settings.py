@@ -141,3 +141,5 @@ SSH_USER = "root"
 PRIVATE_RSA_PATH = os.path.join(BASE_DIR,'id_rsa')
 
 SERVER_PACKAGE_PATH = "/data/packages/"
+
+WS_IP = r'ws://127.0.0.1:8000/publish' # websocket的地址

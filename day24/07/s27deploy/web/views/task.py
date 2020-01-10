@@ -3,10 +3,13 @@ from django.http import JsonResponse
 from web import models
 from web.forms.task import TaskModelForm
 from django.urls import reverse
+from django.conf import settings
 
 def task_list(request,project_id):
     project_object = models.Project.objects.filter(id=project_id).first()
     task_list = models.DeployTask.objects.filter(project_id=project_id).all()
+    task_list = list(task_list)
+    task_list.reverse() # 把列表反转，按最后添加的来展示内容
     return render(request,'task_list.html',{'task_list':task_list,"project_object":project_object})
 
 def task_add(request,project_id):
@@ -29,4 +32,4 @@ def hook_template(request,tid):
 
 def deploy(request,task_id):
     task_object = models.DeployTask.objects.filter(id=task_id).first()
-    return render(request,'deploy.html',{'task_object':task_object})
+    return render(request,'deploy.html',{'task_object':task_object,'ws_ip':settings.WS_IP})

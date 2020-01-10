@@ -26,6 +26,7 @@ class Project(models.Model):
 
     def __str__(self):
         return "%s-%s" %(self.title,self.get_env_display(),)
+
 class DeployTask(models.Model):
     """ 发布任务单
         2  v1
