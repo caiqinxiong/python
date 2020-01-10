@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e40632af-7374-4369-a1cc-64d502c1325a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../.idea/python.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/python.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day01/aa/bar_code.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day01/aa/helloword.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day02/day02/作业.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day02/day02/作业.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day06/homework/exercise.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day06/homework/exercise.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day08/day8/4.super语法.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day08/day8/4.super语法.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day10/homework/FTP/client/log/2019-09-17-log" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day10/homework/FTP/client/log/2019-09-17-log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day10/homework/FTP/server/db/users_info" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day10/homework/FTP/server/db/users_info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day10/homework/FTP/server/doc/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day10/homework/FTP/server/doc/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day10/homework/FTP/server/log/2019-09-17-log" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day10/homework/FTP/server/log/2019-09-17-log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day10/进程和线程结合使用.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day10/进程和线程结合使用.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day12/demo2.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day12/demo2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day12/homework/css/c1.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day12/homework/css/c1.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day12/homework/css/c2.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day12/homework/css/c2.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day12/homework/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day12/homework/html/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day13-js/homework/留言板/html/留言板.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day13-js/homework/留言板/html/留言板.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day15_django/bookmanager/bookmanager/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day15_django/bookmanager/bookmanager/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day15_django/bookmanager/bookmanager/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day15_django/bookmanager/bookmanager/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day15_django/bookmanager/bookmanager/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day15_django/bookmanager/bookmanager/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day15_django/bookmanager/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day15_django/bookmanager/manage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day16_django/bookmanager/bookmanager/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day16_django/bookmanager/bookmanager/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day16_django/bookmanager/bookmanager/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day16_django/bookmanager/bookmanager/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day16_django/bookmanager/bookmanager/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day16_django/bookmanager/bookmanager/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day16_django/bookmanager/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day16_django/bookmanager/manage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day17/bookmanager/bookmanager/ORM_TEST/1. 必知必会13条.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day17/bookmanager/bookmanager/ORM_TEST/1. 必知必会13条.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day17/bookmanager/bookmanager/ORM_TEST/2. 单表的双下划线.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day17/bookmanager/bookmanager/ORM_TEST/2. 单表的双下划线.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day17/bookmanager/bookmanager/bookmanager/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day17/bookmanager/bookmanager/bookmanager/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day17/bookmanager/bookmanager/bookmanager/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day17/bookmanager/bookmanager/bookmanager/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day17/bookmanager/bookmanager/bookmanager/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day17/bookmanager/bookmanager/bookmanager/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day17/bookmanager/bookmanager/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day17/bookmanager/bookmanager/manage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day17/homework/BookManager/BookManager/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day17/homework/BookManager/BookManager/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/channels_gojs.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app01/consumers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/channels_gojs/routing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/Figures.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/go-debug.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/go.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day21/homework/bin/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day21/homework/bin/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day21/homework/core/autohome3.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day21/homework/core/autohome3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day21/homework/core/autohome4.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day21/homework/core/autohome4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lixiaoxin.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lixiaoxin_barcode/bin/run.bat" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lixiaoxin_barcode/bin/run.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lixiaoxin_barcode/core/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lixiaoxin_barcode/core/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lixiaoxin_barcode2/bin/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lixiaoxin_barcode2/bin/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lixiaoxin_barcode2/conf/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lixiaoxin_barcode2/conf/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lixiaoxin_barcode2/core/barcode_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lixiaoxin_barcode2/core/barcode_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lixiaoxin_barcode2/core/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lixiaoxin_barcode2/core/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lixiaoxin_barcode2/db/input/content.xls" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lixiaoxin_barcode2/db/input/content.xls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lixiaoxin_包含表格合并.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lixiaoxin_添加表头版.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lixiaoxin_终版.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../unzip_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../unzip_file.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="E:\python_test\python\day18\homework\channels_gojs\.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1Vgy1qVmYR1rqsviMupAR2Mgv8O" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../day23/homework/channels_gojs" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="options.lastSelected" value="preferences.externalResources" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings />
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\python_test\python\day18\homework\channels_gojs\app01" />
+      <recent name="E:\python_test\python\day18\homework\channels_gojs\channels_gojs" />
+      <recent name="E:\python_test\python\day18\homework\channels_gojs\static" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="channels_gojs" type="Python.DjangoServer" factoryName="Django server">
+      <module name="channels_gojs" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="channels_gojs.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e40632af-7374-4369-a1cc-64d502c1325a" name="Default Changelist" comment="" />
+      <created>1577688820248</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1577688820248</updated>
+      <workItem from="1577688825396" duration="23103000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

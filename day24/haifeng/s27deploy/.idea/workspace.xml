@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c48a1220-4d10-4d5b-a254-cfd934cd1218" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../../day18/homework/channels_gojs/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/.idea/dataSources/2348c4a7-274d-4583-afcf-7fcab3db6c94.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/.idea/dataSources/2348c4a7-274d-4583-afcf-7fcab3db6c94/storage_v2/_src_/schema/main.uQUzAA.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/.idea/s27deploy.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/db.sqlite3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/manage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/s27deploy/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/s27deploy/routing.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/s27deploy/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/s27deploy/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/s27deploy/wsgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/consumers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/forms/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/forms/project.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/forms/server.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/forms/task.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/migrations/0002_project.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/migrations/0003_auto_20200105_1230.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/migrations/0004_deploytask.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/migrations/0005_hooktemplate.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/migrations/0006_node.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/static/go.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/templates/deploy.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/templates/form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/templates/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/templates/project_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/templates/server_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/templates/task_form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/templates/task_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/views/project.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/views/server.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../04/s27deploy/web/views/task.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/.idea/dataSources/2348c4a7-274d-4583-afcf-7fcab3db6c94.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/.idea/dataSources/2348c4a7-274d-4583-afcf-7fcab3db6c94/storage_v2/_src_/schema/main.uQUzAA.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/.idea/s27deploy.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/db.sqlite3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/manage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/s27deploy/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/s27deploy/routing.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/s27deploy/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/s27deploy/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/s27deploy/wsgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/consumers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/forms/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/forms/project.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/forms/server.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/forms/task.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/migrations/0002_project.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/migrations/0003_auto_20200105_1230.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/migrations/0004_deploytask.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/migrations/0005_hooktemplate.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/migrations/0006_node.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/static/go.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/templates/deploy.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/templates/form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/templates/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/templates/project_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/templates/server_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/templates/task_form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/templates/task_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/views/project.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/views/server.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../05/s27deploy/web/views/task.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/.idea/dataSources/2348c4a7-274d-4583-afcf-7fcab3db6c94.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/.idea/dataSources/2348c4a7-274d-4583-afcf-7fcab3db6c94/storage_v2/_src_/schema/main.uQUzAA.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/.idea/s27deploy.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/db.sqlite3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/manage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/s27deploy/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/s27deploy/routing.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/s27deploy/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/s27deploy/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/s27deploy/wsgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/consumers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/forms/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/forms/project.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/forms/server.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/forms/task.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/migrations/0002_project.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/migrations/0003_auto_20200105_1230.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/migrations/0004_deploytask.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/migrations/0005_hooktemplate.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/migrations/0006_node.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/static/go.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/templates/deploy.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/templates/form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/templates/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/templates/project_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/templates/server_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/templates/task_form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/templates/task_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/views/project.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/views/server.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../06/s27deploy/web/views/task.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day02.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/12cd2f94-2bfa-43c9-8922-929cb1ee200e.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/s27deploy.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/s27deploy/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/s27deploy/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/s27deploy/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/s27deploy/wsgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/migrations/0002_project.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/templates/form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/templates/form1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/templates/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/templates/server_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/views/deploy.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/views/project.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/views/server.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../代码发布系统.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../.idea/python.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/python.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day01/aa/bar_code.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day01/aa/helloword.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day02/day02/作业.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day02/day02/作业.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day06/homework/exercise.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day06/homework/exercise.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day08/day8/4.super语法.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day08/day8/4.super语法.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day10/homework/FTP/client/log/2019-09-17-log" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day10/homework/FTP/client/log/2019-09-17-log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day10/homework/FTP/server/db/users_info" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day10/homework/FTP/server/db/users_info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day10/homework/FTP/server/doc/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day10/homework/FTP/server/doc/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day10/homework/FTP/server/log/2019-09-17-log" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day10/homework/FTP/server/log/2019-09-17-log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day10/进程和线程结合使用.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day10/进程和线程结合使用.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day12/demo2.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day12/demo2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day12/homework/css/c1.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day12/homework/css/c1.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day12/homework/css/c2.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day12/homework/css/c2.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day12/homework/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day12/homework/html/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day13-js/homework/留言板/html/留言板.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day13-js/homework/留言板/html/留言板.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day15_django/bookmanager/bookmanager/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day15_django/bookmanager/bookmanager/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day15_django/bookmanager/bookmanager/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day15_django/bookmanager/bookmanager/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day15_django/bookmanager/bookmanager/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day15_django/bookmanager/bookmanager/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day15_django/bookmanager/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day15_django/bookmanager/manage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day16_django/bookmanager/bookmanager/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day16_django/bookmanager/bookmanager/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day16_django/bookmanager/bookmanager/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day16_django/bookmanager/bookmanager/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day16_django/bookmanager/bookmanager/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day16_django/bookmanager/bookmanager/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day16_django/bookmanager/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day16_django/bookmanager/manage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day17/bookmanager/bookmanager/ORM_TEST/1. 必知必会13条.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day17/bookmanager/bookmanager/ORM_TEST/1. 必知必会13条.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day17/bookmanager/bookmanager/ORM_TEST/2. 单表的双下划线.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day17/bookmanager/bookmanager/ORM_TEST/2. 单表的双下划线.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day17/bookmanager/bookmanager/bookmanager/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day17/bookmanager/bookmanager/bookmanager/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day17/bookmanager/bookmanager/bookmanager/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day17/bookmanager/bookmanager/bookmanager/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day17/bookmanager/bookmanager/bookmanager/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day17/bookmanager/bookmanager/bookmanager/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day17/bookmanager/bookmanager/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day17/bookmanager/bookmanager/manage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day17/homework/BookManager/BookManager/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day17/homework/BookManager/BookManager/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day18/homework/channels_gojs/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day18/homework/channels_gojs/.idea/channels_gojs.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day18/homework/channels_gojs/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day18/homework/channels_gojs/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day18/homework/channels_gojs/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day18/homework/channels_gojs/app01/consumers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day18/homework/channels_gojs/channels_gojs/routing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day18/homework/channels_gojs/static/js/Figures.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day18/homework/channels_gojs/static/js/go-debug.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day18/homework/channels_gojs/static/js/go.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day18/homework/channels_gojs/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day21/homework/bin/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day21/homework/bin/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day21/homework/core/autohome3.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day21/homework/core/autohome3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../day21/homework/core/autohome4.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../day21/homework/core/autohome4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../lixiaoxin_barcode/bin/run.bat" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../lixiaoxin_barcode/bin/run.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../lixiaoxin_barcode/core/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../lixiaoxin_barcode/core/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../lixiaoxin_barcode2/bin/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../lixiaoxin_barcode2/bin/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../lixiaoxin_barcode2/conf/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../lixiaoxin_barcode2/conf/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../lixiaoxin_barcode2/core/barcode_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../lixiaoxin_barcode2/core/barcode_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../lixiaoxin_barcode2/core/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../lixiaoxin_barcode2/core/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../lixiaoxin_barcode2/db/input/content.xls" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../lixiaoxin_barcode2/db/input/content.xls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../unzip_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../unzip_file.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
+        <item name="web_server: table" type="3d80ac25:SqliteImplModel$Table" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="ProjectId" id="1W6Z1wq34R3JTpMml0KmZaCgRqm" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\BaiduNetdiskDownload\s27deploy\web\templates" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="s27deploy" type="Python.DjangoServer" factoryName="Django server">
+      <module name="s27deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="s27deploy.settings" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Python37-32\python.exe" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c48a1220-4d10-4d5b-a254-cfd934cd1218" name="Default Changelist" comment="" />
+      <created>1578471793090</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1578471793090</updated>
+      <workItem from="1578471794351" duration="1886000" />
+      <workItem from="1578540036944" duration="4202000" />
+      <workItem from="1578553307461" duration="493000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="463" y="89" key="FileChooserDialogImpl" timestamp="1578471963310">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="89" key="FileChooserDialogImpl/0.0.1366.728/-1920.-232.1920.1080@0.0.1366.728" timestamp="1578471963310" />
+    <state width="1322" height="174" key="GridCell.Tab.0.bottom" timestamp="1578552421979">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="174" key="GridCell.Tab.0.bottom/0.0.1366.728/-1920.-232.1920.1080@0.0.1366.728" timestamp="1578552421979" />
+    <state width="1322" height="174" key="GridCell.Tab.0.center" timestamp="1578552421979">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="174" key="GridCell.Tab.0.center/0.0.1366.728/-1920.-232.1920.1080@0.0.1366.728" timestamp="1578552421979" />
+    <state width="1322" height="174" key="GridCell.Tab.0.left" timestamp="1578552421979">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="174" key="GridCell.Tab.0.left/0.0.1366.728/-1920.-232.1920.1080@0.0.1366.728" timestamp="1578552421979" />
+    <state width="1322" height="174" key="GridCell.Tab.0.right" timestamp="1578552421979">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="174" key="GridCell.Tab.0.right/0.0.1366.728/-1920.-232.1920.1080@0.0.1366.728" timestamp="1578552421979" />
+    <state x="399" y="2" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1578472033943">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="399" y="2" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1366.728/-1920.-232.1920.1080@0.0.1366.728" timestamp="1578472033943" />
+  </component>
+</project>
