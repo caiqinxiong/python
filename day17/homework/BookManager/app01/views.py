@@ -35,7 +35,7 @@ def login(request):
             else:
                 response = redirect(reverse('publisher'))
             # 设置登录状态的cookie
-            response.set_cookie('is_login',True) # 可以任意自定义
+            response.set_cookie('is_login',True,max_age=60) # 可以任意自定义,超时时间为1分钟
             # 校验成功跳转
             return response
         # 校验失败回复错误信息

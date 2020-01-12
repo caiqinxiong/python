@@ -29,6 +29,7 @@ body {
 }
 
 .f-header a {
+    display: inline-block;
     text-decoration: none;
     color: aliceblue;
     font-size: 10px;
@@ -36,4 +37,8 @@ body {
 
 .f-header span {
     font-size: 5px;
+}
+
+input{
+    padding: 0 10px;
 }

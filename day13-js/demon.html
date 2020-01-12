@@ -2,9 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
+    <script src="../jquery-3.4.1.js"></script>
+    <style type="text/css">
+        div{
+            height: 500px;
+            width:700px;
+            background-color: #1fe2ff;
+            display: none;
+        }
+    </style>
 </head>
 <body>
-$END$
+ <div>
+        <ul>
+            <li class="city">北京</li>
+            <li class="city"><a href="">上海</a></li>
+            <li class="city">天津</li>
+        </ul>
+    </div>
+<form>
+    <input type="text">
+    <input type="password">
+    <input type="radio">
+</form>
+ <select name="" id="">
+     <option>北京</option>
+     <option>上海</option>
+     <option>广州</option>
+ </select>
+ <hr>
+<button>添加</button>
 </body>
+<script type="text/javascript">
+    $('button').click(
+        function () {
+           var obj = document.createElement('li');
+            var ulObj = $('ul');
+            $(obj).text('fhjkashdfjkdas');
+            ulObj.append(obj)
+        }
+    )
+    $('div').show(1000).hide(1000).toggle(1000).slideDown(1000).slideUp(1000).slideToggle(1000).fadeIn(1000).fadeOut(1000).fadeToggle(1000)
+</script>
 </html>

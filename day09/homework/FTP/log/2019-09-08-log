@@ -1,0 +1,16 @@
+2019-09-08 10:38:16	[INFO]	caiqinxiong登录成功！
+2019-09-08 10:38:10	[INFO]	客户端127.0.0.1已链接！
+2019-09-08 10:38:16	[INFO]	MD5校验OK，文件传输成功！
+磁盘配额剩余1049801529字节
+文件已从服务器下载到：
+/Users/caiqinxiong/PycharmProjects/python/day09/homework/FTP/db/users_home/caiqinxiong/client_home/unzip_file.py
+MD5值为：4dd8dc720965642d06b752b1d440eb48
+2019-09-08 10:38:10	[INFO]	客户端127.0.0.1已链接！
+2019-09-08 10:40:52	[INFO]	caiqinxiong登录成功！
+2019-09-08 10:40:54	[INFO]	客户端127.0.0.1已链接！
+2019-09-08 10:40:54	[INFO]	客户端127.0.0.1已链接！
+2019-09-08 10:40:52	[INFO]	MD5校验OK，文件传输成功！
+磁盘配额剩余1049796677字节
+文件已从服务器下载到：
+/Users/caiqinxiong/PycharmProjects/python/day09/homework/FTP/db/users_home/caiqinxiong/client_home/断点续传_client.py
+MD5值为：93badfb6d86142c99de963f94d4190ec

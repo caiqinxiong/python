@@ -7,12 +7,11 @@ from selenium import webdriver
 
 executable_path = r'/Users/caiqinxiong/PycharmProjects/python/自动化测试/selennium/chromedriver'
 driver = webdriver.Chrome(executable_path = executable_path)
-driver.get('http://www.baidu.com')
+driver.get('https://pythonav.com/login')
 driver.maximize_window()
-driver.find_element_by_id('kw').send_keys('雨之夜&秋')
-driver.find_element_by_id('su').click()
-time.sleep(3)
-driver.find_element_by_xpath('//*[@id="1"]/h3/a/em').click()
+driver.find_element_by_class_name('form-control').send_keys('caiqinxiong')
+driver.find_elements_by_class_name('form-control')[1].send_keys('mima')
+driver.find_elements_by_class_name('form-control')[2].send_keys('1234')
 
 
 

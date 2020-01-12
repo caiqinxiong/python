@@ -4,6 +4,7 @@
 # 2019/12/15 下午3:31
 import time
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
 executable_path = r'/Users/caiqinxiong/PycharmProjects/python/自动化测试/selennium/chromedriver'
 driver = webdriver.Chrome(executable_path = executable_path)

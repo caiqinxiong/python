@@ -25,6 +25,23 @@
     height: 88px;
     line-height: 88px;
     float: right;
+    position: relative;
+}
+.right-a {
+    position: absolute;
+    left: 60px;
+    top:0;
+}
+.right-a a{
+    font-size: 10px;
+    margin: 5px;
+    padding: 5px;
+    background-color: #eeeeee;
+    transition: all .2s;
+}
+.right-a a:hover{
+    background-color: orange;
+    color: #eee;
 }
 
 .left-t2 {

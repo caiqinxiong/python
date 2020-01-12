@@ -36,9 +36,13 @@ a:hover {
 }
 
 .f-header a {
+    display: inline-block;
     text-decoration: none;
     color: aliceblue;
     font-size: 10px;
+}
+a:hover{
+    color: orange;
 }
 
 .f-header span {
