@@ -1,0 +1,89 @@
+day63 2018-05-03
+
+
+1. 内容回顾
+	1. 单表的增删改查
+		1. 删和改
+			1. GET请求 URL传值
+				1. 格式
+					127.0.0.1:8000/delete_publisher/?name=alex&id=7
+				2. Django后端取值
+					request.GET   --> 大字典
+					request.GET["name"]/request.GET["id"]   --> key不存在就报错了
+					request.GET.get("name", "sb")           --> 推荐用这个方法取值
+					
+			2. 复习一下POST方法提交的数据怎么取:
+				request.POST.get("key")
+			3. ORM操作
+				1. 删除
+					1. 先找到对象,调用对象的.delete()方法
+						publisher_obj = models.Publisher.objects.get(id=7)
+						publisher_obj.delete()
+					或者
+						models.Publisher.objects.get(id=7).delete()
+				
+				2. 修改
+					1. 找到对象,通过修改对象的属性来修改数据库中指定字段的值,要保存
+						publisher_obj = models.Publisher.objects.get(id=7)
+						publisher_obj.name = "新的出版社名字"
+						publisher_obj.save()  --> 把修改提交到数据库
+						
+		2. GET和POST
+			1. GET请求:
+				1. GET请求携带的数据都拼在了URL上
+				2. GET请求携带的数据有长度限制 40k
+			2. POST请求
+				1. form表单提交数据
+				2. 上传文件
+				
+			3. 几个GET请求具体的应用场景:
+				1. 浏览器地址栏直接输入URL
+				2. 点击a标签
+				3. 搜索引擎检索
+		3. request相关的知识点
+			1. request.method
+				1. GET
+				2. POST
+			2. request.POST   --> 所有和post请求相关的数据
+			3. request.GET    --> 所有和GET请求相关的数据
+			
+2. 今日内容
+	1. 图书管理系统表结构设计
+		图书管理系统的三种角色
+			1. 出版社
+			2. 书
+			3. 作者
+		总结关系:
+			1. 一本书   只能   有一个出版社
+			2. 一本书   能有   多个作者
+			3. 一个作者 能写   多本书
+		
+			出版社和书: 一对多    --> 外键
+			书和作者:   多对多    --> 用第三张表做关联
+		
+		表结构图在excel中:
+		
+		
+	2. 查看书籍列表
+	3. 添加书籍
+		将所有的出版社在页面上以select标签的形式展示出来
+	4. 删除书籍
+		如何在后端获取要删除的是那一个书籍?
+		通过URL传参数的形式
+	5. 编辑书籍
+		将所有的出版社在页面上以select标签的形式展示出来
+		将当前编辑的书籍对象的书名和出版社在页面上展示出来
+		
+		
+		
+		
+		
+		
+		
+			
+			
+						
+					
+					
+					
+						

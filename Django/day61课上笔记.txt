@@ -1,0 +1,176 @@
+day61 2018-04-28
+
+1. 内容回顾
+
+	1. HTTP协议消息的格式:
+		1. 请求(request)
+			请求方法 路径 HTTP/1.1\r\n
+			k1:v1\r\n
+			...\r\n
+			\r\n
+			请求体        <-- 可以有,可以没有
+		
+		2. 响应(response)
+			HTTP/1.1 状态码 状态描述符\r\n
+			k1:v1\r\n
+			Content-Type: text/html; charset=utf8\r\n
+			\r\n
+			响应正文       <-- HTML内容
+
+	2. Python web框架的本质:
+		a. 收发socket消息    --> 按照HTTP协议消息格式去解析消息
+		
+		b. 路径和要执行的函数的对应关系   --> 主要的业务逻辑
+		
+		c. 字符串替换                     --> 模板(特殊符号 --> 数据)
+		
+	3. 一个完整得请求流程:
+		0. 启动服务端,等待客户端(用户的浏览器)来连接
+		1. 在浏览器地址栏输入URL,与服务端建立连接,浏览器发送请求
+		2. 服务端收到请求消息,解析请求消息,根据路径和函数的对应关系,找到将要执行的函数
+		3. 执行函数,打开HTML文件,进行字符串替换,得到一个最终要返回的HTML内容
+		4. 按照HTTP协议的消息格式要求,把HTML内容回复给用户浏览器(发送响应)
+		5. 浏览器收到响应的消息之后,按照HTML的规则渲染页面.
+		6. 关闭连接
+		
+	
+2. Django昨日内容梳理:
+	0. Django安装
+		pip3 install django==1.11.11
+		
+		pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple/ django==1.11.11
+	
+		PyCharm安装的时候:
+			注意不要勾选那个选项 (你们懂得)
+
+	1. Django项目的启动:
+		1. 命令行启动
+			在项目的根目录下(也就是有manage.py的那个目录),运行:
+			python3 manage.py runserver IP:端口--> 在指定的IP和端口启动
+			python3 manage.py runserver 端口   --> 在指定的端口启动
+			python3 manage.py runserver        --> 默认在本机的8000端口启动
+		
+		2. PyCharm启动
+			点绿色的小三角,直接可以启动Django项目(前提是小三角左边是你的Django项目名)
+		
+	2. 配置相关   项目名/settings.py文件
+		1. Templates(存放HTML文件的配置)       <-- 告诉Django去哪儿找我的HTML文件
+		
+		2. 静态文件(css/js/图片)
+			# 静态文件保存目录的别名
+			STATIC_URL = '/static/'
+
+			# 所有静态文件(css/js/图片)都放在我下面你配置的文件夹中
+			STATICFILES_DIRS = [
+				os.path.join(BASE_DIR, "static"),
+			]
+		3. 注释掉setting.py中 带有 csrf 的那一行(大概45~47行)
+		
+		
+3. 今日内容
+	1. 登录的完整示例
+		
+		
+	复习:
+		form表单往后端提交数据需要注意哪三点:  五一回来默写    <-- 谁写错成from谁就请大家吃雪糕
+			1. form不是from,所有获取用户输入的标签都应该放在form里面, 并且必须要有name属性
+			2. action属性控制往哪儿提交,method一般都设置成post
+			3. 提交按钮必须是type=submit,不能是别的类型
+
+
+	2. GET请求和POST请求
+		GET请求:
+			1. 浏览器请求一个页面
+			2. 搜索引擎检索关键字的时候
+			
+		POST请求:
+			1. 浏览器向服务端提交数据,比如登录/注册等
+
+	3. Django中的APP:
+		什么是APP?以及为什么要用APP?
+		
+		project  --> 项目  (老男孩教育大学校)
+		
+		APP      --> 应用  (Linux学院/Python学院/大数据学院/Java学院)
+		
+		方便我们在一个大的Django项目中,管理实现不同的业务功能.
+		
+		1. 创建APP的命令
+			1. 命令行,在Django项目的根目录输入:
+				python3 manage.py startapp app名字
+		
+	4. ORM
+	
+	import pymysql
+	pymysql.connect(
+	 ...
+	 ...
+	)
+	
+	1. 不同的程序员写的SQL水平参差不齐
+	2. 执行效率也参差不齐
+	
+	python语法   --自动翻译-->  SQL语句
+	
+	jQuery                      DOM
+	$("#d1")     --自动翻译-->  document.getElementById("d1")
+	
+	ORM: 
+		优点:
+			1. 简单,不用自己写SQL语句
+			2. 开发效率高
+		缺点:
+			1. 记忆你这个特殊的语法
+			2. 相对于大神些的SQL语句,肯定执行效率有差距
+		
+	ORM的对应关系:
+		类          --->      数据表
+		对象        --->      数据行
+		属性        --->      字段
+
+	ORM能做的事儿:
+		1. 操作数据表    --> 创建表/删除表/修改表
+			操作models.py里面的类
+		
+		2. 操作数据行    --> 数据的增删改查
+			
+		
+		不能创建数据库,自己动手创建数据库
+		
+	使用Django的ORM详细步骤:
+		1. 自己动手创建数据库
+			create database 数据库名;
+		2. 在Django项目中设置连接数据库的相关配置(告诉Django连接哪一个数据库)
+			# 数据库相关的配置
+			DATABASES = {
+				'default': {
+					'ENGINE': 'django.db.backends.mysql',  # 连接的数据库类型
+					'HOST': '127.0.0.1',  # 连接数据库的地址
+					'PORT': 3306,  # 端口
+					'NAME': "day61",  # 数据库名称
+					'USER': 'root',  # 用户
+					'PASSWORD': '123456'  # 密码
+				}
+			}
+		3. 告诉Django用pymysql代替默认的MySQLDB 连接MySQL数据库
+			在项目/__init__.py文件中,写下面两句:
+				import pymysql
+				# 告诉Django用pymysql来代替默认的MySQLdb
+				pymysql.install_as_MySQLdb()
+		4. 在app下面的models.py文件中定义一个类,这个类必须继承models.Model
+			class 类名(models.Model):
+				...
+		5. 执行两个命令
+			1. python3 manage.py makemigrations
+			2. python3 manage.py migrate
+
+
+	ORM单表的增加和查询:
+		1. 查询
+			models.UserInfo.objects.all()
+			
+		2. 增加
+			models.UserInfo.objects.create(name="张三")
+
+	
+			

@@ -1,0 +1,88 @@
+今日内容：
+	1. 练习题
+	2. 补充自关联
+		M2M自关联特性：
+			obj = models.UserInfo.objects.filter(id=1).first()
+			# from_userinfo_id
+			obj.m          => select xx from xx where from_userinfo_id = 1
+			
+			# to_userinfo_id
+			obj.userinfo_set => select xx from xx where to_userinfo_id = 1
+			
+		
+		定义：
+			# 前面列：男生ID
+			# 后面列：女生ID
+			
+		应用：
+			# 男生对象
+			obj = models.UserInfo.objects.filter(id=1).first()
+			# 根据男生ID=1查找关联的所有的女神
+			obj.m.all()
+			
+			# 女生
+			obj = models.UserInfo.objects.filter(id=4).first()
+			# 根据女生ID=4查找关联的所有的男生
+			obj.userinfo_set.all()
+			
+		
+		FK自关联：
+			class Comment(models.Model):
+				"""
+				评论表
+				"""
+				news_id = models.IntegerField()            # 新闻ID
+				content = models.CharField(max_length=32)  # 评论内容
+				user = models.CharField(max_length=32)     # 评论者
+				reply = models.ForeignKey('Comment',null=True,blank=True,related_name='xxxx')
+			"""
+			   新闻ID                         reply_id
+			1   1        别比比    root         null
+			2   1        就比比    root         null
+			3   1        瞎比比    shaowei      null
+			4   2        写的正好  root         null
+			5   1        拉倒吧    由清滨         2
+			6   1        拉倒吧1    xxxxx         2
+			7   1        拉倒吧2    xxxxx         5
+			"""
+			"""
+			新闻1
+				别比比
+				就比比
+					- 拉倒吧
+						- 拉倒吧2
+					- 拉倒吧1
+				瞎比比
+			新闻2：
+				写的正好
+			"""
+	3. 中间件
+	4. Form组件
+	
+	
+作业:
+		1. 相亲作业
+		2. 博客笔记：
+			1.
+			2.
+			...
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

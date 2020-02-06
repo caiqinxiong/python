@@ -1,0 +1,144 @@
+day68 2018-05-10
+
+来老男孩教育学习必经的四个阶段：
+	第一个阶段：信心满满（我一定能学会，我为啥学不会）
+	第二个阶段：自我怀疑（卧槽！还真不好学！）
+	第三个阶段：极其浮躁（卧槽！怎么还不毕业！这讲师连Django都讲不明白！）
+	第四个阶段：极其焦虑（卧槽！怎么要毕业了？我什么都不会，怎么找工作？）
+	
+永远不要高估自己！
+
+1. 内容回顾（赵导专场）
+	1. ORM已经的学过的内容：
+		1. Django项目如何使用ORM连接MySQL
+			1. 手动创建数据库
+			2. 在settings.py里面配置一下数据库的连接信息（告诉Django连接哪一个数据库）
+				DATABASES = {
+					'default': {
+						'ENGINE': 'django.db.backends.mysql',  # 连接数据库的类型
+						'NAME': 'day62xiawu',  # 数据库名字
+						'HOST': '127.0.0.1',  # IP
+						'PORT': 3306,  # 端口
+						'USER': 'root',  # 用户名
+						'PASSWORD': '123456',  # 密码
+					}
+				}
+			3. 在和settings.py同目录下的__init__.py文件中，告诉Django用pymysql代替MySQLdb来连接数据库
+				import pymysql
+				pymysql.install_as_MySQLdb()
+			4. 在app/models.py中，定义类，类一定要继承models.Model
+				class Book(models.Model):
+					id = models.AutoField(primary_key=True)
+					title = models.CharField(max_length=32)
+			5. 执行两条命令
+				1. 在哪儿执行？
+					在项目的根目录（有manage.py文件的那个目录）
+				2. 命令
+					python manage.py makemigrations   --> 将models.py文件中的改动记录在小本本（app/migrations/00xx_****.py）上
+					
+					python manage.py migrate           --> 将改动翻译成SQL语句，去数据库中执行
+		2. 表和表之间的关系
+			1. 一对多（出版社和书）
+				publisher = models.ForeignKey(to="Publisher")
+				
+				在数据库中：
+					有没有publisher这个字段？
+					数据库中实际 生成的是一个 publisher_id 字段
+				
+			2. 多对多（作者和书）
+				books = models.ManyToManyField(to="Book")
+				
+				在数据库中：
+					是通过第三张表建立的关系
+
+		3. 增删改查操作
+			1. 单表增删改查
+				增：
+					models.Publisher.objects.create(name="沙河出版社")
+				查：
+					models.Publisher.objects.get(id=1)
+					models.Publisher.objects.get(name="沙河出版社")
+				删：
+					models.Publisher.objects.get(id=1).delete()
+				改：
+					obj = models.Publisher.objects.get(id=1)
+					obj.name = "沙河第二出版社"
+					obj.save()
+			2. 外键的增删改查
+				增、删、查同上
+				
+				book_obj = models.Book.objects.get(id=1)
+				
+				book_obj.publisher 是什么？    *****
+					和我这本书关联的出版社对象
+					
+					book_obj.publisher.id    和我这本书关联的出版社的id值
+					book_obj.publisher.name  和我这本书关联的出版社的名称
+					
+				book_obj.publisher_id 是什么？
+					和我这本书关联的出版社的id值
+					
+			3. 多对多操作
+				
+				1. 查id为1的作者都写过的书？
+					author_obj = models.Author.objects.get(id=1)
+					author_obj.books.all()     --> 和我这个作者关联的所有书对象
+				2. 想给作者绑定多本书？
+					author_obj = models.Author.objects.get(id=1)
+					author_obj.books.set([1,2,3]) --> 把id是1、2、3的书和我这个作者关联上
+				
+2. 今日内容
+
+		1. Django ORM常用字段：
+			1. AutoField       --> 自增
+			2. CharField       --> varchar(xx)
+			3. ForeignKey      --> 外键
+			4. ManyToManyField --> 多对多关联
+			
+			5. DateField
+			6. DateTimeField
+			
+			7. IntegerField
+			
+			
+		2. 自定义char字段
+			class FixedCharField(models.Field):
+				"""
+				自定义的char类型的字段类
+				"""
+				def __init__(self, max_length, *args, **kwargs):
+					self.max_length = max_length
+					super(FixedCharField, self).__init__(max_length=max_length, *args, **kwargs)
+
+				def db_type(self, connection):
+					"""
+					限定生成数据库表的字段类型为char，长度为max_length指定的值
+					"""
+					return 'char(%s)' % self.max_length
+
+			
+			
+		3. 常用的字段参数
+			1. null
+			2. default
+			3. unique
+			4. db_index
+			
+			5. DateField和DateTimeField才有的参数：
+				auto_now_add=True     --> 创建数据的时候自动把当前时间赋值
+				auto_add=True         --> 每次更新数据的时候更新当前时间
+				
+				上述两个不能同时设置！！！
+			
+			5. class Meta:
+				 db_table = "表名"
+		
+				
+				
+				
+	
+
+	
+	
+	
+	

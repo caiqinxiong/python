@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <form method="POST" action="/login/">
+        {% csrf_token %}
+        <p>
+            用户：<input type="text" name="username"/>{{ obj.errors.username.0 }}
+        </p>
+        <p>
+            密码：<input type="password" name="password"/>{{ obj.errors.password.0 }}
+        </p>
+        <input type="submit" value="提交" />{{ msg }}
+    </form>
+</body>
+</html>

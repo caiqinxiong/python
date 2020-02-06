@@ -1,0 +1,71 @@
+s4day68
+
+上节回顾：
+	1. Http请求生命周期
+		请求头 -> 提取URL -> 路由关系匹配 -> 函数 (模板+数据渲染) -> 返回用户（响应头+响应体）
+	2. def index(request):
+		request.POST.getlist
+		request.GET.get
+		request.method
+		
+		return render()
+		return HttpResponse()
+		return redirect()
+		
+		补充：模板渲染是在后台执行
+	3. 
+		for
+		if
+		索引.
+		{{}}
+	4. 
+	
+		js序列化
+		阻止默认事件：
+			<a onclick='return func();'></a>
+			<a id></a>
+			
+		$.ajax({
+			url:'',
+			type: '',
+			data: {},
+			dataType: 'JSON',
+			success:function(arg){
+			
+			}
+		})
+	
+今日内容：
+	1. 学员管理多对多
+		- 新URL方式
+			- 增加
+			- 编辑
+		- 对话框
+			- 增加
+			- 编辑：[11,22,33].indexOf(22222)
+			- 遗留：
+				- select 左右移动[2天]
+	2. 插件
+		- bootstrap(一)
+			- 看图拷贝 * 
+			- 常用标签
+			- 响应式
+			- js
+		- fontawesome
+			pass
+			
+	3. 用户登录Cookie
+	
+作业：
+	学员管理
+	- 用户登录
+		创建用户表
+		用户登录
+	- 学员管理
+		- 单表
+		- 一对多
+		- 多对多
+	必须完成：
+		1. 表格
+		2. 后台管理布局
+	

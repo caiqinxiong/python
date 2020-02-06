@@ -1,0 +1,116 @@
+s4day65
+
+
+内容回顾：
+	1. Web框架本质
+		- 本质socket
+		- Http协议
+			- 头
+			- 体
+		- 字符串
+	2. Django
+		- 安装
+		- django-admin startproject mysite
+		- 配置
+			- 模板路径
+			- 静态文件
+			- CSRF注释
+		- urls.py
+			url - > 函数
+			
+		- 函数：
+			def index(request):
+				request.method
+				request.GET
+				request.POST
+				
+				return HttpResponse(..)
+				return render(request,'模板路径',{})
+				return redirect('URL')
+		- 模板渲染
+			def index(request):
+				return render(request,'模板路径',
+					{
+						'k1': 'v1',
+						'k2': [1,2,32,34],
+						'k3': {'x'...},
+					}
+					)
+			
+			index.html
+				<h1>{{k1}}</h1>
+				<h1>{{k2.2}}</h1>
+				{% for item in k2%}
+					<h1>{{item}}</h1>
+				{% endfor %}
+			
+
+学员管理：
+	表结构：班级\学生\老师
+		
+		班级表（第一天）：
+			id    title
+			 1    全栈4期
+			 2    全栈5期
+			 
+		 
+		学生表：
+			 id     name      班级ID（FK）
+			  1     张英杰      1
+			 
+		老师表（第一天）：
+			id        name
+			 1       林海峰
+			 2       林狗
+			 3       苑日天
+
+		 
+		老师班级关系表：
+			id     老师ID    班级ID
+			 1       1          1
+			 2       1          2
+			 3       2          2
+		
+	单表操作：
+		- 增
+		- 删
+		- 改
+		- 查
+	一对多操作：
+		- 增
+		- 删
+		- 改
+		- 查
+	多对多操作：
+		- 增
+		- 删
+		- 改
+		- 查
+		
+Django基础
+
+
+前端知识（复习）
+	- HTML
+	- CSS
+
+
+今日作业：
+	- 老师管理
+	- 对话框：添加、删除 【可选】
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

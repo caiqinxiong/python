@@ -1,0 +1,134 @@
+s4day71
+
+上节回顾：
+	1. 路由系统
+		- 静态
+		- 动态
+			- 别名
+			- 无别名
+		- 别名
+			- 根据别名反生成URL
+		- 路由分发
+		
+		PS:
+			^$
+			伪静态 .html
+	2. ORM操作
+		- MySQL -> settings.databases
+		- pymysql.install_as_mysqldb()
+		
+		- 类
+			class Foo(models.Model):
+				# nid = models.AutoField(primary_key=True)
+				name = models.CharField(max_length=32)
+			class Bar(models.Model):
+				title = ...
+				f = FK...
+			
+			Foo.objects.create(name='ff')
+			result = Foo.objects.all()
+			QuerySet[Foo(),Foo()Foo()Foo()]
+			result = Foo.objects.filter(id=1).first()
+			result = Foo.objects.filter(name="alex").first()
+			QuerySet[obj,]
+			QuerySet[obj,obj,obj]
+			obj
+			
+			Foo.objects.filter(id=1).delete()
+			Foo.objects.filter(id=1).update()
+	3. 模板语言
+		- .索引
+		- 母版
+			
+		
+	4. Cookie
+		保存在用户浏览器端的键值对
+		- 
+	
+今日内容：
+	1. CBV & FBV
+	
+	2. Django ORM
+		a. 正反向
+		
+		b. 数据类型
+			# 数据获取多个数据时
+			# 1. [obj,obj,obj,]
+			# models.UserInfo.objects.all()
+			# models.UserInfo.objects.filter(id__gt=1)
+			# result = models.UserInfo.objects.all()
+			# for item in result:
+			#     print(item.name,item.ut.title)
+
+			# 2. [{id:1,name:fd},{id:1,name:fd},{id:1,name:fd},]
+			# models.UserInfo.objects.all().values('id','name')
+			# models.UserInfo.objects.filter(id__gt=1).values('id','name')
+			# 无法跨表
+			# result = models.UserInfo.objects.all().values('id','name')
+			# for item in result:
+			#     print(item['id'],item['name'])
+			# 夸表  __
+			# result = models.UserInfo.objects.all().values('id','name',"ut__title")
+			# for item in result:
+			#     print(item['id'],item['name'],item['ut__title'])
+
+
+			# 3. [(1,df),(2,'df')]
+			# models.UserInfo.objects.all().values_list('id','name')
+			# models.UserInfo.objects.filter(id__gt=1).values_list('id','name')
+			# 无法跨表
+			# result = models.UserInfo.objects.all().values_list('id','name')
+			# for item in result:
+			#     print(item[0],item[1])0
+			# 夸表  __
+			# result = models.UserInfo.objects.all().values_list('id','name',"ut__title")
+			# for item in result:
+			#     print(item[0],item[1],item[2])
+			
+	3. 分页
+		分批获取数据
+			models.UserInfo.objects.all()[0:10]
+			models.UserInfo.objects.all()[10:20]
+		
+		- Django自带
+			适合于：上一页下一页
+				
+				def index(request):
+					current_page = request.GET.get('page')
+
+					user_list = models.UserInfo.objects.all()
+					paginator = Paginator(user_list,10)
+					try:
+						posts = paginator.page(current_page)
+					except PageNotAnInteger as e:
+						posts = paginator.page(1)
+					except EmptyPage as e:
+						posts = paginator.page(1)
+					return render(request,'index.html',{'posts':posts})
+					
+				<h1>用户列表</h1>
+				<ul>
+					{% for row in posts.object_list %}
+						<li>{{ row.name }}</li>
+					{% endfor %}
+				</ul>
+				<div>
+					{% if posts.has_previous %}
+						<a href="/index.html?page={{ posts.previous_page_number }}">上一页</a>
+					{% endif %}
+
+					{% if posts.has_next %}
+						<a href="/index.html?page={{ posts.next_page_number }}">下一页</a>
+					{% endif %}
+				</div>
+		
+		- 自定分页组件
+		
+		
+		
+		
+		
+		
+		
+		
+		

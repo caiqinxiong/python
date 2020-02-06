@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    {% include 'user_header.html' %}
+
+    <h1>有关系的异性列表</h1>
+    <ul>
+        {% for row in user_list %}
+            {% if row.g__nickname %}
+                <li>{{ row.g__nickname }}</li>
+            {% else %}
+                <li>{{ row.b__nickname }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</body>
+</html>

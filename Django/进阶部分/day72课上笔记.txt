@@ -1,0 +1,87 @@
+day72 2018-05-16
+
+1. 内容回顾
+	1. Cookie是什么
+		保存在浏览器端的键值对
+		
+		为什么要有Cookie?
+			因为HTTP请求是无状态的
+		
+		Cookie的原理？
+			服务端可以在返回响应的时候 做手脚
+			在浏览器上写入键值对（Cookie）
+			
+			浏览器发送请求的时候会自动携带该网站保存在我浏览器的键值对（Cookie）
+			
+		Django 从请求携带的Cookie中取值：
+			request.COOKIES.get("is_login")
+			request.get_signed_cookie(key, default=None, salt="xxx")
+		Django中设置Cookie:(针对的是响应对象)
+			rep = HttpResponse()/render(request, "test.html)/redirect()
+			rep.set_signed_cookie(key, value, salt="xxx", max_age=7)
+		Django中删除Cookie:(注销)
+			rep.delete_cookie(key)
+
+	2. Session是什么
+		Session保存在服务端的键值对
+		
+		Session依赖于Cookie
+		
+		dsadasdsadsafsjkndf: {"is_login": 1, "name": "xiaohei", "age":18}
+		dsaasdaknfgreryywdf: {"is_login": 1, "name": "xiaobai", "age":20}
+		wqrqrteknfgzddasqfg: {"is_login": 0, "name": "xiaohui", "age":48}
+		
+		给浏览器写入Cookie:
+			sessionid:wqrqrteknfgzddasqfg
+			
+		1. 从用户发来的请求的Cookie中 根据 sessionid 取值， 取到 wqrqrteknfgzddasqfg
+		2. 根据特殊字符串找到对应的 Session 数据  --> {"is_login": 0, "name": "xiaohui", "age":48}
+		3. request.session.get("is_login")    --> 从Session取值
+		
+		
+		Django中设置Session:
+			request.session["is_login"] = 1
+			request.session.set_expiry(7)  # 设置超时时间 (Cookie和Session数据的)
+			
+			
+			在settings.py中设置，每次请求都刷新Session超时时间
+			SESSION_SAVE_EVERY_REQUEST = True 
+		
+		Django中删除Session:
+			request.session.flush()     清除Cookie和Session数据
+			
+			request.session.clear_expired()  将所有Session失效日期小于当前日期的数据删除
+			
+2. 今日内容
+	AJAX
+	
+	1. 预备知识 JSON
+	
+	
+	2. 我们之前已经学过的发请求的方式：
+		1. 直接在地址栏输入URL回车     GET请求
+		2. a标签                       GET请求
+		3. form表单                    GET/POST请求
+		4. AJAX                        GET/POST请求
+		
+	3. AJAX 特点：
+		1. 异步
+		2. 局部刷新浏览器（偷偷发请求）
+		
+	
+		
+3. 今日作业
+绝知此事要躬行！！！
+
+1. 检测用户名是否已经存在！
+2. 把Sweetalet插件
+3. 复习jQuery的内容
+
+ 
+		
+		
+		
+		
+		
+		
+		

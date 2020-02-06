@@ -1,0 +1,246 @@
+s4day74
+
+上节回顾：
+	数据库操作
+		- app
+			- models.py
+				class Foo:
+					xx= 字段（数据库数据类型）
+						字段类型
+							字符串
+								EmailField(CharField)：
+								IPAddressField(Field)
+								URLField(CharField)
+								SlugField(CharField)
+								UUIDField(Field)
+								FilePathField(Field)
+								FileField(Field)
+								ImageField(FileField)
+								CommaSeparatedIntegerField(CharField)
+							时间类：
+								models.DateTimeField(null=True)
+							数字：
+								num = models.IntegerField()
+								num = models.FloatField()
+								mum = models.DecimalField(max_digits=30,decimal_places=10)
+							枚举（Django）：
+								color_list = (
+									(1,'黑色'),
+									(2,'白色'),
+									(3,'蓝色')
+								)
+								color = models.IntegerField(choices=color_list)
+							
+								1. 自己操作：
+									自己取，自己用
+								2. 给Django admin使用
+									
+								应用场景：选项固定
+								
+								PS: FK选项动态
+						
+						字段参数：
+							null=True,
+							default='1111',
+							db_index=True,
+							unique=True
+							
+							class Meta:
+								# unique_together = (
+								#     ('email','ctime'),
+								# )
+								# index_together = (
+								#     ('email','ctime'),
+								# )
+						
+							DjangoAdmin提供的参数：
+								verbose_name        Admin中显示的字段名称
+								blank               Admin中是否允许用户输入为空
+								editable            Admin中是否可以编辑
+								help_text           Admin中该字段的提示信息
+								choices             Admin中显示选择框的内容，用不变动的数据放在内存中从而避免跨表操作
+													如：gf = models.IntegerField(choices=[(0, '何穗'),(1, '大表姐'),],default=1)
+
+								error_messages      自定义错误信息（字典类型），从而定制想要显示的错误信息；
+													字典健：null, blank, invalid, invalid_choice, unique, and unique_for_date
+													如：{'null': "不能为空.", 'invalid': '格式错误'}
+
+								validators          自定义错误验证（列表类型），从而定制想要的验证规则
+													from django.core.validators import RegexValidator
+													from django.core.validators import EmailValidator,URLValidator,DecimalValidator,\
+													MaxLengthValidator,MinLengthValidator,MaxValueValidator,MinValueValidator
+													如：
+														test = models.CharField(
+															max_length=32,
+															error_messages={
+																'c1': '优先错信息1',
+																'c2': '优先错信息2',
+																'c3': '优先错信息3',
+															},
+															validators=[
+																RegexValidator(regex='root_\d+', message='错误了', code='c1'),
+																RegexValidator(regex='root_112233\d+', message='又错误了', code='c2'),
+																EmailValidator(message='又错误了', code='c3'), ]
+						a. 直接通过
+							models.Userinfo.objects.create(....)
+							-- ModelForm
+						b. 影响Django自带的管理工具admin
+		- 操作：
+			- 增删改查
+			- filter(),update(),create()
+			- all()  values   values_list()
+			- FK
+				正向：
+					filter() values,values_list() -> 跨表  fk__xxx
+					objs = all()
+					for obj in objs:
+						obj.fk.
+				反向：
+					filter() values,values_list() -> 跨表  表名称__xxx
+					objs = all()
+					for obj in objs:
+						obj.表名称_set.all()
+			- M2M:
+				M2M  自定义  M2M+自定义
+						
+				正向（有M2M）：
+					obj = ...
+					obj.m.add()
+					obj.m.remove()
+					obj.m.set()
+					obj.m.clear()
+					obj.m.all()...
+				反向：
+					obj ...
+					obj.表名_set.add
+					...
+					
+				M2M+自定义
+					
+			
+			
+	CSRF：POST时，需要用户携带随机字符
+		- Form
+			- {% csrf_token %}
+		- Ajax
+			- data
+			- cookie中获取，添加到请求头
+	XSS：
+		- 不用safe
+		- mark_safe
+		- 过滤关键字
+		
+	Cookie:
+		- 放在用户浏览器端的键值对
+		- 可以放很多，但是对于敏感信息
+
+今日内容：
+	1. 模板
+		- 基本使用
+		- 母版
+			- 页面继承
+		- include
+			- 导入小组件
+				pub.html
+					<div>
+						<h3>特别漂亮的组件</h3>
+						<div class="title">标题：{{ name }}</div>
+						<div class="content">内容：{{ name }}</div>
+					</div>
+				test.html
+					<!DOCTYPE html>
+					<html lang="en">
+					<head>
+						<meta charset="UTF-8">
+						<title></title>
+					</head>
+					<body>
+						{% include 'pub.html' %}
+						{% include 'pub.html' %}
+						{% include 'pub.html' %}
+					</body>
+					</html>
+		- 函数-> 自动执行
+		- 模板自定义函数：
+			- simple_filter
+				- 最多两个参数,方式： {{第一个参数|函数名称:"第二个参数"}}
+				- 可以做条件判断
+			- simple_tag
+				- 无限制: {% 函数名 参数 参数%}
+				
+	3. Session
+		Cookie是什么？
+			保存在客户端浏览器上的键值对
+		Session是什么？
+			保存在服务端的数据（本质是键值对）
+			{
+				“asdfasdfasdfasdfasdf":{'id':1,'name':'于浩',email='xxxx'}
+				asdffffsdfdfdfdfd":{'id':2,'name':'啥子',email='xxxx'}
+				sdfsdf":{'id':2,'name':'啥子',email='xxxx'}
+				fdfd":{'id':2,'name':'啥子',email='xxxx'}
+				dfddfdfd":{'id':2,'name':'啥子',email='xxxx'}
+				dfdfd":{'id':2,'name':'啥子',email='xxxx'}
+				dfdfd":{'id':2,'name':'啥子',email='xxxx'}
+				dfdfdf":{'id':2,'name':'啥子',email='xxxx'}
+			}
+			应用：依赖cookie
+			作用：保持会话（Web网站）
+			好处：敏感信息不会直接给客户端
+		
+		梳理：
+			1. 保存在服务端的数据（本质是键值对）
+			2. 配置文件中：
+				- 存储位置
+				- 超时时间、每次刷新更新时间
+			3. 
+				request.session
+					- 增伤
+					- 获取随机字符串
+					- 主动设置超时时间 ***
+					
+					
+	
+	2. 中间件
+	
+	
+今日作业:  相亲网
+	1. 登录，基于Session，装饰器
+	
+	2. 数据表：
+		男生表：
+			id    username  password
+		
+		女生表
+			id    username  password
+	
+		男生女生关系表：
+			nid  nid
+			
+	3. 功能：
+		登录页：
+			用户名：
+			密码：
+			性别：
+			一周免登录：checkbox
+			
+			session[id]
+			session[xingbie]
+		
+		查看异性列表：
+			session[xingbie]
+			
+		查看与自己有染得异性姓名列表
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

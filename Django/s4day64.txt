@@ -1,0 +1,246 @@
+s4day64
+内容回顾：
+	
+	1. 安装
+	2. 创建用户 + 授权
+	3. 
+		连接
+			- 数据库
+				终端创建数据库（字符编码）
+			- 数据表
+				终端
+				ORM
+				pymysql
+					create ...)engine=innodb 
+			- 数据行
+				增
+				删
+				改
+				查
+					- limit
+					- group by
+					....
+		
+		关闭
+	
+	问题：简述ORM原理
+	
+		class User:
+			def __init__(self):
+				self.id =..
+				self.name =.
+				self.email
+			
+			def order_by():
+				sss
+		obj = User()
+		obj.__dict__ = {
+			id:'',
+			name:,
+			email:
+		}
+		
+		select id,name,email from user	order by ...
+		
+		pymysql 
+		
+		PS:
+			code first(*)       db first
+				
+	
+
+
+今日内容概要：
+
+	1. 自己开发Web框架
+		- socket
+		- http协议
+		- HTML知识
+		- 数据库（pymysql，SQLAlchemy）
+
+	HTTP:
+		无状态、短连接
+		
+	TCP：
+		不断开
+		
+	WEB应用（网站）：
+		Http协议：
+			发送：
+				POST /index HTTP/1.1
+				Host: 127.0.0.1:8080
+				Connection: keep-alive
+				Cache-Control: max-age=0
+				Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+				User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.89 Safari/537.36
+				HTTPS: 1
+				Accept-Encoding: gzip, deflate, sdch
+				Accept-Language: zh-CN,zh;q=0.8
+				Cookie: csrftoken=hNmu2JOtntGMN0hSRSPmMQk2newEb3o8zb6pXW5Cc3m54IaA5VlTkUvqWsFezpni
+
+
+				p=123
+			
+			响应：
+				200 OK
+				Cache-Control:public, max-age=15
+				Connection:keep-alive
+				Content-Encoding:gzip
+				Content-Type:text/html; charset=utf-8
+				Date:Wed, 14 Jun 2017 01:21:17 GMT
+				Expires:Wed, 14 Jun 2017 01:21:33 GMT
+				Last-Modified:Wed, 14 Jun 2017 01:21:03 GMT
+				Transfer-Encoding:chunked
+				Vary:Accept-Encoding
+				X-Frame-Options:SAMEORIGIN
+				X-UA-Compatible:IE=10
+						
+				
+				
+				用户在页面看到的内容“字符串”（看到页面效果，由于浏览器解析）
+				
+	
+		浏览器（socket客户端）
+			2. www.cnblogs.com（42.121.252.58，80）
+				sk.socket()
+				sk.connect(（42.121.252.58，80）)
+				
+				sk.send('我想要xx')
+			5. 接收
+			6. 连接断开
+			
+			
+			
+		博客园（socket服务端）
+			1. 监听ip和端口（42.121.252.58，80）
+				while True:
+					用户 = 等待用户连接
+					3. 收到'我想要xx'
+					4. 响应：“好”
+					用户断开
+		
+		
+
+		import socket
+
+		sock = socket.socket()
+		sock.bind(('127.0.0.1',8080))
+		sock.listen(5)
+
+		while True:
+			conn,addr = sock.accept() # hang住
+			# 有人来连接了
+			# 获取用户发送的数据
+			data = conn.recv(8096)
+			conn.send(b"HTTP/1.1 200 OK\r\n\r\n")
+			conn.send(b'123123')
+			conn.close()
+
+		
+		
+		1. Http，无状态，短连接
+		2. 
+			浏览器（socket客户端）
+			网站（socket服务端）
+			
+		3. 自己写网站
+			a. socket服务端
+			b. 根据URL不同返回不同的内容
+				路由系统：
+					URL -> 函数
+			c. 字符串返回给用户
+				模板引擎渲染：
+					HTML充当模板（特殊字符）
+					自己创造任意数据
+				字符串
+				
+		4. Web框架：
+			框架种类：
+				- a,b,c					 --> Tornado
+				- [第三方a],b,c          --> wsgiref -> Django 
+				- [第三方a],b,[第三方c]  --> flask,
+				
+			分类：
+				- Django框架（Web。。。。。。）
+				- 其他
+		
+
+		
+	2. Django框架
+		pip3 install django
+		
+		命令：
+			# 创建Django程序
+			django-admin startproject mysite
+			# 进入程序目录
+			cd mysite
+			# 启动socket服务端，等待用户发送请求
+			python manage.py runserver 127.0.0.1:8080
+	
+		pycharm：
+			...
+			
+		Django程序目录：
+			mysite
+				mysite
+					- settings.py  # Django配置文件
+					- url.py       # 路由系统：url->函数
+					- wsgi.py      # 用于定义Django用socket, wsgiref,uwsgi
+			
+				# 对当前Django程序所有操作可以基于 python manage.py runserver
+				manage.py 
+	
+	
+		1. 创建project
+		2. 配置：
+				- 模板路径
+					template目录
+					
+					TEMPLATES = [
+						{
+							'BACKEND': 'django.template.backends.django.DjangoTemplates',
+							'DIRS': [os.path.join(BASE_DIR, 'template')],
+							'APP_DIRS': True,
+							'OPTIONS': {
+								'context_processors': [
+									'django.template.context_processors.debug',
+									'django.template.context_processors.request',
+									'django.contrib.auth.context_processors.auth',
+									'django.contrib.messages.context_processors.messages',
+								],
+							},
+						},
+					]
+				- 静态文件路径
+					static目录
+					
+					STATIC_URL = '/static/'
+					STATICFILES_DIRS = (
+						os.path.join(BASE_DIR,'static'),
+					)
+
+		3. 额外配置
+			MIDDLEWARE = [
+				'django.middleware.security.SecurityMiddleware',
+				'django.contrib.sessions.middleware.SessionMiddleware',
+				'django.middleware.common.CommonMiddleware',
+				#'django.middleware.csrf.CsrfViewMiddleware',
+				'django.contrib.auth.middleware.AuthenticationMiddleware',
+				'django.contrib.messages.middleware.MessageMiddleware',
+				'django.middleware.clickjacking.XFrameOptionsMiddleware',
+			]
+				
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

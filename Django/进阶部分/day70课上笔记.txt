@@ -1,0 +1,176 @@
+day70 2018-05-14
+
+1. 内容回顾
+	1. ORM
+		1. ORM常用字段和属性
+			1. AutoField(primary_key=True)
+			2. CharField(max_length=32)
+			3. IntgerField()
+			
+			4. DateField()
+			5. DateTimeField()
+				1. auto_now_add    --> 创建的时候自动填充当前时间
+				2. auto_now        --> 每次修改的时候自动把当前时间更新
+				
+		2. 关系字段
+			1. ForeignKey(to="类名"，related_name=“xx”)   --> 1对多  ，外键通常设置在多的那一边、
+			2. ManyToMany(to="类名",related_name="xx")    --> 多对多，通常设置在正向查询多的那一边
+			
+
+		3. ORM一般操作
+			1. 必知必会13条
+				1. 返回QuerySet对象的
+					1. all()
+					2. filter()
+					3. values()
+					4. values_list()
+					5. exclude()
+					6. order_by()
+					7. reverse()
+					8. distinct()
+				2. 返回具体对象的
+					1. get()
+					2. first()
+					3. last()
+				3. 返回布尔值的
+					1. exists()
+				4. 返回具体数值的
+					1. count()
+			2. 单表查询的双下划线
+				1. models.Book.objects.filter(id__gt=1)
+				2. models.Book.objects.filter(id__in=[1,2,3])
+				3. models.Book.objects.filter(id__range=[1,5])
+				4. models.Book.objects.filter(title__contains="沙河")
+				5. models.Book.objects.filter(title__icontains="沙河")
+				6. models.Book.objects.filter(title__startswith="沙河")
+				7. models.Book.objects.filter(title__endswith="沙河")
+				8. models.Book.objects.filter(publish_date__year=2017)
+				9. models.Book.objects.filter(publish_date__month=2)
+			3. 外键的跨表查询
+				1. 正向查找
+					1. 基于对象
+						book_obj = models.Book.object.get(id=1)
+						book_obj.publisher.name
+					
+					2. 基于双下划线的
+						models.Book.object.filter(id=1).values("publisher__name")
+					
+				2. 反向查找（由出版社查书）
+					1. 基于对象
+						publisher_obj = models.Publisher.objects.get(id=1)
+						默认反向查找的时候是表名加_set
+							publisher_obj.book_set.all()
+						如果在外键中设置了related_name="books"
+							publisher_obj.books.all()
+					
+					2. 基于双下划线
+						models.Publisher.objects.filter(id=1).values("book__title")
+						如果配置了related_query_name="books"
+						models.Publisher.objects.filter(id=1).values("books__title")
+					
+			4. 分组和聚合
+				1. 聚合
+					from django.db.models import Avg, Sum, Max, Min, Count
+					models.Book.objects.all().aggregate(Avg("price"))
+				2. 分组
+					book_list = models.Book.objects.all().annotate(author_num=Count("author"))
+			
+			5. F和Q
+				1. 当需要字段和字段作比较的时候用F查询
+				2. 当查询条件是 或 的时候 用Q查询，因为默认的filter参数都是且的关系
+				
+			6. 事务
+				1. 保证数据的原子性操作！！！
+			
+			7. 执行原生的SQL语句（了解即可）
+
+2. ORM 一对一
+	1. 什么时候用一对一？
+		当 一张表的某一些字段查询的比较频繁，另外一些字段查询的不是特别频繁
+		把不怎么常用的字段 单独拿出来做成一张表 然后用过一对一关联起来
+		
+	2. 优势
+			既保证数据都完整的保存下来，又能保证大部分的检索更快
+			
+	3. ORM中的用法
+		OneToOneField(to="")
+
+3. ORM 多对多的三种方式
+	多对多的方式：
+		1. ORM自动帮我创建第三张表
+		
+		
+		2. 自己创建第三张表， 利用外键分别关联作者和书
+			关联查询比较麻烦，因为没办法使用ORM提供的便利方法
+			
+		3. 自己创建第三张表，使用ORM 的ManyToManyFiled()
+			 使用此种方式创建多对多表的时候，没有 add() remove() 等方法
+			 
+		
+		
+	我们应该用哪种？
+		看情况：
+			1. 如果你第三张表没有额外的字段，就用第一种
+			2. 如果你第三张表有额外的字段，就用第三种或第一种
+		
+		
+		相亲网站：
+			Boy
+				girls = ManyToManyField(to=“Girl")
+			
+			Girl
+			
+			约会记录：多对多
+				id  boy_id girl_id  date
+
+4. ORM查询的练习题
+	1. 跨表查询
+	2. 跨多张表查询
+	
+5. csrf简单用法
+
+	什么是CSRF ?
+		跨站请求伪造，
+		
+		
+	问题：
+		1. 钓鱼网站的页面和正经网站的页面对浏览器来说有什么区别？ （页面是怎么来的？）
+			钓鱼网站的页面是由 钓鱼网站的服务端给你返回的
+			
+			正经网站的网页是由 正经网站的服务端给你返回的
+			
+			
+		2. Django中内置了一个专门处理csrf问题的中间件
+			django.middleware.csrf.CsrfViewMiddleware
+			
+			这个中间件做的事情：
+				1. 在render返回页面的时候，在页面中塞了一个隐藏的input标签
+				
+				用法：
+					我们在页面上 form表单 里面 写上 {% csrf_token %}
+					
+				<input type="hidden" name="csrfmiddlewaretoken" value="8gthvLKulM7pqulNl2q3u46v1oEbKG7BSwg6qsHBv4zf0zj0UcbQmpbAdijqyhfE">
+				
+				2. 当你提交POST数据的时候，它帮你做校验，如果校验不通过就拒绝这次请求
+
+				
+作业：
+	1. 多对多的三种情况 自己整理下笔记
+	2. ORM查询练习 
+		1. 正向查
+		2. 反向查
+		3. 跨表查
+	3. 预习
+
+预习：
+http://www.cnblogs.com/liwenzhou/p/8343243.html
+
+
+
+
+
+
+
+
+
+
