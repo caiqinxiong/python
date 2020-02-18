@@ -1,0 +1,109 @@
+day66 2018-05-08
+
+1. 内容回顾
+	1. 模板系统（字符串替换）
+		1. 语法
+			1. 变量相关： {{ name }}，{{name|length}}，{{name|default:"默认值"}}
+			2. 逻辑相关：
+				1. if判断
+					{% if a > b %}
+					{% endif %}
+					
+					{% if a > b %}
+					{% else %}
+					{% endif %}
+					
+					{% if a > b %}
+					{% elif %}
+					{% else %}
+					{% endif %}
+				2. for循环
+					1. for循环的基本用法：
+						{% for i in name_list %}
+							{{ i }}
+						{% endfor %}
+						
+						{% for i in name_list %}
+							{{ i }}
+						{% empty %}
+							空空如也
+						{% endfor %}
+					
+					2. for循环可用的属性：
+						forloop.counter
+						forloop.counter0
+						forloop.revcounter
+						forloop.revcounter0
+						
+						forloop.first 
+						forloop.last 
+						
+						forloop.parentloop  --> 两层for循环，内层循环引用外层循环
+						
+		2. filter
+			1. 常用的内置filter
+				1. length
+				2. filesizeformat       --> 格式化文件大小的
+				3. date:'Y-m-d H:i:s'   --> 格式化时间的
+				4. slice
+				5. safe                 --> XSS攻击（跨站脚本攻击）
+				6. truncatechars:20     --> 截取字符，超过的用...表示
+				7. default
+					
+			2. 自定义的filter
+				示例：
+					1. addsb
+					2. addstr
+				具体的实现方式：
+					1. 定义阶段
+						1. 在app下面新建一个python的包：templatetags
+						2. 在上面的Python包中新建一个Python文件，名字随意
+						3. 在上述python文件中：
+							from django import template
+							
+							# 生成一个注册用的实例
+							register = template.Library()
+							# 定义并注册一个自定义的filter函数
+							@register.filter(name='addsb')
+							def add_sb(arg):
+								return "{} sb".format(arg)
+					2. 调用阶段：
+						1. 在Django的模板文件中，导入刚才新建的python文件
+							{% load py文件名 %}
+						2. 按照filter的语法调用
+							{{ name|addsb }}
+						
+2. 今日内容
+	1. 母版和继承
+		1. 为什么要有模板和继承：
+			把多个页面公用的部分提取出来，放在一个 母版 里面。
+			其他的页面只需要 继承 母版就可以了。
+		2. 具体使用的步骤：
+			1. 把公用的HTML部分提取出来，放到base.html文件中
+			2. 在base.html中，通过定义block，把每个页面不同的部分区分出来
+			3. 在具体的页面中，先继承母版
+			4. 然后block名去指定替换母版中相应的位置
+		
+		3. 使用母版和继承的注意事项：
+			1. {% extends 'base.html' %} --> 母版文件:base.html要加引号
+			2. {% extends 'base.html' %}必须放在子页面的第一行！！！
+			3. 可以在base.html中定义很多block，通常我们会额外定义page-css和page-js两个块
+			4. view.py相应的函数中返回的是对应的子页面文件 不是不是不是 base.html
+	2. 组件
+		{% include 'xxx.html'%}
+		
+	3. 静态文件的灵活写法
+		1.
+			{% load static %}
+			{% static 'jQuery-3.3.1.js' %}
+		2. {% get_static_prefix %}jQuery-3.3.1.js
+		
+	4. 自定义simple_tag和inclusion_tag
+	
+	
+				
+				
+				
+				
+					
+					

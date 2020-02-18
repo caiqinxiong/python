@@ -1,0 +1,132 @@
+day73 2018-05-17
+
+1. 内容回顾
+	1. 回顾了一下json数据格式
+		1. JS对象        和 json数据格式的互相转换
+		2. Python中数据  和 json数据格式的互相转换
+	2. AJAX
+		1. 我们前端往后端发请求的方式：
+			1. 直接在地址栏输入URL
+			2. a标签
+			3. form表单
+			4. AJAX
+			
+			HTTP请求的类型：
+				GET
+				POST
+		2. AJAX特点：
+			1. 异步
+			2. 局部刷新（偷偷发请求）
+			
+		3. AJAX缺点：
+			请求零碎，滥用对服务端压力大
+		
+		4. jQuery封装的AJAX方法：
+			先导入 jquery.js 
+			
+			$.ajax({
+				url: "/test/",
+				type: "post",
+				data: {"key": "value", "key2":[[1, 2, 3], [4, 5, 6]]},
+				success: function(arg){
+					// 请求得到响应的时候，自动执行这个回调函数
+					console.log(arg);
+				}
+			})
+			
+2. 今日内容
+	1. form组件的介绍
+		
+	之前web开发的模式，以注册为例：
+		1. 要有一个注册的页面，页面里面要有form表单        --> 生成HTML代码
+		2. form表单要能提交数据到后端，后端要做有效性校验  --> 数据有效性校验
+		3. 要把校验的提示信息展示在页面上                  --> 校验信息返回并展示，保存原来填写的内容
+		
+		
+		关于校验：
+			1. 前端通过JS代码做校验    --> 最好有
+			2. 后端做校验              --> 必须要有（因为前端的校验可以被跳过）
+		
+		
+	2. form组件的用法
+		1. from django import forms
+		2， 定义一个form类
+			class RegForm(forms.Form):
+				user = forms.CharField()
+				pwd = forms.CharField()
+				email = forms.EmailField()
+		
+		生成HTML：
+			3. 实例化一个form对象， 传递到模板语言中
+			4. 在目标语言中调用form对象的响应方法和属性
+			
+			三种方式：
+				1. {{ form_obj.as_p }}
+				2. 单独写
+					{{ form_obj.pwd.label }}
+					{{ form_obj.pwd }}
+		
+		
+		做校验：
+			1. form_obj = RegForm(request.POST)
+			2. form_obj.is_valid()
+			
+		内置的正则校验器的使用
+			mobile = forms.CharField(
+				label="手机",
+				# 自己定制校验规则
+				validators=[
+					RegexValidator(r'^[0-9]+$', '手机号必须是数字'),
+					RegexValidator(r'^1[3-9][0-9]{9}$', '手机格式有误')
+				],
+				widget=widgets.TextInput(attrs={"class": "form-control"}),
+				error_messages={
+					"required": "该字段不能为空",
+				}
+			)
+	
+	看源码：
+		
+	
+		form_obj.is_valid()都干了什么？
+		
+		
+		self._errors = ErrorDict()  --> {}
+		self.cleaned_data = {}     
+
+		self.fields.items()
+			字段名  字段对象
+		
+		
+		如果有错误：
+			self._errors["name"] = ""
+		
+		没有报错：
+			self.cleaned_data["name"] = value（用户填写的值）
+			
+		注意：
+		钩子函数（hook）的使用
+		
+		def clean_xx():
+			"""具体字段的自定义校验方法"""
+			pass
+		
+		def clean():
+		    """全局的自定义校验方法"""
+			pass
+		
+
+errors:
+		
+<ul class="errorlist">
+	<li>name
+		<ul class="errorlist">
+			<li>不符合社会主义核心价值观！</li>
+		</ul>
+	</li>
+	<li>__all__
+		<ul class="errorlist nonfield">
+			<li>两次密码不一致</li>
+		</ul>
+	</li>
+</ul>

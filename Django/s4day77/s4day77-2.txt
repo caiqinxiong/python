@@ -1,0 +1,145 @@
+1. 验证
+
+	- Form提交
+		class XXForm(Form):
+			user = fields.CharField(min_length=8)
+			email = fields.EmailField()
+			password = fields.CharField()
+			phone = fields.RegexField('139\d+')
+		
+		
+		def login(request):
+			if request.method == 'GET':
+				return render(request,'login.html')
+			else:
+				obj = LoginForm(request.POST)
+				if obj.is_valid():
+					print(obj.cleaned_data)
+					return redirect('http://www.baidu.com')
+				return render(request,'login.html',{'obj': obj})
+		
+		<form id="f1" action="/login/" method="POST">
+			{% csrf_token %}
+			<p>
+				<input type="text" name="user" />{{ obj.errors.user.0 }}
+			</p>
+			<p>
+				<input type="password" name="pwd" />{{ obj.errors.pwd.0 }}
+			</p>
+			<input type="submit" value="提交" />
+		</form>
+		
+		======> 无法保留上次输入内容
+		
+		
+	- Ajax提交
+		class XXForm(Form):
+			user = fields.CharField(min_length=8)
+			email = fields.EmailField()
+			password = fields.CharField()
+			phone = fields.RegexField('139\d+')
+		
+		
+		def login(request):
+			return render(request,'login.html')
+		
+		def ajax_login(request):
+			import json
+			ret = {'status': True,'msg': None}
+			obj = LoginForm(request.POST)
+			if obj.is_valid():
+				print(obj.cleaned_data)
+			else:
+				# print(obj.errors) # obj.errors对象
+				ret['status'] = False
+				ret['msg'] = obj.errors
+			v = json.dumps(ret)
+			return HttpResponse(v)
+		
+		<form id="f1" action="/login/" method="POST">
+			{% csrf_token %}
+			<p>
+				<input type="text" name="user" />
+			</p>
+			<p>
+				<input type="password" name="pwd" />
+			</p>
+			<input type="submit" value="提交" />
+		</form>
+		
+		
+		
+		<script src="/static/jquery-1.12.4.js"></script>
+		<script>
+			function submitForm(){
+				$('.c1').remove();
+				$.ajax({
+					url: '/ajax_login/',
+					type: 'POST',
+					data: $('#f1').serialize(),// user=alex&pwd=456&csrftoen=dfdf\
+					dataType:"JSON",
+					success:function(arg){
+						console.log(arg);
+						if(arg.status){
+
+						}else{
+							$.each(arg.msg,function(index,value){
+								console.log(index,value);
+								var tag = document.createElement('span');
+								tag.innerHTML = value[0];
+								tag.className = 'c1';
+								$('#f1').find('input[name="'+ index +'"]').after(tag);
+							})
+						}
+					}
+				})
+			}
+		</script>
+		
+		*# #################### 完美
+		
+		
+2. 无法保留Form上次输入内容
+	利用：Form生成HTML标签
+		- GET
+			obj = From()
+			Form生成HTML标签 <input .... />
+		- POST
+			obj = Form(request.POST)
+			Form生成HTML标签 <input . value='xx'/>
+			
+	解决Form上次输入内容
+	
+	
+	
+日后：
+	- Ajax，仅用验证功能
+	- Form，验证功能，生成HTML标签
+		
+			
+		
+疑问：
+	1. 选择：checkbox,select,radio
+		- 默认值
+		- 上次输入值
+	2. 自定义验证规则：
+		- RegexField
+		- ...
+		- ... *****
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

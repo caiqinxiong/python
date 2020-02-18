@@ -1,0 +1,219 @@
+day74 2018-05-21
+
+课程安排
+周一：	
+	中间件
+	auth模块+分析BBS项目需求（小组讨论把表结构设计出来）
+	
+
+1. 今日内容
+	中间件：http://www.cnblogs.com/liwenzhou/p/8761803.html
+	
+		1. URL的白名单 url = ["/xx/", "/oo/", "/haha/"]
+		2. 登陆之后才能访问某些URL    之前使用装饰器
+
+	
+	中间件的定义：
+		wsgi之后 urls.py之前 在全局 操作Django请求和响应的模块！
+		
+	中间件的使用：
+		5个固定的方法
+			process_request(self, request)
+				执行顺序：
+					按照注册的顺序（在settings.py里面设置中 从上到下的顺序）
+				何时执行：
+					请求从wsgi拿到之后
+				返回值：
+					返回None，继续执行后续的中间件的process_request方法
+					返回response , 不执行后续的中间件的process_request方法
+					
+			process_response
+				执行顺序：
+					按照注册顺序的倒序（在settings.py里面设置中 从下到上的顺序）
+				何时执行：
+					请求有响应的时候
+				返回值：
+					必须返回一个response对象
+					
+			process_view(self, request, view_func, view_args, view_kwargs):
+				执行顺序：
+					按照注册的顺序（在settings.py里面设置中 从上到下的顺序）
+				何时执行：
+					在urls.py中找到对应关系之后 在执行真正的视图函数之前
+				返回值：
+					返回None，继续执行后续的中间件的process_view方法
+					返回response,
+					
+					
+			process_exception(self, request, exception)
+				执行顺序：
+					按照注册顺序的倒序（在settings.py里面设置中 从下到上的顺序）
+				何时执行：
+					视图函数中抛出异常的时候才执行
+				返回值：
+					返回None,继续执行后续中间件的process_exception
+					返回response，
+					
+					
+					
+			process_template_response(self, request, response)
+				执行顺序：
+					按照注册顺序的倒序（在settings.py里面设置中 从下到上的顺序）
+				何时执行：
+					视图函数执行完，在执行视图函数返回的响应对象的render方法之前 
+				返回值：
+					返回None,继续执行后续中间件的process_exception
+					返回response，
+	
+	
+		Django调用 注册的中间件里面五个方法的顺序：
+			1. process_request
+				urls.py
+			2. process_view
+				view
+			3. 有异常就执行 process_exception
+			4. 如果视图函数返回的响应对象有render方法,就执行process_template_response
+			5. process_response
+	
+
+Django已经学过的知识点：
+	1. Urls.py 路由系统：
+	
+		正则
+			分组匹配     --> 位置参数
+			分组命名匹配 --> 关键字参数
+		
+		分级路由
+			include
+		
+		给路由起别名
+			name="xx"
+			
+		反向解析url
+			view
+				from django.urls import reverse
+				
+				reverse("xx", args=[1, 2, 3])
+				reverse("xx", kwargs={”k": "v"})
+				
+		自取其辱
+		
+	2. 视图 views.py
+		request
+			request.method
+			request.GET     --> URL里面的参数
+			request.POST    --> post请求的数据
+			
+			request.path_info        --> 路径
+			request.get_full_path()  --> 路径加路径的参数
+		
+		
+		response
+			新手必备3件套
+			render(request, "xx.html"， {“k”: "v", ...})
+			HttpResponse("响应")
+			redirect("/index/")
+			redirect("http://www.luffycity.com")
+			
+			from django.http import JsonResponse
+			JsonResponse()
+			
+			FBV和CBV
+			
+			函数装饰器和方法装饰器的区别
+			
+	3. 模板
+		
+		filter
+			内置的filter方法
+			自定义的filter方法
+			
+		tag
+			内置的tag
+			自定义的simpleTag
+			自定义的inclusionTag
+			
+		母版和继承
+		
+		{% extends ‘base.html’ %}
+		
+		{% block page-main %}
+			{% block small %}
+			{% endblock small %}
+		{% endblock page-main %}
+		
+		
+		组件 {% include nav %}
+		
+		
+		静态文件相关的tag
+		
+		在模板语言里面反向解析url
+		
+			{% url 'url的别名' xx %}
+	
+		
+	4. ORM
+		
+		对应关系
+			类   --> 数据表
+			对象 --> 数据行
+			属性 --> 字段
+			
+		
+		Django连接MySQL数据库的步骤：
+			1. 手动创建库
+			2. 配置settings.py中数据库的连接信息
+			3. 修改settings.py同目录下的__init__.py文件，添加两句
+				import pymysql
+				pymysql.install_as_MySQLdb()
+			4. 在app下面的models.py中定义类，类一定要继承mdoels.Model
+			5. 执行两句命令
+				1. python manage.py makemigrations
+				2. python manage.py migrate
+	
+		操作数据表
+		
+		操作数据行（增删改查）
+			单表
+			外键
+			多对多
+			一对一
+			
+		
+		ORM高级：
+			常用字段和方法
+			必知必会13条
+			神奇的双下划线
+			跨表的正向查询反向查询
+			
+			F和Q
+			
+			聚合和分组
+			
+			事务
+			
+			执行原生的SQL语句
+	
+	5. Cookie和Session,分页
+	
+	
+	6. AJAX
+		
+		$.ajax({
+			url： “”,
+			type: "post",
+			data: {"k1": JSON.stringify([1,2,3])},
+			success:function(data){
+				
+			}
+		})
+	7. form表单
+	
+	8. 中间件
+	
+		
+			
+			
+			
+	

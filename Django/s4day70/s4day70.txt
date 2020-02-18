@@ -1,0 +1,173 @@
+s4day70
+
+上节回顾：
+	1. 母版
+		layout.html
+			{% block x1 %}{%endblock%}
+			<h1>ff</h1>
+			{% block x2 %}{%endblock%}
+			<h1>2</h1>...
+			{% block x3 %}{%endblock%}
+		index.html
+			{%extends 'layout'%}
+			
+			{% block x1 %}dfssssssdfsd{%endblock%}
+			
+			{% block x2 %}dfsdfsd{%endblock%}
+			
+			{% block x3 %}fff{%endblock%}
+	3. Cookie	
+		在浏览器上保存的键值对
+		
+		def index(request):
+			request.COOKIES
+			request.get_signed_cookie('k1',salt='ff')
+			
+			obj = HttpReponse(..)
+			obj = render(...)
+			obj = redirect(..)
+			obj.set_cookie(k1,v1,max_age)
+			obj.set_signed_cookie(k1,v1,max_age,salt='fff')
+			
+	4. BootStrap响应式布局
+		- css
+		- js(欠)
+	
+	5. 后台布局
+		1. position: absolute
+		2. 
+			.c1:hover .c2{
+			
+			}
+		
+坦白：
+	project
+		- app01 自己创建的目录，
+			- views.py
+		- SQLHelper 封装SQL操作
+		
+	Django：
+		- 路由
+		- 视图
+		- 模板
+		- ORM（类-表；对象-行； pymysql连接数据库）
+		
+	Torando:
+		- 路由
+		- 视图
+		- 模板
+		- 自由：pymysql;SqlAchemy
+	Flask:
+		- 路由
+		- 视图
+		- 模板(第三方的组件)
+		- 自由：pymysql;SqlAchemy
+		
+		
+	1. 创建app
+	2. 数据库操作
+	
+	
+今日内容：
+	Django目录介绍
+		django-admin startproject mysite
+		cd mysite
+		python manage.py starapp app01
+		
+		project
+			- app01
+				- admin   Django自带后台管理相关配置
+				- modal   写类，根据类创建数据库表
+				- test    单元测试
+				- views   业务处理
+			- app02
+			- app03
+
+	1. 路由系统
+		url -> 函数
+		
+		a. /login/ -> def login
+		
+		b. /add-user/(\d+)/  ->  def add_user(request,a1)
+		
+		c. /add-user/(?P<a1>\d+)/  ->  def add_user(request,a1)
+		
+		PS: 
+			终止符：
+				^edit$
+			伪静态
+				url(r'^edit/(\w+).html$', views.edit),
+		d. 路由分发
+			urls.py
+				url(r'^app01/', include('app01.urls')),
+			
+			app01.urls.py
+				url(r'^index.html$', views.index),
+				
+		e. /add-user/(\d+)/  ->  def add_user(request,a1)  name=n1
+			
+			根据名称可以反向生成URL
+			1. 在Python代码中
+				from django.urls import reverse
+				v = reverse('n1',kwargs={'a1':1111})
+				print(v)
+				
+			2. 
+				url(r'^login/', views.login,name='m1')
+				{% url "m1" %}
+	3. ORM操作
+		Http请求：
+			url -> 视图(模板+数据)
+		步骤：
+			1. 创建数据库
+			2. 
+				DATABASES = {
+					'default': {
+						'ENGINE': 'django.db.backends.mysql',
+						'NAME':'s4day70db',
+						'USER': 'root',
+						'PASSWORD': '',
+						'HOST': 'localhost',
+						'PORT': 3306,
+						}
+				}
+			3. 
+				import pymysql
+				pymysql.install_as_MySQLdb()
+		
+		ORM操作表：
+			创建表
+			修改表
+			删除表
+		操作数据行：
+			增删改查
+			
+		ORM利用pymysql第三方工具连接数据库
+		默认：
+			SQLlite
+		MySQL：
+			mysql -> MySQLDB(修改django默认连接mySQL方式)
+			
+		
+		
+		
+	2. 视图函数 CBV，FBV
+	
+	
+作业：
+	学员管理
+		- ..
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		

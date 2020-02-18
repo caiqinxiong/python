@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h1>编辑班级</h1>
+    <form method="POST" action="/edit_class/{{ nid }}/">
+        {% csrf_token %}
+        <p>
+            {{ obj.title }} {{ obj.errors.title.0 }}
+        </p>
+        <input type='submit' value="提交" />
+    </form>
+</body>
+</html>

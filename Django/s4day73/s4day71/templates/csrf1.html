@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <form method="POST" action="/csrf1.html">
+        {% csrf_token %}
+        <input id="user" type="text" name="user" />
+        <input type="submit" value="提交"/>
+        <a onclick="submitForm();">Ajax提交</a>
+    </form>
+    <script src="/static/jquery-1.12.4.js"></script>
+    <script src="/static/jquery.cookie.js"></script>
+
+    <script>
+        function submitForm(){
+            var token = $.cookie('csrftoken');
+            var user = $('#user').val();
+            $.ajax({
+                url: '/csrf1.html',
+                type: 'POST',
+                headers:{'X-CSRFToken': token},
+                data: { "user":user},
+                success:function(arg){
+                    console.log(arg);
+                }
+            })
+        }
+    </script>
+</body>
+</html>

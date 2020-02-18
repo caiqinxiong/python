@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h1>添加学生</h1>
+    <form action="/add_student/" method="POST">
+        {% csrf_token %}
+        <p>
+            {{ obj.name }}
+        </p>
+        <p>
+            {{ obj.email }}
+        </p>
+        <p>
+            {{ obj.age }}
+        </p>
+        <p>
+            {{ obj.cls_id }}
+        </p>
+        <input type="submit" value="提交" />
+    </form>
+</body>
+</html>

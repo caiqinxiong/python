@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax test</title>
+</head>
+<body>
+
+<button id="b1">点我！</button>
+
+<hr>
+<p>
+   <input type="text" id="i1" name="name">
+    <span id="e1"></span>
+</p>
+
+
+<script src="/static/jquery-3.3.1.js"></script>
+<script src="/static/setupajax.js"></script>
+<script>
+    $("#b1").on("click", function () {
+        $.ajax({
+            url: "/test/",
+            type: "post",
+            dataType: "json",
+            traditional: true,
+            data: {"name": "小黑", "sb":[1,2,3]},
+            success: function (data) {
+                // 把后端返回的数据反序列化成JS中的对象
+                // var data = JSON.parse(data);
+                if (data.status === 0){
+                    // 这次请求成功
+                    alert(data.data);
+                }else {
+                    // 请求出错
+                    alert(data.error);
+                }
+            }
+        })
+    });
+
+    // 找到 i1 标签，绑定失去焦点的事件
+    // $("#i1").blur(function () {
+    $("#i1").on("input", function () {
+        // 取到input框的值
+        // console.log(this);
+        var $i1Ele = $(this);
+        var name = $i1Ele.val();
+        // 去掉i1后面的span
+        $("#e1").text("");
+        // 利用ajax请求偷偷发到后端
+        $.ajax({
+            url: "/check_user/",
+            type: "post",
+            data: {"name": name},
+            datatype: "json",
+            success:function (arg) {
+                // 把span标签放到i1的后面
+                $("#e1").text(arg).css("color", "red");
+            }
+        })
+    })
+</script>
+</body>
+</html>

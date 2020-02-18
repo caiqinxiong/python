@@ -1,0 +1,287 @@
+s4dat73
+
+上节回顾(补充)：
+	1. 数据操作
+		- models.xxx.objects.create(title='xx')
+		- filter(id=1,name='ff')
+		- filter(id=1,name='ff').update()
+		- filter(id=1,name='ff').delete()
+		- all()
+		- .values()
+		- .count()
+		- values_list()
+		- values_list() # 反：小写表名__
+		- bulk_create()
+		- q = models.xx.objects.all().only('id')
+		- F, 
+		- Q
+		- filter().a.....filter()
+		- order_by()
+		- extra
+		 	- select={x:"1"}  select 1 as x fro....tb,fa
+			- tables=['x',]
+			- where
+			- order_by
+			- params
+			- select_params
+		- 李鹏分
+		- filter(id__range=[1,3])
+		- exclude
+		- exsit
+		- anotate
+		- raw('select id,title ',)
+		- aggregate
+		- filter(id__gt)
+		- filter(id__lt)
+		- filter(id__lte)
+		- filter(id__gte)
+		- filter(id__in=[1,2])
+		- first()
+		- last()
+		- defer()
+		- connection
+		- max,min,count,sum,avg
+		- makemigrations
+		- migrate
+		- reverse
+		- distinct
+		- get()
+		- dates
+		- filter(age=None)
+		- filter(age__isnull=True)
+		- using
+		class Foo:
+			xx = in
+			
+		.
+		
+		1. 增
+			create(name='xx',age='xx'.....)
+			dic={name"xxx,age}
+			create(**dic)
+		
+		2. 更新
+			models.xx.objects.filter(id=1).update(a=1,b=2)
+			
+			models.xx.objects.filter(id=1).update(**dic)
+		
+		3. 查询
+			models.xx.objects.filter(id=1,xxx)
+			models.xx.objects.filter(**{'id':1,'name':'alex'})
+			
+		PS: Django帮助我们数据转换 -> 字典  =》 Form组件（用户请求规则验证+数据字典）
+		==========================补充1==========================
+		# q = models.UserInfo.objects.all()
+		# select * from userinfo
+		# select * from userinfo inner join usertype on ...
+		# for row in q:
+		#     print(row.name,row.ut.title)
+
+		# select_related: 查询主动做连表
+		# q = models.UserInfo.objects.all().select_related('ut','gp')
+		# select * from userinfo
+		# select * from userinfo inner join usertype on ...
+		# for row in q:
+		#     print(row.name,row.ut.title)
+
+		# prefetch_related: 不做连表，做多次查询
+		# q = models.UserInfo.objects.all().prefetch_related('ut')
+		# select * from userinfo;
+		# Django内部：ut_id = [2,4]
+		# select * from usertype where id in [2,4]
+		# for row in q:
+		#     print(row.id,row.ut.title)
+		
+		==========================补充2==========================
+		class Boy(models.Model):
+			name = models.CharField(max_length=32)
+
+
+		class Girl(models.Model):
+			nick = models.CharField(max_length=32)
+
+		class Love(models.Model):
+			b = models.ForeignKey('Boy')
+			g = models.ForeignKey('Girl')
+			
+			
+		# 1. 和方少伟有关系的姑娘
+		# obj = models.Boy.objects.filter(name='方少伟').first()
+		# love_list = obj.love_set.all()
+		# for row in love_list:
+		#     print(row.g.nick)
+		#
+		#
+		# love_list = models.Love.objects.filter(b__name='方少伟')
+		# for row in love_list:
+		#     print(row.g.nick)
+		#
+		# love_list = models.Love.objects.filter(b__name='方少伟').values('g__nick')
+		# for item in love_list:
+		#     print(item['g__nick'])
+		#
+		# love_list = models.Love.objects.filter(b__name='方少伟').select_related('g')
+		# for obj in love_list:
+		#     print(obj.g.nick)
+		
+		1. ManyToManyField
+		
+		2. 自定义关系表
+		
+		3. 杂交
+		
+			class Boy(models.Model):
+				name = models.CharField(max_length=32)
+				m = models.ManyToManyField('Girl',through="Love",through_fields=('b','g',))
+				# 查询和清空
+
+			class Girl(models.Model):
+				nick = models.CharField(max_length=32)
+				# m = models.ManyToManyField('Boy')
+
+			class Love(models.Model):
+				b = models.ForeignKey('Boy')
+				g = models.ForeignKey('Girl')
+
+				class Meta:
+					unique_together = [
+						('b','g'),
+					]
+					
+		
+		
+	2. XSS攻击
+	
+	3. cookies
+
+今日内容：
+	1. CSRF
+		a. 基本应用
+			form表单中添加
+			{% csrf_token %}
+		
+		b. 全站禁用
+			# 'django.middleware.csrf.CsrfViewMiddleware',
+		
+		c. 局部禁用
+			'django.middleware.csrf.CsrfViewMiddleware',
+			
+			from django.views.decorators.csrf import csrf_exempt
+
+			@csrf_exempt
+			def csrf1(request):
+
+				if request.method == 'GET':
+					return render(request,'csrf1.html')
+				else:
+					return HttpResponse('ok')
+		d. 局部使用
+			# 'django.middleware.csrf.CsrfViewMiddleware',
+			
+			from django.views.decorators.csrf import csrf_exempt,csrf_protect
+
+			@csrf_protect
+			def csrf1(request):
+
+				if request.method == 'GET':
+					return render(request,'csrf1.html')
+				else:
+					return HttpResponse('ok')
+		
+		c. 特殊CBV
+				from django.views import View
+				from django.utils.decorators import method_decorator
+				
+				@method_decorator(csrf_protect,name='dispatch')
+				class Foo(View):
+					
+					def get(self,request):
+						pass
+
+					def post(self,request):
+						pass
+		
+		PS：CBV中添加装饰器
+			def wrapper(func):
+				def inner(*args,**kwargs):
+					return func(*args,**kwargs)
+				return inner
+			# 1. 指定方法上添加装饰器
+
+				# class Foo(View):
+				#
+				#     @method_decorator(wrapper)
+				#     def get(self,request):
+				#         pass
+				#
+				#     def post(self,request):
+				#         pass
+			# 2. 在类上添加
+				#     @method_decorator(wrapper,name='dispatch')
+				#     class Foo(View):
+				#
+				#         def get(self,request):
+				#             pass
+				#
+				#         def post(self,request):
+				#             pass
+			
+		
+		Ajax提交数据时候，携带CSRF：
+			a. 放置在data中携带
+			
+				<form method="POST" action="/csrf1.html">
+					{% csrf_token %}
+					<input id="user" type="text" name="user" />
+					<input type="submit" value="提交"/>
+					<a onclick="submitForm();">Ajax提交</a>
+				</form>
+				<script src="/static/jquery-1.12.4.js"></script>
+				<script>
+					function submitForm(){
+						var csrf = $('input[name="csrfmiddlewaretoken"]').val();
+						var user = $('#user').val();
+						$.ajax({
+							url: '/csrf1.html',
+							type: 'POST',
+							data: { "user":user,'csrfmiddlewaretoken': csrf},
+							success:function(arg){
+								console.log(arg);
+							}
+						})
+					}
+
+				</script>
+				
+			b. 放在请求头中
+			
+					<form method="POST" action="/csrf1.html">
+						{% csrf_token %}
+						<input id="user" type="text" name="user" />
+						<input type="submit" value="提交"/>
+						<a onclick="submitForm();">Ajax提交</a>
+					</form>
+					<script src="/static/jquery-1.12.4.js"></script>
+					<script src="/static/jquery.cookie.js"></script>
+
+					<script>
+						function submitForm(){
+							var token = $.cookie('csrftoken');
+							var user = $('#user').val();
+							$.ajax({
+								url: '/csrf1.html',
+								type: 'POST',
+								headers:{'X-CSRFToken': token},
+								data: { "user":user},
+								success:function(arg){
+									console.log(arg);
+								}
+							})
+						}
+					</script>
+			
+			
+	2. 模板引擎
+	
+	
+	3. 中间件

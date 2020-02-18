@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>这是在HTML页面把URL写死的结局：</h1>
+<a href="/home/">首页</a>
+<h1>这是在HTML页面把利用反向解析URL的结局：</h1>
+<a href="{% url 'home' 'house' %}">首页</a>
+
+<a href="{% url 'index' 'yimi' %}">index</a>
+
+</body>
+</html>

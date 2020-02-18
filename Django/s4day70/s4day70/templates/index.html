@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h1>菜单</h1>
+    {% for i in user_list %}
+        <a href="">c1</a>
+    {% endfor %}
+    <ul>
+        {% for i in user_list %}
+            <li>{{ i }} | <a href="/edit/{{ i }}/">编辑</a></li>
+            <li>{{ i }} | <a href="{% url "n2" i 1 %}">编辑</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

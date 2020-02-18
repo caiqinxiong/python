@@ -1,0 +1,153 @@
+from django.shortcuts import HttpResponse, render, redirect
+from app01 import models
+# Create your views here.
+
+
+# 展示出版社列表
+def publisher_list(request):
+    # 去数据库查出所有的出版社,填充到HTML中,给用户返回
+    ret = models.Publisher.objects.all().order_by("id")
+    return render(request, "publisher_list.html", {"publisher_list": ret})
+
+
+# 添加新的出版社
+def add_publisher(request):
+    error_msg = ""
+    # 如果是POST请求,我就取到用户填写的数据
+    if request.method == "POST":
+        new_name = request.POST.get("publisher_name", None)
+        if new_name:
+            # 通过ORM去数据库里新建一条记录
+            models.Publisher.objects.create(name=new_name)
+            # 引导用户访问出版社列表页,查看是否添加成功  --> 跳转
+            return redirect("/publisher_list/")
+        else:
+            error_msg = "出版社名字不能为空!"
+    # 用户第一次来,我给他返回一个用来填写的HTML页面
+    return render(request, "add_publisher.html", {"error": error_msg})
+
+
+# 删除出版社的函数
+def delete_publisher(request):
+    print(request.GET)
+    print("=" * 120)
+    # 删除指定的数据
+    # 1. 从GET请求的参数里面拿到将要删除的数据的ID值
+    del_id = request.GET.get("id", None)  # 字典取值,娶不到默认为None
+    # 如果能取到id值
+    if del_id:
+        # 去数据库删除当前id值的数据
+        # 根据id值查找到数据
+        del_obj = models.Publisher.objects.get(id=del_id)
+        # 删除
+        del_obj.delete()
+        # 返回删除后的页面,跳转到出版社的列表页,查看删除是否成功
+        return redirect("/publisher_list/")
+    else:
+        return HttpResponse("要删除的数据不存在!")
+
+
+# 编辑出版社
+def edit_publisher(request):
+    # 用户修改完出版社的名字,点击提交按钮,给我发来新的出版社名字
+    if request.method == "POST":
+        print(request.POST)
+        # 取新出版社名字
+        edit_id = request.POST.get("id")
+        new_name = request.POST.get("publisher_name")
+        # 更新出版社
+        # 根据id取到编辑的是哪个出版社
+        edit_publisher = models.Publisher.objects.get(id=edit_id)
+        edit_publisher.name = new_name
+        edit_publisher.save()  # 把修改提交到数据库
+        # 跳转出版社列表页,查看是否修改成功
+        return redirect("/publisher_list/")
+    # 从GET请求的URL中取到id参数
+    edit_id = request.GET.get("id")
+    if edit_id:
+        # 获取到当前编辑的出版社对象
+        publisher_obj = models.Publisher.objects.get(id=edit_id)
+        return render(request, "edit_publisher.html", {"publisher": publisher_obj})
+    else:
+        return HttpResponse("编辑的出版社不存在!")
+
+
+# 展示书的列表
+def book_list(request):
+    # 去数据库中查询所有的书籍
+    all_book = models.Book.objects.all()
+    # 在HTML页面完成字符串替换(渲染数据)
+    return render(request, "book_list.html", {"all_book": all_book})
+
+
+# 删除书籍
+def delete_book(request):
+    # 从URL里面获取要删除的书籍的id值
+    delete_id = request.GET.get("id")  # 从URL里面取数据
+    # 去删除数据库中删除指定id的数据
+    models.Book.objects.get(id=delete_id).delete()
+    # 返回书籍列表页面, 查看是否删除成功
+    return redirect("/book_list/")
+
+
+# 添加书籍
+def add_book(request):
+    if request.method == "POST":
+        print(request.POST)
+        print("=" * 120)
+        # {"book_title": "跟金老板学开车", "publisher": 9}
+        new_title = request.POST.get("book_title")
+        new_publisher_id = request.POST.get("publisher")
+        # 创建新书对象,自动提交
+        models.Book.objects.create(title=new_title, publisher_id=new_publisher_id)
+
+        # 用出版社对象创建
+        # publisher_obj = models.Publisher.objects.get(id=new_publisher_id)
+        # models.Book.objects.create(title=new_title, publisher=publisher_obj)
+
+        # 返回到书籍列表页
+        return redirect("/book_list/")
+
+    # 取到所有的出版社
+    ret = models.Publisher.objects.all()
+    return render(request, "add_book.html", {"publisher_list": ret})
+
+
+# 编辑书籍
+def edit_book(request):
+    if request.method == "POST":
+        # 从提交的数据里面取,书名和书关联的出版社
+        edit_id = request.POST.get("id")
+        new_title = request.POST.get("book_title")
+        new_publisher_id = request.POST.get("publisher")
+        # 更新
+        edit_book_obj = models.Book.objects.get(id=edit_id)
+        edit_book_obj.title = new_title  # 更新书名
+        edit_book_obj.publisher_id = new_publisher_id  # 更新书籍关联的出版社
+        # 将修改提交到数据库
+        edit_book_obj.save()
+        # 返回书籍列表页面,查看是否编辑成功
+        return redirect("/book_list/")
+
+    # 返回一个页面,让用户编辑书籍信息
+    # 取到编辑的书的id值
+    edit_id = request.GET.get("id")
+    # 根据id去数据库中把具体的书籍对象拿到
+    edit_book_obj = models.Book.objects.get(id=edit_id)
+    print(edit_book_obj.id)
+    print(edit_book_obj.title)
+    print(edit_book_obj.publisher)  # 取到当前书籍对象关联的出版社对象
+    print(edit_book_obj.publisher_id)  # 取到当前书籍对象关联的出版社的id值
+
+    ret = models.Publisher.objects.all()
+    return render(
+        request,
+        "edit_book.html",
+        {"publisher_list": ret, "book_obj": edit_book_obj}
+    )
+
+
+def test(request):
+    print(request.GET)
+    print(request.GET.get("id"))
+    return HttpResponse("OK")

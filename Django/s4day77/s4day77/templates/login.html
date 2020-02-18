@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h1>用户登录</h1>
+    <form id="f1" action="/login/" method="POST">
+        {% csrf_token %}
+        <p>
+            <input type="text" name="user" />{{ obj.errors.user.0 }}
+        </p>
+        <p>
+            <input type="password" name="pwd" />{{ obj.errors.pwd.0 }}
+        </p>
+        <input type="submit" value="提交" />
+        <a onclick="submitForm();">提交</a>
+    </form>
+    <script src="/static/jquery-1.12.4.js"></script>
+    <script>
+        function submitForm(){
+            $('.c1').remove();
+            $.ajax({
+                url: '/ajax_login/',
+                type: 'POST',
+                data: $('#f1').serialize(),// user=alex&pwd=456&csrftoen=dfdf\
+                dataType:"JSON",
+                success:function(arg){
+                    console.log(arg);
+                    if(arg.status){
+
+                    }else{
+                        $.each(arg.msg,function(index,value){
+                            console.log(index,value);
+                            var tag = document.createElement('span');
+                            tag.innerHTML = value[0];
+                            tag.className = 'c1';
+                            $('#f1').find('input[name="'+ index +'"]').after(tag);
+                        })
+                    }
+                }
+            })
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% load static %}
+<img src="{% static '111.jpg' as xiaomao %}" alt="">
+<img src="{{ xiaomao }}" alt="">
+<img src="{{ xiaomao }}" alt="">
+<img src="{{ xiaomao }}" alt="">
+<img src="{{ xiaomao }}" alt="">
+
+
+
+{% load mysimpletag %}
+{% yimi 'wangzhen' 'changjiang' 'buyaolian' %}
+
+
+
+{% show_results 10 %}
+
+<hr>
+{% show_results 5 %}
+<hr>
+{% show_results 100 %}
+
+</body>
+</html>

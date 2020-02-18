@@ -1,0 +1,109 @@
+s4day77
+
+内容回顾：
+	1. 请求生命周期
+		
+	2. Session是什么？
+	
+	3. XSS
+		评论
+	4. CSRF-POST
+		发送数据，发送随机字符串（上一次请求获取到的）
+
+今日内容：
+	1. Form组件
+		- 用户提交数据进行校验
+			- Form提交（刷新，失去上次内容）
+				a. LoginForm(Form)
+					字段名 = xxxx.xxField() # 本质验证规则，正则表达式
+					字段名 = xxxx.xxField() # 本质验证规则，正则表达式
+					字段名 = xxxx.xxField() # 本质验证规则，正则表达式
+					字段名 = xxxx.xxField() # 本质验证规则，正则表达式
+				b. obj = LoginForm(用户提交的数据)
+				
+				c. result = obj.is_valid()
+				
+				d. obj.cleaned_data
+				
+				e. obj.errors
+				
+				
+				- 内部原理
+										
+					def login(request):
+						if request.method == 'GET':
+							return render(request,'login.html')
+						else:
+							obj = LoginForm(request.POST)
+							# is_valid
+							"""
+							1. LoginForm实例化时，
+								self.fields={
+									'user': 正则表达式
+									'pwd': 正则表达式
+								}
+							2. 循环self.fields
+								  flag = True
+								  errors
+								  cleaned_data
+								  for k,v in self.fields.items():
+									# 1. user,正则表达式
+									input_value = request.POST.get(k)
+									正则表达式和input_value
+									flag = False
+								  return flag
+						   """
+							if obj.is_valid():
+								print(obj.cleaned_data)
+							else:
+								print(obj.errors)
+							return render(request,'login.html')
+			- Ajax提交（不刷新，上次内容自动保留）
+			
+			PS: Ajax提交 > Form提交
+			
+			总结：
+				class Foo(Form):
+					字段 = 正则表达式
+					字段 = 自定义正则表达式
+						   1. 常用
+								charFilel 
+								...
+								定义正则表达式
+								
+								参数：
+									验证：
+										required
+										error_messages
+									生成HTML标签：
+										widget=widgets.Select, ******** 用于指定生成怎样的HTML，select，text,input/.
+										label='用户名',  # obj.t1.label
+										disabled=False,              # 是否可以编辑
+										label_suffix='--->',            # Label内容后缀
+										initial='666',            # 无用，猜测有问题应该在input框中显示默认值
+										help_text='。。。。。。',  # 提供帮助信息
+		
+		
+		- 生成HTML标签
+		- 保留上次输入内容
+			
+			
+			
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

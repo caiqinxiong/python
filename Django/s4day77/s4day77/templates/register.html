@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    <form action="/register/" method="POST" novalidate>
+        {% csrf_token %}
+        <p>
+            {{ obj.user }} {{ obj.errors.user.0 }}
+        </p>
+        <p>
+            {{ obj.email }} {{ obj.errors.email.0 }}
+        </p>
+        <p>
+            {{ obj.password }} {{ obj.errors.password.0 }}
+        </p>
+        <p>
+            {{ obj.phone }} {{ obj.errors.phone.0 }}
+        </p>
+        <input type="submit" value="提交"  />
+    </form>
+</body>
+</html>

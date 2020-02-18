@@ -1,0 +1,12 @@
+POST
+	- 随机字符串 asdfasdfasdfsdf
+	
+	
+GET:
+	<form>
+		asdfasdfasdfasdfasdfasdf
+		
+		<input type='text' value='98988787878797' name='to' 	/>
+		<input type='text' value='981323' name='money' 	/>
+		提交
+	</form>

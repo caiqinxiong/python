@@ -1,0 +1,58 @@
+day64 2018-05-04
+
+1. 内容回顾
+	1. ORM外键操作
+		图书表和出版社表  多对一 的关系
+		
+	# 书
+	class Book(models.Model):
+		id = models.AutoField(primary_key=True)  # 自增的ID主键
+		# 创建一个varchar(64)的唯一的不为空的字段
+		title = models.CharField(max_length=64, null=False, unique=True)
+		# 和出版社关联的外键字段
+		publisher = models.ForeignKey(to="Publisher")
+		
+	2. 查\增\删\改操作
+		1. 查
+			book_list = models.Book.objects.all()  --> 书对象的列表
+			
+		2. 增
+			new_book_obj = models.Book.objects.create(
+				title="新书的名字",
+				# publisher=publusher_obj,
+				publisher_id=7
+			)
+		3. 删除
+			models.Book.objects.get(id=10).delete()
+			
+		4. 修改
+			book_obj = models.Book.objects.get(id=9)
+			book_obj.title=request.POST.get("book_title")
+			book_obj.publisher_id=9
+			book_obj.save()
+			
+2. 今日内容
+	多对多
+	作者表的增删改查
+	
+	
+3. 周末作业
+	1. 图书管理系统写完
+		1. 出版社的增删改查
+		2. 书籍的增删改查
+		3. 作者的增删改查
+	
+		班级管理系统
+			1. 班级
+			2. 学生
+			3. 老师
+			
+	2. 应用Bootstrap样式
+	
+	
+4. 下周内容预习
+	http://www.cnblogs.com/liwenzhou/p/8296964.html
+	
+			
+			
+		
