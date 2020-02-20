@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>发布任务单</h1>
+        <div>
+            <a style="margin: 10px 0;"  class="btn btn-primary" href="{% url 'task_add' project_id=project_id %}" >添加</a>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>发布任务</th>
+                    <th>渠道SVN版本号</th>
+                    <th>创建时间</th>
+                    <th>发布详细</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in task_list %}
+                <tr>
+                    <th>{{ row.id }}</th>
+                    <th>{{ row.taskname }}</th>
+                    <th>{{ row.svnversion }}</th>
+                    <th>{{ row.createtime }}</th>
+                    <th>
+                        <a href="{% url 'release_info' project_id=row.id %}">发布详细</a>
+                    </th>
+                <th>
+                    <a href="{% url 'task_edit' project_id=row.id %}">编辑</a>
+                    <a href="{% url 'task_del' project_id=row.id %}">删除</a>
+                </th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        function removeRow(ths,rid) {
+            var result = confirm('是否确定要删除?');
+            if(result){
+                $.ajax({
+                    url:'/project/del/' + rid + '/',
+                    type:'get',
+                    dataType:"JSON",
+                    success:function (res) {
+                        if(res.status){
+                            $(ths).parent().parent().remove();
+                        }
+                    }
+                });
+
+            }
+        }
+    </script>
+{% endblock %}

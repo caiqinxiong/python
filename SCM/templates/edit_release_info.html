@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加发布信息</title>
+    <link rel="stylesheet" href="/static/plugins/bootstrap-3.3.7-dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/static/plugins/font-awesome-4.7.0/css/font-awesome.css"/>
+</head>
+<body>
+
+<div class="col-sm-offset-2 col-sm-6  panel-primary">
+     <div class="panel-heading">编辑发布信息</div>
+<form method="POST" action="{% url 'task_edit' project_id=project_id %}">
+    <div class="form-group">
+        <label for="taskname" >发布任务</label>
+        <input type="text" class="form-control" name="taskname" id="taskname" placeholder="发布任务" value="{{ relase_object.taskname }}">
+    </div>
+    <div class="form-group">
+        <label for="svnversion">渠道SVN版本号</label>
+        <input type="text" class="form-control" name="svnversion" id="svnversion" placeholder="渠道SVN版本号" value="{{ relase_object.svnversion }}">
+    </div>
+    <div class="form-group">
+        <label for="branch">分支信息</label>
+        <input type="text" class="form-control" name="branch" id="branch" placeholder="分支信息" value="{{ relase_object.branch }}">
+    </div>
+    <div class="form-group">
+        <label for="versionname">versionname</label>
+        <input type="text" class="form-control" name="versionname" id="versionname" placeholder="versionname" value="{{ relase_object.versionname }}">
+    </div>
+    <div class="form-group">
+        <label for="versioncode">versioncode</label>
+        <input type="text" class="form-control" name="versioncode" id="versioncode" placeholder="versioncode" value="{{ relase_object.versioncode }}">
+    </div>
+    <div class="form-group">
+        <label for="build_cmd">编译命令</label>
+        <input type="text" class="form-control" name="build_cmd" id="build_cmd" placeholder="编译命令" value="{{ relase_object.build_cmd }}">
+    </div>
+    <div class="form-group">
+        <label for="release_info">发布信息</label>
+        <input type="text" class="form-control" name="release_info" id="release_info" placeholder="发布信息" value="{{ relase_object.release_info }}">
+    </div>
+    <div class="form-group">
+        <label for="issue">JIRA链接</label>
+        <input type="text" class="form-control" name="issue" id="issue" placeholder="JIRA链接" value="{{ relase_object.issue }}">
+    </div>
+
+    <button type="submit" class="btn btn-success">提交</button>
+</form>
+</div>
+</body>
+</html>

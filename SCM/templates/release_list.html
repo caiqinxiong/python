@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div style="width: 700px;margin: 0 auto;">
+    <h1>发布详细信息</h1>
+        <dl class="dl-horizontal text-overflow">
+            <dt>分支信息</dt>
+            <dd>{{ release_object.branch }}</dd>
+            <dt>versionname</dt>
+            <dd>{{ release_object.versionname }}</dd>
+            <dt>versioncode</dt>
+            <dd>{{ release_object.versioncode }}</dd>
+            <dt>编译命令</dt>
+            <dd>{{ release_object.build_cmd }}</dd>
+            <dt>发布信息</dt>
+            <dd>{{ release_object.release_info }}</dd>
+            <dt>JIRA链接</dt>
+            <dd>{{ release_object.issue }}</dd>
+        </dl>
+
+</div>
+{% endblock %}
