@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% block content %}
-    <div class="col-sm-offset-3 col-sm-6  panel-primary">
+    <div class="col-sm-offset-1 col-sm-6  panel-primary">
         <div class="panel-heading">编辑发布信息</div>
         <form method="POST" action="{% url 'task_edit' project_id=project_id %}">
             <div class="form-group">
@@ -45,6 +45,7 @@
             </div>
 
             <button type="submit" class="btn btn-success">提交</button>
+            <a class="btn btn-primary" href="{% url 'task_list' relase_object.project_id %}" role="button">取消</a>
         </form>
     </div>
 {% endblock %}

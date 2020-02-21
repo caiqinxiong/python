@@ -166,12 +166,12 @@
             3. 获取当前行班级名称，赋值到编辑对话框中
              */
             var row = $(ths).parent().prevAll();
-            var pname = $(row[1]).text();
-            var kname = $(row[0]).text();
+            var pname = $(row[2]).text();
+            var kname = $(row[1]).text();
             $('#editPname').val(pname);
             $('#editKname').val(kname);
 
-            var contentId = $(row[2]).text();
+            var contentId = $(row[3]).text();
             $('#editId').val(contentId);
         }
 
