@@ -29,7 +29,7 @@
                     </th>
                 <th>
                     <a href="{% url 'task_edit' project_id=row.id %}">编辑</a>
-                    <a href="{% url 'task_del' project_id=row.id %}">删除</a>
+                    <a onclick="removeRow(this,{{ row.id }});">删除</a>
                 </th>
                 </tr>
                 {% endfor %}
@@ -44,7 +44,7 @@
             var result = confirm('是否确定要删除?');
             if(result){
                 $.ajax({
-                    url:'/project/del/' + rid + '/',
+                    url:'/rim/task/del/' + rid + '/',
                     type:'get',
                     dataType:"JSON",
                     success:function (res) {

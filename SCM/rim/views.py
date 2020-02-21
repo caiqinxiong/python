@@ -95,7 +95,8 @@ def task_del(request,project_id):
     release_obj = models.ReleaseInfo.objects.filter(id=project_id)
     project_id = release_obj.first().project_id
     release_obj.delete()
-    return redirect(reverse('task_list' ,kwargs={'project_id':project_id}))
+    return JsonResponse({"status": True})
+    # return redirect(reverse('task_list' ,kwargs={'project_id':project_id}))
 
 
 def release_info(request,project_id):

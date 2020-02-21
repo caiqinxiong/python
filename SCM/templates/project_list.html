@@ -128,92 +128,93 @@
 {% block js %}
     <script src="/static/js/jquery-1.12.4.js"></script>
     <script>
-    function showModal() {
-        document.getElementById('shadow').classList.remove('hide');
-        document.getElementById('modal').classList.remove('hide');
-    }
+        function showModal() {
+            document.getElementById('shadow').classList.remove('hide');
+            document.getElementById('modal').classList.remove('hide');
+        }
 
-    function cancleModal() {
-        document.getElementById('shadow').classList.add('hide');
-        document.getElementById('modal').classList.add('hide');
-        document.getElementById('editModal').classList.add('hide');
-    }
+        function cancleModal() {
+            document.getElementById('shadow').classList.add('hide');
+            document.getElementById('modal').classList.add('hide');
+            document.getElementById('editModal').classList.add('hide');
+        }
 
-    function AjaxSend() {
-        $.ajax({
-            url: '/rim/add_project/',
-            type: 'POST',
-            data: {'pname': $('#pname').val(), 'kname': $('#kname').val()},
-            success: function (data) {
-                // 当服务端处理完成后，返回数据时，该函数自动调用
-                // data=服务端返回的值
-                console.log(data);
-                if (data == "ok") {
-                    location.href = "/rim/project_list/";
-                } else {
-                    $('#errormsg').text(data);
-                }
-            }
-        })
-    }
-
-    function modelEdit(ths) {
-        document.getElementById('shadow').classList.remove('hide');
-        document.getElementById('editModal').classList.remove('hide');
-        /*
-        1. 获取当前点击标签
-        2. 当前标签父标签，再找其上方标签
-        3. 获取当前行班级名称，赋值到编辑对话框中
-         */
-        var row = $(ths).parent().prevAll();
-        var pname = $(row[1]).text();
-        var kname = $(row[0]).text();
-        $('#editPname').val(pname);
-        $('#editKname').val(kname);
-
-        var contentId = $(row[2]).text();
-        $('#editId').val(contentId);
-    }
-
-
-    function editAjaxSend() {
-
-        var pid = $('#editId').val();
-        var pname = $('#editPname').val();
-        var kname = $('#editKname').val();
-        $.ajax({
-            url: '/rim/edit_project/',
-            type: 'POST',
-            data: {'pid': pid, 'pname': pname, 'kname': kname},
-            success: function (arg) {
-                // arg字符串类型
-                // JSON.parse(字符串) => 对象
-                // JSON.stringify(对象) => 字符串
-                arg = JSON.parse(arg);
-                if (arg.status) {
-                    // location.href = "/classes/"
-                    location.reload();
-                } else {
-                    alert(arg.message);
-                }
-            }
-        })
-    }
-
-    function removeRow(ths, rid) {
-        var result = confirm('是否确定要删除?');
-        if (result) {
+        function AjaxSend() {
             $.ajax({
-                url: '/rim/project/del/' + rid + '/',
-                type: 'get',
-                dataType: "JSON",
-                success: function (res) {
-                    if (res.status) {
-                        $(ths).parent().parent().remove();
+                url: '/rim/add_project/',
+                type: 'POST',
+                data: {'pname': $('#pname').val(), 'kname': $('#kname').val()},
+                success: function (data) {
+                    // 当服务端处理完成后，返回数据时，该函数自动调用
+                    // data=服务端返回的值
+                    console.log(data);
+                    if (data == "ok") {
+                        location.href = "/rim/project_list/";
+                    } else {
+                        $('#errormsg').text(data);
                     }
                 }
-            });
-
+            })
         }
-    }
-{%  endblock %}
+
+        function modelEdit(ths) {
+            document.getElementById('shadow').classList.remove('hide');
+            document.getElementById('editModal').classList.remove('hide');
+            /*
+            1. 获取当前点击标签
+            2. 当前标签父标签，再找其上方标签
+            3. 获取当前行班级名称，赋值到编辑对话框中
+             */
+            var row = $(ths).parent().prevAll();
+            var pname = $(row[1]).text();
+            var kname = $(row[0]).text();
+            $('#editPname').val(pname);
+            $('#editKname').val(kname);
+
+            var contentId = $(row[2]).text();
+            $('#editId').val(contentId);
+        }
+
+
+        function editAjaxSend() {
+
+            var pid = $('#editId').val();
+            var pname = $('#editPname').val();
+            var kname = $('#editKname').val();
+            $.ajax({
+                url: '/rim/edit_project/',
+                type: 'POST',
+                data: {'pid': pid, 'pname': pname, 'kname': kname},
+                success: function (arg) {
+                    // arg字符串类型
+                    // JSON.parse(字符串) => 对象
+                    // JSON.stringify(对象) => 字符串
+                    arg = JSON.parse(arg);
+                    if (arg.status) {
+                        // location.href = "/classes/"
+                        location.reload();
+                    } else {
+                        alert(arg.message);
+                    }
+                }
+            })
+        }
+
+        function removeRow(ths, rid) {
+            var result = confirm('是否确定要删除?');
+            if (result) {
+                $.ajax({
+                    url: '/rim/project/del/' + rid + '/',
+                    type: 'get',
+                    dataType: "JSON",
+                    success: function (res) {
+                        if (res.status) {
+                            $(ths).parent().parent().remove();
+                        }
+                    }
+                });
+
+            }
+        }
+    </script>
+{% endblock %}

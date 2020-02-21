@@ -1,21 +1,45 @@
 {% extends 'layout.html' %}
 {% block content %}
-<div style="width: 700px;margin: 0 auto;">
-    <h1>发布详细信息</h1>
-        <dl class="dl-horizontal text-overflow">
-            <dt>分支信息</dt>
-            <dd>{{ release_object.branch }}</dd>
-            <dt>versionname</dt>
-            <dd>{{ release_object.versionname }}</dd>
-            <dt>versioncode</dt>
-            <dd>{{ release_object.versioncode }}</dd>
-            <dt>编译命令</dt>
-            <dd>{{ release_object.build_cmd }}</dd>
-            <dt>发布信息</dt>
-            <dd>{{ release_object.release_info }}</dd>
-            <dt>JIRA链接</dt>
-            <dd>{{ release_object.issue }}</dd>
-        </dl>
+    <div style="width: 700px;margin: 0 auto; word-wrap: break-word;white-space:pre-line;">
+        <h1>发布详细信息</h1>
+        <table class="table table-bordered table-condensed table-hover">
+            <tbody>
+            <tr>
+                <th>任务名称</th>
+                <td>{{ release_object.taskname }}</td>
+            </tr>
+            <tr>
+                <th>渠道SVN版本号</th>
+                <td>{{ release_object.svnversion }}</td>
+            </tr>
+            <tr>
+                <th>versionname</th>
+                <td>{{ release_object.versionname }}</td>
+            </tr>
+            <tr>
+                <th>versioncode</th>
+                <td>{{ release_object.versioncode }}</td>
+            </tr>
+            <tr>
+                <th>分支信息</th>
+                <td>{{ release_object.branch }}</td>
+            </tr>
+            <tr>
+                <th>编译命令</th>
+                <td><p style="width: 700px">{{ release_object.build_cmd }}</p></td>
+            </tr>
+            <tr>
+                <th>发布信息</th>
+                <td><p style="width: 700px">{{ release_object.release_info }}</p></td>
+            </tr>
+            <tr>
+                <th>JIRA链接</th>
+                <td>{{ release_object.issue }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <a class="btn btn-primary" href="{% url 'task_list' project_id=release_object.project_id %}"
+           role="button">返回</a>
+    </div>
 
-</div>
 {% endblock %}

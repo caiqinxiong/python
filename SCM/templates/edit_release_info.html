@@ -33,11 +33,11 @@
     </div>
     <div class="form-group">
         <label for="build_cmd">编译命令</label>
-        <input type="text" class="form-control" name="build_cmd" id="build_cmd" placeholder="编译命令" value="{{ relase_object.build_cmd }}">
+        <textarea rows="8" class="form-control" name="build_cmd" id="build_cmd" placeholder="编译命令" >{{ relase_object.build_cmd }}</textarea>
     </div>
     <div class="form-group">
         <label for="release_info">发布信息</label>
-        <input type="text" class="form-control" name="release_info" id="release_info" placeholder="发布信息" value="{{ relase_object.release_info }}">
+        <textarea rows="9" class="form-control" name="release_info" id="release_info" placeholder="发布信息" >{{ relase_object.release_info }}</textarea>
     </div>
     <div class="form-group">
         <label for="issue">JIRA链接</label>
