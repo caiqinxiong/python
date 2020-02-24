@@ -14,21 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from rim import views
+from rim.views import project
+from rim.views import task
 
 urlpatterns = [
-    url(r'^index/', views.index),
-    url(r'^project_list/', views.project_list,name='project_list'),
-    url(r'^add_project/', views.add_project,name='add_project'),
-    url(r'^edit_project/', views.edit_project,name='edit_project'),
-    url(r'^project/del/(?P<pk>\d+)/$', views.del_project,name='del_project'),
+    url(r'^index/', project.index),
+    url(r'^project_list/', project.project_list, name='project_list'),
+    url(r'^add_project/', project.add_project, name='add_project'),
+    url(r'^edit_project/', project.edit_project, name='edit_project'),
+    url(r'^project/del/(?P<pk>\d+)/$', project.del_project, name='del_project'),
 
-    url(r'^task/list/(?P<project_id>\d+)/$', views.task_list,name='task_list'),
-    url(r'^task/add/(?P<project_id>\d+)/$', views.task_add,name='task_add'),
-    url(r'^task/edit/(?P<project_id>\d+)/$', views.task_edit,name='task_edit'),
-    url(r'^task/del/(?P<project_id>\d+)/$', views.task_del,name='task_del'),
+    url(r'^task/list/(?P<pk>\d+)/$', task.task_list, name='task_list'),
+    url(r'^task/add/(?P<pk>\d+)/$', task.task_add, name='task_add'),
+    url(r'^task/edit/(?P<pk>\d+)/$', task.task_edit, name='task_edit'),
+    url(r'^task/del/(?P<pk>\d+)/$', task.task_del, name='task_del'),
 
-    url(r'^release_info/(?P<project_id>\d+)/$', views.release_info,name='release_info'),
+    url(r'^release_info/(?P<pk>\d+)/$', task.release_info, name='release_info'),
     
 ]
 

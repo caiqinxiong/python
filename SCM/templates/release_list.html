@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% block content %}
-    <div style="width: 700px;margin: 0 auto; word-wrap: break-word;white-space:pre-line;">
+    <div style="width: 90%;margin: 0 auto; word-wrap: break-word;white-space:pre-line;">
         <h1>发布详细信息</h1>
         <table class="table table-bordered table-condensed table-hover">
             <tbody>
@@ -9,8 +9,8 @@
                 <td>{{ release_object.taskname }}</td>
             </tr>
             <tr>
-                <th>渠道SVN版本号</th>
-                <td>{{ release_object.svnversion }}</td>
+                <th>分支信息</th>
+                <td>{{ release_object.branch }}</td>
             </tr>
             <tr>
                 <th>versionname</th>
@@ -21,24 +21,24 @@
                 <td>{{ release_object.versioncode }}</td>
             </tr>
             <tr>
-                <th>分支信息</th>
-                <td>{{ release_object.branch }}</td>
-            </tr>
-            <tr>
                 <th>编译命令</th>
-                <td><p style="width: 700px">{{ release_object.build_cmd }}</p></td>
+                <td><p style="width: 900px">{{ release_object.build_cmd }}</p></td>
             </tr>
             <tr>
                 <th>发布信息</th>
-                <td><p style="width: 700px">{{ release_object.release_info }}</p></td>
+                <td><p style="width: 900px">{{ release_object.release_info }}</p></td>
+            </tr>
+            <tr>
+                <th>渠道SVN版本号</th>
+                <td>{{ release_object.svnversion }}</td>
             </tr>
             <tr>
                 <th>JIRA链接</th>
-                <td>{{ release_object.issue }}</td>
+                <td><a href="{{ release_object.issue }}">{{ release_object.issue }}</a></td>
             </tr>
             </tbody>
         </table>
-        <a class="btn btn-primary" href="{% url 'task_list' project_id=release_object.project_id %}"
+        <a class="btn btn-primary" href="{% url 'task_list' pk=release_object.project_id %}"
            role="button">返回</a>
     </div>
 

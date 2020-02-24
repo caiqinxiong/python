@@ -4,7 +4,7 @@
     <div class="container">
         <h1>发布任务单</h1>
         <div>
-            <a style="margin: 10px 0;"  class="btn btn-primary" href="{% url 'task_add' project_id=project_id %}" >添加</a>
+            <a style="margin: 10px 0;"  class="btn btn-primary" href="{% url 'task_add' pk=project_id %}" >添加</a>
         </div>
         <table class="table table-bordered">
             <thead>
@@ -25,10 +25,10 @@
                     <th>{{ row.svnversion }}</th>
                     <th>{{ row.createtime }}</th>
                     <th>
-                        <a href="{% url 'release_info' project_id=row.id %}">发布详细</a>
+                        <a href="{% url 'release_info' pk=row.id %}">发布详细</a>
                     </th>
                 <th>
-                    <a href="{% url 'task_edit' project_id=row.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
+                    <a href="{% url 'task_edit' pk=row.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
                     <a onclick="removeRow(this,{{ row.id }});"><i class="fa fa-trash" aria-hidden="true"></i>删除</a>
                 </th>
                 </tr>
