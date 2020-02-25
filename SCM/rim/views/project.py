@@ -21,14 +21,25 @@ def project_list(request):
 
 def add_project(request):
     '''添加项目'''
-    ret = {'status': True, 'msg': None}
-    pname = request.POST.get('pname')
-    kname = request.POST.get('kname')
-    if pname and kname:
-        models.Project.objects.create(pname=pname,kname=kname)
-        return HttpResponse('ok')
-    else:
-        return HttpResponse('填写信息不能为空！')
+    ret = {'status': True, 'message': None}
+    print(11111111111111111111111111111111111)
+    try:
+        pname = request.POST.get('pname')
+        kname = request.POST.get('kname')
+        print(pname, kname)
+        if pname and kname:
+            models.Project.objects.create(pname=pname,kname=kname)
+            print('ok')
+        else:
+            ret['status'] = False
+            ret['message']='填写信息不能为空！'
+    except Exception as e:
+        ret['status'] = False
+        ret['message'] = "处理异常"
+    print(ret)
+    v = json.dumps(ret)
+    print(v)
+    return HttpResponse(v)
 
 def edit_project(request):
     '''编辑项目'''
@@ -44,7 +55,7 @@ def edit_project(request):
             obj.save()
         else:
             ret['status'] = False
-            ret['message'] = "编辑信息不能为空"
+            ret['message'] = "编辑信息不能为空!!"
     except Exception as e:
         ret['status'] = False
         ret['message'] = "处理异常"

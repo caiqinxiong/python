@@ -22,7 +22,7 @@ def task_add(request,pk):
     form = TasktModelForm(data=request.POST)
     if form.is_valid():
         form.save()
-        return redirect(reverse('task_list' ,kwargs={'project_id':pk}))
+        return redirect(reverse('task_list' ,kwargs={'pk':pk}))
     else:
         return render(request, 'form.html', {'form':form})
 
@@ -36,7 +36,7 @@ def task_edit(request,pk):
     form = TasktModelForm(data=request.POST,instance=project_obj)
     if form.is_valid():
         form.save()
-        return redirect(reverse('task_list', kwargs={'project_id': project_obj.project_id}))
+        return redirect(reverse('task_list', kwargs={'pk': project_obj.project_id}))
     else:
         return render(request, 'form.html', {'form': form})
 

@@ -144,15 +144,15 @@
                 url: '/rim/add_project/',
                 type: 'POST',
                 data: {'pname': $('#pname').val(), 'kname': $('#kname').val()},
-                success: function (data) {
-                    // 当服务端处理完成后，返回数据时，该函数自动调用
-                    // data=服务端返回的值
-                    console.log(data);
-                    if (data == "ok") {
-                        {#location.href = "/rim/project_list/";#}
-                        location.href = "{% url 'project_list' %}";
+                {#async:false,#}
+                success: function (arg) {
+                    console.log(arg);
+                    arg = JSON.parse(arg);
+                    console.log(arg);
+                    if (arg.status) {
+                        location.reload();
                     } else {
-                        $('#errormsg').text(data);
+                        alert(arg.message);
                     }
                 }
             })
@@ -178,7 +178,7 @@
 
 
         function editAjaxSend() {
-
+            //编辑信息
             var pid = $('#editId').val();
             var pname = $('#editPname').val();
             var kname = $('#editKname').val();
@@ -192,7 +192,6 @@
                     // JSON.stringify(对象) => 字符串
                     arg = JSON.parse(arg);
                     if (arg.status) {
-                        // location.href = "/classes/"
                         location.reload();
                     } else {
                         alert(arg.message);
