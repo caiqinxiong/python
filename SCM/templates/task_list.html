@@ -4,21 +4,21 @@
     <div class="container">
         <h1>发布任务单</h1>
         <div>
-            <a style="margin: 10px 0;"  class="btn btn-primary" href="{% url 'task_add' pk=project_id %}" >添加</a>
+            <a style="margin: 10px 0;" class="btn btn-primary" href="{% url 'task_add' pk=project_id %}">添加</a>
         </div>
         <table class="table table-bordered">
             <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>发布任务</th>
-                    <th>渠道SVN版本号</th>
-                    <th>创建时间</th>
-                    <th>发布详细</th>
-                    <th>操作</th>
-                </tr>
+            <tr>
+                <th>ID</th>
+                <th>发布任务</th>
+                <th>渠道SVN版本号</th>
+                <th>创建时间</th>
+                <th>发布详细</th>
+                <th>操作</th>
+            </tr>
             </thead>
             <tbody>
-                {% for row in task_list %}
+            {% for row in task_list %}
                 <tr>
                     <th>{{ row.id }}</th>
                     <th>{{ row.taskname }}</th>
@@ -27,28 +27,35 @@
                     <th>
                         <a href="{% url 'release_info' pk=row.id %}">发布详细</a>
                     </th>
-                <th>
-                    <a href="{% url 'task_edit' pk=row.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
-                    <a onclick="removeRow(this,{{ row.id }});"><i class="fa fa-trash" aria-hidden="true"></i>删除</a>
-                </th>
+                    <th>
+                        <a href="{% url 'task_edit' pk=row.id %}"><i class="fa fa-pencil-square-o"
+                                                                     aria-hidden="true"></i>编辑</a>
+                        <a onclick="removeRow(this,{{ row.id }});"><i class="fa fa-trash" aria-hidden="true"></i>删除</a>
+                    </th>
                 </tr>
-                {% endfor %}
+            {% endfor %}
             </tbody>
         </table>
+
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                {{ page_info.pager|safe }}
+            </ul>
+        </nav>
     </div>
 {% endblock %}
 
 {% block js %}
     <script>
-        function removeRow(ths,rid) {
+        function removeRow(ths, rid) {
             var result = confirm('是否确定要删除?');
-            if(result){
+            if (result) {
                 $.ajax({
-                    url:'/rim/task/del/' + rid + '/',
-                    type:'get',
-                    dataType:"JSON",
-                    success:function (res) {
-                        if(res.status){
+                    url: '/rim/task/del/' + rid + '/',
+                    type: 'get',
+                    dataType: "JSON",
+                    success: function (res) {
+                        if (res.status) {
                             $(ths).parent().parent().remove();
                         }
                     }

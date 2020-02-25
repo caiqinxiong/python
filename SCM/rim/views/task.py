@@ -6,12 +6,14 @@ from django.shortcuts import render,redirect,HttpResponse,reverse
 from django.http import JsonResponse
 from rim import models
 from rim.forms.task import TasktModelForm
+from utils.pager import PageInfo
 
 def task_list(request,pk):
     '''发布信息列表'''
-    # project_object = models.Project.objects.filter(pid=project_id).first()
-    task_list = models.ReleaseInfo.objects.filter(project_id=pk).all()
-    return render(request, 'task_list.html', {'task_list':task_list, "project_id":pk})
+    all_count = models.ReleaseInfo.objects.all().count() # 获取所有数据行数
+    page_info = PageInfo(request.GET.get('page'), all_count, 10, '/rim/task/list/%s' % pk, 11) #添加分页展示功能
+    task_list = models.ReleaseInfo.objects.filter(project_id=pk).all()[page_info.start():page_info.end()]
+    return render(request, 'task_list.html', {'task_list':task_list, "project_id":pk, 'page_info':page_info})
 
 def task_add(request,pk):
     '''添加发布信息'''
@@ -43,7 +45,7 @@ def task_edit(request,pk):
 def task_del(request,pk):
     '''删除发布信息'''
     release_obj = models.ReleaseInfo.objects.filter(id=pk)
-    project_id = release_obj.first().project_id
+    # project_id = release_obj.first().project_id
     release_obj.delete()
     return JsonResponse({"status": True})
     # return redirect(reverse('task_list' ,kwargs={'project_id':project_id}))
@@ -52,3 +54,4 @@ def release_info(request,pk):
     '''发布信息'''
     release_object = models.ReleaseInfo.objects.filter(id=pk).first()
     return render(request, 'release_list.html', {'release_object':release_object})
+

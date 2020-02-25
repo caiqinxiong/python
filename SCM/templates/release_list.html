@@ -34,12 +34,13 @@
             </tr>
             <tr>
                 <th>JIRA链接</th>
-                <td><a href="{{ release_object.issue }}">{{ release_object.issue }}</a></td>
+                <td><a href="{{ release_object.issue }}" target="_blank">{{ release_object.issue }}</a></td>
             </tr>
             </tbody>
         </table>
         <a class="btn btn-primary" href="{% url 'task_list' pk=release_object.project_id %}"
            role="button">返回</a>
+
     </div>
 
 {% endblock %}

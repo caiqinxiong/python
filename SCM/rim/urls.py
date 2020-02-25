@@ -30,6 +30,6 @@ urlpatterns = [
     url(r'^task/del/(?P<pk>\d+)/$', task.task_del, name='task_del'),
 
     url(r'^release_info/(?P<pk>\d+)/$', task.release_info, name='release_info'),
-    
+
 ]
 
