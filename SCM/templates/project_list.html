@@ -144,7 +144,7 @@
                 url: '/rim/add_project/',
                 type: 'POST',
                 data: {'pname': $('#pname').val(), 'kname': $('#kname').val()},
-                {#async:false,#}
+                async:false,
                 success: function (arg) {
                     console.log(arg);
                     arg = JSON.parse(arg);
@@ -186,6 +186,7 @@
                 url: '/rim/edit_project/',
                 type: 'POST',
                 data: {'pid': pid, 'pname': pname, 'kname': kname},
+                async:false,//解决刷新失败
                 success: function (arg) {
                     // arg字符串类型
                     // JSON.parse(字符串) => 对象

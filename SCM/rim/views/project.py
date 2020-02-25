@@ -15,18 +15,19 @@ def index(request):
 
 def project_list(request):
     '''项目信息'''
-    project_info = models.Project.objects.all()
-
+    search = request.POST.get('search')
+    if search:
+        project_info = models.Project.objects.filter(pname__contains=search).all()
+    else:
+        project_info = models.Project.objects.all()
     return render(request, 'project_list.html', {'project_info':project_info})
 
 def add_project(request):
     '''添加项目'''
     ret = {'status': True, 'message': None}
-    print(11111111111111111111111111111111111)
     try:
         pname = request.POST.get('pname')
         kname = request.POST.get('kname')
-        print(pname, kname)
         if pname and kname:
             models.Project.objects.create(pname=pname,kname=kname)
             print('ok')
@@ -36,10 +37,7 @@ def add_project(request):
     except Exception as e:
         ret['status'] = False
         ret['message'] = "处理异常"
-    print(ret)
-    v = json.dumps(ret)
-    print(v)
-    return HttpResponse(v)
+    return HttpResponse(json.dumps(ret))
 
 def edit_project(request):
     '''编辑项目'''

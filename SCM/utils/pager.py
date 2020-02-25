@@ -1,6 +1,6 @@
 
 class PageInfo(object):
-
+    '''分页展示'''
     def __init__(self,current_page,all_count,per_page,base_url,show_page=11):
         """
 
