@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from rim.views import project
 from rim.views import task
+from rim.views import auth
 
 urlpatterns = [
     url(r'^index/', project.index),
@@ -28,8 +29,9 @@ urlpatterns = [
     url(r'^task/add/(?P<pk>\d+)/$', task.task_add, name='task_add'),
     url(r'^task/edit/(?P<pk>\d+)/$', task.task_edit, name='task_edit'),
     url(r'^task/del/(?P<pk>\d+)/$', task.task_del, name='task_del'),
-
     url(r'^release_info/(?P<pk>\d+)/$', task.release_info, name='release_info'),
+
+    url(r'^login/', auth.login, name='login'),
 
 ]
 

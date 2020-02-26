@@ -21,5 +21,6 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^rim/', include('rim.urls')),
+    url(r'^captcha', include('captcha.urls')),
 
 ]
