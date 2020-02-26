@@ -59,9 +59,9 @@
                     <td>{{ row.kname }}</td>
                     <td><a href="{% url 'task_list' pk=row.pid %}">发布任务</a></td>
                     <td>
-                        <a class="glyphicon glyphicon-pencil" onclick="modelEdit(this);">编辑</a>
+                        <a onclick="modelEdit(this);"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
                         |
-                        <a class="glyphicon glyphicon-trash" onclick="removeRow(this,{{ row.pid }})">删除</a>
+                        <a onclick="removeRow(this,{{ row.pid }})"><i class="fa fa-trash" aria-hidden="true"></i>删除</a>
                     </td>
                 </tr>
             {% endfor %}

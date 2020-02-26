@@ -17,11 +17,16 @@
 <div class="pg-header">
     <div class="logo left">SCM发布系统</div>
     <div class="avatar right" style="position: relative">
-        <img style="width: 40px;height: 40px;" src="/static/images/1.jpg">
-        <div class="user-info">
-            <a>个人资料</a>
-            <a>注销</a>
-        </div>
+        <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <img style="width: 40px;height: 40px;" src="/static/images/1.jpg">
+          <ul class="dropdown-menu user-info pull-right">
+            <li><a href="#">用户信息</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">注销</a></li>
+          </ul>
+        </li>
+      </ul>
     </div>
     <div class="rmenus right">
         <a><i class="fa fa-commenting-o" aria-hidden="true"></i> 消息</a>
@@ -29,7 +34,7 @@
     </div>
     <div class="rmenus right">
         <form  method="post">
-            <div style="padding-top: 6px ">
+            <div style="padding-top: 6px; padding-right: 5px">
                 <input type="text" class="form-control" name="search" placeholder="搜索">
             </div>
         </form>
