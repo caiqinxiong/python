@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'rim.middlewares.authmid.AuthMD',
 ]
 
 ROOT_URLCONF = 'SCM.urls'
@@ -136,3 +137,29 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'static'),
 )
+
+# 验证码设置：django_simple_captcha 验证码配置其他配置项查看文档
+# 默认格式
+CAPTCHA_OUTPUT_FORMAT = '%(image)s %(text_field)s %(hidden_field)s '
+CAPTCHA_NOISE_FUNCTIONS = (# 'captcha.helpers.noise_null', # 没有样式
+    'captcha.helpers.noise_arcs', # 线
+    'captcha.helpers.noise_dots', # 点
+)
+# 图片中的文字为随机英文字母，如 mdsh
+CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.random_char_challenge'
+ # 图片中的文字为数字表达式，如2+2=
+# CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
+# 超时(minutes)
+CAPTCHA_TIMEOUT = 1
+# 验证码宽度和高度
+# CAPTCHA_IMAGE_SIZE = (100, 25)
+
+# session 设置
+# SESSION_COOKIE_NAME ＝ "sessionid"       # Session的cookie保存在浏览器上时的key，即：sessionid＝随机字符串（默认）
+# SESSION_COOKIE_PATH ＝ "/"               # Session的cookie保存的路径（默认）
+SESSION_COOKIE_DOMAIN = None             # Session的cookie保存的域名（默认）
+SESSION_COOKIE_SECURE = False            # 是否Https传输cookie（默认）
+SESSION_COOKIE_HTTPONLY = True           # 是否Session的cookie只支持http传输（默认）
+SESSION_COOKIE_AGE = 1209600             # Session的cookie失效日期（2周）（数字为秒数）（默认）
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # 是否关闭浏览器使得Session过期（默认）
+SESSION_SAVE_EVERY_REQUEST = False       # 是否每次请求都保存Session，默认修改之后才保存（默认）

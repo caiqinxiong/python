@@ -19,7 +19,7 @@ from rim.views import task
 from rim.views import auth
 
 urlpatterns = [
-    url(r'^index/', project.index),
+    url(r'^index/', project.index, name='index'),
     url(r'^project_list/', project.project_list, name='project_list'),
     url(r'^add_project/', project.add_project, name='add_project'),
     url(r'^edit_project/', project.edit_project, name='edit_project'),
@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^release_info/(?P<pk>\d+)/$', task.release_info, name='release_info'),
 
     url(r'^login/', auth.login, name='login'),
+    url(r'^logout/$', auth.logout, name='logout'),
 
 ]
 
