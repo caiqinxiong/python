@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% block css %}
+    <style>
+        dt, dd {
+            font-size: 16px;
+            padding: 0;
+            margin: 0;
+            height: 30px;
+            line-height: 30px;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div style="width: 90%;margin: 0 auto; word-wrap: break-word;">
+        <h1>用户信息：{{ user_obj.username }}</h1>
+        <dl class="dl-horizontal">
+            <dt>用户名：</dt>
+            <dd>{{ user_obj.username }}</dd>
+            <dt>邮箱：</dt>
+            <dd>{{ user_obj.email }}</dd>
+            <dt>性别：</dt>
+            <dd>{{ user_obj.get_sex_display }}</dd>
+        </dl>
+        {#        <a class="btn btn-primary" href="{% url 'task_list' pk=release_object.project_id %}"#}
+        {#           role="button">返回</a>#}
+
+    </div>
+
+{% endblock %}

@@ -11,6 +11,10 @@ class Project(models.Model):
     def __str__(self):
         return self.pname
 
+    class Meta:
+        ordering = ["pid"] # 按什么排序展示
+        verbose_name_plural = "项目" # 类名展示,在admin账户里显示的
+
 
 class ReleaseInfo(models.Model):
     '''发布信息'''
@@ -24,6 +28,13 @@ class ReleaseInfo(models.Model):
     build_cmd = models.CharField(max_length=512, verbose_name='编译命令',null=True,blank=True)
     release_info = models.CharField(max_length=512, verbose_name='发布信息')
     issue = models.CharField(max_length=128, verbose_name='JIRA链接',null=True,blank=True)
+
+    def __str__(self):
+        return self.taskname
+
+    class Meta:
+        ordering = ["-createtime"] # 按什么排序展示
+        verbose_name_plural = "发布信息" # 类名展示,在admin账户里显示的
 
 
 class User(models.Model):

@@ -24,7 +24,7 @@ def login(request):
             # }
             request.session['email'] = obj.email
             keep = request.POST.get('keep') # 默认保持登录两周，setting里配置
-            if not keep:request.session.set_expiry(0)
+            if not keep:request.session.set_expiry(0) # 0关闭浏览器Session过期
             next_url = request.GET.get("next")
             # 如果有，就跳转回登陆之前的URL
             if next_url:
@@ -33,7 +33,7 @@ def login(request):
             else:
                 return redirect('project_list')
         else:
-            return render(request, 'login.html', {'error': '用户名或密码错误'})
+            return render(request, 'login.html', {'error': '用户名或密码错误！'})
 
 def logout(request):
     ret = redirect(reverse('login'))

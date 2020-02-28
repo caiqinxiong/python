@@ -17,9 +17,11 @@ from django.conf.urls import url
 from rim.views import project
 from rim.views import task
 from rim.views import auth
+from rim.views import user
 
 urlpatterns = [
     url(r'^index/', project.index, name='index'),
+
     url(r'^project_list/', project.project_list, name='project_list'),
     url(r'^add_project/', project.add_project, name='add_project'),
     url(r'^edit_project/', project.edit_project, name='edit_project'),
@@ -33,6 +35,8 @@ urlpatterns = [
 
     url(r'^login/', auth.login, name='login'),
     url(r'^logout/$', auth.logout, name='logout'),
+
+    url(r'^user/list/$', user.user_list, name='user_list'),
 
 ]
 
