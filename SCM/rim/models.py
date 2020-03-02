@@ -39,12 +39,10 @@ class ReleaseInfo(models.Model):
 
 class User(models.Model):
     '''用户表'''
-
     gender = (
         ('male', "男"),
         ('female', "女"),
     )
-
     username = models.CharField(max_length=128, unique=True, verbose_name='用户名')
     password = models.CharField(max_length=256, verbose_name='密码')
     email = models.EmailField(unique=True, verbose_name='邮箱')

@@ -18,15 +18,19 @@ def change_password(request):
     '''修改密码'''
     email = request.session.get("email")
     user_obj = models.User.objects.filter(email=email).first()
-    ret = {'status': True, 'message': None}
+    ret = {'status': True, 'msg': None, 'url': ''}
     try:
         password = request.POST.get('password')
         user_obj.password = password
         user_obj.save()
+        ret['msg'] = "密码修改成功！"
+        ret['url'] = '/rim/user/list/'#request.path_info
     except Exception as e:
         ret['status'] = False
-        ret['message'] = "处理异常"
+        ret['msg'] = "处理异常"
 
+    # print(ret)
+    # return render(request, "success.html", ret)
     return HttpResponse(json.dumps(ret))
 
 

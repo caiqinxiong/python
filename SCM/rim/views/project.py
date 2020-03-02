@@ -9,9 +9,7 @@ from rim.forms.task import TasktModelForm
 
 def index(request):
     '''发布信息首页'''
-
     return render(request, 'index.html')
-
 
 def project_list(request):
     '''项目信息'''

@@ -47,8 +47,16 @@
 {% block js %}
     <script>
         function removeRow(ths, rid) {
-            var result = confirm('是否确定要删除?');
-            if (result) {
+            swal({
+                title: "确定删除选中的记录?",
+                text: "删除之后无法恢复该数据!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                closeOnConfirm: true
+            },function () {
                 $.ajax({
                     url: '/rim/task/del/' + rid + '/',
                     type: 'get',
@@ -59,8 +67,7 @@
                         }
                     }
                 });
-
-            }
+            });
         }
     </script>
 {% endblock %}

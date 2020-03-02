@@ -27,8 +27,8 @@ class AuthMD(MiddlewareMixin):  # 验证登录
             self.ret['msg'] = "请登录后,再访问!"
             self.ret['url'] = "/rim/login/?next={}".format(request_url)
 
-        # print(request.path_info, request.get_full_path())
-        # print(self.ret)
+        print(request.path_info, request.get_full_path())
+        print(self.ret)
 
         # 错误页面提示
         return render(request, "jump.html", self.ret)
