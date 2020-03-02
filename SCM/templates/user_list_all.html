@@ -2,34 +2,33 @@
 
 {% block content %}
     <div class="container">
-        <h1>发布任务单</h1>
+        <h1>用户列表</h1>
         <div>
-            <a style="margin: 10px 0;" class="btn btn-primary" href="{% url 'task_add' pk=project_id %}">添加</a>
+            <a style="margin: 10px 0;" class="btn btn-primary" href="{% url 'user_add'  %}">添加</a>
         </div>
         <table class="table table-striped table-bordered table-hover">
             <thead>
             <tr>
                 <th>ID</th>
-                <th>发布任务</th>
-                <th>渠道SVN版本号</th>
+                <th>用户名</th>
+                <th>邮箱</th>
                 <th>创建时间</th>
-                <th>发布详细</th>
+                <th>性别</th>
                 <th>操作</th>
             </tr>
             </thead>
             <tbody>
-            {% for row in task_list %}
+            {% for row in user_obj %}
                 <tr>
                     <th>{{ row.id }}</th>
-                    <th>{{ row.taskname }}</th>
-                    <th>{{ row.svnversion }}</th>
+                    <th>{{ row.username }}</th>
+                    <th>{{ row.email }}</th>
                     <th>{{ row.createtime }}</th>
                     <th>
-                        <a href="{% url 'release_info' pk=row.id %}">发布详细</a>
+                        {{row.get_sex_display}}
                     </th>
                     <th>
-                        <a href="{% url 'task_edit' pk=row.id %}"><i class="fa fa-pencil-square-o"
-                                                                     aria-hidden="true"></i>编辑</a>
+                        <a href="{% url 'user_edit' pk=row.id %}"><i class="fa fa-pencil-square-o"  aria-hidden="true"></i>编辑</a>
                         <a onclick="removeRow(this,{{ row.id }});"><i class="fa fa-trash" aria-hidden="true"></i>删除</a>
                     </th>
                 </tr>
@@ -51,7 +50,7 @@
             var result = confirm('是否确定要删除?');
             if (result) {
                 $.ajax({
-                    url: '/rim/task/del/' + rid + '/',
+                    url: '/rim/user/del/' + rid + '/',
                     type: 'get',
                     dataType: "JSON",
                     success: function (res) {

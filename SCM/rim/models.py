@@ -55,5 +55,5 @@ class User(models.Model):
         return self.username
 
     class Meta:
-        ordering = ["createtime"]
+        ordering = ["id"]
         verbose_name_plural = "用户" # 类名展示

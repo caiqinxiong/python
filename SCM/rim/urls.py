@@ -37,6 +37,10 @@ urlpatterns = [
     url(r'^logout/$', auth.logout, name='logout'),
 
     url(r'^user/list/$', user.user_list, name='user_list'),
+    url(r'^user/list_all/$', user.user_list_all, name='user_list_all'),
+    url(r'^user/add/$', user.user_add, name='user_add'),
+    url(r'^user/edit/(?P<pk>\d+)/$', user.user_edit, name='user_edit'),
+    url(r'^user/del/(?P<pk>\d+)/$', user.user_del, name='user_del'),
 
 ]
 
