@@ -8,6 +8,33 @@
             height: 30px;
             line-height: 30px;
         }
+
+        .hide {
+            display: none;
+        }
+
+        .shadow {
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background-color: black;
+            opacity: 0.4;
+            z-index: 999;
+        }
+
+        .modal-pr {
+            z-index: 1000;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            height: 300px;
+            width: 400px;
+            background-color: white;
+            margin-left: -200px;
+            margin-top: -150px;
+        }
     </style>
 {% endblock %}
 {% block content %}
@@ -20,7 +47,81 @@
             <dd>{{ user_obj.email }}</dd>
             <dt>性别：</dt>
             <dd>{{ user_obj.get_sex_display }}</dd>
+            <dt>密码：</dt>
+            <dd><a onclick="modelEdit(this);">修改密码</a></dd>
         </dl>
     </div>
+    <div id="shadow" class="shadow hide"></div>
+    <div id="editModal" class="modal-pr hide panel panel-success">
+        <div class="panel-heading">修改密码</div>
+        <br>
+        <br>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="editPassorw" class="col-sm-3 control-label">新密码</label>
+                <div class="col-sm-8">
+                    <input type="password" class="form-control" id="editPassorw" name="pwd" placeholder="新密码">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassorw" class="col-sm-3 control-label">确认密码</label>
+                <div class="col-sm-8">
+                    <input type="password" class="form-control" id="confirmPassorw" name="cpwd" placeholder="确认密码">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-8">
+                    <button type="submit" class="btn btn-success" value="提交" onclick="editAjaxSend();">提交</button>
+                    <button type="submit" class="btn btn-primary" value="取消" onclick="cancleModal();">取消</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
+{% endblock %}
+
+{% block js %}
+    <script>
+        function modelEdit(ths) {
+            document.getElementById('shadow').classList.remove('hide');
+            document.getElementById('editModal').classList.remove('hide');
+        }
+
+        function editAjaxSend() {
+            var pwd = $('#editPassorw').val();
+            var cpwd = $('#confirmPassorw').val();
+            console.log(pwd, cpwd);
+            if (pwd != cpwd) {
+                alert('两次密码输入不一致！');
+            } else if (pwd.length < 1) {
+                alert('输入内容不能为空！')
+            } else if (pwd.length < 8) {
+                alert('密码长度不能小于8位！')
+            } else {
+                $.ajax({
+                    url: '{% url "change_password" %}',
+                    type: 'POST',
+                    data: {'password': pwd},
+                    async: false,//解决刷新失败
+                    success: function (arg) {
+                        // arg字符串类型
+                        // JSON.parse(字符串) => 对象
+                        // JSON.stringify(对象) => 字符串
+                        arg = JSON.parse(arg);
+                        if (arg.status) {
+                            location.reload();
+                        } else {
+                            alert(arg.message);
+                        }
+                    }
+                })
+            }
+        }
+
+        function cancleModal() {
+            document.getElementById('shadow').classList.add('hide');
+            document.getElementById('editModal').classList.add('hide');
+        }
+
+    </script>
 {% endblock %}

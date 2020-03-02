@@ -28,9 +28,8 @@
                         <a href="{% url 'release_info' pk=row.id %}">发布详细</a>
                     </th>
                     <th>
-                        <a href="{% url 'task_edit' pk=row.id %}"><i class="fa fa-pencil-square-o"
-                                                                     aria-hidden="true"></i>编辑</a>
-                        <a onclick="removeRow(this,{{ row.id }});"><i class="fa fa-trash" aria-hidden="true"></i>删除</a>
+                        <a class="btn-sm btn-info" href="{% url 'task_edit' pk=row.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
+                        <a class="btn-sm btn-danger" onclick="removeRow(this,{{ row.id }});"><i class="fa fa-trash" aria-hidden="true"></i>删除</a>
                     </th>
                 </tr>
             {% endfor %}

@@ -57,11 +57,10 @@
                     <td>{{ row.pid }}</td>
                     <td>{{ row.pname }}</td>
                     <td>{{ row.kname }}</td>
-                    <td><a href="{% url 'task_list' pk=row.pid %}">发布任务</a></td>
+                    <td><a class="bg-success" href="{% url 'task_list' pk=row.pid %}">发布任务</a></td>
                     <td>
-                        <a onclick="modelEdit(this);"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
-                        |
-                        <a onclick="removeRow(this,{{ row.pid }})"><i class="fa fa-trash" aria-hidden="true"></i>删除</a>
+                        <a class="btn-sm btn-primary" onclick="modelEdit(this);"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
+                        <a class="btn-sm btn-danger" onclick="removeRow(this,{{ row.pid }})"><i class="fa fa-trash" aria-hidden="true"></i>删除</a>
                     </td>
                 </tr>
             {% endfor %}

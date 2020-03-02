@@ -18,22 +18,22 @@
     <div class="logo left">SCM发布系统</div>
     <div class="avatar right" style="position: relative">
         <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <img style="width: 40px;height: 40px;" src="/static/images/1.jpg">
-          <ul class="dropdown-menu user-info pull-right">
-            <li><a href="{% url 'user_list' %}">用户信息</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="{% url 'logout' %}">注销</a></li>
-          </ul>
-        </li>
-      </ul>
+            <li class="dropdown">
+                <img style="width: 40px;height: 40px;" src="/static/images/1.jpg">
+                <ul class="dropdown-menu user-info pull-right">
+                    <li><a href="{% url 'user_list' %}">用户信息</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="{% url 'logout' %}">注销</a></li>
+                </ul>
+            </li>
+        </ul>
     </div>
     <div class="rmenus right">
         <a><i class="fa fa-commenting-o" aria-hidden="true"></i> 消息</a>
         <a><i class="fa fa-envelope-o" aria-hidden="true"></i> 邮件</a>
     </div>
     <div class="rmenus right">
-        <form  method="post">
+        <form method="post">
             <div style="padding-top: 6px; padding-right: 5px">
                 <input type="text" class="form-control" name="search" placeholder="搜索">
             </div>
@@ -42,8 +42,10 @@
 </div>
 <div class="pg-body">
     <div class="menus">
-        <a href="{% url 'project_list' %}"> <i class="fa fa-cog" aria-hidden="true"></i> 项目管理</a>
-        <a href="{% url 'user_list_all' %}"><i class="fa fa-telegram" aria-hidden="true"></i>用户管理</a>
+        <ul class="nav nav-sidebar ">
+            <li><a href="{% url 'project_list' %}"> <i class="fa fa-cog" aria-hidden="true"></i> 项目管理</a></li>
+            <li><a href="{% url 'user_list_all' %}"><i class="fa fa-telegram" aria-hidden="true"></i>用户管理</a></li>
+        </ul>
     </div>
     <div class="content">
         <ol class="breadcrumb">

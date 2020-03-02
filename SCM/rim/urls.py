@@ -41,6 +41,7 @@ urlpatterns = [
     url(r'^user/add/$', user.user_add, name='user_add'),
     url(r'^user/edit/(?P<pk>\d+)/$', user.user_edit, name='user_edit'),
     url(r'^user/del/(?P<pk>\d+)/$', user.user_del, name='user_del'),
+    url(r'^change_password/$', user.change_password, name='change_password'),
 
 ]
 
