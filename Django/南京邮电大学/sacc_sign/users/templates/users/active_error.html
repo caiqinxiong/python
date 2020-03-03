@@ -1,0 +1,8 @@
+{% extends 'sign_up/index.html' %}
+{% block content %}
+    {% if type == "register" %}
+        <p>您已注册成功，请尽快进行邮箱验证</p>
+    {% else %}
+        <p>您还未进行邮箱验证，请验证邮箱后再登录！</p>
+    {% endif %}
+{% endblock content %}

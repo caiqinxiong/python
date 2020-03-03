@@ -18,6 +18,7 @@ from rim.views import project
 from rim.views import task
 from rim.views import auth
 from rim.views import user
+from rim.views import mail
 
 urlpatterns = [
     url(r'^index/', project.index, name='index'),

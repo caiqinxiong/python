@@ -24,6 +24,7 @@ def login(request):
             # }
             request.session['email'] = obj.email
             keep = request.POST.get('keep') # 默认保持登录两周，setting里配置
+            # print(keep)
             if not keep:request.session.set_expiry(0) # 0关闭浏览器Session过期
             next_url = request.GET.get("next")
             # 如果有，就跳转回登陆之前的URL

@@ -163,3 +163,24 @@ SESSION_COOKIE_HTTPONLY = True           # 是否Session的cookie只支持http�
 SESSION_COOKIE_AGE = 1209600             # Session的cookie失效日期（2周）（数字为秒数）（默认）
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # 是否关闭浏览器使得Session过期（默认）
 SESSION_SAVE_EVERY_REQUEST = False       # 是否每次请求都保存Session，默认修改之后才保存（默认）
+
+# 邮箱设置
+# EMAIL_HOST = 'smtp.163.com'
+EMAIL_HOST = 'smtp.qq.com'
+# 设置端口号，为数字
+# EMAIL_PORT = 25
+EMAIL_PORT = 587
+#设置发件人邮箱
+EMAIL_HOST_USER = 'caiqinxiong_cai@qq.com'
+DEFAULT_FROM_EMAIL = 'caiqinxiong_cai@qq.com'
+# 设置发件人 授权码不是密码
+EMAIL_HOST_PASSWORD = 'ynfinymixhlabfaa'
+# 设置是否启用安全链接
+EMAIL_USER_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_SSL_CERTFILE = None
+EMAIL_SSL_KEYFILE = None
+EMAIL_TIMEOUT = None
+# 以上这个配置信息，Django会自动读取，
+# 使用账号以及授权码进行登录，
+# 如果登录成功，可以发送邮件

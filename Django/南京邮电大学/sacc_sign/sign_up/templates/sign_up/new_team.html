@@ -1,0 +1,15 @@
+{% extends 'sign_up/index.html' %}
+{% load bootstrap3 %}
+{% block content %}
+    <div><h3>请填写队伍信息</h3></div>
+    <form action="{% url 'sign_up:new_team' %}" method="post" class="new_team">
+    {% csrf_token %}
+        {% bootstrap_form new_team %}
+        {% buttons %}
+            <p style="text-align: right">
+            <button type="submit" name="submit" class="btn btn-info">报名</button>
+            </p>
+        {% endbuttons %}
+    </form>
+{% endblock content %}
+t %}#}

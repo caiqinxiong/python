@@ -1,0 +1,16 @@
+{% extends 'sign_up/index.html' %}
+{% load bootstrap3 %}
+{% block content %}
+    <div><h3>请填写队伍密钥</h3></div>
+    <form action="{% url 'sign_up:add_team' %}" method="post">
+    {% csrf_token %}
+        <div><h5>请输入队伍密钥</h5></div>
+        <input type="text" name="team_key" class="form-control" placeholder="请输入队伍密钥" aria-describedby="basic-addon1">
+        <br>
+        {% buttons %}
+            <p style="text-align: right">
+            <button type="submit" name="submit" class="btn btn-info">报名</button>
+            </p>
+        {% endbuttons %}
+    </form>
+{% endblock content %}

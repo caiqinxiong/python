@@ -1,0 +1,127 @@
+{% extends 'sign_up/index.html' %}
+{% block content %}
+    {% for team in teams %}
+        <div class="panel panel-default">
+            <div class="panel-heading  table-responsive">
+                <p style="float: left">队伍名称：{{ team.team_name }}</p>
+                <p style="text-align: right;margin-bottom: 0">队伍密钥：{{ team.team_key }}</p>
+            </div>
+            <div class="table-responsive">
+            <table class="table table-hover  table-bordered">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>姓名</th>
+                    <th>学院</th>
+                    <th>学号</th>
+                    <th>手机号</th>
+                    <th>邮箱</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">队长</th>
+                    <td>{{ team.leader }}</td>
+                    <td>{{ team.leader_college }}</td>
+                    <td>{{ team.leader_id }}</td>
+                    <td>{{ team.leader_tel }}</td>
+                    <td>{{ team.leader_email }}</td>
+                    {% if team.owner == user %}
+                        <td>
+                            <a href="{% url 'sign_up:delete_team' team.id %}">
+                                <button type="button" class="btn btn-danger">解散队伍</button>
+                            </a>
+                        </td>
+                    {% else %}
+                        <td>
+                            <a href="#">
+                                <button type="button" class="btn btn-default disabled">解散队伍</button>
+                            </a>
+                        </td>
+                    {% endif %}
+                </tr>
+                {% if team.student_id1 != None and team.student_id1 != '' %}
+                    <tr>
+                        <th scope="row">队员一</th>
+                        <td>{{ team.member1 }}</td>
+                        <td>{{ team.college1 }}</td>
+                        <td>{{ team.student_id1 }}</td>
+                        <td>{{ team.tel1 }}</td>
+                        <td>{{ team.email1 }}</td>
+                        {% if team.owner == user %}
+                            <td>
+                                <a href="{% url 'sign_up:delete_member' 1 %}">
+                                    <button type="button" class="btn btn-danger">删除队员</button>
+                                </a>
+                            </td>
+                        {% elif team.student_id1 == user_id %}
+                            <td>
+                                <a href="{% url 'sign_up:quit_team' team.id %}">
+                                    <button type="button" class="btn btn-danger">退出队伍</button>
+                                </a>
+                            </td>
+                        {% else %}
+                            <td>
+                                <a href="#">
+                                    <button type="button" class="btn btn-default disabled">退出队伍</button>
+                                </a>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endif %}
+                {% if team.student_id2 != None and team.student_id2 != '' %}
+                    <tr>
+                        <th scope="row">队员二</th>
+                        <td>{{ team.member2 }}</td>
+                        <td>{{ team.college2 }}</td>
+                        <td>{{ team.student_id2 }}</td>
+                        <td>{{ team.tel2 }}</td>
+                        <td>{{ team.email2 }}</td>
+                        {% if team.owner == user %}
+                            <td>
+                                <a href="{% url 'sign_up:delete_member' 2 %}">
+                                    <button type="button" class="btn btn-danger">删除队员</button>
+                                </a>
+                            </td>
+                        {% elif team.student_id2 == user_id %}
+                            <td>
+                                <a href="{% url 'sign_up:quit_team' team.id %}">
+                                    <button type="button" class="btn btn-danger ">退出队伍</button>
+                                </a>
+                            </td>
+                        {% else %}
+                            <td>
+                                <a href="#">
+                                    <button type="button" class="btn btn-default disabled">退出队伍</button>
+                                </a>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endif %}
+                </tbody>
+            </table>
+            </div>
+        </div>
+        <div>
+            {% if team.owner == user %}
+                <a href="{% url 'sign_up:edit_team' team.id %}">
+                <p style="text-align: right">
+                    <button type="button" class="btn btn-danger">修改</button>
+                </p>
+                </a>
+            {% else %}
+                <a href="#">
+                    <p style="text-align: right">
+                        <button type="button" class="btn btn-default disabled">修改</button>
+                    </p>
+                </a>
+            {% endif %}
+        </div>
+    {% empty %}
+        <p>你还没有创建队伍，请去创建</p>
+        <a href="{% url 'sign_up:new_team' %}">创建队伍</a>
+    {% endfor %}
+{% endblock content %}
+
+

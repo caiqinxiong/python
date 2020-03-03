@@ -1,0 +1,24 @@
+{% extends 'sign_up/index.html' %}
+{% load bootstrap3 %}
+{% block header %}
+{% endblock header %}
+{% block content %}
+    {% if form.error %}
+        <p>你的帐号或密码错误，请重试</p>
+    {% endif %}
+    <form method="post" action="{% url 'users:login' %}">
+    {% csrf_token %}
+        学号:<input type="text" name="username" class="form-control" placeholder="用户名" aria-describedby="basic-addon1">
+        <br>
+        密码:<input type="password" name="password" class="form-control" placeholder="密码" aria-describedby="basic-addon1">
+        {#本行代码用来表示当登录成功时网页重新定向到某个位置#}
+        <input type="hidden" name="next" value="{% url 'sign_up:index' %}">
+        <br>
+        {% if error != None %}
+            <p>{{ error }}</p>
+        {% endif %}
+        {% buttons %}
+            <button type="submit" name="submit" class="btn btn-primary">登录</button>
+        {% endbuttons %}
+    </form>
+{% endblock content %}
