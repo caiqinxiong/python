@@ -49,6 +49,12 @@
             <dd>{{ user_obj.get_sex_display }}</dd>
             <dt>密码：</dt>
             <dd><a onclick="modelEdit(this);">修改密码</a></dd>
+            <dt>用户组：</dt>
+            <dd>
+                {% for item in  user_obj.group_set.all %}
+                    <span style="border: 1px solid #ccc;padding: 5px;">{{ item }}</span>
+                {% endfor %}
+            </dd>
         </dl>
     </div>
     <div id="shadow" class="shadow hide"></div>
@@ -56,7 +62,7 @@
         <div class="panel-heading">修改密码</div>
         <br>
         <br>
-        <form class="form-horizontal" method="post" >
+        <form class="form-horizontal" method="post">
             <div class="form-group">
                 <label for="editPassorw" class="col-sm-3 control-label">新密码</label>
                 <div class="col-sm-8">
@@ -70,14 +76,14 @@
                 </div>
             </div>
             <div class="form-group">
-                    <div class="input-group col-sm-offset-3 col-sm-8">
-                        <div class="checkbox">
-                            <label>
-                                <input id="sendMail" type="checkbox" name="sendMail" > 发送通知邮件
-                            </label>
-                        </div>
+                <div class="input-group col-sm-offset-3 col-sm-8">
+                    <div class="checkbox">
+                        <label>
+                            <input id="sendMail" type="checkbox" name="sendMail"> 发送通知邮件
+                        </label>
                     </div>
                 </div>
+            </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-8">
                     <button type="submit" class="btn btn-success" value="提交" onclick="editAjaxSend();">提交</button>
@@ -111,7 +117,7 @@
                 $.ajax({
                     url: '{% url "change_password" %}',
                     type: 'POST',
-                    data: {'password': pwd,'sendMail':sendMail},
+                    data: {'password': pwd, 'sendMail': sendMail},
                     async: false,//解决刷新失败
                     success: function (arg) {
                         // arg字符串类型

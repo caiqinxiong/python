@@ -55,3 +55,26 @@ class User(models.Model):
     class Meta:
         ordering = ["id"]
         verbose_name_plural = "用户" # 类名展示
+
+class Group(models.Model):
+    '''用户组'''
+    gname = models.CharField(max_length=128, unique=True,verbose_name='组名')
+    createtime = models.DateTimeField(auto_now_add=True, verbose_name='创建日期')
+    u2g = models.ManyToManyField(to='User',verbose_name='关联用户',blank=True,null=True)
+
+    def __str__(self):
+        return self.gname
+
+
+
+
+
+
+
+
+
+
+
+
+
+

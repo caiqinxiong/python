@@ -7,7 +7,7 @@ from django.shortcuts import render,redirect,HttpResponse,reverse
 from django.http import JsonResponse
 from rim import models
 from rim.forms.user import UserModelForm
-from rim.views.mail import SendMail
+from rim.views.mail_hander import SendMail
 
 def user_list(request):
     '''用户信息'''
@@ -31,7 +31,7 @@ def change_password(request):
         ret['msg'] = "密码修改失败！"
 
     sendMail = request.POST.get('sendMail')
-    if sendMail == 'true':
+    if sendMail == 'true':# 发送通知邮件
         smail = SendMail('密码变更通知',  # 邮件标题
                          ret['msg'],  # 邮件txt内容
                          'caiqinxiong_cai@qq.com',  # 发件人
