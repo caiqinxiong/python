@@ -15,16 +15,22 @@ def group_list(request):
         group_info = models.Group.objects.filter(pname__contains=search).all()
     else:
         group_info = models.Group.objects.all()
-    return render(request, 'group_list.html', {'group_info':group_info})
+    user_info = models.User.objects.all()
+    return render(request, 'group_list.html', {'group_info':group_info,'user_info':user_info})
 
 def add_group_ajax(request):
     '''添加组'''
     ret = {'status': True, 'message': None}
     try:
         gname = request.POST.get('gname')
+        user_list = request.POST.getlist('select')
         if gname:
-            models.Group.objects.create(gname=gname)
-            print('ok')
+            obj = models.Group.objects.create(gname=gname) #返回对象
+            try:
+                obj.u2g.add(*user_list)# 关联多对多的表可以直接用字段add写入数据
+                print('添加成功')
+            except:
+                print('关联用户为空！')
         else:
             ret['status'] = False
             ret['message']='填写信息不能为空！'

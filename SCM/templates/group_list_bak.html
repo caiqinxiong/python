@@ -22,26 +22,11 @@
             position: fixed;
             left: 50%;
             top: 50%;
-            height: 600px;
-            width: 800px;
+            height: 300px;
+            width: 400px;
             background-color: white;
-            margin-left: -400px;
-            margin-top: -300px;
-        }
-
-        .select-body {
-            text-align: center;
-            width: 60%;
-            margin: 0 auto;
-        }
-
-        .select-left, .select-right {
-            width: 150px;
-            min-height: 200px;
-        }
-
-        .btn-bar input {
-            width: 50px;
+            margin-left: -200px;
+            margin-top: -150px;
         }
     </style>
 
@@ -52,8 +37,8 @@
     <div style="width: 90%;margin: 0 auto;">
         <h1>用户组列表</h1>
         <div style="margin: 10px 0;">
-            <a class="btn btn-info" onclick="showModal();">添加</a>
-            {#            <a class="btn btn-info" href="{% url 'add_group' %}">添加</a>#}
+{#            <a class="btn btn-info" onclick="showModal();">添加</a>#}
+            <a class="btn btn-info" href="{% url 'add_group' %}">添加</a>
         </div>
         <table class="table table-striped table-bordered table-hover">
             <thead>
@@ -77,10 +62,10 @@
                             <span style="border: 1px solid #ccc;padding: 5px;">{{ item }}</span>
                         {% endfor %}
                     </td>
-                    <td>{{ row.createtime }}</td>
+                    <td>{{row.createtime}}</td>
                     <td>
-                        <a class="btn-sm btn-primary" onclick="modelEdit(this);"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
-{#                        <a class="btn-sm btn-primary" href="{% url 'edit_group' row.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>#}
+{#                        <a class="btn-sm btn-primary" onclick="modelEdit(this);"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>#}
+                        <a class="btn-sm btn-primary" href="{% url 'edit_group' row.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
                         <a class="btn-sm btn-danger" onclick="removeRow(this,{{ row.id }})"><i class="fa fa-trash" aria-hidden="true"></i>删除</a>
                     </td>
                 </tr>
@@ -100,31 +85,6 @@
                     <input type="text" class="form-control" id="gname" name="gname" placeholder="组名">
                 </div>
             </div>
-
-            <div class="row select-body">
-                <div class="col-md-5">
-                    <select multiple="multiple" id="select1" class="select-left">
-                        {% for item in  user_info %}
-                            <option value="{{ item.id }}">{{ item }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <div class="btn-bar">
-                        <p><span id="add"><input type="button" class="btn" value=">" title="移动选择项到右侧"></span></p>
-                        <p><span id="add_all"><input type="button" class="btn" value=">>" title="全部移到右侧"></span></p>
-                        <p><span id="remove"><input type="button" class="btn" value="<" title="移动选择项到左侧"></span></p>
-                        <p><span id="remove_all"><input type="button" class="btn" value="<<" title="全部移到左侧"></span></p>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <select multiple="multiple" id="select2" class="select-right">
-
-                    </select>
-                </div>
-            </div>
-
-
             <p id="errormsg" style="color: red"></p>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-8">
@@ -146,30 +106,6 @@
                     <input type="text" class="form-control" id="editGname" name="gname" placeholder="组名">
                 </div>
             </div>
-
-            <div class="row select-body">
-                <div class="col-md-5">
-                    <select multiple="multiple" id="select1" class="select-left">
-                        {% for item in  user_info %}
-                            <option value="{{ item.id }}">{{ item }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <div class="btn-bar">
-                        <p><span id="add"><input type="button" class="btn" value=">" title="移动选择项到右侧"></span></p>
-                        <p><span id="add_all"><input type="button" class="btn" value=">>" title="全部移到右侧"></span></p>
-                        <p><span id="remove"><input type="button" class="btn" value="<" title="移动选择项到左侧"></span></p>
-                        <p><span id="remove_all"><input type="button" class="btn" value="<<" title="全部移到左侧"></span></p>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <select multiple="multiple" id="select2" class="select-right">
-
-                    </select>
-                </div>
-            </div>
-
             <input id="editId" type="text" name="id" style="display: none"/>
             <p id="errormsg" style="color: red"></p>
             <div class="form-group">
@@ -198,10 +134,9 @@
 
         function AjaxSend() {
             $.ajax({
-                url: '/rim/add_group_ajax/',
+                url: '/rim/add_group/',
                 type: 'POST',
-                traditional: true,//traditional:是否使用传统的方式浅层序列化。后端用request.POST.getlist('select')接收
-                data: {'gname': $('#gname').val(), 'select': $('#select2').val()},
+                data: {'gname': $('#gname').val()},
                 async: false,
                 success: function (arg) {
                     console.log(arg);
@@ -226,8 +161,6 @@
              */
             var row = $(ths).parent().prevAll();
             var gname = $(row[2]).text();
-            var select = $(row[1]).text();
-            console.log(select)
             $('#editGname').val(gname);
             var contentId = $(row[3]).text();
             $('#editId').val(contentId);
@@ -241,7 +174,6 @@
             $.ajax({
                 url: '/rim/edit_group/',
                 type: 'POST',
-                traditional: true,//traditional:是否使用传统的方式浅层序列化。后端用request.POST.getlist('select')接收
                 data: {'id': id, 'gname': gname},
                 async: false,//解决刷新失败
                 success: function (arg) {
@@ -283,33 +215,5 @@
                 }
             })
         }
-
-        // 左右选择
-        $("#add").bind("click", function () {
-            if (!$("#select1 option").is(":selected")) {
-                alert("选择项为空");
-            }
-            $("#select1 option:selected").appendTo("#select2");
-        });
-        $("#remove").bind("click", function () {
-            if (!$("#select2 option").is(":selected")) {
-                alert("选择项为空");
-            }
-            $("#select2 option:selected").appendTo("#select1");
-        });
-        $("#add_all").bind("click", function () {
-            $("#select1 option").appendTo("#select2");
-            $("#select2 option").prop("selected", true)//全选添加后要默认选中，才能把值传给后端
-        });
-        $("#remove_all").bind("click", function () {
-            $("#select2 option").appendTo("#select1");
-        });
-        $("#select1").bind("dblclick", function () {
-            $("#select1 option:selected").appendTo("#select2");
-        });
-        $("#select2").bind("dblclick", function () {
-            $("#select2 option:selected").appendTo("#select1");
-        })
-
     </script>
 {% endblock %}
