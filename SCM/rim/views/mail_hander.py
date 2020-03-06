@@ -1,23 +1,21 @@
 # -*- coding: utf-8 -*-
 __author__ = 'caiqinxiong_cai'
 #2020/3/3 10:01
-import json
 import threading
-from django.shortcuts import render,redirect,HttpResponse,reverse
 from django.core.mail import  send_mail, send_mass_mail, EmailMultiAlternatives
-from django.http import JsonResponse
+from django.template import loader
 from django.conf import settings
 import os,django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "SCM.settings")# project_name 项目名称
 # django.setup()
 
 class SendMail(threading.Thread):
-    def __init__(self,subject, message, from_email, recipient_list,fail_silently=False, html_message=None):
+    def __init__(self,subject, message, from_email, recipient_list, fail_silently=False, html_message=None):
         self.subject = subject # 邮件标题
         self.message = message # 邮件txt内容
         self.html_message = html_message # HTML邮件
         self.from_email = from_email # 发件人
-        self.recipient_list = recipient_list # 收件人列表
+        self.recipient_list = [recipient_list] # 收件人列表
         self.fail_silently = fail_silently # 如果失败，是否抛出错误
         threading.Thread.__init__(self) # 继承多线程父类
 
@@ -25,6 +23,15 @@ class SendMail(threading.Thread):
         status_code = send_mail(self.subject,self.message,self.from_email,self.recipient_list,self.fail_silently)
         print(status_code)
         return status_code
+
+    def html_mail(self,mail_temp):
+        '''发送HTML邮件'''
+        email_template_name = mail_temp
+        t = loader.get_template(email_template_name)
+        html_content = t.render(self.message)
+        msg = EmailMultiAlternatives(self.subject, html_content, self.from_email,self.recipient_list)
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
 
 # smail = SendMail('mail test',# 邮件标题
 #               'test6',# 邮件txt内容

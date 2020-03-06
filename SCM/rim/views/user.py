@@ -2,12 +2,12 @@
 __author__ = 'caiqinxiong_cai'
 #2020/2/26 11:51
 import json
-
 from django.shortcuts import render,redirect,HttpResponse,reverse
 from django.http import JsonResponse
 from rim import models
 from rim.forms.user import UserModelForm
 from rim.views.mail_hander import SendMail
+from django.conf import settings
 
 def user_list(request):
     '''用户信息'''
@@ -32,13 +32,15 @@ def change_password(request):
 
     sendMail = request.POST.get('sendMail')
     if sendMail == 'true':# 发送通知邮件
-        smail = SendMail('密码变更通知',  # 邮件标题
-                         ret['msg'],  # 邮件txt内容
-                         'caiqinxiong_cai@qq.com',  # 发件人
-                         [email])  # 收件人列表
-        smail.start()
-
-    # print(ret)
+        title = '密码变更通知'
+        context = {
+            'username': user_obj.username,
+            'password': user_obj.password,
+            'email': user_obj.email,
+            'title': title,
+        }
+        smail = SendMail(title, context, settings.EMAIL_HOST_USER, user_obj.email)  # 实例化邮件类，传4个必要参数
+        smail.html_mail('mail/user_mail.html')  # 发送HTML邮件，传入HTML模板
     return HttpResponse(json.dumps(ret))
 
 
@@ -52,19 +54,32 @@ def user_list_all(request):
         user_obj = models.User.objects.all()
         return render(request ,'user_list_all.html',{'user_obj':user_obj})
 
+
 def user_add(request):
     '''添加用户'''
     if request.method == 'GET':
         form = UserModelForm()
-        return render(request, 'form.html', {'form': form})
-
+        return render(request, 'user_add.html', {'form': form})
     # 接收用户提交的数据并进行表单验证
     form = UserModelForm(data=request.POST)
     if form.is_valid():
         form.save()
+        sendMail = request.POST.get('sendMail')
+        # print(form.cleaned_data['email'])
+        if sendMail == 'on':  # 发送通知邮件
+            title = '账号创建通知'
+            context = {
+                'username': form.cleaned_data['username'],
+                'password': form.cleaned_data['password'],
+                'email': form.cleaned_data['email'],
+                'title': title,
+            }
+            smail = SendMail(title,context,settings.EMAIL_HOST_USER,form.cleaned_data['email']) # 实例化邮件类，传4个必要参数
+            smail.html_mail('mail/user_mail.html') # 发送HTML邮件，传入HTML模板
+
         return redirect(reverse('user_list_all'))
     else:
-        return render(request, 'form.html', {'form': form})
+        return render(request, 'user_add.html', {'form': form})
 
 def user_edit(request,pk):
     '''编辑用户'''

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>账号创建通知</title>
+</head>
+<style>
+    body {
+        font-family: 微软雅黑;
+    }
+
+    .biaobiao {
+        width: 1000px;
+        margin: 0 auto;
+        text-align: left;
+        margin-bottom: 20px;
+        float: left;
+    }
+
+    .biaobiao table {
+        width: 800px;
+        font-size: 14px;
+        border-collapse: collapse;
+        border-spacing: 1;
+    }
+
+    .biaobiao table tr td {
+        padding: 10px 25px 10px 25px;
+        border: 1px #ccc solid;
+        vertical-align: top;
+        line-height: 20px;
+    }
+
+    .biaobiao p {
+        font-size: 20px;
+        font-weight: bold;
+    }
+</style>
+<body>
+<div class="biaobiao">
+    <table>
+        <tr>
+            <td colspan="4" align="center" bgcolor="#ebebeb"><p>{{ title }}</p></td>
+        </tr>
+        <tr>
+            <td width="20%"><b>用户名</b></td>
+            <td colspan="3">{{ username }} </td>
+        </tr>
+        <tr>
+            <td width="20%"><b>密码</b></td>
+            <td colspan="3">{{ password }}</td>
+        </tr>
+        <tr>
+            <td width="20%"><b>邮箱</b></td>
+            <td colspan="3">{{ email }}</td>
+        </tr>
+    </table>
+    <br>
+    <br>
+</div>
+</body>
+</html>
