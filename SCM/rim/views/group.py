@@ -12,7 +12,7 @@ def group_list(request):
     '''组信息'''
     search = request.POST.get('search')
     if search:
-        group_info = models.Group.objects.filter(pname__contains=search).all()
+        group_info = models.Group.objects.filter(gname__contains=search).all()
     else:
         group_info = models.Group.objects.all()
     user_info = models.User.objects.all()
