@@ -26,11 +26,7 @@ def add_group_ajax(request):
         user_list = request.POST.getlist('select')
         if gname:
             obj = models.Group.objects.create(gname=gname) #返回对象
-            try:
-                obj.u2g.add(*user_list)# 关联多对多的表可以直接用字段add写入数据
-                print('添加成功')
-            except:
-                print('关联用户为空！')
+            if user_list!=['']:obj.u2g.add(*user_list)# 关联多对多的表可以直接用字段add写入数据
         else:
             ret['status'] = False
             ret['message']='填写信息不能为空！'
@@ -60,9 +56,14 @@ def edit_group_ajax(request):
     try:
         id = request.POST.get('id')
         gname = request.POST.get('gname')
+        user_list = request.POST.getlist('select')
         if gname:
             obj = models.Group.objects.get(id=id)
             obj.gname = gname
+            if user_list == ['']:
+                obj.u2g.clear()
+            else:
+                obj.u2g.set(user_list)# 这里存入列表
             obj.save()
         else:
             ret['status'] = False

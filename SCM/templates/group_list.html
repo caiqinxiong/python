@@ -79,9 +79,11 @@
                     </td>
                     <td>{{ row.createtime }}</td>
                     <td>
-                        <a class="btn-sm btn-primary" onclick="modelEdit(this);"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
-{#                        <a class="btn-sm btn-primary" href="{% url 'edit_group' row.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>#}
-                        <a class="btn-sm btn-danger" onclick="removeRow(this,{{ row.id }})"><i class="fa fa-trash" aria-hidden="true"></i>删除</a>
+                        <a class="btn-sm btn-primary" onclick="modelEdit(this)"><i class="fa fa-pencil-square-o"
+                                                                                   aria-hidden="true"></i>编辑</a>
+                        {# <a class="btn-sm btn-primary" href="{% url 'edit_group' row.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>#}
+                        <a class="btn-sm btn-danger" onclick="removeRow(this,{{ row.id }})"><i class="fa fa-trash"
+                                                                                               aria-hidden="true"></i>删除</a>
                     </td>
                 </tr>
             {% endfor %}
@@ -103,6 +105,7 @@
 
             <div class="row select-body">
                 <div class="col-md-5">
+                <h4>可选用户</h4>
                     <select multiple="multiple" id="select1" class="select-left">
                         {% for item in  user_info %}
                             <option value="{{ item.id }}">{{ item }}</option>
@@ -110,6 +113,7 @@
                     </select>
                 </div>
                 <div class="col-md-2">
+                    <br><br><br>
                     <div class="btn-bar">
                         <p><span id="add"><input type="button" class="btn" value=">" title="移动选择项到右侧"></span></p>
                         <p><span id="add_all"><input type="button" class="btn" value=">>" title="全部移到右侧"></span></p>
@@ -118,6 +122,7 @@
                     </div>
                 </div>
                 <div class="col-md-5">
+                    <h4>当前用户</h4>
                     <select multiple="multiple" id="select2" class="select-right">
 
                     </select>
@@ -149,7 +154,8 @@
 
             <div class="row select-body">
                 <div class="col-md-5">
-                    <select multiple="multiple" id="select1" class="select-left">
+                <h4>可选用户</h4>
+                    <select multiple="multiple" id="select3" class="select-left">
                         {% for item in  user_info %}
                             <option value="{{ item.id }}">{{ item }}</option>
                         {% endfor %}
@@ -157,14 +163,16 @@
                 </div>
                 <div class="col-md-2">
                     <div class="btn-bar">
-                        <p><span id="add"><input type="button" class="btn" value=">" title="移动选择项到右侧"></span></p>
-                        <p><span id="add_all"><input type="button" class="btn" value=">>" title="全部移到右侧"></span></p>
-                        <p><span id="remove"><input type="button" class="btn" value="<" title="移动选择项到左侧"></span></p>
-                        <p><span id="remove_all"><input type="button" class="btn" value="<<" title="全部移到左侧"></span></p>
+                        <br><br><br>
+                        <p><span id="add2"><input type="button" class="btn" value=">" title="移动选择项到右侧"></span></p>
+                        <p><span id="add_all2"><input type="button" class="btn" value=">>" title="全部移到右侧"></span></p>
+                        <p><span id="remove2"><input type="button" class="btn" value="<" title="移动选择项到左侧"></span></p>
+                        <p><span id="remove_all2"><input type="button" class="btn" value="<<" title="全部移到左侧"></span></p>
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <select multiple="multiple" id="select2" class="select-right">
+                    <h4>当前用户</h4>
+                    <select multiple="multiple" id="select4" class="select-right">
 
                     </select>
                 </div>
@@ -225,9 +233,18 @@
             3. 获取当前行班级名称，赋值到编辑对话框中
              */
             var row = $(ths).parent().prevAll();
-            var gname = $(row[2]).text();
-            var select = $(row[1]).text();
-            console.log(select)
+            var gname = $(row[2]).text();//获取组名
+            var select = $(row[1]).text();//获取关联用户信息
+            {#select=select.split(' ');#}
+            {#select=select.filter((e,i)=>select.indexOf(e)==i);#}//数组过滤重复
+            {#select = $.grep(select, function (x) { return $.trim(x).length > 0; });//数组过滤空格#}
+            var select3 = $('#select3 option');//返回左侧选择的对象
+            for (var j = 0; j < select3.length; j++) {//遍历左侧选择框，既遍历所有用户
+                if (select.indexOf(select3[j].text) != -1) {//如果之前已经有关联的，加到右侧
+                    document.getElementById('select4').append(select3[j])
+                }
+            }
+            $("#select4 option").prop("selected", true);//全选添加后要默认选中，才能把值传给后端
             $('#editGname').val(gname);
             var contentId = $(row[3]).text();
             $('#editId').val(contentId);
@@ -239,10 +256,10 @@
             var id = $('#editId').val();
             var gname = $('#editGname').val();
             $.ajax({
-                url: '/rim/edit_group/',
+                url: '/rim/edit_group_ajax/',
                 type: 'POST',
                 traditional: true,//traditional:是否使用传统的方式浅层序列化。后端用request.POST.getlist('select')接收
-                data: {'id': id, 'gname': gname},
+                data: {'id': id, 'gname': gname,'select': $('#select4').val()},
                 async: false,//解决刷新失败
                 success: function (arg) {
                     // arg字符串类型
@@ -284,7 +301,7 @@
             })
         }
 
-        // 左右选择
+        // 添加组 左右选择
         $("#add").bind("click", function () {
             if (!$("#select1 option").is(":selected")) {
                 alert("选择项为空");
@@ -310,6 +327,34 @@
         $("#select2").bind("dblclick", function () {
             $("#select2 option:selected").appendTo("#select1");
         })
+
+        // 编辑组  左右选择
+        $("#add2").bind("click", function () {
+            if (!$("#select3 option").is(":selected")) {
+                alert("选择项为空");
+            }
+            $("#select3 option:selected").appendTo("#select4");
+        });
+        $("#remove2").bind("click", function () {
+            if (!$("#select4 option").is(":selected")) {
+                alert("选择项为空");
+            }
+            $("#select4 option:selected").appendTo("#select3");
+        });
+        $("#add_all2").bind("click", function () {
+            $("#select3 option").appendTo("#select4");
+            $("#select4 option").prop("selected", true)//全选添加后要默认选中，才能把值传给后端
+        });
+        $("#remove_all2").bind("click", function () {
+            $("#select4 option").appendTo("#select3");
+        });
+        $("#select3").bind("dblclick", function () {
+            $("#select3 option:selected").appendTo("#select4");
+        });
+        $("#select4").bind("dblclick", function () {
+            $("#select4 option:selected").appendTo("#select3");
+        })
+
 
     </script>
 {% endblock %}
