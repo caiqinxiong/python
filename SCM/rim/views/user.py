@@ -6,7 +6,7 @@ from django.shortcuts import render,redirect,HttpResponse,reverse
 from django.http import JsonResponse
 from rim import models
 from rim.forms.user import UserModelForm
-from rim.views.mail_hander import SendMail
+from utils.mail_hander import SendMail
 from django.conf import settings
 
 def user_list(request):

@@ -235,13 +235,15 @@
             var row = $(ths).parent().prevAll();
             var gname = $(row[2]).text();//获取组名
             var select = $(row[1]).text();//获取关联用户信息
-            {#select=select.split(' ');#}
+            select=select.split(' ');
             {#select=select.filter((e,i)=>select.indexOf(e)==i);#}//数组过滤重复
-            {#select = $.grep(select, function (x) { return $.trim(x).length > 0; });//数组过滤空格#}
+            select = $.grep(select, function (x) { return $.trim(x).length > 0; });//数组过滤空格
             var select3 = $('#select3 option');//返回左侧选择的对象
             for (var j = 0; j < select3.length; j++) {//遍历左侧选择框，既遍历所有用户
-                if (select.indexOf(select3[j].text) != -1) {//如果之前已经有关联的，加到右侧
-                    document.getElementById('select4').append(select3[j])
+                for (var i=0;i<select.length;i++){
+                    if (select[i].replace(/\s+/g,"")==select3[j].text.replace(/\s+/g,"")){
+                        document.getElementById('select4').append(select3[j])
+                    }
                 }
             }
             $("#select4 option").prop("selected", true);//全选添加后要默认选中，才能把值传给后端
