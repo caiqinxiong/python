@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+{% load i18n xadmin_tags %}
+
+{% load staticfiles %}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}首页{% endblock %}</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'plug_ins/css/bootstrap-datetimepicker.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'plug_ins/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'plug_ins/css/dashboard.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plug_ins/css/bootstrap-table.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'plug_ins/css/bootstrap-table-sticky-header.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'plug_ins/css/bootstrap-table-filter-control.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'plug_ins/css/tableexport.min.css' %}"/>
+
+    {% block css %}
+
+    {% endblock %}
+    <!-- js -->
+    <script src="{% static 'plug_ins/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'plug_ins/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'plug_ins/js/bootstrap-table.js' %}"></script>
+    <script src="{% static 'plug_ins/js/bootstrap-table-zh-CN.js' %}"></script>
+    <script src="{% static 'plug_ins/js/bootstrap-table-export.js' %}"></script>
+    <script src="{% static 'plug_ins/js/bootstrap-table-sticky-header.min.js' %}"></script>
+    <script src="{% static 'plug_ins/js/FileSaver.min.js' %}"></script>
+    <script src="{% static 'plug_ins/js/tableExport.min.js' %}"></script>
+    <script src="{% static 'plug_ins/js/xlsx.core.min.js' %}"></script>
+    <script src="{% static 'plug_ins/js/bootstrap-datetimepicker.js' %}"></script>
+    <script src="{% static 'plug_ins/js/bootstrap-datetimepicker.min.js' %}"></script>
+    <script src="{% static 'plug_ins/js/bootstrap-datetimepicker.zh-CN.js' %}"></script>
+    <script src="{% static 'plug_ins/js/bootstrap-table-filter-control.js' %}"></script>
+    <script src="{% static 'plug_ins/js/ga.js' %}"></script>
+    <script src="{% static 'plug_ins/js/blob.js' %}"></script>
+    <script src="{% static 'plug_ins/js/xlsx.core.min.js' %}"></script>
+    <script src="{% static 'plug_ins/js/bootstrap-table-key-events.min.js' %}"></script>
+
+</head>
+<body>
+
+{% if request.user.is_authenticated %}
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/xadmin">我的后台管理系统</a>
+            </div>
+
+            <div id="navbar" class="navbar-collapse collapse">
+                {% if user.is_active and user.is_staff %}
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">欢迎，{{ request.user.username }}</a></li>
+                        <li><a href="/xadmin/account/password/">修改密码</a></li>
+                        <li><a href="/xadmin/logout/">注销</a></li>
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- 导航栏 -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- 菜单栏 -->
+            <div id="nav_menus" class="col-sm-3 col-md-2 sidebar">
+                {% block menu %}
+
+                    <div class="list-group">
+
+                        {% for menu in menus %}
+
+                            {% if menu.name == 'menuone' %}
+                                <a href="{% url 'menuone' %}"
+                                   {% if request.path == '/xadmin/plug_ins/menuone/' %}class="list-group-item active"
+                                   {% else %}class="list-group-item"{% endif %}>
+                                    <span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;功能一
+                                </a>
+
+                            {% elif menu.name == 'menutwo' %}
+
+                                <a href="{% url 'menutwo' %}"
+                                   {% if request.path == '/xadmin/plug_ins/menutwo/' %}class="list-group-item active"
+                                   {% else %}class="list-group-item"{% endif %}>
+                                    <span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;功能二
+                                </a>
+
+                            {% elif menu.name == 'menuthe' %}
+                                <a href="{% url 'menuthe' %}"
+                                   {% if request.path == '/xadmin/plug_ins/menuthe/' %}class="list-group-item active"
+                                   {% else %}class="list-group-item"{% endif %}>
+                                    <span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;功能三
+                                </a>
+                            {% endif %}
+
+                        {% endfor %}
+
+                        {#                        <a href="{% url 'ta_position' %}"#}
+                        {#                           {% if request.path == '/xadmin/ta/taposition/' %}class="list-group-item active"#}
+                        {#                           {% else %}class="list-group-item"{% endif %}>#}
+                        {#                            <span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;TA份额表#}
+                        {#                        </a>#}
+                        {##}
+                        {#                        <a href="{% url 'tatrade' %}"#}
+                        {#                           {% if request.path == '/xadmin/ta/tatrade/' %}class="list-group-item active"#}
+                        {#                           {% else %}class="list-group-item"{% endif %}>#}
+                        {#                            <span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;TA交易表#}
+                        {#                        </a>#}
+                        {##}
+                        {#                        <a href="{% url 'taO5' %}"#}
+                        {#                           {% if request.path == '/xadmin/ta/taO5/' %}class="list-group-item active"#}
+                        {#                           {% else %}class="list-group-item"{% endif %}>#}
+                        {#                            <span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;TA份额表阿尔法#}
+                        {#                        </a>#}
+
+                    </div>
+
+                {% endblock menu %}
+
+            </div>
+
+            <!-- 内容面板 -->
+            <div id="content" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            {% block user_plug %}
+
+                                {% block log_link %}
+                                    <div class="container-fluid">
+                                    <div class="navbar-header">
+                                        <a class="navbar-brand" href="/xadmin/">
+                                            <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>&nbsp;首页
+                                        </a>
+                                    </div>
+                                {% endblock %}
+
+                                <div class="btn-group" role="group" style="position: absolute; top: 10px">
+                                    <select id="select" name="select_value" class="btn btn-default dropdown-toggle"
+                                            style="height: 34px">
+                                        {#                                        <option value="0">---查询方式---</option>#}
+                                        <option value="1">按日期查询</option>
+                                        <option value="2">按名称查询</option>
+                                    </select>
+                                </div>
+
+                                <div class="navbar-header">
+                                    <div class="col-lg-2" style="position: absolute; top: 11px; left: 22%"
+                                         id="ProductData">
+                                        <div class="form-group form-inline">
+                                            <div class="input-group date form_date" data-date=""
+                                                 data-date-format="yyyy-mm-dd"
+                                                 data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                                <input id="startdate" class="form-control" name="NowTime" type="text"
+                                                       value=""
+                                                       placeholder="选择日期" readonly>
+                                            </div>
+                                            <input type="button" value="查询" id="search_btn" class="btn-info"
+                                                   style="position: absolute; left: 96%; top: 2%; height: 30px"
+                                                   onclick="InitTable()"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="navbar-header">
+                                    <div class="col-lg-2" style="position: absolute; top: 11px; left: 22%"
+                                         id="ProductName">
+                                        <div class="form-group form-inline">
+                                            <div class="input-group date form_date" data-date=""
+                                                 data-date-format="yyyy-mm-dd"
+                                                 data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                                <input id="startdate" class="form-control" name="StartTime" type="text"
+                                                       value=""
+                                                       placeholder="开始日期" readonly>
+                                            </div>
+                                            <div class="input-group date form_date" data-date=""
+                                                 data-date-format="yyyy-mm-dd"
+                                                 data-link-field="dtp_input2" data-link-format="yyyy-mm-dd"
+                                                 style="position: absolute; left: 98%; top: 0; height: 35px; width: 83%">
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                                <input id="enddate" class="form-control" name="EndTime" type="text"
+                                                       value="" placeholder="结束日期"
+                                                       readonly>
+                                            </div>
+                                            <div class="navbar-header">
+                                                <div class="col-lg-2" style="position: absolute; top: 0; left: 176%"
+                                                     id="ProductName">
+                                                    <input type="text" class="form-control" placeholder="输入名称"
+                                                           name="ProductName">
+                                                </div>
+                                            </div>
+
+                                            <input type="button" value="查询" id="search_btn" class="btn-info"
+                                                   style="position: absolute; left: 300%; top: 2%; height: 30px"
+                                                   onclick="InitTable()"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            {% endblock %}
+                            </div>
+                        </div>
+                </nav>
+
+                {% block content %}
+                    <h1>正文：</h1>
+                {% endblock %}
+
+            </div>
+
+        </div>
+    </div>
+
+{% else %}
+    <script>
+        window.location.href = "/xadmin/";
+    </script>
+{% endif %}
+
+{% block js %}
+    <script>
+
+        {# 选择按钮操作 #}
+        $(document).ready(function () {
+            {#$("#ProductData").hide();#}
+            $("#ProductName").hide();
+            $(document).ready(function () {
+                $('input[name="StartTime"]').val("");
+                $('input[name="EndTime"]').val("");
+                $('input[name="ProductName"]').val("");
+                $('input[name="NowTime"]').val("");
+            });
+
+        });
+        {# 按照日期查询 #}
+        $("#select").on("change", function () {
+            if ($("option:selected", this).val() == 1) {
+                $("#ProductData").show();
+                $("#ProductName").hide();
+
+                $(document).ready(function () {
+                    $('input[name="StartTime"]').val("");
+                    $('input[name="EndTime"]').val("");
+                    $('input[name="ProductName"]').val("");
+                    console.log();
+                });
+
+            } else if ($("option:selected", this).val() == 2) {
+                {# 按名称查询 #}
+                $("#ProductName").show();
+                $("#ProductData").hide();
+
+                // 给结束日期设置默认值
+                $('input[name="NowTime"]').val("");
+
+            } else {
+                $("#ProductData").hide();
+                $("#ProductName").hide();
+                $(document).ready(function () {
+                    $('input[name="StartTime"]').val("");
+                    $('input[name="EndTime"]').val("");
+                    $('input[name="ProductName"]').val("");
+                    $('input[name="NowTime"]').val("");
+                });
+            }
+        });
+
+        // 时间选择按钮设置
+        $(document).ready(function () {
+            $("#menu1").addClass("active");
+            $(".form_date").datetimepicker({
+                language: 'zh-CN',
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2,
+                forceParse: 0
+            });
+            $('.form_date').datetimepicker('setDate', new Date());
+            $("#menu").click(function () {
+                $("#nav_menus").toggle(1000);
+            });
+        });
+
+        {# ajax获取表单数据 #}
+
+        function InitTable() {
+            stickyHeaderOffsetY = 0;
+
+            let Name = $('input[name="ProductName"]').val();
+            let StartTime = $('input[name="StartTime"]').val();
+            let EndTime = $('input[name="EndTime"]').val();
+            let NowTime = $('input[name="NowTime"]').val();
+
+            if (StartTime > EndTime && EndTime !== '') {
+                alert("开始日期不能大于截止日期哟！");
+            } else {
+                $("#table").bootstrapTable('destroy');
+
+                path_ = window.location.pathname;
+                {# /xadmin/plug_ins/taO5/ #}
+
+                params = {
+                    'Name': Name,
+                    'StartTime': StartTime,
+                    'EndTime': EndTime,
+                    'NowTime': NowTime,
+                    "Path": path_
+                };
+                console.log(params);
+
+                function getColumns() {
+                    myColumns = {};
+                    $.ajax({
+                        url: '/xadmin/ta/getJson/',
+                        data: params,
+                        type: 'get',
+                        dataType: 'json',
+                        async: false,
+                        success: function (res) {
+                            {#myColumns['columns'] = res.columns;#}
+                            myColumns['rows'] = res.rows;
+                            console.log(res.rows);
+                            {#alert(params);#}
+                            return myColumns;
+                        }
+                    });
+                    return myColumns;
+                }
+
+                if ($('.navbar-fixed-top').css('height')) {
+                    stickyHeaderOffsetY = +$('.navbar-fixed-top').css('height').replace('px', '');
+                }
+                if ($('.navbar-fixed-top').css('margin-bottom')) {
+                    stickyHeaderOffsetY += +$('.navbar-fixed-top').css('margin-bottom').replace('px', '');
+                }
+
+                myColumns = getColumns();
+
+                $("#table").bootstrapTable({
+                    columns: [
+                        {% block table %}
+                            绘制表格
+                        {% endblock %}
+                    ],
+                    data: myColumns['rows'],
+                    method: 'get',                      //请求方式（*）
+
+                    toolbar: '#toolbar',                //工具按钮用哪个容器-->
+                    striped: true,                      //是否显示行间隔色
+                    cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                    pagination: true,                   //是否显示分页（*）
+                    sortable: true,                     //是否启用排序
+                    sortOrder: "asc",                   //排序方式，参数【asc，desc】
+                    sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
+                    pageNumber: 1,                       //初始化加载第一页，默认第一页
+                    pageSize: 9,                       //每页的记录行数（*）
+                    pageList: [15, 25, 50, 100],        //可供选择的每页的行数（*）
+                    search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+                    strictSearch: true,
+                    showColumns: true,                  //是否显示所有的列
+                    minimumCountColumns: 2,             //最少允许的列数
+                    clickToSelect: false,                //是否启用点击选中行
+                    locale: 'zh-CN',
+
+                    // 固定列
+                    fixedColumns: true,
+                    fixedNumber: 2,
+
+                    // 固定表头
+                    stickyHeader: true,
+                    stickyHeaderOffsetY: stickyHeaderOffsetY - 20 + 'px',
+
+                    // Excel导出
+                    showExport: true,                   // 显示导出按钮
+                    exportDataType: 'selected',       //support: 'basic', 'all', 'selected'.
+                    exportTypes: ['doc', 'excel'],  //导出文件类型
+                    Icons: 'glyphicon-export',
+                    exportOptions: {
+                        ignoreColumn: [0],  //忽略某一列的索引
+                        fileName: '报表',  //文件名称设置
+                        worksheetName: 'sheet',  //表格工作区名称
+                        tableName: '报表',
+                    },
+                });
+            }
+        }
+    </script>
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+{% extends "plug_ins/my_xadmin_base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}自定义功能 | 功能二{% endblock %}
+
+{% block tablename %}功能二{% endblock %}
+
+{% block content %}
+
+    <table id="table" class="text-nowrap"></table>
+
+{% endblock %}
+
+{% block table %}
+
+    {
+    checkbox: true
+    },
+    {
+    field: 'date',
+    title: '日期',
+    sortable: "true",
+
+    filterControl: 'select'
+    },
+    {
+    field: 'productname',
+    title: '项目名',
+    sortable: "true",
+    },
+    {
+    field: 'stunum',
+    title: '学号',
+    sortable: "true",
+    },
+    {
+    field: 'grade',
+    title: '成绩',
+    sortable: "true",
+    }
+
+{% endblock %}
+
+
+{% block site_footer %}
+    仅供交流学习之用
+{% endblock %}

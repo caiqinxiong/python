@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+{% load staticfiles %}
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>首页</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+</head>
+
+<style type="text/css">
+    td, th {
+        text-align: center;
+    }
+</style>
+
+<body>
+
+<div class="col-md-2"></div>
+
+<div class="col-md-8" style="text-align: center; top: 10ch">
+
+    <div class="panel panel-default">
+        <h1>数据显示页</h1>
+        <table class="table table-hover table-bordered">
+            <thead class="danger">
+            <tr class="info" style="font-size: 18px">
+                <th>ID</th>
+                <th>学号</th>
+                <th>等级</th>
+                <th>查看详情</th>
+            </tr>
+            </thead>
+
+            {% for contact in contacts %}
+                <form action="#" method="get">
+                    <tr style="font-size: 15px">
+                        <td>{{ contact.ID }}</td>
+                        <td>{{ contact.StuNum }}</td>
+                        <td>{{ contact.Grade }}</td>
+                        <td>
+                            <input type="hidden" name="searchdetail" value="{{ contact.Grade }}">
+                            <input type="submit" class="info" value="详情">
+                        </td>
+                    </tr>
+                </form>
+            {% endfor %}
+        </table>
+    </div>
+
+    <span class="step-links">
+        {% if contacts.has_previous %}      {# 判断是否有前一页 #}
+            <button class="btn btn-default">
+                <a href="?page=1" style="color:#000; font-size: 20px">第一页</a>
+            </button>
+
+            <button class="btn btn-warning">
+                <a href="?page={{ contacts.previous_page_number }}"><i style="color:#000; font-size: 20px">上一页</i></a>
+                       {# 返回上一页的页码 #}
+            </button>
+        {% endif %}
+
+        <span class="current">
+            <button class="btn btn-info" style="color:#000; font-size: 20px">
+                第 {{ contacts.number }}页  共 {{ contacts.paginator.num_pages }}页
+            </button>
+
+            {% for pg in part_page %}
+                <button class="btn btn-success">
+                            <a href="?page={{ pg }}" style="color:#000; font-size: 20px">{{ pg }}</a>
+                            </button>
+            {% endfor %}
+        </span>
+
+        {% if contacts.has_next %}      {# 判断是否有下一页 #}
+            <button class="btn btn-warning">
+                <a href="?page={{ contacts.next_page_number }}" style="color:#000; font-size: 20px">
+                    <i class="">下一页</i></a>
+            </button>
+
+            <button class="btn btn-default">
+                <a href="?page={{ contacts.paginator.num_pages }}" style="color:#000; font-size: 20px">最后一页</a>
+            </button>
+        {% endif %}
+    </span>
+
+</div>
+
+
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>
