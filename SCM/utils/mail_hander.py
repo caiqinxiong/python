@@ -6,7 +6,7 @@ from django.core.mail import  send_mail, send_mass_mail, EmailMultiAlternatives
 from django.template import loader
 from django.conf import settings
 import os,django
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "SCM.settings")# project_name 项目名称
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "SCM.settings")# SCM 项目名称
 # django.setup()
 
 class SendMail(threading.Thread):

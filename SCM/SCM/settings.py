@@ -37,8 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rim.apps.RimConfig',
-    'captcha',
+    'rim.apps.RimConfig', # 自定义项目APP
+    'captcha', # 验证码
+    'xadmin', # xamin主体模块
+    'crispy_forms',  # 渲染表格模块
+    'reversion', # 为模型通过版本控制，可以回滚数据
 
 ]
 

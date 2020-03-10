@@ -1,10 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>权限列表</h1>
+        <div>
+            <a style="margin: 10px 0;" class="btn btn-info" href="{% url 'permissions_add' %}">添加</a>
+        </div>
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>标题</th>
+                <th>URL</th>
+                <th>用户组</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in permission_obj %}
+                <tr>
+                    <th>{{ row.id }}</th>
+                    <th>{{ row.title }}</th>
+                    <th>{{ row.url }}</th>
+                    <th>
+                        {% for item in  row.p2g.all %}
+                            <span style="border: 1px solid #ccc;padding: 5px;">{{ item }}</span>
+                        {% endfor %}
+                    </th>
+                    <th>
+                        <a class="btn-sm btn-primary" href="{% url 'permissions_edit' pk=row.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
+                        <a class="btn-sm btn-danger" onclick="removeRow(this,{{ row.id }});"><i class="fa fa-trash" aria-hidden="true"></i>删除</a>
+                    </th>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                {{ page_info.pager|safe }}
+            </ul>
+        </nav>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        function removeRow(ths, rid) {
+            swal({
+                title: "确定删除选中的记录?",
+                text: "删除之后无法恢复该数据!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                closeOnConfirm: true
+            }, function () {
+                $.ajax({
+                    url: '/rim/permissions/del/' + rid + '/',
+                    type: 'get',
+                    dataType: "JSON",
+                    success: function (res) {
+                        if (res.status) {
+                            $(ths).parent().parent().remove();
+                        }
+                    }
+                });
+            })
+        }
+    </script>
+{% endblock %}

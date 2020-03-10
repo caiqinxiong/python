@@ -56,6 +56,7 @@ class User(models.Model):
         ordering = ["id"]
         verbose_name_plural = "用户" # 类名展示
 
+
 class Group(models.Model):
     '''用户组'''
     gname = models.CharField(max_length=128, unique=True,verbose_name='组名')
@@ -65,7 +66,26 @@ class Group(models.Model):
     def __str__(self):
         return self.gname
 
+    class Meta:
+        ordering = ["id"]
+        verbose_name_plural = "用户组" # 类名展示
 
+class Permission(models.Model):
+    """
+    权限表
+    """
+    title = models.CharField(verbose_name='标题', unique=True, max_length=128)
+    url = models.CharField(verbose_name="含正则URL", unique=True, max_length=256)
+    # is_menu = models.BooleanField(verbose_name="是否是菜单")
+    menu_gp = models.ForeignKey(verbose_name="组内菜单", to="Permission", null=True, blank=True, on_delete=models.CASCADE)
+    code = models.CharField(max_length=32, verbose_name="代码", default="list",  null=True, blank=True)
+    p2g = models.ManyToManyField(verbose_name="所属组", to="Group", default=1)
+
+    class Meta:
+        verbose_name_plural = "权限表"
+
+    def __str__(self):
+        return self.title
 
 
 

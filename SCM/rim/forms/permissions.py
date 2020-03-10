@@ -6,12 +6,11 @@ from django.forms import fields
 from django.forms import widgets
 from rim import models
 from .base import BootStrapModelForm
-from captcha.fields import CaptchaField
 
-class UserModelForm(BootStrapModelForm):
-    captcha = CaptchaField(label='验证码',required=True, error_messages={"invalid": "验证码错误!"})
+
+class PermissionsModelForm(BootStrapModelForm):
+
     class Meta:
-        model = models.User
+        model = models.Permission
         fields = "__all__"
-        # fields = ['email','password']
 

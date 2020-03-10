@@ -19,13 +19,14 @@ from rim.views import task
 from rim.views import auth
 from rim.views import user
 from rim.views import group
+from rim.views import permissions
 
 urlpatterns = [
     url(r'^index/', project.index, name='index'),
 
-    url(r'^project_list/', project.project_list, name='project_list'),
-    url(r'^add_project/', project.add_project, name='add_project'),
-    url(r'^edit_project/', project.edit_project, name='edit_project'),
+    url(r'^project_list/$', project.project_list, name='project_list'),
+    url(r'^add_project/$', project.add_project, name='add_project'),
+    url(r'^edit_project/$', project.edit_project, name='edit_project'),
     url(r'^project/del/(?P<pk>\d+)/$', project.del_project, name='del_project'),
 
     url(r'^task/list/(?P<pk>\d+)/$', task.task_list, name='task_list'),
@@ -34,7 +35,7 @@ urlpatterns = [
     url(r'^task/del/(?P<pk>\d+)/$', task.task_del, name='task_del'),
     url(r'^release_info/(?P<pk>\d+)/$', task.release_info, name='release_info'),
 
-    url(r'^login/', auth.login, name='login'),
+    url(r'^login/$', auth.login, name='login'),
     url(r'^logout/$', auth.logout, name='logout'),
 
     url(r'^user/list/$', user.user_list, name='user_list'),
@@ -44,12 +45,17 @@ urlpatterns = [
     url(r'^user/del/(?P<pk>\d+)/$', user.user_del, name='user_del'),
     url(r'^change_password/$', user.change_password, name='change_password'),
 
-    url(r'^group_list/', group.group_list, name='group_list'),
-    url(r'^add_group/', group.add_group, name='add_group'),
-    url(r'^add_group_ajax/', group.add_group_ajax, name='add_group_ajax'),
-    url(r'^edit_group_ajax/', group.edit_group_ajax, name='edit_group_ajax'),
+    url(r'^group_list/$', group.group_list, name='group_list'),
+    url(r'^add_group/$', group.add_group, name='add_group'),
+    url(r'^add_group_ajax/$', group.add_group_ajax, name='add_group_ajax'),
+    url(r'^edit_group_ajax/$', group.edit_group_ajax, name='edit_group_ajax'),
     url(r'^edit_group/(?P<pk>\d+)/$', group.edit_group, name='edit_group'),
     url(r'^group/del/(?P<pk>\d+)/$', group.del_group, name='del_group'),
+
+    url(r'^permissions/list$', permissions.permissions_list, name='permissions_list'),
+    url(r'^permissions/add/$', permissions.permissions_add, name='permissions_add'),
+    url(r'^permissions/edit/(?P<pk>\d+)/$', permissions.permissions_edit, name='permissions_edit'),
+    url(r'^permissions/del/(?P<pk>\d+)/$', permissions.permissions_del, name='permissions_del'),
 
 ]
 
