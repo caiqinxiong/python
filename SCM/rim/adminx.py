@@ -2,6 +2,8 @@
 __author__ = 'caiqinxiong_cai'
 #2020/3/10 11:07
 # https://blog.csdn.net/bocai_xiaodaidai/article/details/94395604
+# https://cloud.tencent.com/developer/article/1091384
+# https://www.cnblogs.com/derek1184405959/p/8621105.html
 # xadmin全局配置
 import xadmin
 from xadmin import views

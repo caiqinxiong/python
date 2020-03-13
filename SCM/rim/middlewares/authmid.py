@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect, HttpResponse
 
 
 class AuthMD(MiddlewareMixin):  # 验证登录
-    white_list = ['/rim/login/','/rim/project_list/' ]  # 白名单
+    white_list = ['/rim/login/','/admin/.*', '/xadmin/.*', '/rim/project_list/' ]  # 白名单
     black_list = ['/black/', ]  # 黑名单
     ret = {"status": 0, 'url': '', 'msg': ''}  # 默认状态
 

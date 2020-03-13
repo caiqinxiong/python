@@ -11,7 +11,8 @@
             <tr>
                 <th>ID</th>
                 <th>标题</th>
-                <th>URL</th>
+                <th>URL名称</th>
+                <th>URL路径</th>
                 <th>用户组</th>
                 <th>操作</th>
             </tr>
@@ -21,6 +22,7 @@
                 <tr>
                     <th>{{ row.id }}</th>
                     <th>{{ row.title }}</th>
+                    <th>{{ row.name }}</th>
                     <th>{{ row.url }}</th>
                     <th>
                         {% for item in  row.p2g.all %}
@@ -28,9 +30,15 @@
                         {% endfor %}
                     </th>
                     <th>
-                        <a class="btn-sm btn-primary" href="{% url 'permissions_edit' pk=row.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
-                        <a class="btn-sm btn-danger" onclick="removeRow(this,{{ row.id }});"><i class="fa fa-trash" aria-hidden="true"></i>删除</a>
+                        <a class="btn-sm btn-primary" href="{% url 'permissions_edit' pk=row.id %}"><i
+                                class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
+                        <a class="btn-sm btn-danger" onclick="removeRow(this,{{ row.id }});"><i class="fa fa-trash"
+                                                                                                aria-hidden="true"></i>删除</a>
                     </th>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center">暂时没有数据哦~</td>
                 </tr>
             {% endfor %}
             </tbody>

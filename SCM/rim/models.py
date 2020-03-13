@@ -75,11 +75,11 @@ class Permission(models.Model):
     权限表
     """
     title = models.CharField(verbose_name='标题', unique=True, max_length=128)
-    url = models.CharField(verbose_name="含正则URL", unique=True, max_length=256)
+    url = models.CharField(verbose_name="含正则URL路径", unique=True, max_length=256)
     # is_menu = models.BooleanField(verbose_name="是否是菜单")
-    menu_gp = models.ForeignKey(verbose_name="组内菜单", to="Permission", null=True, blank=True, on_delete=models.CASCADE)
-    code = models.CharField(max_length=32, verbose_name="代码", default="list",  null=True, blank=True)
-    p2g = models.ManyToManyField(verbose_name="所属组", to="Group", default=1)
+    # menu_gp = models.ForeignKey(verbose_name="组内菜单", to="Permission", null=True, blank=True, on_delete=models.CASCADE)
+    name = models.CharField(max_length=128, verbose_name="url名称", unique=True)
+    p2g = models.ManyToManyField(verbose_name="所属组", to="Group", null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "权限表"

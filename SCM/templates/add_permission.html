@@ -1,0 +1,136 @@
+{% extends 'layout.html' %}
+
+{% block css %}
+    <style>
+        .select-body {
+            text-align: center;
+            width: 60%;
+            margin: 0 auto;
+        }
+
+        .select-left, .select-right {
+            width: 250px;
+            min-height: 200px;
+        }
+
+        .btn-bar input {
+            width: 50px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <form class="form-horizontal" method="post" action="{% url 'permissions_add' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="title" class="col-sm-2 control-label">标题</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="例如：查看_项目权限">
+                    <span style="color:red;">{{ field.errors.0 }}</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="url_name" class="col-sm-2 control-label">URL名称</label>
+                <div class="col-sm-8">
+                    <select id="url_name" name="url_name" class="form-control">
+                        {% for key,value in select_form %}
+                            <option value="{{ value }}">{{ key }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="url_value" class="col-sm-2 control-label">含正则URL</label>
+                <div class="col-sm-8">
+                    <select id="url_value" name="url_value" class="form-control">
+                        {% for key,value in select_form %}
+                            <option value="{{ key }}">{{ value }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="row select-body">
+                <div class="col-md-5">
+                    <h4>可用项 用户组</h4>
+                    <select multiple="multiple" id="select1" class="select-left">
+                        {% for item in  group_obj %}
+                            <option value="{{ item.id }}">{{ item }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <br><br><br>
+                    <div class="btn-bar">
+                        <p><span id="add"><input type="button" class="btn" value=">" title="移动选择项到右侧"></span></p>
+                        <p><span id="add_all"><input type="button" class="btn" value=">>" title="全部移到右侧"></span></p>
+                        <p><span id="remove"><input type="button" class="btn" value="<" title="移动选择项到左侧"></span></p>
+                        <p><span id="remove_all"><input type="button" class="btn" value="<<" title="全部移到左侧"></span></p>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <h4>已选项 用户组</h4>
+                    <select multiple="multiple" id="select2" name="group" class="select-right">
+
+                    </select>
+                </div>
+            </div>
+            <br><br>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-8">
+                    <button type="submit" class="btn btn-primary">提 交</button>
+                    {#<button type="submit" class="btn btn-success" onclick="cancleModal();">取 消</button>#}
+                    <button type="submit" class="btn btn-success"
+                            onclick='javascript :history.back(-1);return false;'>取 消
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
+{% block js %}
+    <script>
+        $("#url_name").change(function () {
+            var url_name = $('#url_name option:selected');
+            var url_value = $('#url_value option:selected');
+            url_value.text(url_name.val());
+            url_value.val(url_name.text())
+        });
+        $("#url_value").change(function () {
+            var url_value = $('#url_value option:selected');
+            var url_name = $('#url_name option:selected');
+            url_name.text(url_value.val());
+            url_name.val(url_value.text())
+        });
+
+        // 添加组 左右选择
+        $("#add").bind("click", function () {
+            if (!$("#select1 option").is(":selected")) {
+                alert("选择项为空");
+            }
+            $("#select1 option:selected").appendTo("#select2");
+        });
+        $("#remove").bind("click", function () {
+            if (!$("#select2 option").is(":selected")) {
+                alert("选择项为空");
+            }
+            $("#select2 option:selected").appendTo("#select1");
+        });
+        $("#add_all").bind("click", function () {
+            $("#select1 option").appendTo("#select2");
+            $("#select2 option").prop("selected", true)//全选添加后要默认选中，才能把值传给后端
+        });
+        $("#remove_all").bind("click", function () {
+            $("#select2 option").appendTo("#select1");
+        });
+        $("#select1").bind("dblclick", function () {
+            $("#select1 option:selected").appendTo("#select2");
+        });
+        $("#select2").bind("dblclick", function () {
+            $("#select2 option:selected").appendTo("#select1");
+        })
+    </script>
+{% endblock %}

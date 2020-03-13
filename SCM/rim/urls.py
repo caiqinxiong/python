@@ -22,7 +22,7 @@ from rim.views import group
 from rim.views import permissions
 
 urlpatterns = [
-    url(r'^index/', project.index, name='index'),
+    # url(r'^index/', project.index, name='index'),
 
     url(r'^project_list/$', project.project_list, name='project_list'),
     url(r'^add_project/$', project.add_project, name='add_project'),

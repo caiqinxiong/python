@@ -7,10 +7,8 @@ from django.forms import widgets
 from rim import models
 from .base import BootStrapModelForm
 
-
 class PermissionsModelForm(BootStrapModelForm):
 
     class Meta:
         model = models.Permission
         fields = "__all__"
-

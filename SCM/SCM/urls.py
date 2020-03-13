@@ -21,12 +21,12 @@ xadmin.autodiscover()
 # xversion模块自动注册需要版本控制的 Model
 from xadmin.plugins import xversion
 xversion.register_models()
-    
+
     
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^xadmin/', xadmin.site.urls),
-    url(r'^rim/', include('rim.urls')),
     url(r'^captcha', include('captcha.urls')),
+    url(r'^rim/', include('rim.urls')),
 
 ]

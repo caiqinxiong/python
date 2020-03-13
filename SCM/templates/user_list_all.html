@@ -34,6 +34,10 @@
                                                                                                 aria-hidden="true"></i>删除</a>
                     </th>
                 </tr>
+                 {% empty %}
+                            <tr>
+                                <td colspan="6" class="text-center">暂时没有数据哦~</td>
+                            </tr>
             {% endfor %}
             </tbody>
         </table>
