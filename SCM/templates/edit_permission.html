@@ -96,14 +96,6 @@
 {% block js %}
     <script>
 
-        function load(){
-            $("#select2 option").prop("selected", true); //全选添加后要默认选中，才能把值传给后端
-            var select2 = $('#select2 option');
-            for (var i=0;i<select2.length;i++){
-                console.log(select2[i].text);
-                document.getElementById("select1").options.remove(select2[i].text);
-            }
-        }load();//打开网页就执行该函数
         $("#url_name").change(function () {
             var url_name = $('#url_name option:selected');
             var url_value = $('#url_value option:selected');

@@ -48,21 +48,25 @@ def permissions_add(request):
 
 
 def permissions_edit(request, pk):
-    p_obj = models.Permission.objects.filter(id=pk).first()
+    p_obj = models.Permission.objects.filter(id=pk).first() # 展示已选项 组
     url_list = get_all_url_dict()
     permission_obj = models.Permission.objects.all()
     for i in permission_obj:  # 已经添加了的权限就不再展示了
         if i.name != p_obj.name:
             url_list.remove((i.name, i.url))
     group_obj = models.Group.objects.all()
+    group_list = []# 展示可选项 组
+    for j in group_obj:
+        if j not in p_obj.p2g.all():
+            group_list.append(j)
     if request.method == 'GET':
-        return render(request, 'edit_permission.html', {'p_obj': p_obj,'select_form':url_list,'group_obj':group_obj})
+        return render(request, 'edit_permission.html', {'p_obj': p_obj,'select_form':url_list,'group_obj':group_list})
     else:
         title = request.POST.get('title')
         url_value = request.POST.get('url_name')  # 名称跟路径刚好反过来
         url_name = request.POST.get('url_value')
         group = request.POST.getlist('group')
-        print(title,url_name,url_value,group)
+        # print(title,url_name,url_value,group)
         if title:
             try:
                 p_obj.title = title
@@ -82,6 +86,5 @@ def permissions_edit(request, pk):
 
 
 def permissions_del(request, pk):
-    permission_obj = models.Permission.objects.filter(id=pk).first()
-    permission_obj.delete()
-    return redirect(reverse(permissions_list))
+    models.Permission.objects.filter(id=pk).delete()
+    return JsonResponse({"status": True})
