@@ -1,0 +1,174 @@
+day68
+1. 内容回顾
+crm 
+	客户关系管理系统
+使用人员：
+	销售、班主任、讲师、项目经理、财务
+	
+业务+技术点：
+	- 注册、登录、注销  - 认证
+		- 注册
+			modelform 
+			
+			class RegForm(forms.ModelForm):
+				password = forms.Charfiled(max_length=6)
+			
+				class Meta:
+					model = models.UserProfile
+					fields = "__all__"
+					exculde = [] 
+					widgets = {
+						'password': froms.PasswordInput(attrs={'class':'form-control'} )
+					}
+
+					labels={'name':'用户名'}   verbose_name 
+					errror_massages = {
+						'password' = '长度不能小于6'
+					}
+			
+			form_obj.password  
+
+			for field in form_obj  field.label field.id_for_label  field.errors  field.errors.0
+			
+			提交POST：
+				form_obj = RegForm（request.POST）
+				form_obj.is_valid()  对数据进行校验 
+				
+				
+				clean（全局钩子）  校验两次密码是否一致  对密码加密
+		- 登录
+			提交POST：	
+				校验用户名和密码  密码是加密过的  is_active  
+				把当前的用户的pk保存到session中
+				
+		- 中间件
+			取出pk 找到用户 赋值给 request.user_obj 
+			
+			
+		- 注销
+			删除session  
+			
+	- 销售
+		- 展示公户和私户
+			- 展示不同字段
+				- 普通字段  对象.字段名
+				- choices   对象.字段名  male    对象.get_字段名_display() 男
+				- 外键      对象.外键  __str__   对象.外键.name 
+				- 定义方法
+					多对多  
+					展示HTML    safe       mark_safe()
+			- 分页
+				(page-1)*10  page*10
+				
+			- 公户和私户的转换
+				反射 + ORM 
+				
+			- 增加和编辑客户
+				modelform    两个URL 一个视图  一个模板 
+				CuctomserForm(instance=obj)
+				
+			- 模糊搜索
+				Q对象
+					Q(Q(qq__contaions=值)| Q(name__contaions=值))
+					
+				q = Q()
+				q.connetor = 'OR'
+				# q.children.append(Q(qq__contaions=值)) 
+				q.children.append(Q(('qq__contaions',值)))
+			
+			- 分页保留搜索条件
+				QueryDict  request.GET  request.POST  
+				QueryDict()  QueryDict().copy()  # 深拷贝  可编辑 
+				{'query':'1'}  {'query':'1','page':'2'}  
+				qd.urlencode()   query=1&page=2
+				
+			- 编辑或新增后返回原页面
+				QueryDict  simple_tag 
+				url=request.get_full_path()
+				
+				qd = QueryDict(mutable=True)
+				qd['next']  = url
+		
+			
+		- 跟进记录管理
+			- 展示当前销售所有客户的跟进   
+			- 展示摸个客户的所有的跟进  
+			
+			- 新增和编辑
+				- 限制客户为当前销售的客户    修改choices
+				- 限制可销售为 当前销售	
+				
+		- 报名表的管理
+			- 展示当前销售所有客户的报名表
+			
+			- 新增和编辑
+				- 限制客户为当前销售的客户    修改choices
+				
+			
+	
+今日内容
+1. 公户变私户的问题
+
+	数据库中的行级锁：
+		  begin；  #  开启事务
+		  select * from 表名  where 条件 for update;  # 加锁
+		  commit； #提交事务
+		  from django.db import transaction
+		  
+		  with transaction.atomic():  # 事务
+			# 方式一  查询的客户
+			queryset = models.Customer.objects.filter(pk__in=ids, consultant__isnull=True).select_for_update()  # 加行级锁
+			queryset.update(consultant=self.request.user_obj)
+		  
+
+
+2. 班主任
+	- 班级的管理
+	- 课程记录管理
+	- 学习记录的管理
+	
+		# get 获取  没有的话才创建
+		models.StudyRecord.objects.get_or_create(student=student,course_record_id=course_record_id)
+		# 先更新 没有就创建
+		models.StudyRecord.objects.update_or_create(student=student,course_record_id=course_record_id)
+		
+		
+		study_record_list = []
+		for student in all_students:
+
+			if models.StudyRecord.objects.filter(student=student,course_record_id=course_record_id).exists():
+				continue
+
+			obj = models.StudyRecord(student=student,course_record_id=course_record_id)
+
+			study_record_list.append(obj)
+
+		models.StudyRecord.objects.bulk_create(study_record_list)
+		
+		
+		form
+		modelform
+		modelformset  
+		
+		
+		from django.forms import modelformset_factory
+		FormSet = modelformset_factory(models.StudyRecord, StudyRecordForm, extra=0)
+
+		formset = FormSet(queryset=models.StudyRecord.objects.filter(course_record_id=course_record_id))
+		
+		formset.attendance ——》 input select 
+		formset.instance   ——》 数据源
+		
+		修改时：
+			{{ formset.management_form }}
+			每行数据要有  {{ form.id }}
+			必填数据需要有  
+		
+		
+作业： 
+	1. 事务+行级锁 实现 公户变私户 先到先得
+	2. 学习记录的初始化
+	3. modelformset  实现学习记录的展示和编辑
+		
+		
+		

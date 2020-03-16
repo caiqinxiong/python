@@ -1,0 +1,135 @@
+day72
+1. 面试题
+	rbac的权限组件    基于角色的权限控制
+	1. 什么是权限？
+		url 代表 一个权限 
+	2. 如何实现权限的控制？
+		表结构   4个model 6张表
+		
+		菜单表
+			- title   标题
+			- icon    图标
+			- weight  权重  菜单排序 
+			
+		
+		权限表
+			- url    权限   含正则的url   不加^$
+			- title  标题   展示   分配
+			- name   URL别名  
+			- menu   外键  关联 Menu  menu_id  
+			- parent 外键  关联 子关联  parent_id
+			
+			
+			一级菜单
+				# - is_menu 是否是菜单  一级菜单
+				# - icon    图标
+			
+		角色表
+			- name  名称
+			- permissions 多对多 权限
+		
+		用户表
+			- name 用户名
+			- pwd  密码
+			- roles 多对多 角色
+
+
+		角色和权限关系表
+		用户和角色关系表
+		
+		技术点：
+			- 中间件  - process_request
+				1. 获取当前的URL
+				request.current_menu_id = none
+				request.cbreadcrumb_list = [ {title:'首页' url:'/index/' } ]
+				2. 白名单
+					- settings
+					- re  re.match 
+				3. 获取登录状态
+					没有登录 重定向到登录页面
+				4. 免认证
+				5. 权限的校验
+					获取当前用户的权限信息
+					permission_dict = request.session[settings.PERMISSION_SESSION_KEY]
+					正则匹配成功
+						pid 
+						id
+						pname  
+						有pid：    - 当前访问的是子权限
+							request.current_menu_id = pid
+							parent = permission_dict[pname]
+							
+							request.cbreadcrumb_list.append({url:parent['url'],'title':parent['title']})
+							request.cbreadcrumb_list.append({url:i['url'],'title':i['title']})
+						
+						没有pid：   - 当前访问的是父权限  二级菜单
+							request.current_menu_id = id
+							request.cbreadcrumb_list.append({url:i['url'],'title':i['title']})
+				
+	
+				6. return HttpResponse('没有权限')
+					
+					
+					
+			- 登录
+				1. 认证 ORM 
+				2. 认证成功进行权限信息的初始化  init_permission(request,obj)
+					- 获取当前用户的权限信息
+						ORM 
+						values()  
+						permissions__title 跨表
+						过滤权限为空的权限  filter（permissions__url__isnull=False）
+						去重 distinct() 
+					- 构建权限和菜单数据结构
+					
+						权限的数据结构
+					
+							简单的控制      permission_list = [{'url':" permission_url"}]
+							
+							非菜单权限归属  permission_list = [{'url' 'id'  'pid'  }]
+							
+							路径导航   permission_dict= {
+
+										id : {'url' 'id'  'pid' 'title' }
+
+							}
+							
+							最终版    permission_dict= {
+
+										name : {'url' 'id' 'pid' 'title' 'pname'}
+
+							}
+						
+						菜单的数据结构
+							menu_list = [ { url  title  icon }]
+							
+							menu_dict = {
+							
+								一级菜单的id：{
+										title
+										icon
+										weight
+										children: [
+											{ url  title id   }
+										]	
+								}
+							}
+				
+					- 保存权限和菜单的信息到session中
+						- json序列化 数字当做字典的KEY 会变成字符串
+						- settings 
+				
+			- 模板
+				动态生成菜单
+					- inclusion_tag   返回一个HTML代码段
+					- 有序字典
+					- sorted
+					- 两次for循环
+					
+				路径导航
+					- inclusion_tag
+					
+					
+				权限控制到按钮级别
+					- filter 
+		

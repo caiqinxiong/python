@@ -1,0 +1,84 @@
+day69
+1. 什么是权限？
+2. 为什么要有权限？
+	不同用户拥有不同的功能 
+3. 在web开发中，什么是权限？
+	url 代表 权限
+
+4. 开发一个权限的组件，为什么要开发组件？
+
+5. 表结构的设计
+	# 第一版
+		权限表  permission
+		id   url 
+
+		
+		用户表
+		id  name  pwd 
+		
+		
+		用户和权限的关系表
+		id   user_id   permission_id  
+		
+	# 第二版
+		权限表  permission
+		id   url 
+		
+		角色表
+		id  name
+		
+		角色和权限的关系表
+		id  role_id  permission_id 
+		
+		用户表
+		id  name  pwd
+		
+		用户和角色的关系表
+		id   user_id   role_id 
+		
+		
+	
+	
+总结：
+	1. 权限控制
+		1. 表结构的设计
+			3个model  5张表
+			权限表   url  title  
+			角色表   name       多对多 permissions
+			用户表   name  pwd  多对多 roles
+			角色和权限的关系表 
+			用户和角色的关系表 
+
+		2. 流程：
+			1. 登录
+				get：通过中间件的白名单  re 获取到登录页面
+				post： 
+					通过中间件的白名单
+					认证成功 保存权限信息
+						- ORM  去空的权限  去重 
+						- request.session  json序列化
+			2. 免认证的访问
+				判断登录状态
+				获取免认证的地址 匹配  re
+				
+			3. 需要的校验的地址
+				- 中间件
+					从session中获取到当前用户的权限信息
+					循序权限信息 和 当前的url 匹配
+					
+					匹配成功  return 正常流程
+					所有都匹配不成功  没有权限  return HttpResponse('没有访问的权限') 
+				
+		
+		
+作业：
+	1. 空白的模板
+	    表结构设计
+		权限的控制
+			- 登录后保存权限信息
+			- 中间件  权限的校验
+
+		
+
+
+	

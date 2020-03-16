@@ -1,0 +1,134 @@
+day70
+内容回顾：
+	1. 权限的控制 
+		1. 表结构设计  存权限的信息
+			用户表
+				- name 用户名
+				- pwd 密码
+				- roles  多对多
+				
+			角色表
+				- name
+				- permissions 多对多
+				
+			权限表
+				- url  含正则url  /customer/list/  /customer/edit/(\d+)/    没有^$
+				- title  标题 
+				
+			用户和角色关系表
+				- user_id
+				- role_id
+				
+			角色和权限的关系表
+				- role_id
+				- permission_id
+				
+		2. 流程
+			1. 登录
+				- 中间件
+					白名单
+				- 认证成功
+					ORM 获取到当前用户的权限信息
+					保存到session中
+			2. 中间件
+				- 获取到当前访问的url
+				- 白名单
+				- 没有登录重定向去登录
+				- 免认证
+				- 权限校验
+					- 获取当前用户的权限信息
+					- 循环权限 一一对比 
+						- 对比成功  有权限  return
+						- 对比不成功  没有权限  return HTTPResponse（）
+
+今日内容：						
+	1. 动态生成一级菜单	
+	2. 动态生成二级菜单
+	
+		客户管理  - 一级菜单
+			客户列表  - 二级菜单
+			
+		财务管理
+			缴费列表
+			
+			
+		[{
+			'permissions__url': '/customer/list/',
+			'permissions__title': '展示客户',
+			'permissions__menu__title': '客户管理',
+			'permissions__menu__icon': 'fa-user-o',
+			'permissions__menu_id': 1
+		}, {
+			'permissions__url': '/customer/add/',
+			'permissions__title': '添加用户',
+			'permissions__menu__title': None,
+			'permissions__menu__icon': None,
+			'permissions__menu_id': None
+		}, {
+			'permissions__url': '/customer/edit/(\\d+)/',
+			'permissions__title': '编辑用户',
+			'permissions__menu__title': None,
+			'permissions__menu__icon': None,
+			'permissions__menu_id': None
+		}, {
+			'permissions__url': '/customer/del/(\\d+)/',
+			'permissions__title': '删除用户',
+			'permissions__menu__title': None,
+			'permissions__menu__icon': None,
+			'permissions__menu_id': None
+		}, {
+			'permissions__url': '/payment/list/',
+			'permissions__title': '缴费列表',
+			'permissions__menu__title': '财务管理',
+			'permissions__menu__icon': 'fa-usd',
+			'permissions__menu_id': 2
+		}, {
+			'permissions__url': '/oder/list/',
+			'permissions__title': '账单列表',
+			'permissions__menu__title': '财务管理',
+			'permissions__menu__icon': 'fa-usd',
+			'permissions__menu_id': 2
+		}, 
+		
+		{
+			'permissions__url': '/payment/add/',
+			'permissions__title': '添加缴费',
+			'permissions__menu__title': None,
+			'permissions__menu__icon': None,
+			'permissions__menu_id': None
+		}, {
+			'permissions__url': '/payment/edit/(\\d+)/',
+			'permissions__title': '编辑缴费',
+			'permissions__menu__title': None,
+			'permissions__menu__icon': None,
+			'permissions__menu_id': None
+		}, {
+			'permissions__url': '/payment/del/(\\d+)/',
+			'permissions__title': '删除缴费',
+			'permissions__menu__title': None,
+			'permissions__menu__icon': None,
+			'permissions__menu_id': None
+		}]
+
+	
+		{
+		   2：{
+				'title':'财务管理',
+				'icon':'fa-usd',
+				'children' : [
+					{ 'title':'缴费列表','url':'/payment/list/' }
+					{ 'title':'账单列表','url':'/oder/list/' }
+				]
+					
+				}	
+			
+		}
+		
+作业：		
+	1. 基于inclusion_tag动态生成一级菜单
+	2. 基于inclusion_tag动态生成二级菜单
+	扩展：
+		实现一级菜单的排序
+
+
+			

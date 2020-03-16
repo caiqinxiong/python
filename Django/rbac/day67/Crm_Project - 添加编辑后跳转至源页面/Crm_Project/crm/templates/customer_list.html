@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+    {% load my_tags %}
+    <div>
+    <a class="btn btn-success btn-sm" style="margin: 3px" href="{% reverse_url request 'customer_add' %}"> <i
+            class="fa fa-plus-square"></i> 添加 </a>
+
+    </div>
+
+    <form action="" method="get" class="form-inline pull-right">
+
+        <input type="text" name="query" class="form-control">
+        <button class="btn btn-sm btn-primary">搜索</button>
+
+    </form>
+    <form action="" method="post" class="form-inline">
+        {% csrf_token %}
+        <select name="action" id="" class="form-control">
+
+            {% if request.path_info == '/crm/my_customer/' %}
+                <option value="multi_pub"> 私户变公户</option>
+            {% else %}
+                <option value="multi_apply"> 公户变私户</option>
+            {% endif %}
+
+            <option value="multi_del"> 批量删除</option>
+
+
+        </select>
+        <button class="btn btn-sm btn-primary">提交</button>
+        <table class="table table-bordered table-hover">
+
+
+            <thead>
+            <tr>
+                <th>选择</th>
+                <th>序号</th>
+                <th>QQ</th>
+                <th>姓名</th>
+                <th>性别</th>
+                {#        <th>出生日期</th>#}
+                {#        <th>电话</th>#}
+                <th>客户来源</th>
+                <th>咨询课程</th>
+                <th>状态</th>
+                <th>最后跟进</th>
+                <th>销售</th>
+                <th>已报班级</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for customer in all_customer %}
+
+                <tr>
+                    <td>
+                        <input type="checkbox" name="ids" value="{{ customer.pk }}">
+                    </td>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ customer.qq }}</td>
+                    <td>{{ customer.name|default:'未填写' }}</td>
+                    <td>{{ customer.get_sex_display }}</td>
+                    {#            <td>{{ customer.birthday|default:'未填写' }}</td>#}
+                    {#            <td>{{ customer.phone }}</td>#}
+                    <td>{{ customer.get_source_display }}</td>
+                    <td>{{ customer.course }}</td>
+                    <td>
+                        {{ customer.show_status }}
+                    </td>
+                    <td>{{ customer.last_consult_date }}</td>
+                    <td>{{ customer.consultant }}</td>
+                    {#            <td>{{ customer.class_list.all }}</td>#}
+                    <td>{{ customer.show_class }}</td>
+                    <td>
+
+                        <a href="{% url 'customer_edit' customer.pk %}"> <i class="fa fa-pencil-square-o"></i> </a>
+                        <a href="{% reverse_url request 'customer_edit' customer.pk %}"> <i class="fa fa-pencil-square-o"></i> </a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+
+
+            </tbody>
+        </table>
+    </form>
+
+{% endblock %}

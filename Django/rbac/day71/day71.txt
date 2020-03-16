@@ -1,0 +1,99 @@
+day71
+1. 内容回顾
+	rbac  基于角色的权限控制
+	1. 表结构
+		权限表
+			url  title       url 含正则的URL  不包含^$   /customer/list/
+		角色表
+			name
+		用户表
+			name  pwd
+		用户和角色的关系表
+		
+		角色和权限的关系表
+		
+		
+		一级菜单
+		权限表
+			url  title  is_menu  icon 
+			
+		二级菜单
+		菜单表
+			title  icon
+
+		权限表
+			url  title   menu 
+			
+			有menu_id    当前的权限是一个二级菜单
+			没有menu_id  当前的权限是一个普通权限
+			
+			
+		数据结构：
+			menu_dict = {
+				
+				menu_id : {
+					
+					一级菜单的title：''
+					icon：'fa-usd'
+					children : [  #二级菜单的信息
+						{ 'title'  'url'  }
+					
+					]
+				
+				}
+			
+			}
+		
+	
+	2. 流程 
+	
+2. 今日内容
+	1. 一级菜单的排序
+		有序字典
+		sorted(menu_dict, key=lambda x: menu_dict[x]['wight'], reverse=True)
+		
+		
+	2. 二级菜单选中并且展开
+		hide  active 
+		
+	3. 非菜单权限的归属
+		
+		客户管理
+			展示客户
+				添加客户
+				编辑客户
+				删除客户
+		
+		财务管理
+			缴费列表
+		
+		权限表
+			id  url   						title     menu_id   parent_id
+			1   /customer/list/    			展示客户      5       null
+			2   /customer/add/     			添加客户    null        1
+			3   /customer/edit/(\d+)/       编辑客户    null        1
+	
+	
+	4. 路径导航
+		
+		
+		
+	5. 权限粒度控制到按钮级别
+	
+	
+	
+作业：
+	1. 基于有序字典对一级菜单进行排序
+	2. 二级菜单默认展开并选中
+	3. 非菜单权限的归属
+	4. 权限粒度控制到按钮级别
+	5. 路径导航
+	
+	
+	
+	
+	
+	
+
+
+

@@ -1,0 +1,84 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+    {% load my_tags %}
+    <div>
+        {% load rbac %}
+        {% if request|has_permission:'class_add' %}
+            <a class="btn btn-success btn-sm" style="margin: 3px" href="{% url 'class_add' %}"> <i
+                    class="fa fa-plus-square"></i> 添加 </a>
+        {% endif %}
+
+
+    </div>
+
+    <form action="" method="get" class="form-inline pull-right">
+
+        <input type="text" name="query" class="form-control">
+        <button class="btn btn-sm btn-primary">搜索</button>
+
+    </form>
+    <form action="" method="post" class="form-inline">
+        {% csrf_token %}
+        <select name="action" id="" class="form-control">
+
+
+            <option value="multi_del"> 批量删除</option>
+
+
+        </select>
+        <button class="btn btn-sm btn-primary">提交</button>
+        <table class="table table-bordered table-hover">
+
+
+            <thead>
+            <tr>
+                <th>选择</th>
+                <th>序号</th>
+                <th>班级名称</th>
+                <th>学费</th>
+                <th>开班日期</th>
+                <th>结业日期</th>
+                <th>老师</th>
+                <th>班级类型</th>
+                {% if request|has_permission:'class_edit' %}
+                    <th>操作</th>
+                {% endif %}
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for class in all_class %}
+
+                <tr>
+                    <td>
+                        <input type="checkbox" name="ids" value="{{ customer.pk }}">
+                    </td>
+                    <td>{{ forloop.counter }}</td>
+                    <td><a href="{% url 'course_record_list' class.pk %}">{{ class }} </a></td>
+                    <td>{{ class.price }}</td>
+                    <td>{{ class.start_date }}</td>
+                    <td>{{ class.graduate_date }}</td>
+                    <td>{{ class.show_teachers }}</td>
+                    <td>{{ class.get_class_type_display }}</td>
+
+
+                    {% if request|has_permission:'class_edit' %}
+
+                        <td>
+
+                            <a href="{% url 'class_edit' class.pk %}"> <i
+                                    class="fa fa-pencil-square-o"></i> </a>
+                        </td>
+                    {% endif %}
+                </tr>
+
+            {% endfor %}
+
+
+            </tbody>
+        </table>
+    </form>
+
+{% endblock %}

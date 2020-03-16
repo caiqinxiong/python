@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+    {% load my_tags %}
+    <div>
+
+    </div>
+
+    <form action="" method="get" class="form-inline pull-right">
+
+        <input type="text" name="query" class="form-control">
+        <button class="btn btn-sm btn-primary">搜索</button>
+
+    </form>
+    <form action="" method="post" class="form-inline">
+        {% csrf_token %}
+        {{ formset.management_form }}
+
+        <table class="table table-bordered table-hover">
+
+
+            <thead>
+            <tr>
+                <th>选择</th>
+                <th>序号</th>
+                <th>学生</th>
+                <th>考勤</th>
+                <th>成绩</th>
+                <th>批语</th>
+                <th>备注</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for form in formset %}
+
+                <tr>
+                    <td>
+                        <input type="checkbox" name="ids" value="{{ course_record.pk }}">
+                    </td>
+                    {{ form.id }}
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ form.instance.student }}</td>
+                    <td>{{ form.attendance }}</td>
+                    <td>{{ form.score }}</td>
+                    <td>{{ form.homework_note }}</td>
+                    <td>{{ form.note }}</td>
+                    <span style="display: none"> {{ form.student }} {{ form.course_record }} </span>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+        </table>
+        <button class="btn btn-sm btn-primary">保存</button>
+    </form>
+
+{% endblock %}

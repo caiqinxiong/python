@@ -1,0 +1,250 @@
+day65
+1. 内容回顾
+	路由  视图  模板 ORM cookie session 中间件 ajax form ModelForm
+	
+	1. ^  $  ()  (?P<name>)   include  
+	2. URL的命名和反向解析
+		静态路由
+		url(r'book_list/',book_list,name='book_list')
+			
+		反向解析：
+			视图
+				from django.urls import reverse
+				
+				reverse('book_list')  ——》  '/app01/book_list/'
+				
+			模板
+				{% url 'book_list' %}  ——》  '/app01/book_list/'
+		
+		分组
+		url(r'book/edit/(\d+)/',book_edit,name='book_edit')
+		
+		反向解析：
+			视图
+				from django.urls import reverse
+				
+				reverse('book_edit',args=[1,])  ——》  '/app01/book/edit/1/'
+				
+			模板
+				{% url 'book_edit' 1 %}  ——》   '/app01/book/edit/1/'
+				
+		命名分组
+
+		url(r'book/edit/(?P<pk>\d+)/',book_edit,name='book_edit')
+		
+		反向解析：
+			视图
+				from django.urls import reverse
+				
+				reverse('book_edit',args=[1,])         ——》  '/app01/book/edit/1/'
+				reverse('book_edit',kwargs={'pk':1})   ——》  '/app01/book/edit/1/'
+				
+			模板
+				{% url 'book_edit' 1 %}  ——》   '/app01/book/edit/1/'
+				{% url 'book_edit' pk=1 %}  ——》   '/app01/book/edit/1/'
+		
+	3. namespace
+		
+		urlpatterns = [
+			url(r'^admin/', admin.site.urls),
+			url(r'crm/',include('crm.urls',namespace='crm')),
+			url(r'app01/',include('app01.urls',namespace='app01'))
+
+		]
+		
+		
+		    print(reverse('crm:index'))    namespace:namespace:name
+			print(reverse('app01:index'))
+	
+	
+	4.视图
+		FBV CBV 
+		
+		request
+			path_info  /crm/index/
+			get_full_path()    /crm/index/?id=11
+			
+			
+		response
+			HttpResponse       Content-Type: text/html; charset=utf-8
+			render(request,'模板文件名',{})   
+			redirect('地址')    重定向   Location：'地址'
+			JsonResponse({})   JsonResponse([],safe=False)   Content-Type: text/html; charset=utf-8
+			
+	5. {'keys':'xxxxx'}    keys()
+
+		{{ dict.keys }}
+		
+		字典的key  属性和方法  索引
+		|filter:'参数'
+		date  safe
+		
+		母板和继承
+	
+		{% block  content %}
+		{% enblock %}
+		
+		{% extends	 '母板的名字'	%}
+		
+		组件  
+		{% include ’nav.html‘ %}
+		
+		静态文件
+			{%  load static %}
+			{%  static  ’相对路径‘ %}
+			
+			
+	6. filter   simple_tag   inclusion_tag
+	
+		1. 在APP下创建一个叫templatetags的Python包
+		2. 在Python包中创建py文件   my_tags.py
+		3. 在py文件写：
+			from django import template
+			register = template.Library()
+		4. filter
+			定义：
+				@register.filter
+				def add(value, args):
+					return "{}_{}".format(value, args)
+			使用：
+				模板
+				{% load my_tags %}
+				{{ 'alex'|add:'xxxxx'  }}   alex_xxxxx
+				
+		5. simple_tag		
+			定义：
+				@register.filter
+				def add(v1, v2,*args,**kwargs):
+					return "{}_{}".format(v1, v2)
+			使用：
+				模板
+				{% load my_tags %}
+				{% add ‘v1’ 'v2' k1='sss' k2='xx' %}
+				
+		6. inclusion_tag
+		
+			@register.inclusion_tag('li.html')
+			def show_li(num):
+				return {'num':range(num)}
+				
+				
+			li.html
+			{% for n in num %}
+
+				<li> {{ n }} </li>
+			{% endfor %}
+			
+			
+			使用：
+			{% load my_tags %}
+
+			{% show_li 10 %}
+				
+	form 
+	
+		form django import forms
+		from django.core.validators import RegexValidator
+		from django.core.exceptions import ValidationError
+		class RegForm(forms.Form):
+			
+			name = forms.Charfield(
+				initail = 'xxx'
+				label = '用户名'，
+				min_length = 8,
+				required = False,
+				widget = forms.TextInput(attrs={'class':'form-control'})
+				error_message= {
+					'min_length':'最小长度为8'，
+				}
+				validtors= [],
+			
+			)
+			
+			def clean_name(self):
+				# self.cleaned_data.get('name')
+
+				# 校验成功 返回当前字段值
+				# 不成功  抛出异常
+					raise ValidationError()
+			
+			
+			def clean(self):
+				# 校验成功 返回所有的值
+				# 不成功  抛出异常
+				self.add_error('字段'，'错误信息')
+				raise ValidationError()
+			
+	
+	modelform 
+	
+		form app01 import models
+		class RegForm(forms.ModelForm):
+			class Meta:
+				model = models.表名
+				fields= "__all__"   # ['' ]
+				exclude = []
+	
+				labels ={
+					'name':'用户名'
+				}
+				
+				widgets = {
+				'password' :forms.PasswordInput(attrs={})
+				}
+				
+				error_messages = {
+					'name':{}
+				}
+				
+			def __init__(self, *args, **kwargs):
+				super().__init__(*args, **kwargs)
+				# 自定义操作
+				for field in self.fields.values():
+					# field.widget.attrs['class'] = 'form-control'
+					field.widget.attrs.update({'class': 'form-control'})
+
+
+2. 今日内容
+	1. 展示客户列表
+	
+		使用admin
+			1. 创建超级用户
+				Python manage.py createsuperuser 
+			2. 注册model
+				在APP下的admin.py中注册
+					from django.contrib import admin
+					from crm import models
+
+					# Register your models here.
+					admin.site.register(models.Customer)
+					
+					
+		展示不同字段的方式：
+			1. 普通字段
+				对象.字段名
+			2. choices
+				对象.字段名  -> 真实的值
+				对象.get_字段名_display()  -> 中文显示值
+				
+			3. 外键
+				对象.外键  —— 》 定义str
+				对象.外键.name 
+			4. 其他
+				定义函数
+				def show_class(self):
+					return ' | '.join([ str(i) for i in self.class_list.all()])
+				
+				
+		日期格式化的配置:
+			USE_L10N = False
+			
+			DATE_FORMAT = 'Y-m-d'
+			DATETIME_FORMAT = 'Y-m-d H:i:s'
+		
+		
+		后端safe
+			from django.utils.safestring import mark_safe
+		
+	2. 分页
+
+

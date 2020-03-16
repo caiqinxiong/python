@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+    {% load my_tags %}
+    <div>
+
+    </div>
+
+    <form action="" method="get" class="form-inline pull-right">
+
+        <input type="text" name="query" class="form-control">
+        <button class="btn btn-sm btn-primary">搜索</button>
+
+    </form>
+    <form action="" method="post" class="form-inline">
+        {% csrf_token %}
+        <select name="action" id="" class="form-control">
+
+
+            <option value="multi_del"> 批量删除</option>
+
+
+        </select>
+        <button class="btn btn-sm btn-primary">提交</button>
+        <table class="table table-bordered table-hover">
+
+
+            <thead>
+            <tr>
+                <th>选择</th>
+                <th>序号</th>
+                <th>报名原因</th>
+                <th>是否同意协议</th>
+                <th>审核状态</th>
+                <th>报名日期</th>
+                <th>客户</th>
+                <th>校区</th>
+                <th>所报班级</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for enrollment in all_enrollment %}
+
+                <tr>
+                    <td>
+                        <input type="checkbox" name="ids" value="{{ customer.pk }}">
+                    </td>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ enrollment.why_us }}</td>
+                    <td>{{ enrollment.contract_agreed }}</td>
+                    <td>{{ enrollment.contract_approved }}</td>
+                    <td>{{ enrollment.enrolled_date }}</td>
+                    <td>{{ enrollment.customer }}</td>
+                    <td>{{ enrollment.school }}</td>
+                    <td>{{ enrollment.enrolment_class }}</td>
+                    <td>
+
+                        <a href="{% reverse_url request 'enrollment_edit' enrollment.pk %}"> <i
+                                class="fa fa-pencil-square-o"></i> </a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+
+
+            </tbody>
+        </table>
+    </form>
+
+{% endblock %}

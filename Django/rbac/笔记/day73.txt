@@ -1,0 +1,157 @@
+day73
+1. 内容回顾：
+	1. 中间件
+		在全局范围内控制django的输入和输出的钩子函数。 
+		5种方法
+		
+		
+	2. 路由系统
+		url(正则，视图，name {})
+		正则：^$  
+		分组和命名分组  （）    （?P<name>sss）
+		include  路由分发
+		url的命名和反向解析
+			{% url 别名 位置参数 关键字参数 %}
+			reverse（别名,args=(x,x,),kwargs={}）
+		namspace 
+			{% url namspace:别名 位置参数 关键字参数 %}
+	3. 视图
+
+		FBV  CBV
+			装饰器  
+			from django.views.decorators.csrf import csrf_exempt,csrf_protect
+			csrf_exempt在CBV加在dispatch
+		request  10个以上
+		response
+			HTTPResponse
+			render
+			redirect('/index/')
+			JsonResponse   safe=false
+			
+	4.模板
+		{{  }}    {%  %}	
+
+
+	5. ORM
+	
+		13条
+			对象列表
+				all
+				filter
+				exclude()
+				values()
+				values_list()
+				order_by()
+				reverse()
+				distinct()
+			对象
+				get
+				first
+				last
+			布尔值
+				exists
+			数字
+				count
+		__
+		
+		外键
+		   书籍  出版社  publisher_id
+		多对多
+		   作者 书籍
+			author_obj.books.all()
+			author_obj.books.set([book_id,book_id])
+			author_obj.books.add(id)
+			author_obj.books.remove(id)
+			author_obj.books.clear()
+			author_obj.books.create()
+			
+		聚合和分组
+			aggregate    {}
+			annotate
+			Author.annotate(book__price)
+			
+			Book.values('author').annotate('price').values()
+			
+		F 和 Q 
+			Q(aa_contains='xx') | Q(qq_contains='xx')
+			Q(（'aa_contains','xx'）)
+			q()
+
+	6. cookie 和 session
+	
+	7. ajax 
+	
+	8. form modelform modelformset 
+	
+		
+		
+2. 今日内容
+	1. 批量操作权限
+	2. 分配权限
+	3. 权限组件的应用
+	
+		1. 拷贝rbac APP到新的项目中 并且要在settings中注册
+		2. 数据库迁移
+			1. 用户表的继承
+				class User(models.Model):
+				"""
+				用户表
+				"""
+				
+				roles = models.ManyToManyField(Role, verbose_name='用户所拥有的角色', blank=True) #Role不用字符串的形式  用类的方式
+
+				class Meta:
+					abstract = True   # 当前的表不会在数据库中生成，用于作为基类，让子类继承
+			2. 清除掉rbac下migrations的除了__init__之外的所有py文件
+			3. 执行数据库迁移的命令
+		
+		3. rbac的路由配置
+			    url(r'rbac/', include('rbac.urls',namespace='rbac')),
+		4. 权限信息的录入
+			录入角色
+			录入一级菜单
+			录入权限信息
+				批量操作  注意： 所有的url要有name
+			权限的分配
+				注意  使用正确的用户表
+				给角色分配权限
+				给用户分配角色
+			
+				
+		5. 应用上中间件
+			在settins中注册中间件
+			MIDDLEWARE = [
+						... 
+						'rbac.middlewares.rbac.RbacMiddleWare',
+					]
+					
+			在settins中加上权限的相关配置
+		6. 登录成功进行全新信息的初始化
+			from rbac.service.permission import init_permission
+			登陆成功后
+				init_permission(request,obj)
+				
+		7. 应用二级菜单
+			{% load rbac %}
+            {% menu request %}
+			
+			应用css js 
+			   <link rel="stylesheet" href="{% static 'rbac/css/menu.css' %} "/>
+			   <script src="{% static 'rbac/js/menu.js' %} "></script>
+			   
+		8. 路径导航
+			{% breadcrumb request %}
+			
+			
+		9. 权限粒度控制到按钮级别
+			{% load rbac %}
+			{% if request|has_permission:'class_add' %}
+				<a class="btn btn-success btn-sm" style="margin: 3px" href="{% url 'class_add' %}"> <i
+						class="fa fa-plus-square"></i> 添加 </a>
+			{% endif %}
+					
+			
+			
+
+				
+				

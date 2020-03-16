@@ -1,0 +1,50 @@
+day67
+1. 内容回顾
+
+	1. 添加客户
+	2. 编辑客户
+	3. 公户和私户的展示
+	4. 公户和私户的转化
+	
+2. 今日内容
+	1. 模糊查询
+		q = Q()
+        q.connector = 'OR'
+        q.children.append(Q(qq__contains=query))
+        q.children.append(Q(name__contains=query))
+	
+
+		Q(qq__contains=query)    Q(('qq__contains',query))
+	
+	2. 分页保留原搜索条件
+		from django.http.request import QueryDict
+	
+		dic = request.GET   # 不可编辑
+        dic._mutable = True
+		
+		dic['page'] = 1
+		
+		dic.urlencode()   # query=12&page=1
+		
+		request.GET.copy()  # 深拷贝  可编辑
+		
+		QueryDict(mutable=True)  # 可编辑
+	
+	3. 新增和编辑后跳转到源页面
+		http://127.0.0.1:8000/crm/customer_edit/4/?next=/crm/customer_list/?query=123&page=2
+		
+		next = /crm/customer_list/?query=123&page=2
+		next = /crm/customer_list/?query=123 page=2
+	
+	
+	4. 跟进记录管理
+	
+	5. 报名记录管理
+	
+作业：
+	1. 基于Q对象实现模糊查询
+	2. 基于QueryDict实现分页保留搜索条件
+	3. 基于QueryDict实现新增和编辑后跳转到源页面
+	4. 跟进记录表、报名记录表、缴费记录表 展示 新增和编辑 
+		
+	

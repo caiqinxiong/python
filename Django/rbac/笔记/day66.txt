@@ -1,0 +1,69 @@
+day66
+1. 内容回顾
+	1. 数据的展示
+		数据通过ORM查询出来   对象列表  QuerySet
+		
+		1. 普通的字段
+			对象.字段名   ——》 数据库中的值
+		2. choices
+			（（1，'男'））
+			对象.字段名   ——》 数据库中的值  1
+			对象.get_字段名_display()   ——》 数据库中的值对应的显示值  男
+		3. 外键
+			对象.外键      ——》  关联的对象    定义  __str__    __repr__
+			对象.外键.字段名  
+		4. 自定义方法
+			多对多：
+				def show_class(self):
+					return ' | '.join([str(i) for i in self.class_list.all()])
+			HTML代码：
+				def show_status(self):
+			
+					status_color = {
+
+						'signed': 'green',
+						'unregistered': '#208c72',
+						'studying': 'yellow',
+						'paid_in_full': 'blue',
+					}
+
+					return mark_safe('<span style="background-color: {};color: white;padding: 2px">{}</span>'.format(
+						status_color.get(self.status), self.get_status_display()))
+			
+	
+	2. 分页
+	
+2. 今日内容
+	1. 添加客户
+	2. 编辑客户
+	3. 公户和私户的展示
+		公户：
+			没有销售  consultant=null
+			  all_customer = models.Customer.objects.filter(consultant__isnull=True)
+			
+		私户
+			有销售   consultant_id = 11 
+			all_customer = models.Customer.objects.filter(consultant_id=request.user_obj.id)
+			all_customer = models.Customer.objects.filter(consultant=request.user_obj)
+	
+	
+	4. 公户和私户的转化
+		1. 公户变私户
+	
+		# 方式一  查询的客户
+        models.Customer.objects.filter(pk__in=ids).update(consultant=self.request.user_obj)
+        # models.Customer.objects.filter(pk__in=ids).update(consultant_id=self.request.session.get('pk'))
+
+        # 方式二 查用户
+        self.request.user_obj.customers.add(*models.Customer.objects.filter(pk__in=ids))
+		
+		2. 私户变公户
+		
+		# 方式一  查询的客户
+        models.Customer.objects.filter(pk__in=ids).update(consultant=None)
+
+        # 方式二 查用户
+        # self.request.user_obj.customers.remove(*models.Customer.objects.filter(pk__in=ids))
+
+	5. 模糊查询
+	

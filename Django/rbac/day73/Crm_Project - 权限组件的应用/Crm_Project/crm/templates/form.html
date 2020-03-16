@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">{{ title }}</h4>
+        </div>
+        <div class="panel-body">
+            <div class="col-lg-8 col-lg-offset-2 " style="margin-top: 10px">
+                <form class="form-horizontal" novalidate method="post">
+                    {% csrf_token %}
+
+                    {% for field in form_obj %}
+                        <div class="form-group {% if field.errors %}has-error{% endif %}">
+
+
+                            <label for="{{ field.id_for_label }}"
+                                   class="col-sm-3 control-label">{{ field.label }}</label>
+                            <div class="col-sm-9">
+                                {{ field }}
+
+                                <span class="help-block"> {{ field.errors.0 }}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <p class="text-danger text-center"> {{ form_obj.non_field_errors.0 }} </p>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">保存</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

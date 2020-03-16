@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+    {% load my_tags %}
+    <div>
+        <a class="btn btn-success btn-sm" style="margin: 3px" href="{% reverse_url request 'consult_add' %}"> <i
+                class="fa fa-plus-square"></i> 添加 </a>
+
+    </div>
+
+    <form action="" method="get" class="form-inline pull-right">
+
+        <input type="text" name="query" class="form-control">
+        <button class="btn btn-sm btn-primary">搜索</button>
+
+    </form>
+    <form action="" method="post" class="form-inline">
+        {% csrf_token %}
+        <select name="action" id="" class="form-control">
+
+
+            <option value="multi_del"> 批量删除</option>
+
+
+        </select>
+        <button class="btn btn-sm btn-primary">提交</button>
+        <table class="table table-bordered table-hover">
+
+
+            <thead>
+            <tr>
+                <th>选择</th>
+                <th>序号</th>
+                <th>跟进内容</th>
+                <th>状态</th>
+                <th>日期</th>
+                <th>客户</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for consult in all_consult %}
+
+                <tr>
+                    <td>
+                        <input type="checkbox" name="ids" value="{{ customer.pk }}">
+                    </td>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ consult.note }}</td>
+                    <td>{{ consult.get_status_display }}</td>
+                    <td>{{ consult.date }}</td>
+                    <td>{{ consult.customer }}</td>
+                    <td>
+
+                        <a href="{% url 'consult_edit' consult.pk %}"> <i
+                                class="fa fa-pencil-square-o"></i> </a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+
+
+            </tbody>
+        </table>
+    </form>
+
+{% endblock %}
