@@ -27,7 +27,11 @@ def permissions_add(request):
         url_list = get_all_url_dict()
         permission_obj = models.Permission.objects.all()
         for i in permission_obj:# 已经添加了的权限就不再展示了
-            url_list.remove((i.name, i.url))
+            try:
+                url_list.remove((i.name, i.url))
+            except Exception as e:
+                print(i.name)
+                print(e)
         group_obj = models.Group.objects.all()
         return render(request, 'add_permission.html', {'select_form': url_list,'group_obj':group_obj})
     else:
@@ -52,8 +56,11 @@ def permissions_edit(request, pk):
     url_list = get_all_url_dict()
     permission_obj = models.Permission.objects.all()
     for i in permission_obj:  # 已经添加了的权限就不再展示了
-        if i.name != p_obj.name:
-            url_list.remove((i.name, i.url))
+        try:
+            if i.name != p_obj.name:url_list.remove((i.name, i.url))
+        except Exception as e:
+            print(i.name)
+            print(e)
     group_obj = models.Group.objects.all()
     group_list = []# 展示可选项 组
     for j in group_obj:

@@ -47,8 +47,6 @@ class UserAdmin(object):
 
     readonly_fields = ('email',) # 普通用户不能修改的字段
 
-
-
 xadmin.site.register(models.User, UserAdmin)
 
 class GroupAdmin(object):
@@ -80,6 +78,17 @@ class ReleaseInfoAdmin(object):
 xadmin.site.register(models.ReleaseInfo,ReleaseInfoAdmin)
 
 
+class PermissionAdmin(object):
+    list_display = ['title', 'name', 'url']
+    search_fields = ['title']
+    list_filter = ['title']
+    # 显示还原按钮，删除修改的信息可以还原
+    reversion_enable = True
+    preserve_filters = False  # 默认情况下，当你对目标进行创建、编辑或删除操作后，页面会依然保持原来的过滤状态
+
+    list_per_page = 20  # 每页显示20个
+
+xadmin.site.register(models.Permission, PermissionAdmin)
 
 '''
  
