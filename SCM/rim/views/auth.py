@@ -16,13 +16,20 @@ def login(request):
         password = request.POST.get('password')
         obj = models.User.objects.filter(email=email, password=password).first()
         if obj:
-            # 1. 生成随机字符串
-            # 2. 通过cookie发送给客户端
-            # 3. 服务端保存
-            # {
-            #   随机字符串1: {'username':'lixiaoxin','email':x''...}
-            # }
             request.session['email'] = obj.email
+            # 获取相关权限
+            permission_url_list = obj.group_set.filter(permission__url__isnull=False).values('permission__title',
+                                        "permission__name",
+                                        # "permission__id",
+                                        'permission__url',
+                                        # 'permissions__menu_gp_id',
+                                        # "permission__group__id",
+                                        # "permissions__group__menu_id",
+                                        # "permissions__group__menu__title",
+                                        ).distinct()
+            # print(permission_url_list)
+            request.session['permission_url_list'] = list(permission_url_list) # 将权限信息写入session
+
             keep = request.POST.get('keep') # 默认保持登录两周，setting里配置
             # print(keep)
             if not keep:request.session.set_expiry(0) # 0关闭浏览器Session过期

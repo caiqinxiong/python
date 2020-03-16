@@ -62,6 +62,7 @@
                 <th>ID</th>
                 <th>组名</th>
                 <th>用户</th>
+{#                <th>权限</th>#}
                 <th>创建时间</th>
                 <th>操作</th>
             </tr>
@@ -77,6 +78,11 @@
                             <span style="border: 1px solid #ccc;padding: 5px;">{{ item }}</span>
                         {% endfor %}
                     </td>
+{#                    <td>#}
+{#                        {% for item in  row.permission_set.all %}#}
+{#                            <span style="border: 1px solid #ccc;padding: 5px;">{{ item }}</span>#}
+{#                        {% endfor %}#}
+{#                    </td>#}
                     <td>{{ row.createtime }}</td>
                     <td>
                         <a class="btn-sm btn-primary" onclick="modelEdit(this)"><i class="fa fa-pencil-square-o"

@@ -9,24 +9,24 @@ def init_permission(user,request):
     :param request:
     :return:
     """
-    permission_list = user.roles.values('permissions__title',
-                                        "permissions__code",
+    permission_list = user.group_set.values('permissions__title',
+                                        "permissions__name",
                                         "permissions__id",
                                         'permissions__url',
-                                        'permissions__menu_gp_id',
+                                        # 'permissions__menu_gp_id',
                                         "permissions__group__id",
-                                        "permissions__group__menu_id",
-                                        "permissions__group__menu__title",
+                                        # "permissions__group__menu_id",
+                                        # "permissions__group__menu__title",
                                         ).distinct()
     menu_list=[]
     for item in permission_list:
         tpl={
             "id":item["permissions__id"],
             "title":item["permissions__title"],
-            "menu_title":item["permissions__group__menu__title"],
+            # "menu_title":item["permissions__group__menu__title"],
             "url":item["permissions__url"],
-            "menu_id":item["permissions__group__menu_id"],
-            "menu_gp_id":item["permissions__menu_gp_id"],
+            # "menu_id":item["permissions__group__menu_id"],
+            # "menu_gp_id":item["permissions__menu_gp_id"],
         }
         menu_list.append(tpl)
 
@@ -54,7 +54,7 @@ def init_permission(user,request):
     result={}
     for item in permission_list:
         groupid=item["permissions__group__id"]
-        code=item["permissions__code"]
+        code=item["permissions__name"]
         url=item["permissions__url"]
 
         if groupid in result:
