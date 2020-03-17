@@ -46,7 +46,7 @@
                 <div class="col-sm-8">
                     <select id="url_value" name="url_value" class="form-control">
                         {% for key,value in select_form %}
-                            <option value="{{ key }}">{{ value }}</option>
+                            <option value="{{ key }}" {% if value == p_obj.url %} selected="selected" {% endif %}>{{ value }}</option>
                         {% endfor %}
                     </select>
                 </div>
