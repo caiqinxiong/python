@@ -9,15 +9,20 @@ from rim.forms.permissions import PermissionsModelForm
 from utils.mail_hander import SendMail
 from django.conf import settings
 from utils.get_all_url import get_all_url_dict
+from utils.pager import PageInfo
 
 def permissions_list(request):
     '''权限列表'''
     search = request.POST.get('search')
     if search:
         permission_obj = models.Permission.objects.filter(title__contains=search).all()
+        return render(request, 'permissions.html', {'permission_obj': permission_obj})
     else:
         permission_obj = models.Permission.objects.all()
-    return render(request, 'permissions.html', {'permission_obj': permission_obj})
+        all_count = permission_obj.count()  # 获取所有数据行数
+        page_info = PageInfo(request.GET.get('page'), all_count, per_page=20, base_url='/rim/permissions/list/',show_page=11)  # 添加分页展示功能
+        permission_obj = permission_obj.order_by('id')[page_info.start():page_info.end()]  # 将查找到的数据按id反向排序，只展示某个区间的数据
+        return render(request, 'permissions.html', {'permission_obj': permission_obj,'page_info':page_info})
 
 
 def permissions_add(request):
