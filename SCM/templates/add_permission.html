@@ -120,10 +120,12 @@
             $("#select1 option:selected").appendTo("#select2");
         });
         $("#remove").bind("click", function () {
-            if (!$("#select2 option").is(":selected")) {
+            var select2 = $("#select2 option");
+            if (!select2.is(":selected")) {
                 alert("选择项为空");
             }
             $("#select2 option:selected").appendTo("#select1");
+            select2.prop("selected", true)//全选添加后要默认选中，才能把值传给后端
         });
         $("#add_all").bind("click", function () {
             $("#select1 option").appendTo("#select2");

@@ -46,10 +46,10 @@ urlpatterns = [
     url(r'^change_password/$', user.change_password, name='change_password'),
 
     url(r'^group_list/$', group.group_list, name='group_list'),
-    url(r'^add_group/$', group.add_group, name='add_group'),
+    # url(r'^add_group/$', group.add_group, name='add_group'),
     url(r'^add_group_ajax/$', group.add_group_ajax, name='add_group_ajax'),
     url(r'^edit_group_ajax/$', group.edit_group_ajax, name='edit_group_ajax'),
-    url(r'^edit_group/(?P<pk>\d+)/$', group.edit_group, name='edit_group'),
+    # url(r'^edit_group/(?P<pk>\d+)/$', group.edit_group, name='edit_group'),
     url(r'^group/del/(?P<pk>\d+)/$', group.del_group, name='del_group'),
 
     url(r'^permissions/list/$', permissions.permissions_list, name='permissions_list'),
