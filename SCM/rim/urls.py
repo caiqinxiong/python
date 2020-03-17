@@ -52,7 +52,7 @@ urlpatterns = [
     url(r'^edit_group/(?P<pk>\d+)/$', group.edit_group, name='edit_group'),
     url(r'^group/del/(?P<pk>\d+)/$', group.del_group, name='del_group'),
 
-    url(r'^permissions/list$', permissions.permissions_list, name='permissions_list'),
+    url(r'^permissions/list/$', permissions.permissions_list, name='permissions_list'),
     url(r'^permissions/add/$', permissions.permissions_add, name='permissions_add'),
     url(r'^permissions/edit/(?P<pk>\d+)/$', permissions.permissions_edit, name='permissions_edit'),
     url(r'^permissions/del/(?P<pk>\d+)/$', permissions.permissions_del, name='permissions_del'),

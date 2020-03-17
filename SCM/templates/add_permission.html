@@ -95,15 +95,21 @@
     <script>
         $("#url_name").change(function () {
             var url_name = $('#url_name option:selected');
-            var url_value = $('#url_value option:selected');
-            url_value.text(url_name.val());
-            url_value.val(url_name.text())
+            var url_value = $('#url_value option');
+            for (var i=0;i<url_value.length;i++){
+                if (url_name.val() == url_value[i].text){
+                    url_value[i].selected = 'selected'
+                }
+            }
         });
         $("#url_value").change(function () {
             var url_value = $('#url_value option:selected');
-            var url_name = $('#url_name option:selected');
-            url_name.text(url_value.val());
-            url_name.val(url_value.text())
+            var url_name = $('#url_name option');
+            for (var i=0;i<url_name.length;i++){
+                if (url_value.val() == url_name[i].text){
+                    url_name[i].selected = 'selected'
+                }
+            }
         });
 
         // 添加组 左右选择
