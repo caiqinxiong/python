@@ -6,6 +6,7 @@ from django.shortcuts import render,redirect,HttpResponse,reverse
 from django.http import JsonResponse
 from rim import models
 from rim.forms.auth import AuthModelForm
+from utils.init_permition import init_permission
 
 def login(request):
     '''登录'''
@@ -17,22 +18,7 @@ def login(request):
         obj = models.User.objects.filter(email=email, password=password).first()
         if obj:
             request.session['email'] = obj.email
-            # 获取相关权限
-            permission_url_list = obj.group_set.filter(permission__url__isnull=False).values('permission__title',
-                                        "permission__name",
-                                        # "permission__id",
-                                        'permission__url',
-                                        # 'permissions__menu_gp_id',
-                                        # "permission__group__id",
-                                        # "permissions__group__menu_id",
-                                        # "permissions__group__menu__title",
-                                        ).distinct()
-
-            url_list = [] # 转换为list才能写入session，并去重
-            for i in permission_url_list:
-                if i not in url_list:url_list.append(i)
-            request.session['permission_url_list'] = url_list # 将权限信息写入session，不支持直接写入对象
-
+            init_permission(obj,request)# 获取相关权限
             keep = request.POST.get('keep') # 默认保持登录两周，setting里配置
             # print(keep)
             if not keep:request.session.set_expiry(0) # 0关闭浏览器Session过期

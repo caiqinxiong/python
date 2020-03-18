@@ -2,72 +2,22 @@
 __author__ = 'caiqinxiong_cai'
 #2020/3/9 10:58
 from django.conf import settings
-def init_permission(user,request):
+def init_permission(obj,request):
     """
     初始化权限信息，获取权限信息并放置到session中。
-    :param user:
+    :param obj:
     :param request:
     :return:
     """
-    permission_list = user.group_set.values('permissions__title',
-                                        "permissions__name",
-                                        "permissions__id",
-                                        'permissions__url',
-                                        # 'permissions__menu_gp_id',
-                                        "permissions__group__id",
-                                        # "permissions__group__menu_id",
-                                        # "permissions__group__menu__title",
-                                        ).distinct()
-    menu_list=[]
-    for item in permission_list:
-        tpl={
-            "id":item["permissions__id"],
-            "title":item["permissions__title"],
-            # "menu_title":item["permissions__group__menu__title"],
-            "url":item["permissions__url"],
-            # "menu_id":item["permissions__group__menu_id"],
-            # "menu_gp_id":item["permissions__menu_gp_id"],
-        }
-        menu_list.append(tpl)
+    # 获取相关权限
+    permission_url_list = obj.group_set.filter(permission__url__isnull=False).values('permission__title',
+                                                                                     "permission__name",
+                                                                                     'permission__url',
+                                                                                     ).distinct()
 
-    request.session[settings.PERMISSIONS_MENU_KEY]=menu_list
+    url_list = []  # 转换为list才能写入session，并去重
+    for i in permission_url_list:
+        if i not in url_list: url_list.append(i)
+    request.session['permission_url_list'] = url_list  # 将权限信息写入session，不支持直接写入对象
 
-
-
-    # menu_list=[]
-    # for item in permission_list:
-    #     if not item["permissions__is_menu"]:
-    #         continue
-    #
-    #     tpl={
-    #         "menu_id":item["permissions__group__menu_id"],
-    #         "menu_title":item["permissions__group__menu__title"],
-    #         "title":item["permissions__title"],
-    #         "url":item["permissions__url"],
-    #         "active":False,
-    #     }
-    #
-    #     menu_list.append(tpl)
-    # print(menu_list)
-    # request.session[settings.PERMISSIONS_MENU_KEY]=menu_list
-     #权限管理
-    result={}
-    for item in permission_list:
-        groupid=item["permissions__group__id"]
-        code=item["permissions__name"]
-        url=item["permissions__url"]
-
-        if groupid in result:
-            result[groupid]["codes"].append(code)
-            result[groupid]["urls"].append(url)
-        else:
-            result[groupid]={
-                "codes":[code,],
-                "urls":[url,]
-            }
-
-
-    print(result)
-
-
-    request.session[settings.PERMISSIONS_URL_DICT_KEY] = result
+    return url_list

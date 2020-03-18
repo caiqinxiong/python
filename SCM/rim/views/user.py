@@ -63,7 +63,10 @@ def user_add(request):
     # 接收用户提交的数据并进行表单验证
     form = UserModelForm(data=request.POST)
     if form.is_valid():
-        form.save()
+        obj=form.save()# 保存校验后的值，并返回当前user对象
+        group = form.cleaned_data['group']
+        # print(group)
+        obj.group_set.add(*group) #反向查询写入用户组
         sendMail = request.POST.get('sendMail')
         # print(form.cleaned_data['email'])
         if sendMail == 'on':  # 发送通知邮件
@@ -95,11 +98,13 @@ def user_edit(request,pk):
     if request.method == 'GET':
         form = UserModelForm(instance=user_obj)
         return render(request, 'form.html', {'form': form})
-
     # 接收用户提交的数据并进行表单验证
     form = UserModelForm(data=request.POST,instance=user_obj)
     if form.is_valid():
-        form.save()
+        obj=form.save()
+        group = form.cleaned_data['group']
+        # print(group)
+        obj.group_set.set(group)
         return redirect(reverse('user_list_all'))
     else:
         return render(request, 'form.html', {'form': form})

@@ -16,6 +16,7 @@
                 <th>ID</th>
                 <th>用户名</th>
                 <th>邮箱</th>
+                <th>所在用户组</th>
                 <th>创建时间</th>
                 <th>性别</th>
                 <th>操作</th>
@@ -27,6 +28,11 @@
                     <th>{{ row.id }}</th>
                     <th>{{ row.username }}</th>
                     <th>{{ row.email }}</th>
+                    <th>
+                        {% for item in  row.group_set.all %}
+                            <span style="border: 1px solid #ccc;padding: 5px;">{{ item }}</span>
+                        {% endfor %}
+                    </th>
                     <th>{{ row.createtime }}</th>
                     <th>
                         {{ row.get_sex_display }}
@@ -34,18 +40,15 @@
                     <th>
                         {% for item in request.session.permission_url_list %}
                             {% if 'user_edit' in  item.permission__name %}
-                                <a class="btn-sm btn-primary" href="{% url 'user_edit' pk=row.id %}"><i
-                                        class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
-                            {% endif %}
-                            {% if 'del_group' in  item.permission__name %}
-                                <a class="btn-sm btn-danger" onclick="removeRow(this,{{ row.id }});"><i
-                                        class="fa fa-trash" aria-hidden="true"></i>删除</a>
+                                <a class="btn-sm btn-primary" href="{% url 'user_edit' pk=row.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
+                            {% elif 'del_group' in  item.permission__name %}
+                                <a class="btn-sm btn-danger" onclick="removeRow(this,{{ row.id }});"><i class="fa fa-trash" aria-hidden="true"></i>删除</a>
                             {% endif %}
                         {% endfor %}
                 </tr>
             {% empty %}
                 <tr>
-                    <td colspan="6" class="text-center">暂时没有数据哦~</td>
+                    <td colspan="7" class="text-center">暂时没有数据哦~</td>
                 </tr>
             {% endfor %}
             </tbody>

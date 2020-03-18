@@ -91,14 +91,10 @@
                     <td>
                         {% for item in request.session.permission_url_list %}
                             {% if 'edit_group_ajax' in  item.permission__name %}
-                                <a class="btn-sm btn-primary" onclick="modelEdit(this)"><i
-                                        class="fa fa-pencil-square-o"
-                                        aria-hidden="true"></i>编辑</a>
-                            {% endif %}
+                                <a class="btn-sm btn-primary" onclick="modelEdit(this)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
                             {# <a class="btn-sm btn-primary" href="{% url 'edit_group' row.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>#}
-                            {% if 'del_group' in  item.permission__name %}
-                                <a class="btn-sm btn-danger" onclick="removeRow(this,{{ row.id }})"><i
-                                        class="fa fa-trash" aria-hidden="true"></i>删除</a>
+                            {% elif 'del_group' in  item.permission__name %}
+                                <a class="btn-sm btn-danger" onclick="removeRow(this,{{ row.id }})"><i class="fa fa-trash" aria-hidden="true"></i>删除</a>
                             {% endif %}
                         {% endfor %}
                     </td>
