@@ -41,11 +41,11 @@ class UserAdmin(object):
     def get_readonly_fields(self, **kwargs):
         """  重新定义此函数，限制普通用户所能修改的字段  """
         print(self.org_obj)
-        if self.user.is_superuser:
-            self.readonly_fields = ['email',] # 管理员也不能修改的字段
+        # if self.user.is_superuser:
+        #     self.readonly_fields = ['email',] # 管理员也不能修改的字段
         return self.readonly_fields
 
-    readonly_fields = ('email',) # 普通用户不能修改的字段
+    # readonly_fields = ('email',) # 普通用户不能修改的字段
 
 xadmin.site.register(models.User, UserAdmin)
 

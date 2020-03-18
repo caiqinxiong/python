@@ -27,8 +27,11 @@ def login(request):
                                         # "permissions__group__menu_id",
                                         # "permissions__group__menu__title",
                                         ).distinct()
-            # print(permission_url_list)
-            request.session['permission_url_list'] = list(permission_url_list) # 将权限信息写入session
+
+            url_list = [] # 转换为list才能写入session，并去重
+            for i in permission_url_list:
+                if i not in url_list:url_list.append(i)
+            request.session['permission_url_list'] = url_list # 将权限信息写入session，不支持直接写入对象
 
             keep = request.POST.get('keep') # 默认保持登录两周，setting里配置
             # print(keep)

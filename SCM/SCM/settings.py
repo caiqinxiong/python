@@ -35,8 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rim.apps.RimConfig',  # 自定义项目APP
     'captcha',  # 验证码
+    'rim.apps.RimConfig',  # 自定义项目APP
     'xadmin',  # xamin主体模块
     'crispy_forms',  # 渲染表格模块
     'reversion',  # 为模型通过版本控制，可以回滚数据
@@ -169,10 +169,10 @@ EMAIL_HOST = 'smtp.qq.com'
 # EMAIL_PORT = 25
 EMAIL_PORT = 587
 # 设置发件人邮箱
-EMAIL_HOST_USER = 'caiqinxiong_cai@qq.com'
-DEFAULT_FROM_EMAIL = 'caiqinxiong_cai@qq.com'
+EMAIL_HOST_USER = 'xxx@qq.com'
+DEFAULT_FROM_EMAIL = 'xxx@qq.com'
 # 设置发件人 授权码不是密码
-EMAIL_HOST_PASSWORD = 'ynfinymixhlabfaa'
+EMAIL_HOST_PASSWORD = 'xxx'
 # 设置是否启用安全链接
 EMAIL_USER_TLS = True
 EMAIL_USE_SSL = False
@@ -183,6 +183,7 @@ EMAIL_TIMEOUT = None
 # 使用账号以及授权码进行登录，
 # 如果登录成功，可以发送邮件
 
+
 # 过滤自动获取的路由
 AUTO_DISCOVER_EXCLUDE = [
     '/admin/.*',
@@ -192,3 +193,8 @@ AUTO_DISCOVER_EXCLUDE = [
     '/index/',
     '/captcha'
 ]
+
+try:
+    from .local_settings import *
+except ImportError as e:
+    print(e)

@@ -52,7 +52,11 @@
     <div style="width: 90%;margin: 0 auto;">
         <h1>用户组列表</h1>
         <div style="margin: 10px 0;">
-            <a class="btn btn-info" onclick="showModal();">添加</a>
+            {% for item in request.session.permission_url_list %}
+                {% if 'add_group_ajax' in  item.permission__name %}
+                    <a class="btn btn-info" onclick="showModal();">添加</a>
+                {% endif %}
+            {% endfor %}
             {#            <a class="btn btn-info" href="{% url 'add_group' %}">添加</a>#}
         </div>
         <table class="table table-striped table-bordered table-hover">
@@ -62,7 +66,7 @@
                 <th>ID</th>
                 <th>组名</th>
                 <th>用户</th>
-{#                <th>权限</th>#}
+                {#                <th>权限</th>#}
                 <th>创建时间</th>
                 <th>操作</th>
             </tr>
@@ -78,24 +82,31 @@
                             <span style="border: 1px solid #ccc;padding: 5px;">{{ item }}</span>
                         {% endfor %}
                     </td>
-{#                    <td>#}
-{#                        {% for item in  row.permission_set.all %}#}
-{#                            <span style="border: 1px solid #ccc;padding: 5px;">{{ item }}</span>#}
-{#                        {% endfor %}#}
-{#                    </td>#}
+                    {#                    <td>#}
+                    {#                        {% for item in  row.permission_set.all %}#}
+                    {#                            <span style="border: 1px solid #ccc;padding: 5px;">{{ item }}</span>#}
+                    {#                        {% endfor %}#}
+                    {#                    </td>#}
                     <td>{{ row.createtime }}</td>
                     <td>
-                        <a class="btn-sm btn-primary" onclick="modelEdit(this)"><i class="fa fa-pencil-square-o"
-                                                                                   aria-hidden="true"></i>编辑</a>
-                        {# <a class="btn-sm btn-primary" href="{% url 'edit_group' row.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>#}
-                        <a class="btn-sm btn-danger" onclick="removeRow(this,{{ row.id }})"><i class="fa fa-trash"
-                                                                                               aria-hidden="true"></i>删除</a>
+                        {% for item in request.session.permission_url_list %}
+                            {% if 'edit_group_ajax' in  item.permission__name %}
+                                <a class="btn-sm btn-primary" onclick="modelEdit(this)"><i
+                                        class="fa fa-pencil-square-o"
+                                        aria-hidden="true"></i>编辑</a>
+                            {% endif %}
+                            {# <a class="btn-sm btn-primary" href="{% url 'edit_group' row.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>#}
+                            {% if 'del_group' in  item.permission__name %}
+                                <a class="btn-sm btn-danger" onclick="removeRow(this,{{ row.id }})"><i
+                                        class="fa fa-trash" aria-hidden="true"></i>删除</a>
+                            {% endif %}
+                        {% endfor %}
                     </td>
                 </tr>
-                {% empty %}
-                            <tr>
-                                <td colspan="5" class="text-center">暂时没有数据哦~</td>
-                            </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center">暂时没有数据哦~</td>
+                </tr>
             {% endfor %}
             </tbody>
         </table>
@@ -115,7 +126,7 @@
 
             <div class="row select-body">
                 <div class="col-md-5">
-                <h4>可选用户</h4>
+                    <h4>可选用户</h4>
                     <select multiple="multiple" id="select1" class="select-left">
                         {% for item in  user_info %}
                             <option value="{{ item.id }}">{{ item }}</option>
@@ -164,7 +175,7 @@
 
             <div class="row select-body">
                 <div class="col-md-5">
-                <h4>可选用户</h4>
+                    <h4>可选用户</h4>
                     <select multiple="multiple" id="select3" class="select-left">
                         {% for item in  user_info %}
                             <option value="{{ item.id }}">{{ item }}</option>
@@ -245,13 +256,15 @@
             var row = $(ths).parent().prevAll();
             var gname = $(row[2]).text();//获取组名
             var select = $(row[1]).text();//获取关联用户信息
-            select=select.split(' ');
+            select = select.split(' ');
             {#select=select.filter((e,i)=>select.indexOf(e)==i);#}//数组过滤重复
-            select = $.grep(select, function (x) { return $.trim(x).length > 0; });//数组过滤空格
+            select = $.grep(select, function (x) {
+                return $.trim(x).length > 0;
+            });//数组过滤空格
             var select3 = $('#select3 option');//返回左侧选择的对象
             for (var j = 0; j < select3.length; j++) {//遍历左侧选择框，既遍历所有用户
-                for (var i=0;i<select.length;i++){
-                    if (select[i].replace(/\s+/g,"")==select3[j].text.replace(/\s+/g,"")){
+                for (var i = 0; i < select.length; i++) {
+                    if (select[i].replace(/\s+/g, "") == select3[j].text.replace(/\s+/g, "")) {
                         document.getElementById('select4').append(select3[j])
                     }
                 }
@@ -271,7 +284,7 @@
                 url: '/rim/edit_group_ajax/',
                 type: 'POST',
                 traditional: true,//traditional:是否使用传统的方式浅层序列化。后端用request.POST.getlist('select')接收
-                data: {'id': id, 'gname': gname,'select': $('#select4').val()},
+                data: {'id': id, 'gname': gname, 'select': $('#select4').val()},
                 async: false,//解决刷新失败
                 success: function (arg) {
                     // arg字符串类型

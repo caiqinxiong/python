@@ -13,6 +13,7 @@ class Project(models.Model):
 
     class Meta:
         ordering = ["pid"] # 按什么排序展示
+        verbose_name = "项目" # 首页栏展示名称
         verbose_name_plural = "项目" # 类名展示,在admin账户里显示的
 
 
@@ -34,6 +35,7 @@ class ReleaseInfo(models.Model):
 
     class Meta:
         ordering = ["-createtime"] # 按什么排序展示
+        verbose_name = '发布信息' # 首页栏展示名称
         verbose_name_plural = "发布信息" # 类名展示,在admin账户里显示的
 
 
@@ -43,9 +45,9 @@ class User(models.Model):
         ('male', "男"),
         ('female', "女"),
     )
-    username = models.CharField(max_length=128, unique=True, verbose_name='用户名')
-    password = models.CharField(max_length=256, verbose_name='密码')
-    email = models.EmailField(unique=True, verbose_name='邮箱')
+    username = models.CharField(max_length=128, unique=True, verbose_name='用户名*')
+    password = models.CharField(max_length=256, verbose_name='密码*')
+    email = models.EmailField(unique=True, verbose_name='邮箱*')
     sex = models.CharField(max_length=32, choices=gender, default="男",verbose_name='性别')
     createtime = models.DateTimeField(auto_now_add=True, verbose_name='创建日期')
 
@@ -54,6 +56,7 @@ class User(models.Model):
 
     class Meta:
         ordering = ["id"]
+        verbose_name = '用户' # 首页栏展示名称
         verbose_name_plural = "用户" # 类名展示
 
 
@@ -68,6 +71,7 @@ class Group(models.Model):
 
     class Meta:
         ordering = ["id"]
+        verbose_name = "用户组" # 首页栏展示名称
         verbose_name_plural = "用户组" # 类名展示
 
 class Permission(models.Model):
@@ -82,6 +86,7 @@ class Permission(models.Model):
     p2g = models.ManyToManyField(verbose_name="所属组", to="Group", null=True, blank=True)
 
     class Meta:
+        verbose_name = '权限'
         verbose_name_plural = "权限表"
 
     def __str__(self):

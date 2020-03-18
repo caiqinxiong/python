@@ -4,7 +4,11 @@
     <div class="container">
         <h1>权限列表</h1>
         <div>
-            <a style="margin: 10px 0;" class="btn btn-info" href="{% url 'permissions_add' %}">添加</a>
+            {% for item in request.session.permission_url_list %}
+                {% if 'permissions_add' in  item.permission__name %}
+                    <a style="margin: 10px 0;" class="btn btn-info" href="{% url 'permissions_add' %}">添加</a>
+                {% endif %}
+            {% endfor %}
         </div>
         <table class="table table-striped table-bordered table-hover">
             <thead>
@@ -30,8 +34,16 @@
                         {% endfor %}
                     </th>
                     <th>
-                        <a class="btn-sm btn-primary" href="{% url 'permissions_edit' pk=row.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
-                        <a class="btn-sm btn-danger" onclick="removeRow(this,{{ row.id }});"><i class="fa fa-trash" aria-hidden="true"></i>删除</a>
+                        {% for item in request.session.permission_url_list %}
+                            {% if 'permissions_edit' in  item.permission__name %}
+                                <a class="btn-sm btn-primary" href="{% url 'permissions_edit' pk=row.id %}"><i
+                                        class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
+                            {% endif %}
+                            {% if 'permissions_del' in  item.permission__name %}
+                                <a class="btn-sm btn-danger" onclick="removeRow(this,{{ row.id }});"><i
+                                        class="fa fa-trash" aria-hidden="true"></i>删除</a>
+                            {% endif %}
+                        {% endfor %}
                     </th>
                 </tr>
             {% empty %}
