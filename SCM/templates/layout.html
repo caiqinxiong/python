@@ -47,14 +47,11 @@
             {% for item in request.session.permission_url_list %}
                 {% if 'project_list' in  item.permission__name %}
                     <li><a href="{% url 'project_list' %}"> <i class="fa fa-cog" aria-hidden="true"></i> 项目管理</a></li>
-                {% endif %}
-                {% if 'user_list_all' in  item.permission__name %}
+                {% elif 'user_list_all' in  item.permission__name %}
                     <li><a href="{% url 'user_list_all' %}"><i class="fa fa-telegram" aria-hidden="true"></i>用户管理</a></li>
-                {% endif %}
-                {% if 'group_list' in  item.permission__name %}
+                {% elif 'group_list' in  item.permission__name %}
                     <li><a href="{% url 'group_list' %}"><i class="fa fa-telegram" aria-hidden="true"></i>用户组管理</a></li>
-                {% endif %}
-                {% if 'permissions_list' in  item.permission__name %}
+                {% elif 'permissions_list' in  item.permission__name %}
                     <li><a href="{% url 'permissions_list' %}"><i class="fa fa-cog" aria-hidden="true"></i>权限管理</a></li>
                 {% endif %}
             {% endfor %}

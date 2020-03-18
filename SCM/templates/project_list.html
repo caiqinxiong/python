@@ -43,7 +43,7 @@
                 {% endif %}
             {% endfor %}
         </div>
-        <table class="table table-striped table-bordered table-hover">
+        <table id="tab" class="table table-striped table-bordered table-hover">
             <thead>
             <tr>
                 {#            <th>序号</th>#}
@@ -65,12 +65,9 @@
                     <td>
                         {% for item in request.session.permission_url_list %}
                             {% if 'edit_project' in  item.permission__name %}
-                                <a class="btn-sm btn-primary" onclick="modelEdit(this);"><i
-                                        class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
-                            {% endif %}
-                            {% if 'del_project' in  item.permission__name %}
-                                <a class="btn-sm btn-danger" onclick="removeRow(this,{{ row.pid }})"><i
-                                        class="fa fa-trash" aria-hidden="true"></i>删除</a>
+                                <a class="btn-sm btn-primary" onclick="modelEdit(this);"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
+                            {% elif 'del_project' in  item.permission__name %}
+                                <a class="btn-sm btn-danger" onclick="removeRow(this,{{ row.pid }})"><i class="fa fa-trash" aria-hidden="true"></i>删除</a>
                             {% endif %}
                         {% endfor %}
                     </td>
@@ -139,6 +136,19 @@
 {% block js %}
     <script src="/static/js/jquery-1.12.4.js"></script>
     <script>
+
+        //删除指定列
+        function DeleteSignColumn() {
+            var tab = document.getElementById("tab");
+            var last_index = tab.rows[1].cells.length-1;
+            if (tab.rows[1].cells[last_index].innerText == "") {
+                //删除指定单元格
+                for (var i = 0; i < tab.rows.length; i++) {
+                    tab.rows[i].deleteCell(last_index);
+                }
+            }
+        }DeleteSignColumn();
+
         function showModal() {
             document.getElementById('shadow').classList.remove('hide');
             document.getElementById('modal').classList.remove('hide');
