@@ -60,7 +60,7 @@
     <div class="content">
         <ol class="breadcrumb">
             <li><a href="#">首页</a></li>
-            <li><a href="{% url 'project_list' %}">项目管理</a></li>
+            <li id="daohang" class="active">项目管理</li>
         </ol>
         {% block content %}{% endblock %}
 
@@ -69,5 +69,18 @@
 </body>
 <script src="/static/js/jquery-1.12.4.js"></script>
 <script src="/static/js/sweetalert-dev.js"></script>
+<script>
+    function f() {
+        var integrityurl = window.location.href;
+        var daohang = $('#daohang');
+        var daohang_url=$('.menus a');
+        for (var i=0;i<daohang_url.length;i++){
+            if(integrityurl == daohang_url[i].href){
+                daohang.text(daohang_url[i].text)
+            }
+        }
+
+    }f();
+</script>
 {% block js %}{% endblock %}
 </html>
