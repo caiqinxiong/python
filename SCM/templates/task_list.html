@@ -4,9 +4,13 @@
     <div class="container">
         <h1>发布任务单</h1>
         <div>
-            <a style="margin: 10px 0;" class="btn btn-primary" href="{% url 'task_add' pk=project_id %}">添加</a>
+            {% for item in request.session.permission_url_list %}
+                {% if 'task_add' in  item.permission__name %}
+                    <a style="margin: 10px 0;" class="btn btn-primary" href="{% url 'task_add' pk=project_id %}">添加</a>
+                {% endif %}
+            {% endfor %}
         </div>
-        <table class="table table-striped table-bordered table-hover">
+        <table id="tab" class="table table-striped table-bordered table-hover">
             <thead>
             <tr>
                 <th>ID</th>
@@ -28,14 +32,21 @@
                         <a href="{% url 'release_info' pk=row.id %}">发布详细</a>
                     </th>
                     <th>
-                        <a class="btn-sm btn-info" href="{% url 'task_edit' pk=row.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
-                        <a class="btn-sm btn-danger" onclick="removeRow(this,{{ row.id }});"><i class="fa fa-trash" aria-hidden="true"></i>删除</a>
+                        {% for item in request.session.permission_url_list %}
+                            {% if 'task_edit' in  item.permission__name %}
+                                <a class="btn-sm btn-info" href="{% url 'task_edit' pk=row.id %}"><i
+                                        class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
+                            {% elif 'task_del' in  item.permission__name %}
+                                <a class="btn-sm btn-danger" onclick="removeRow(this,{{ row.id }});"><i
+                                        class="fa fa-trash" aria-hidden="true"></i>删除</a>
+                            {% endif %}
+                        {% endfor %}
                     </th>
                 </tr>
-                 {% empty %}
-                            <tr>
-                                <td colspan="6" class="text-center">暂时没有数据哦~</td>
-                            </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center">暂时没有数据哦~</td>
+                </tr>
             {% endfor %}
             </tbody>
         </table>
@@ -50,6 +61,18 @@
 
 {% block js %}
     <script>
+        //删除指定列
+        function DeleteSignColumn() {
+            var tab = document.getElementById("tab");
+            var last_index = tab.rows[1].cells.length-1;
+            if (tab.rows[1].cells[last_index].innerText == "") {
+                //删除指定单元格
+                for (var i = 0; i < tab.rows.length; i++) {
+                    tab.rows[i].deleteCell(last_index);
+                }
+            }
+        }DeleteSignColumn();
+
         function removeRow(ths, rid) {
             swal({
                 title: "确定删除选中的记录?",
@@ -60,7 +83,7 @@
                 confirmButtonText: "确定",
                 cancelButtonText: "取消",
                 closeOnConfirm: true
-            },function () {
+            }, function () {
                 $.ajax({
                     url: '/rim/task/del/' + rid + '/',
                     type: 'get',

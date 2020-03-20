@@ -61,7 +61,7 @@
                     <td>{{ row.pid }}</td>
                     <td>{{ row.pname }}</td>
                     <td>{{ row.kname | upper }}</td>
-                    <td><a class="bg-success" href="{% url 'task_list' pk=row.pid %}">发布任务</a></td>
+                    <td><a class="bg-success btn-sm btn-info" href="{% url 'task_list' pk=row.pid %}">发布任务</a></td>
                     <td>
                         {% for item in request.session.permission_url_list %}
                             {% if 'edit_project' in  item.permission__name %}

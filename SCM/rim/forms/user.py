@@ -18,6 +18,7 @@ class UserModelForm(BootStrapModelForm):
     captcha = CaptchaField(label='验证码',required=True, error_messages={"invalid": "验证码错误!"})
     class Meta:
         model = models.User
-        fields = "__all__"
+        # fields = "__all__"
         # fields = ['email','password']
+        exclude = ['avatar']
 
