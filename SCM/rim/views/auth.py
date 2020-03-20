@@ -18,6 +18,7 @@ def login(request):
         obj = models.User.objects.filter(email=email, password=password).first()
         if obj:
             request.session['email'] = obj.email
+            request.session['avatar'] = str(obj.avatar) # 用户头像
             init_permission(obj,request)# 获取相关权限
             keep = request.POST.get('keep') # 默认保持登录两周，setting里配置
             # print(keep)

@@ -194,6 +194,10 @@ AUTO_DISCOVER_EXCLUDE = [
     '/captcha'
 ]
 
+# 媒体文件地址
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images/media/')
+
 try:
     from .local_settings import *
 except ImportError as e:

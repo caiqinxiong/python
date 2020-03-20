@@ -20,6 +20,8 @@ from rim.views import auth
 from rim.views import user
 from rim.views import group
 from rim.views import permissions
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     # url(r'^index/', project.index, name='index'),
@@ -44,6 +46,7 @@ urlpatterns = [
     url(r'^user/edit/(?P<pk>\d+)/$', user.user_edit, name='user_edit'),
     url(r'^user/del/(?P<pk>\d+)/$', user.user_del, name='user_del'),
     url(r'^change_password/$', user.change_password, name='change_password'),
+    url(r'^upload_avatar/$', user.upload_avatar, name='upload_avatar'),
 
     url(r'^group_list/$', group.group_list, name='group_list'),
     # url(r'^add_group/$', group.add_group, name='add_group'),
@@ -59,3 +62,5 @@ urlpatterns = [
 
 ]
 
+# 配置上传的图片URL路径
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

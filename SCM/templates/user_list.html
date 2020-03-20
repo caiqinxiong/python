@@ -41,6 +41,15 @@
     <div style="width: 90%;margin: 0 auto; word-wrap: break-word;">
         <h1>用户信息：{{ user_obj.username }}</h1>
         <dl class="dl-horizontal">
+            <dt>头像：</dt>
+            {% if user_obj.avatar %}
+                <dd><img id="tx_img" style="width: 40px;height: 40px;" src="/static/images/media/{{ user_obj.avatar }}"
+                         onclick="upload_avatar()"></dd>
+            {% else %}
+                <dd><img id="tx_img" style="width: 40px;height: 40px;" src="/static/images/avatar/ico_add_avatar.png"
+                         onclick="upload_avatar()"></dd>
+            {% endif %}
+            <br>
             <dt>用户名：</dt>
             <dd>{{ user_obj.username }}</dd>
             <dt>邮箱：</dt>
@@ -92,11 +101,54 @@
             </div>
         </form>
     </div>
+    <div id="add_avatar" class="modal-pr hide panel panel-primary " style="height: 200px;width: 420px">
+        <div class="panel-heading"><strong>上传头像</strong></div>
+        <br>
+        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="avatar" class="col-sm-4 control-label">请选择上传:</label>
+                <div class="col-sm-8">
+                    <input type="file" class="form-control-file  " name="avatar" id="avatar">
+                </div>
+            </div>
+            <hr>
+            <div class="col-sm-8">
+                <button type="submit" class="btn btn-success " value="取消" onclick="submit_avatar();">提交</button>
+                <button type="submit" class="btn btn-primary" value="取消" onclick="cancleModal();">取消</button>
+            </div>
+        </form>
+    </div>
+
 
 {% endblock %}
 
 {% block js %}
     <script>
+        function upload_avatar() {
+            document.getElementById('shadow').classList.remove('hide');
+            document.getElementById('add_avatar').classList.remove('hide');
+        }
+
+        function submit_avatar() {
+            var files = $("#avatar").get(0).files[0]; //获取file控件中的内容
+            var formData = new FormData();
+            formData.append("avatar", files);
+            $.ajax({
+                type: "POST",
+                url: "/rim/upload_avatar/",//接口请求地址
+                contentType: false, // 告诉jQuery不要去设置Content-Type请求头
+                processData: false, // 告诉jQuery不要去处理发送的数据
+                async: false,
+                data: formData,
+                success: function (data) {
+                    var data = JSON.parse(data);
+                    console.log("请求成功之后，调用接口返回的数据");
+                }
+            });
+
+        }
+
         function modelEdit(ths) {
             document.getElementById('shadow').classList.remove('hide');
             document.getElementById('editModal').classList.remove('hide');

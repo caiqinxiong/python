@@ -8,12 +8,41 @@ from rim import models
 from rim.forms.user import UserModelForm
 from utils.mail_hander import SendMail
 from django.conf import settings
+from django.utils import timezone
 
 def user_list(request):
     '''用户信息'''
     email = request.session.get("email")
     user_obj = models.User.objects.filter(email=email).first()
     return render(request ,'user_list.html',{'user_obj':user_obj})
+
+
+def save_image(files):
+    filename = "%s.%s" % (timezone.now().strftime('%Y%m%d%H%M%S%f'), files.name.split('.')[-1])
+    print(filename)
+    full_filename = "%s/%s" % (settings.MEDIA_ROOT, filename)
+    print(full_filename)
+    with open(full_filename, 'wb') as f:
+        for chunk in files.chunks():
+            f.write(chunk)
+    return filename, full_filename
+
+def upload_avatar(request):
+    '''上传头像'''
+    email = request.session.get("email")
+    user_obj = models.User.objects.filter(email=email).first()
+    ret = {'status': True, 'msg': None, 'url': ''}
+    if request.method == 'POST':
+        file_img = request.FILES.get('avatar', None)
+        print(file_img)
+        if file_img:
+            filename, full_filename = save_image(file_img)
+            print(filename)
+            user_obj.avatar=filename
+            user_obj.save()
+
+    return HttpResponse(json.dumps(ret))
+
 
 def change_password(request):
     '''修改密码'''

@@ -50,6 +50,10 @@ class User(models.Model):
     email = models.EmailField(unique=True, verbose_name='邮箱*')
     sex = models.CharField(max_length=32, choices=gender, default="男",verbose_name='性别')
     createtime = models.DateTimeField(auto_now_add=True, verbose_name='创建日期')
+    # %Y%m%d是日期格式化的写法，会最终格式化为系统时间。比如说图片上传是2018年12月5日，则图片会保存在/media/avatar/2018205/中。
+    # from utils.init_dir import PathAndRename
+    # path_and_rename = PathAndRename('avatar/%Y%m%d/')
+    avatar = models.ImageField(upload_to='avatar',verbose_name='头像',blank=True,null=True)# 注意ImageField字段不会存储图片本身，而仅仅保存图片的地址，记得用pip指令安装Pillow。
 
     def __str__(self):
         return self.username
