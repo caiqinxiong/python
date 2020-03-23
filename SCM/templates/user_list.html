@@ -40,10 +40,11 @@
 {% block content %}
     <div style="width: 90%;margin: 0 auto; word-wrap: break-word;">
         <h1>用户信息：{{ user_obj.username }}</h1>
+        <hr>
         <dl class="dl-horizontal">
             <dt>头像：</dt>
             {% if user_obj.avatar %}
-                <dd><img id="tx_img" style="width: 40px;height: 40px;" src="/static/images/media/{{ user_obj.avatar }}"
+                <dd><img id="tx_img" style="width: 40px;height: 40px;border-radius:5px" src="/static/images/media/{{ user_obj.avatar }}"
                          onclick="upload_avatar()"></dd>
             {% else %}
                 <dd><img id="tx_img" style="width: 40px;height: 40px;" src="/static/images/avatar/ico_add_avatar.png"

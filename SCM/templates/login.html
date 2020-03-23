@@ -24,7 +24,7 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label"></label>
                     <div class="input-group col-sm-8">
-{#                        <span class="input-group-addon"><i class="fa fa-user-o fa-fw" aria-hidden="true"></i></span>#}
+                        {#                        <span class="input-group-addon"><i class="fa fa-user-o fa-fw" aria-hidden="true"></i></span>#}
                         <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
                         <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="Email">
                     </div>
@@ -37,14 +37,14 @@
                                placeholder="Password">
                     </div>
                 </div>
-{#                <div class="form-group">#}
-{#                    <label for="captcha" class="col-sm-2 control-label"></label>#}
-{#                    <div class="input-group col-sm-8">#}
-{#                        {{ form.captcha.label_tag }}#}
-{#                        {{ form.captcha }} <!--验证码，自带了一个input框-->#}
-{#                        {{ form.captcha.errors }}#}
-{#                    </div>#}
-{#                </div>#}
+                {#                <div class="form-group">#}
+                {#                    <label for="captcha" class="col-sm-2 control-label"></label>#}
+                {#                    <div class="input-group col-sm-8">#}
+                {#                        {{ form.captcha.label_tag }}#}
+                {#                        {{ form.captcha }} <!--验证码，自带了一个input框-->#}
+                {#                        {{ form.captcha.errors }}#}
+                {#                    </div>#}
+                {#                </div>#}
                 <div class="form-group">
                     <div class="input-group col-sm-offset-2 col-sm-8">
                         <div class="checkbox">
@@ -65,4 +65,22 @@
     </div>
 </div>
 </body>
+<script src="/static/js/jquery-1.12.4.js"></script>
+<script>
+    window.onload = function () {
+        //禁止F12
+        $("*").keydown(function (e) {//判断按键
+            e = window.event || e || e.which;
+            if (e.keyCode == 123) {
+                e.keyCode = 0;
+                return false;
+            }
+        });
+
+        //禁止审查元素
+        $(document).bind("contextmenu", function (e) {
+            return false;
+        });
+    };
+</script>
 </html>

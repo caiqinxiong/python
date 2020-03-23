@@ -62,5 +62,5 @@ urlpatterns = [
 
 ]
 
-# 配置上传的图片URL路径
+# 閰嶇疆涓婁紶鐨勫浘鐗嘦RL璺緞
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

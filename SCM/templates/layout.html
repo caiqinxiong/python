@@ -78,14 +78,16 @@
     function f() {
         var integrityurl = window.location.href;
         var daohang = $('#daohang');
-        var daohang_url=$('.menus a');
-        for (var i=0;i<daohang_url.length;i++){
-            if(integrityurl == daohang_url[i].href){
+        var daohang_url = $('.menus a');
+        for (var i = 0; i < daohang_url.length; i++) {
+            if (integrityurl.indexOf(daohang_url[i].href) != -1) {
                 daohang.text(daohang_url[i].text)
             }
         }
 
-    }f();
+    }
+
+    f();
 </script>
 {% block js %}{% endblock %}
 </html>
