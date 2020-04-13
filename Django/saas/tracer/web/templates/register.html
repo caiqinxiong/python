@@ -1,0 +1,120 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/account.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="account">
+        <div class="title">用户注册</div>
+        <form id="regForm" method="POST" novalidate>
+            {% csrf_token %}
+            {% for field in form %}
+                {% if field.name == 'code' %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        <div class="row">
+                            <div class="col-xs-7">
+                                {{ field }}
+                                <span class="error-msg"></span>
+                            </div>
+                            <div class="col-xs-5">
+                                <input id="smsBtn" type="button" class="btn btn-default" value="点击获取验证码">
+                            </div>
+                        </div>
+
+                    </div>
+                {% else %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        <span class="error-msg" id="{{ field.name }}_error"></span>
+                    </div>
+
+                {% endif %}
+            {% endfor %}
+
+            <div class="row">
+                <div class="col-xs-3">
+                    <input id="regBtn" type="button" class="btn btn-primary" value="注  册"/>
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+{% endblock %}
+{% block js %}
+    <script>
+    $(function () {
+        bindClickBtnSms();
+        RegisterClick();
+    });
+    function bindClickBtnSms(){
+        $('#smsBtn').click(function (){
+            var mobilePhone = $('#id_mobile_phone').val();
+            {#console.log(mobilePhone)#}
+            $.ajax({
+                url:'{% url 'send_sms' %}',
+                type:"GET",
+                data:{mobile_phone:mobilePhone,tpl:'register'},
+                dataType:'JSON',//将服务端返回的数据反序列化为字典
+                success:function (res) {
+                    //ajax请求发送成功之后,自动执行
+                    console.log(res)
+                    if (res.status){
+                        sendSmsRemind()
+                    }else{
+                        $.each(res.error,function (key, value) {
+                            $('#id_' + key).next().text(value[0]);
+                        })
+
+                    }
+                }
+            })
+        })
+    }
+    function sendSmsRemind() {
+        var $smsBtn = $('#smsBtn');
+        $smsBtn.prop('disabled',true);
+        var time = 60;
+        var remind = setInterval(function(){
+            $smsBtn.val(time + '秒重新发送');
+            time = time - 1;
+            if (time < 1) {
+                clearInterval(remind);
+                $smsBtn.val('点击获取验证码').prop('disabled',false);
+            }
+        },1000)
+    }
+    function  RegisterClick(){
+        $('#regBtn').click(function (){
+            $('.error-msg').empty()
+            {#var username = $('#id_username').val();#}
+            {#var email = $('#id_email').val();#}
+            {#var password = $('#id_password').val();#}
+            {#var repwd = $('#id_confirm_password').val();#}
+            {#var moblie_phone = $('#id_mobile_phone').val();#}
+            {#var code = $('#id_code').val()#}
+            {#console.log(username,email,password,repwd,moblie_phone,code)#}
+            {#$('#regForm').serialize()#}
+            $.ajax({
+                url:'{% url 'register' %}',
+                type:"POST",
+                data:$('#regForm').serialize(),
+                dataType: 'JSON',
+                success:function (res) {
+                    {#console.log(res)#}
+                    if (res.status) {
+                        location.href = res.data ;
+                    } else {
+                        $.each(res.error, function (key, value) {
+                            $('#id_' + key).next().text(value[0]);
+                        })
+                    }
+                }
+            })
+        })
+    }
+
+    </script>
+{% endblock %}
