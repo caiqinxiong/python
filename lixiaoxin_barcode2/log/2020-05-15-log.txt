@@ -124,3 +124,51 @@ E:\python_test\python\lixiaoxin_barcode2\db\output\条形码_20200515154613.docx
 2020-05-15 15:54:23	[INFO]	内容为60的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\3_2生成ok
 2020-05-15 15:54:23	[INFO]	文档内容填写完成，地址为：
 E:\python_test\python\lixiaoxin_barcode2\db\output\条形码_20200515155423.docx
+2020-05-15 16:38:35	[INFO]	从表格中读取数据，追加到列表中,跳过表头从1行开始读取数据，共4行数据！
+2020-05-15 16:38:35	[INFO]	数据读取完成！
+2020-05-15 16:38:35	[INFO]	内容为X1320EC的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\0_0生成ok
+2020-05-15 16:38:35	[INFO]	内容为XFJS011912001的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\0_1生成ok
+2020-05-15 16:38:35	[INFO]	内容为50的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\0_2生成ok
+2020-05-15 16:38:35	[INFO]	内容为X1320EC的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\1_0生成ok
+2020-05-15 16:38:35	[INFO]	内容为XXX的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\1_1生成ok
+2020-05-15 16:38:35	[INFO]	内容为10的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\1_2生成ok
+2020-05-15 16:38:35	[INFO]	内容为X1320EC的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\2_0生成ok
+2020-05-15 16:38:35	[INFO]	内容为XFJS011912001的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\2_1生成ok
+2020-05-15 16:38:35	[INFO]	内容为30的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\2_2生成ok
+2020-05-15 16:38:35	[INFO]	内容为X1320EC的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\3_0生成ok
+2020-05-15 16:38:35	[INFO]	内容为KKK的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\3_1生成ok
+2020-05-15 16:38:35	[INFO]	内容为60的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\3_2生成ok
+2020-05-15 16:38:35	[INFO]	文档内容填写完成，地址为：
+E:\python_test\python\lixiaoxin_barcode2\db\output\条形码_20200515163834.docx
+2020-05-15 16:46:16	[INFO]	从表格中读取数据，追加到列表中,跳过表头从1行开始读取数据，共4行数据！
+2020-05-15 16:46:16	[INFO]	数据读取完成！
+2020-05-15 16:46:16	[INFO]	内容为X1320EC的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\0_0生成ok
+2020-05-15 16:46:16	[INFO]	内容为XFJS011912001的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\0_1生成ok
+2020-05-15 16:46:16	[INFO]	内容为50的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\0_2生成ok
+2020-05-15 16:46:16	[INFO]	内容为X1320EC的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\1_0生成ok
+2020-05-15 16:46:16	[INFO]	内容为XXX的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\1_1生成ok
+2020-05-15 16:46:16	[INFO]	内容为10的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\1_2生成ok
+2020-05-15 16:46:16	[INFO]	内容为X1320EC的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\2_0生成ok
+2020-05-15 16:46:16	[INFO]	内容为XFJS011912001的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\2_1生成ok
+2020-05-15 16:46:16	[INFO]	内容为30的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\2_2生成ok
+2020-05-15 16:46:16	[INFO]	内容为X1320EC的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\3_0生成ok
+2020-05-15 16:46:16	[INFO]	内容为KKK的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\3_1生成ok
+2020-05-15 16:46:16	[INFO]	内容为60的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\3_2生成ok
+2020-05-15 16:46:16	[INFO]	文档内容填写完成，地址为：
+E:\python_test\python\lixiaoxin_barcode2\db\output\条形码_20200515164616.docx
+2020-05-15 16:46:55	[INFO]	从表格中读取数据，追加到列表中,跳过表头从1行开始读取数据，共4行数据！
+2020-05-15 16:46:55	[INFO]	数据读取完成！
+2020-05-15 16:46:55	[INFO]	内容为X1320EC的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\0_0生成ok
+2020-05-15 16:46:55	[INFO]	内容为XFJS011912001的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\0_1生成ok
+2020-05-15 16:46:55	[INFO]	内容为50的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\0_2生成ok
+2020-05-15 16:46:55	[INFO]	内容为X1320EC的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\1_0生成ok
+2020-05-15 16:46:55	[INFO]	内容为XXX的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\1_1生成ok
+2020-05-15 16:46:55	[INFO]	内容为10的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\1_2生成ok
+2020-05-15 16:46:55	[INFO]	内容为X1320EC的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\2_0生成ok
+2020-05-15 16:46:55	[INFO]	内容为XFJS011912001的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\2_1生成ok
+2020-05-15 16:46:55	[INFO]	内容为30的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\2_2生成ok
+2020-05-15 16:46:55	[INFO]	内容为X1320EC的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\3_0生成ok
+2020-05-15 16:46:55	[INFO]	内容为KKK的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\3_1生成ok
+2020-05-15 16:46:55	[INFO]	内容为60的条形码E:\python_test\python\lixiaoxin_barcode2\db\img\3_2生成ok
+2020-05-15 16:46:55	[INFO]	文档内容填写完成，地址为：
+E:\python_test\python\lixiaoxin_barcode2\db\output\条形码_20200515164655.docx

@@ -36,7 +36,20 @@ def create_barcode(content,bracode_name):
     ean = EAN(content, writer=ImageWriter())  # 创建条形码对象，内容为content参数传入
     bracode_name = os.path.join(ss.IMG_PAHT,bracode_name)
     log.readAndWrite('内容为%s的条形码%s生成ok' % (content,bracode_name))
-    return ean.save(bracode_name, {'write_text': False})  # 保存条形码图片，并返回保存路径。图片格式为png,{'write_text': False}为不要底下的文字内容
+    # 保存条形码图片，并返回保存路径。图片格式为png,{'write_text': False}为不要底下的文字内容,'quiet_zone'为调整图片左右白边大小，看源码
+    # default_writer_options = { # 默认参数
+    #     'module_width': 0.2,
+    #     'module_height': 15.0,
+    #     'quiet_zone': 6.5,
+    #     'font_size': 10,
+    #     'text_distance': 5.0,
+    #     'background': 'white',
+    #     'foreground': 'black',
+    #     'write_text': True,
+    #     'text': '',
+    # }
+    return ean.save(bracode_name, {'write_text': False, 'quiet_zone': 0})
+
 
 def wirte_barcode(document,data_list,i,n,m):
     '''写入条形码'''
