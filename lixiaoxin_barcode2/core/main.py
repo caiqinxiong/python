@@ -16,6 +16,7 @@ def run():
     for i in range(len(data_list)):
         for j in range(len(data_list[i])):
             bracode_name = str(i) + '_' + str(j)
+            if j == 2: data_list[i][j] = int(data_list[i][j]) # 小数转换成整数
             create_barcode(data_list[i][j], bracode_name)
 
     # 3.将条形码插入docx

@@ -12,6 +12,9 @@ DATA_TIME = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
 DOCX_NAME = '条形码'
 DOCX_NAME = DOCX_NAME + '_' + DATA_TIME + '.docx'
 
+# 一行生成几个条形码
+BARCODE_NUM = 2
+
 ############图片大小设置##################
 LOGO_W = 0.4        # logo图片宽度
 LOGO_H = 1.2        # logo图片高度
@@ -28,11 +31,11 @@ WORD_SIZE = 8
 WORD_FORM = '宋体'
 
 # 文本内容输入的表格开始行数，索引从0开始
-START_ROW = 0  # 有表头时修改
+START_ROW = 1  # 有表头时修改
 
 # 创建什么格式的条形码格式对象
-CODE_FORMAT = 'Code128'
-# CODE_FORMAT = 'Code39'
+# CODE_FORMAT = 'Code128'
+CODE_FORMAT = 'Code39'
 
 # 输入文本名称
 CONTENT = 'content.xls'

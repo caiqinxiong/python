@@ -45,18 +45,30 @@ def wirte_barcode(document,data_list,i,n,m):
     table.add_picture(ss.LOGO_PNG, width=Inches(ss.LOGO_W), height=Inches(ss.LOGO_H))
     # 写入条形码
     table = document.tables[0].cell(n, m+1).paragraphs[0].add_run()
-    table.text = '\n ' + data_list[i][0] + '\n'
+    table.text = ' PART NO.:' + str(data_list[i][0]) + '\n'
     name = str(i) + '_0.png'
+    # PART_NO_W = ss.PART_NO_W * len(data_list[i][0]) * 100 / 13 * 0.01  # 根据字符长度决定条形码的长度，字符个数以13个为基线
+    # if PART_NO_W < 0.3:PART_NO_W = 0.3 # 限制条形码最小长度
+    # if PART_NO_W > 1.7:PART_NO_W = 1.7 # 限制条形码最大长度
     table.add_picture(os.path.join(ss.IMG_PAHT, name), width=Inches(ss.PART_NO_W), height=Inches(ss.PART_NO_H))
+    # table.add_picture(os.path.join(ss.IMG_PAHT, name),height=Inches(ss.PART_NO_H))
     table = document.tables[0].cell(n, m+1).paragraphs[0].add_run()
-    table.text = '\n ' + data_list[i][1] + ' \n'
+    table.text = '\n PACK NO.:' + str(data_list[i][1]) + ' \n'
     name = str(i) + '_1.png'
+    # PACK_NO_W = ss.PACK_NO_W * len(data_list[i][1])*100/13*0.01 # 根据字符长度决定条形码的长度，字符个数以13个为基线
+    # if PACK_NO_W < 0.3:PACK_NO_W = 0.3 # 限制条形码最小长度
+    # if PACK_NO_W > 1.7:PACK_NO_W = 1.7 # 限制条形码最大长度
     table.add_picture(os.path.join(ss.IMG_PAHT, name), width=Inches(ss.PACK_NO_W), height=Inches(ss.PACK_NO_H))
+    # table.add_picture(os.path.join(ss.IMG_PAHT, name), height=Inches(ss.PACK_NO_H))
     table = document.tables[0].cell(n, m+1).paragraphs[0].add_run()
-    table.text = '\n ' + data_list[i][2] + '\n'
+    table.text = '\n Quantity:' + str(data_list[i][2]).split('.')[0] + '\n'
     name = str(i) + '_2.png'
+    # QUANTITY_W = ss.QUANTITY_W * data_list[i][2] *100/50*0.01 # 根据数值大小决定条形码长度，以50为基线
+    # if QUANTITY_W < 0.3:QUANTITY_W = 0.3 # 限制条形码最小长度
+    # if QUANTITY_W > 1.7:QUANTITY_W = 1.7 # 限制条形码最大长度
     table.add_picture(os.path.join(ss.IMG_PAHT, name), width=Inches(ss.QUANTITY_W), height=Inches(ss.QUANTITY_H))
-    DATE = '\n ' + 'DATE:' + ss.DAY_TIME + '\t'
+    # table.add_picture(os.path.join(ss.IMG_PAHT, name),  height=Inches(ss.QUANTITY_H))
+    DATE = '\n ' + 'DATE:' + ss.DAY_TIME
     table = document.tables[0].cell(n, m+1).paragraphs[0].add_run()
     table.text = DATE  # 写入当前日期
 
@@ -71,14 +83,11 @@ def write_docx(data_list):
         # 写入条形码
         wirte_barcode(document, data_list, i, n, m)
         m = m+2
-        if m > 4:m = 0;n = n+1
+        if m > ss.BARCODE_NUM+1:m = 0;n = n+1
     else:
         log.readAndWrite('文档内容填写完成，地址为：\n%s' % ss.OUPUT_FILE)
 
     # 保存docx文档
     return  document.save(ss.OUPUT_FILE)
     
-
-
-
 
